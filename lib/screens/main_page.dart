@@ -5,7 +5,6 @@ class MainPage extends StatelessWidget {
   const MainPage({super.key});
 
   @override
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).canvasColor,
@@ -19,7 +18,10 @@ class MainPage extends StatelessWidget {
       backgroundColor: Theme.of(context).primaryColor,
       elevation: 0,
       leading: IconButton(
-        icon: const Icon(Icons.menu, color: Colors.white,),
+        icon: const Icon(
+          Icons.menu,
+          color: Colors.white,
+        ),
         onPressed: () {},
       ),
     );

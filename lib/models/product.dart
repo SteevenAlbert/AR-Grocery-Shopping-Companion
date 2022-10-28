@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Product {
   final String? image, title, description;
   final int? price, id;
@@ -18,11 +16,11 @@ List<Product> products = [
       title: "     Greek Yogurt",
       price: 30,
       description: "Juhayna",
-      image: "images/berrries_1.png"),
+      image: "assets/images/berrries_1.png"),
   Product(
       id: 2,
       title: "     Skimmed Milk",
       price: 50,
       description: "Juhayna",
-      image: "images/milk-2.png"),
+      image: "assets/images/milk-2.png"),
 ];
