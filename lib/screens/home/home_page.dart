@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/components/categories_bar.dart';
 import 'package:ar_grocery_companion/components/header.dart';
 import 'package:ar_grocery_companion/models/product.dart';
-import 'package:go_router/go_router.dart';
+import 'components/product_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -12,64 +12,34 @@ class HomePage extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     // it enable scrolling on small device
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Header(size: size),
-          const CategoriesBar(),
-          InkWell(
-            onTap: () => GoRouter.of(context).push('/product_page'),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    padding: const EdgeInsets.all(20),
-                    height: 180,
-                    width: 160,
-                    decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 226, 210, 209),
-                        borderRadius: BorderRadius.circular(16)),
-                    child: Image.asset(products[0].image!),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20 / 4),
-                  child: Text(products[0].title!,
-                      style:
-                          TextStyle(color: Color.fromARGB(255, 101, 100, 100))),
-                ),
-                const Text(
-                  "     \£\E 234",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Header(size: size),
+      const CategoriesBar(),
+      Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ProductCard(size: size, product: products[0]),
+              ProductCard(size: size, product: products[1]),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Container(
-              padding: const EdgeInsets.all(20),
-              height: 180,
-              width: 160,
-              decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 226, 210, 209),
-                  borderRadius: BorderRadius.circular(16)),
-              child: Image.asset(products[1].image!),
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ProductCard(size: size, product: products[2]),
+              ProductCard(size: size, product: products[3]),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20 / 4),
-            child: Text(products[1].title!,
-                style: TextStyle(color: Color.fromARGB(255, 101, 100, 100))),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ProductCard(size: size, product: products[4]),
+              ProductCard(size: size, product: products[5]),
+            ],
           ),
-          const Text(
-            "     \£\E 234",
-            style: TextStyle(fontWeight: FontWeight.bold),
-          )
         ],
       ),
-    );
+    ]));
   }
 }

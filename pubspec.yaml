@@ -31,7 +31,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -40,6 +39,9 @@ dependencies:
   persistent_bottom_nav_bar: ^5.0.2
   chip_list: ^2.2.3+7
   go_router: ^5.1.1
+  simple_shadow: ^0.3.0
+  favorite_button: ^0.0.4
+  toast: ^0.2.9
 
 # flutter_native_splash:
 #   color: "#ffffff"
@@ -53,6 +55,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: ^0.10.0
+  
 
 flutter_icons:
   android: "launcher_icon"
@@ -92,7 +95,11 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
+  fonts:
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito-VariableFont_wght.ttf
+
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
