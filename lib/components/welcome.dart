@@ -12,7 +12,6 @@ class Welcome extends StatelessWidget {
       padding: EdgeInsets.only(
         left: defaultPadding,
         right: defaultPadding,
-        bottom: 36 + defaultPadding,
       ),
       height: size.height * 0.2 - 27,
       decoration: BoxDecoration(
@@ -30,16 +29,6 @@ class Welcome extends StatelessWidget {
                 .textTheme
                 .headline5!
                 .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-          const Spacer(),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              foregroundColor: Theme.of(context).primaryColor,
-              backgroundColor: Theme.of(context).canvasColor,
-              shape: const StadiumBorder(),
-            ).copyWith(elevation: ButtonStyleButton.allOrNull(0.0)),
-            onPressed: (){},
-            child: const Text('Scan now!'),
           ),
         ],
       ),

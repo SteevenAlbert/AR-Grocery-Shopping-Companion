@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ar_grocery_companion/screens/home/components/welcome.dart';
-import 'package:ar_grocery_companion/screens/home/components/search_bar.dart';
+import 'package:ar_grocery_companion/components/welcome.dart';
 
 class Header extends StatelessWidget {
   const Header({super.key, required this.size});
@@ -17,7 +16,6 @@ class Header extends StatelessWidget {
       child: Stack(
         children: <Widget>[
           Welcome(size: size),
-          const SearchBar(),
         ],
       ),
     );

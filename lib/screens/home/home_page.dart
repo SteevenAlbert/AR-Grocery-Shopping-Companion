@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/components/categories_bar.dart';
-import 'package:ar_grocery_companion/screens/home/components/header.dart';
+import 'package:ar_grocery_companion/components/header.dart';
 import 'package:ar_grocery_companion/models/product.dart';
 import 'package:go_router/go_router.dart';
 
