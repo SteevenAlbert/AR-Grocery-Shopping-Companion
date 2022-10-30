@@ -8,7 +8,7 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double defaultPadding = 20.0;
+    double defaultPadding = 8.0;
     return Container(
       margin: EdgeInsets.only(bottom: defaultPadding),
       // It will cover 20% of our total height

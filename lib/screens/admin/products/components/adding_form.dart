@@ -19,11 +19,6 @@ class AddingForm extends StatefulWidget {
 // Create a corresponding State class.
 // This class holds data related to the form.
 class AddingFormState extends State<AddingForm> {
-  // Create a global key that uniquely identifies the Form widget
-  // and allows validation of the form.
-  //
-  // Note: This is a GlobalKey<FormState>,
-  // not a GlobalKey<MyCustomFormState>.
   final _formKey = GlobalKey<FormState>();
   String dropdownvalue = 'Choose category';
   String name = 'Nan';
@@ -70,8 +65,7 @@ class AddingFormState extends State<AddingForm> {
               child: _image != null
                   ? Image.file(
                       _image,
-                      height: 400.0,
-                      fit: BoxFit.fitHeight,
+                      fit: BoxFit.fitWidth,
                     )
                   : Container(
                       decoration: BoxDecoration(
