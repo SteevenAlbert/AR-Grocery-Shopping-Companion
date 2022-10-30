@@ -1,5 +1,5 @@
 import 'package:ar_grocery_companion/screens/admin/home/components/options_list.dart';
-import 'package:ar_grocery_companion/components/header.dart';
+import 'package:ar_grocery_companion/screens/admin/home/components/products_barchart.dart';
 import 'package:flutter/material.dart';
 
 class AdminHomePage extends StatelessWidget {
@@ -7,9 +7,8 @@ class AdminHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Column(children: [
-      Header(size: size),
+      ProductsBarChart(),
       OptionsList(),
     ]);
   }

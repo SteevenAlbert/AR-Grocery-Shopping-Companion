@@ -20,7 +20,9 @@ class _ProductsDashboardState extends State<ProductsDashboard> {
           title: Text("All products"),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: (){GoRouter.of(context).push('/add_product_page');
+          onPressed: (){
+            GoRouter.of(context).pop();
+            GoRouter.of(context).push('/add_product_page');
           },
           tooltip: 'Increment',
           child: const Icon(Icons.add),

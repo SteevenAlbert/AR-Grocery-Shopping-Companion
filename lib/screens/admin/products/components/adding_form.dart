@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:path_provider/path_provider.dart';
 import 'package:ar_grocery_companion/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -28,6 +28,9 @@ class AddingFormState extends State<AddingForm> {
   String dropdownvalue = 'Choose category';
   String name = 'Nan';
   String producer = 'Nan';
+
+  var newImage;
+
   var _image;
   var imagePicker;
   var type;
@@ -53,6 +56,11 @@ class AddingFormState extends State<AddingForm> {
                   source: source,
                   imageQuality: 50,
                   preferredCameraDevice: CameraDevice.front);
+
+              final Directory directory = await getApplicationDocumentsDirectory();
+              
+              newImage = await File(image.path).copy('${directory.path}/image1.png');
+
               setState(() {
                 _image = File(image.path);
               });
@@ -148,6 +156,10 @@ class AddingFormState extends State<AddingForm> {
                     onPressed: () {
                       // Validate returns true if the form is valid, or false otherwise.
                       if (_formKey.currentState!.validate()) {
+
+                        
+                        _image.copy("");
+
                         Product.add(Product(
                             name: name,
                             prices: {
@@ -176,8 +188,10 @@ class AddingFormState extends State<AddingForm> {
                               "PROCNT": {"amount": 67.51, "unit": "g"},
                             },
                             producer: producer,
-                            image: "assets/images/greek.png"));
+                            image: newImage.path));
+                            
                         GoRouter.of(context).pop();
+                        GoRouter.of(context).push('/products_dashboard');
                       }
                     },
                     child: const Text('Submit'),
