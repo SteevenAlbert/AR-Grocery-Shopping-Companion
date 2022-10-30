@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/models/product.dart';
-import 'package:go_router/go_router.dart';
 import 'package:simple_shadow/simple_shadow.dart';
-import 'package:favorite_button/favorite_button.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -21,8 +19,8 @@ class ProductCard extends StatelessWidget {
     return Column(
       children: <Widget>[
         InkWell(
-          onTap: () =>
-              GoRouter.of(context).goNamed("ProductPage", extra: product),
+          onTap: ()
+          {},
           child: Container(
               width: size.width * 0.4,
               decoration: BoxDecoration(
@@ -63,46 +61,6 @@ class ProductCard extends StatelessWidget {
                                         fontFamily: "Nunito",
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold)),
-                              ),
-                              // Icon(Icons.favorite_border_outlined,
-                              //     color: Colors.red, size: 20),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              // Icon(
-                              //   Icons.star_rate,
-                              //   color: Colors.yellow,
-                              //   size: 20,
-                              // ),
-                              // Align(
-                              //   alignment: Alignment.centerLeft,
-                              //   child: Text(product.size!,
-                              //       style: TextStyle(
-                              //           fontSize: 13,
-                              //           color: Color.fromARGB(
-                              //               255, 152, 152, 152))),
-                              // ),
-                              Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  color: Theme.of(context).primaryColor,
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: FavoriteButton(
-                                    iconSize: 23,
-                                    isFavorite: false,
-                                    iconColor: Color.fromARGB(255, 254, 88, 88),
-                                    iconDisabledColor:
-                                        Color.fromARGB(255, 227, 227, 227),
-                                    valueChanged: (_isFavorite) {
-                                      print('Is Favorite : $_isFavorite');
-                                    },
-                                  ),
-                                ),
                               ),
                             ],
                           ),

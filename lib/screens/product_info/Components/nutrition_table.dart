@@ -1,8 +1,5 @@
-import 'package:ar_grocery_companion/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/models/metanutrients.dart';
-
-import '../../../models/product.dart';
 
 // class NutritionFacts extends StatelessWidget {
 //   final nutrientData;

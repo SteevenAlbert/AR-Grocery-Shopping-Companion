@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class Option extends StatelessWidget {
-  String name;
+  final String name;
 
   Option({super.key, required this.name});
 
@@ -14,7 +15,7 @@ class Option extends StatelessWidget {
           side: BorderSide(color: Theme.of(context).primaryColor),
           shape: const StadiumBorder(),
         ),
-        onPressed: () {},
+        onPressed:  () => GoRouter.of(context).push('/products_dashboard'),
         child: Text(this.name),
       ),
     );

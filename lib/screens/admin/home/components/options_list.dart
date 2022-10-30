@@ -11,9 +11,7 @@ class OptionsList extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Option(name:"Categories"),
           Option(name:"Products"),
-          Option(name:"Shops"),
         ],
       ),
     );

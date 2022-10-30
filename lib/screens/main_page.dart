@@ -1,6 +1,5 @@
 import 'package:ar_grocery_companion/components/nav_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:ar_grocery_companion/screens/home/components/drawer.dart';
 
 class MainPage extends StatelessWidget {

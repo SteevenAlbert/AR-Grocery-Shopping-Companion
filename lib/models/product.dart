@@ -1,3 +1,4 @@
+
 class Product {
   final String image, name, producer;
   final int? id, calories;
@@ -18,9 +19,12 @@ class Product {
     this.allergyInfo,
     this.nutrients,
   });
-}
 
-List<Product> products = [
+  static add(Product newProduct){
+    all.add(newProduct);
+  }
+
+  static List<Product> all = [
   Product(
       id: 1,
       name: "Greek Yogurt",
@@ -154,3 +158,6 @@ List<Product> products = [
       },
       image: "assets/images/lactose.png"),
 ];
+}
+
+

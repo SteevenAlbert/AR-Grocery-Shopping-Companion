@@ -1,10 +1,7 @@
+import 'package:ar_grocery_companion/screens/home/components/featured_products.dart';
 import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/components/categories_bar.dart';
 import 'package:ar_grocery_companion/components/header.dart';
-import 'package:ar_grocery_companion/models/product.dart';
-import 'components/product_card.dart';
-import 'package:flutter/services.dart';
-import 'package:go_router/go_router.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -12,36 +9,12 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    // it enable scrolling on small device
-    return SingleChildScrollView(
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+    return Column(
+      children: [
       Header(size: size),
       const CategoriesBar(),
-      Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ProductCard(size: size, product: products[0]),
-              ProductCard(size: size, product: products[1]),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ProductCard(size: size, product: products[2]),
-              ProductCard(size: size, product: products[3]),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ProductCard(size: size, product: products[4]),
-              ProductCard(size: size, product: products[5]),
-            ],
-          ),
-        ],
-      ),
-    ]));
+      SizedBox(height:20),
+      FeaturedProducts(size:size),
+    ]);
   }
 }

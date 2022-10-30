@@ -52,7 +52,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
             },
             background: Container(color: Colors.red),
             child: ListTile(
-              title: Text(item.name!),
+              title: Text(item.name),
             ),
           );
         },

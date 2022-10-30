@@ -37,4 +37,8 @@ class Category {
       title: 'Snacks',
     ),
   ];
+
+  static add(Category newCategory){
+    all.add(newCategory);
+  }
 }
