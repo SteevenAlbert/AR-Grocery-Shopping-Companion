@@ -5,7 +5,8 @@ class Product {
   final String? servingSize;
   final List<String> ingredients;
   final List<String>? allergyInfo;
-  final Map<String, double>? prices;
+  final Map<String, double> prices;
+  final Map<String, Uri>? URLs;
   final Map<String, Map<String, Object>>? nutrients;
   Product({
     this.id,
@@ -13,11 +14,12 @@ class Product {
     this.calories,
     this.servingSize,
     required this.image,
-    this.prices,
+    required this.prices,
     required this.producer,
     required this.ingredients,
     this.allergyInfo,
     this.nutrients,
+    this.URLs,
   });
 
   static add(Product newProduct){
@@ -28,7 +30,13 @@ class Product {
   Product(
       id: 1,
       name: "Greek Yogurt",
-      prices: {'Ragab Sons': 20, 'Oscar': 35, 'Panda': 25, 'Hyper One': 22},
+      prices: {'Amazon': 20, 'Noon': 35, 'Jumia': 25, 'Carrefour': 22},
+      URLs: {
+        'Amazon': Uri.parse("https://www.amazon.eg/"),
+        'Noon': Uri.parse("https://www.noon.com/egypt-en/"),
+        'Jumia': Uri.parse("https://www.noon.com/egypt-en/"),
+        'Carrefour': Uri.parse("https://www.noon.com/egypt-en/"),
+      },
       calories: 40,
       ingredients: ["Milk", "Organic Guar Gum", "Vanilla Extract", "Pectin"],
       servingSize: '60g',
@@ -51,7 +59,7 @@ class Product {
       servingSize: '200ml',
       calories: 20,
       ingredients: ["Non-fat Milk", "Vitamin A Palmitate", "VVitamin D3"],
-      prices: {'Gourmet': 45, 'Ragab Sons': 30, 'Panda': 38, 'Hyper One': 40},
+      prices: {'Gourmet': 45, 'Amazon': 30, 'Jumia': 38, 'Carrefour': 40},
       nutrients: {
         "FAT": {"amount": 12.51, "unit": "g"},
         "SATFAT": {"amount": 4.51, "unit": "g"},
@@ -63,6 +71,12 @@ class Product {
         "SUGAR": {"amount": 67.51, "unit": "g"},
         "PROCNT": {"amount": 67.51, "unit": "g"},
       },
+      URLs: {
+        'Amazon': Uri.parse("https://www.amazon.eg/"),
+        'Noon': Uri.parse("https://www.noon.com/egypt-en/"),
+        'Jumia': Uri.parse("https://www.noon.com/egypt-en/"),
+        'Carrefour': Uri.parse("https://www.noon.com/egypt-en/"),
+      },
       producer: "Juhayna",
       image: "assets/images/milk-1.png"),
   Product(
@@ -71,7 +85,7 @@ class Product {
       servingSize: '200ml',
       calories: 30,
       ingredients: ["Milk", "Organic Guar Gum", "Vanilla Extract", "Pectin"],
-      prices: {'Oscar': 25, 'Ragab Sons': 23, 'Panda': 22, 'Hyper One': 21},
+      prices: {'Noon': 25, 'Amazon': 23, 'Jumia': 22, 'Carrefour': 21},
       nutrients: {
         "FAT": {"amount": 67.51, "unit": "g"},
         "SATFAT": {"amount": 2.51, "unit": "g"},
@@ -83,6 +97,12 @@ class Product {
         "SUGAR": {"amount": 67.51, "unit": "g"},
         "PROCNT": {"amount": 67.51, "unit": "g"},
       },
+      URLs: {
+        'Amazon': Uri.parse("https://www.amazon.eg/"),
+        'Noon': Uri.parse("https://www.noon.com/egypt-en/"),
+        'Jumia': Uri.parse("https://www.noon.com/egypt-en/"),
+        'Carrefour': Uri.parse("https://www.noon.com/egypt-en/"),
+      },
       producer: "Juhayna",
       image: "assets/images/milk-2.png"),
   Product(
@@ -91,8 +111,8 @@ class Product {
       prices: {
         'Mahmoud Elfar': 45,
         'Mahalawy Sons': 35,
-        'Panda': 38,
-        'Hyper One': 40
+        'Jumia': 38,
+        'Carrefour': 40
       },
       ingredients: [
         "Pasteurized MILK",
@@ -114,17 +134,18 @@ class Product {
         "SUGAR": {"amount": 67.51, "unit": "g"},
         "PROCNT": {"amount": 67.51, "unit": "g"},
       },
+      URLs: {
+        'Amazon': Uri.parse("https://www.amazon.eg/"),
+        'Noon': Uri.parse("https://www.noon.com/egypt-en/"),
+        'Jumia': Uri.parse("https://www.noon.com/egypt-en/"),
+        'Carrefour': Uri.parse("https://www.noon.com/egypt-en/"),
+      },
       producer: "President",
       image: "assets/images/president.png"),
   Product(
       id: 5,
       name: "Salted Butter",
-      prices: {
-        'Lulu Market': 50,
-        'Ragab Sons': 45,
-        'Panda': 48,
-        'Hyper One': 47
-      },
+      prices: {'Lulu Market': 50, 'Amazon': 45, 'Jumia': 48, 'Carrefour': 47},
       ingredients: ["Milk", "Organic Guar Gum", "Vanilla Extract", "Pectin"],
       nutrients: {
         "FAT": {"amount": 67.51, "unit": "g"},
@@ -137,14 +158,26 @@ class Product {
         "SUGAR": {"amount": 67.51, "unit": "g"},
         "PROCNT": {"amount": 67.51, "unit": "g"},
       },
+      URLs: {
+        'Amazon': Uri.parse("https://www.amazon.eg/"),
+        'Noon': Uri.parse("https://www.noon.com/egypt-en/"),
+        'Jumia': Uri.parse("https://www.noon.com/egypt-en/"),
+        'Carrefour': Uri.parse("https://www.noon.com/egypt-en/"),
+      },
       producer: "Lurpak",
       image: "assets/images/lurpak.png"),
   Product(
       id: 6,
       name: "Lactose-free Milk",
-      prices: {'Panda': 30, 'Hyper One': 32},
+      prices: {'Jumia': 30, 'Carrefour': 32},
       producer: "Juhayna",
       ingredients: ["Milk", "Organic Guar Gum", "Vanilla Extract", "Pectin"],
+      URLs: {
+        'Amazon': Uri.parse("https://www.amazon.eg/"),
+        'Noon': Uri.parse("https://www.noon.com/egypt-en/"),
+        'Jumia': Uri.parse("https://www.noon.com/egypt-en/"),
+        'Carrefour': Uri.parse("https://www.noon.com/egypt-en/"),
+      },
       nutrients: {
         "FAT": {"amount": 67.51, "unit": "g"},
         "SATFAT": {"amount": 67.51, "unit": "g"},

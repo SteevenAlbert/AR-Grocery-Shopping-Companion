@@ -22,7 +22,7 @@ class ProductCard extends StatelessWidget {
       children: <Widget>[
         InkWell(
           onTap: () =>
-              GoRouter.of(context).goNamed("ProductPage", extra: product),
+              GoRouter.of(context).push("/product_page", extra: product),
           child: Container(
               width: size.width * 0.4,
               decoration: BoxDecoration(

@@ -49,9 +49,7 @@ dependencies:
   animated_button: ^0.2.0
   passwordfield: ^0.1.0
   fl_chart: ^0.55.2
-
-
-
+  url_launcher: ^6.1.6
   image_picker: ^0.8.6
   path_provider: ^2.0.11
 
@@ -97,6 +95,7 @@ flutter:
     - assets/images/
     - assets/images/background/
     - assets/images/heart/
+    - assets/images/store_logos/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

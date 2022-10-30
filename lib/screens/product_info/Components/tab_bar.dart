@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../models/product.dart';
 import 'nutritional_facts_tab.dart';
+import 'online_stores_tab.dart';
 
 class ProductTabBar extends StatelessWidget {
   final Product product;
@@ -51,15 +52,7 @@ class ProductTabBar extends StatelessWidget {
           ),
           body: TabBarView(children: [
             SingleChildScrollView(
-              child: Container(
-                child: Center(
-                  child: Column(
-                    children: [
-                      Text('Tab 1'),
-                    ],
-                  ),
-                ),
-              ),
+              child: OnlineStores(product: product),
             ),
             Container(
               child: SingleChildScrollView(

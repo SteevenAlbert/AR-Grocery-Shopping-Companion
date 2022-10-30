@@ -44,7 +44,6 @@ Widget nutrientValues({nutrientData}) {
   //final n = (1.3456).toStringAsFixed(2);
   //final s = double.parse("1.2345");
   final nutrientTypes = MetaDataNutrient.macroNutrientTypes;
-  print(nutrientTypes.map((e) => null));
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: nutrientTypes
