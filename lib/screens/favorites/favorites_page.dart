@@ -12,9 +12,8 @@ class FavoritesPage extends StatefulWidget {
 class _FavoritesPageState extends State<FavoritesPage> {
   @override
   Widget build(BuildContext context) {
-    if (Customer.favourites == null) {
+    if (Customer.favourites == null || Customer.favourites!.isEmpty) {
       final String assetName = 'images/heart/heart-circle-plus-custom.svg';
-      // final Widget blobSVG =
       return Container(
         width: 80,
         height: 80,
@@ -35,26 +34,89 @@ class _FavoritesPageState extends State<FavoritesPage> {
         itemBuilder: (context, index) {
           final item = Customer.favourites![index];
           return Dismissible(
-            // Each Dismissible must contain a Key. Keys allow Flutter to
-            // uniquely identify widgets.
-            key: Key(item.id.toString()),
-            // Provide a function that tells the app
-            // what to do after an item has been swiped away.
-            onDismissed: (direction) {
-              // Remove the item from the data source.
-              setState(() {
-                Customer.favourites!.removeAt(index);
-              });
+              // Each Dismissible must contain a Key. Keys allow Flutter to
+              // uniquely identify widgets.
+              key: Key(item.id.toString()),
+              // Provide a function that tells the app
+              // what to do after an item has been swiped away.
+              onDismissed: (direction) {
+                // Remove the item from the data source.
+                setState(() {
+                  Customer.favourites!.removeAt(index);
+                });
 
-              // Then show a snackbar.
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(SnackBar(content: Text('$item dismissed')));
-            },
-            background: Container(color: Colors.red),
-            child: ListTile(
-              title: Text(item.name),
-            ),
-          );
+                // Then show a snackbar.
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  margin:
+                      const EdgeInsets.only(left: 50, right: 50, bottom: 70),
+                  backgroundColor: Color(0xFFe5e5e5),
+                  behavior: SnackBarBehavior.floating,
+                  duration: const Duration(seconds: 1),
+                  content: Text(
+                    '${item.name} removed',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  action: SnackBarAction(
+                    label: 'Undo',
+                    onPressed: () {},
+                  ),
+                ));
+              },
+              background: Container(color: Colors.red),
+              child: ListTile(
+                horizontalTitleGap: 16.0,
+                leading: GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: () {},
+                  child: Container(
+                      width: 79,
+                      height: 79,
+                      padding: const EdgeInsets.symmetric(vertical: 4.0),
+                      alignment: Alignment.center,
+                      child: Image.asset(item.image),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Color(0xFFe5e5e5),
+                      )),
+                ),
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(item.name, style: TextStyle(fontSize: 14)),
+                        Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: Container(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(item.category!.title,
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.grey,
+                                  )),
+                            ),
+                            decoration: BoxDecoration(
+                                color: Theme.of(context)
+                                    .primaryColor
+                                    .withOpacity(0.3),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(30))),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Icon(
+                      Icons.favorite,
+                      color: Colors.pink,
+                      size: 24.0,
+                      semanticLabel: 'fav item',
+                    )
+                  ],
+                ),
+                dense: false,
+              ));
         },
       ));
     }
