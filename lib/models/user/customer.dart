@@ -6,7 +6,7 @@ class Customer extends User {
   Customer(int id, String email, String username, String password)
       : super(id, email, username, password, 0);
 
-  List<Product>? favourites;
+  static List<Product>? favourites;
 
   List<Customer> products = [
     Customer(
