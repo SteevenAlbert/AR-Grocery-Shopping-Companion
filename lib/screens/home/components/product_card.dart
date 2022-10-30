@@ -80,14 +80,14 @@ class ProductCard extends StatelessWidget {
                               //   color: Colors.yellow,
                               //   size: 20,
                               // ),
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(product.size!,
-                                    style: TextStyle(
-                                        fontSize: 13,
-                                        color: Color.fromARGB(
-                                            255, 152, 152, 152))),
-                              ),
+                              // Align(
+                              //   alignment: Alignment.centerLeft,
+                              //   child: Text(product.size!,
+                              //       style: TextStyle(
+                              //           fontSize: 13,
+                              //           color: Color.fromARGB(
+                              //               255, 152, 152, 152))),
+                              // ),
                               Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),

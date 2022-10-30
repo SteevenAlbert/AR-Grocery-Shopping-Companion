@@ -35,17 +35,22 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   # flutter_native_splash: ^2.2.11
-  animated_native_splash: ^1.0.0
+  # animated_native_splash: ^1.0.0
   persistent_bottom_nav_bar: ^5.0.2
   chip_list: ^2.2.3+7
   go_router: ^5.1.1
   simple_shadow: ^0.3.0
   favorite_button: ^0.0.4
   toast: ^0.2.9
+  flutter_svg: ^1.1.6
+  flutter_rating_bar: ^4.0.1
+  like_button: ^2.0.5
+  scroll_navigation: ^1.3.2
 
 # flutter_native_splash:
 #   color: "#ffffff"
 #   image: assets/icon/app_logo.png
+
 
 animated_native_splash:
   # jsonFile: assets/splash/splash1.json
@@ -83,6 +88,7 @@ flutter:
   assets:
     - assets/images/
     
+    - assets/images/heart/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -105,6 +111,12 @@ flutter:
   #       - asset: fonts/Schyler-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
+    - family: Ubuntu
+      fonts:
+        - asset: assets/fonts/Ubuntu/Ubuntu-Regular.ttf
+        - asset: assets/fonts/Ubuntu/Ubuntu-Bold.ttf
+        - asset: assets/fonts/Ubuntu/Ubuntu-Light.ttf
+        
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

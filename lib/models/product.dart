@@ -18,19 +18,19 @@ List<Product> products = [
       name: "Greek Yogurt",
       prices: {'Ragab Sons': 20, 'Oscar': 35, 'Panda': 25, 'Hyper One': 22},
       producer: "Juhayna",
-      image: "images/greek.png"),
+      image: "assets/images/greek.png"),
   Product(
       id: 2,
       name: "Skimmed Milk",
       prices: {'Gourmet': 45, 'Ragab Sons': 30, 'Panda': 38, 'Hyper One': 40},
       producer: "Juhayna",
-      image: "images/milk-1.png"),
+      image: "assets/images/milk-1.png"),
   Product(
       id: 3,
       name: "Full Cream Milk",
       prices: {'Oscar': 25, 'Ragab Sons': 23, 'Panda': 22, 'Hyper One': 21},
       producer: "Juhayna",
-      image: "images/milk-2.png"),
+      image: "assets/images/milk-2.png"),
   Product(
       id: 4,
       name: "Creamy Cheese",
@@ -41,7 +41,7 @@ List<Product> products = [
         'Hyper One': 40
       },
       producer: "President",
-      image: "images/president.png"),
+      image: "assets/images/president.png"),
   Product(
       id: 5,
       name: "Salted Butter",
@@ -52,11 +52,11 @@ List<Product> products = [
         'Hyper One': 47
       },
       producer: "Lurpak",
-      image: "images/lurpak.png"),
+      image: "assets/images/lurpak.png"),
   Product(
       id: 6,
       name: "Lactose-free Milk",
       prices: {'Panda': 30, 'Hyper One': 32},
       producer: "Juhayna",
-      image: "images/lactose.png"),
+      image: "assets/images/lactose.png"),
 ];

@@ -3,6 +3,8 @@ import 'package:ar_grocery_companion/components/categories_bar.dart';
 import 'package:ar_grocery_companion/components/header.dart';
 import 'package:ar_grocery_companion/models/product.dart';
 import 'components/product_card.dart';
+import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
