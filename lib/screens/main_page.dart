@@ -1,5 +1,6 @@
 import 'package:ar_grocery_companion/components/nav_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -10,6 +11,11 @@ class MainPage extends StatelessWidget {
       backgroundColor: Theme.of(context).canvasColor,
       appBar: buildAppBar(context),
       body: const Navbar(),
+      drawer: Drawer(
+        child: ListView(children: [
+          ListTile(title: Text("Sign Out"), onTap: () => context.go('/')),
+        ]),
+      ),
     );
   }
 
@@ -17,13 +23,6 @@ class MainPage extends StatelessWidget {
     return AppBar(
       backgroundColor: Theme.of(context).primaryColor,
       elevation: 0,
-      leading: IconButton(
-        icon: const Icon(
-          Icons.menu,
-          color: Colors.white,
-        ),
-        onPressed: () {},
-      ),
     );
   }
 }
