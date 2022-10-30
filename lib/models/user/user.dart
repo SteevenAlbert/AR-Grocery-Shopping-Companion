@@ -1,16 +1,17 @@
 class User {
   int? id;
+  String? email;
   String? username;
   String? password;
   int? type;
 
-  User(this.id, this.username, this.password, this.type);
+  User(this.id, this.email, this.username, this.password, this.type);
 
-  //add
+  //addAccount
 
-  //edit
+  //editAccount
 
-  //delete
+  //deleteAccount
 
-  //retrieve
+  //retrieveAccount
 }

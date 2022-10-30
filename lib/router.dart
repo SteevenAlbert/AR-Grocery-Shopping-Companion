@@ -12,7 +12,9 @@ class MyRouter {
     routes: [
       //Add Routes Here
       GoRoute(path: '/', builder: (context, state) => const LogInPage()),
-      GoRoute(path: '/home', builder: (context, state) => const MainPage()),
+      GoRoute(
+          path: '/customer_home',
+          builder: (context, state) => const MainPage()),
       GoRoute(
           name: 'ProductPage',
           path: '/product_page',

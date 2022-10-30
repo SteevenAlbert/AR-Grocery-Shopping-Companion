@@ -1,6 +1,7 @@
 import 'package:ar_grocery_companion/components/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ar_grocery_companion/screens/home/components/drawer.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -8,15 +9,10 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).canvasColor,
-      appBar: buildAppBar(context),
-      body: const Navbar(),
-      drawer: Drawer(
-        child: ListView(children: [
-          ListTile(title: Text("Sign Out"), onTap: () => context.go('/')),
-        ]),
-      ),
-    );
+        backgroundColor: Theme.of(context).canvasColor,
+        appBar: buildAppBar(context),
+        body: const Navbar(),
+        drawer: CustomDrawer());
   }
 
   AppBar buildAppBar(context) {
