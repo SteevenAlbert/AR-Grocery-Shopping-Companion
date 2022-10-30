@@ -22,7 +22,8 @@ class ProductCard extends StatelessWidget {
     return Column(
       children: <Widget>[
         InkWell(
-          onTap: () => GoRouter.of(context).push('/product_page'),
+          onTap: () =>
+              GoRouter.of(context).goNamed("ProductPage", extra: product),
           child: Container(
               margin:
                   EdgeInsets.only(left: 15, top: 20 / 2, bottom: 20, right: 15),

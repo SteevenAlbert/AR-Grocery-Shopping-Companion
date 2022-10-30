@@ -3,6 +3,8 @@ import 'package:ar_grocery_companion/screens/main_page.dart';
 import 'package:ar_grocery_companion/screens/product_info/product_page.dart';
 import 'package:go_router/go_router.dart';
 
+import 'models/product.dart';
+
 class MyRouter {
   MyRouter();
   static late final router = GoRouter(
@@ -12,8 +14,10 @@ class MyRouter {
       GoRoute(path: '/', builder: (context, state) => const LogInPage()),
       GoRoute(path: '/home', builder: (context, state) => const MainPage()),
       GoRoute(
+          name: 'ProductPage',
           path: '/product_page',
-          builder: (context, state) => const ProductPage())
+          builder: (context, state) =>
+              ProductPage(product: state.extra as Product))
     ],
   );
 }

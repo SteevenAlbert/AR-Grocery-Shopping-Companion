@@ -4,10 +4,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:like_button/like_button.dart';
 
-import 'Components/tab_bar.dart';
+import '../../models/product.dart';
+import 'components/tab_bar.dart';
 
 class ProductPage extends StatelessWidget {
-  const ProductPage({super.key});
+  final Product product;
+  const ProductPage({required this.product, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,7 @@ class ProductPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           IconButton(
-                              onPressed: () => context.go('/'),
+                              onPressed: () => context.go('/home'),
                               icon: Image.asset('assets/images/backbtn.png')),
                           LikeButton()
                         ],
@@ -49,12 +51,11 @@ class ProductPage extends StatelessWidget {
                       alignment: Alignment.bottomCenter,
                       height: MediaQuery.of(context).size.height / 2 -
                           MediaQuery.of(context).size.height / 6,
-                      child:
-                          Image.asset('assets/images/kinder_bueno_6sticks.png'),
+                      child: Image.asset(product.image),
                     ),
                     SizedBox(height: 20),
                     Text(
-                      "Kinder Bueno 6 Sticks",
+                      product.name,
                       style: TextStyle(
                           fontFamily: "Ubuntu",
                           fontSize: 24,
@@ -118,7 +119,9 @@ class ProductPage extends StatelessWidget {
                       )
                     ]),
                     Expanded(
-                      child: ProductTabBar(),
+                      child: ProductTabBar(
+                        product: product,
+                      ),
                     )
                   ]),
             )),

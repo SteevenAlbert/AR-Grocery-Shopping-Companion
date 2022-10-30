@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import '../../../models/product.dart';
+import 'nutritional_facts_tab.dart';
 
 class ProductTabBar extends StatelessWidget {
-  const ProductTabBar({super.key});
+  final Product product;
+  const ProductTabBar({super.key, required this.product});
+  @override
   Widget build(BuildContext context) {
     return DefaultTabController(
         length: 3,
@@ -12,22 +16,24 @@ class ProductTabBar extends StatelessWidget {
             backgroundColor: Color.fromARGB(255, 250, 250, 250),
             elevation: 0,
             bottom: TabBar(
+                splashBorderRadius: BorderRadius.circular(50),
                 isScrollable: true,
+                labelColor: Colors.white,
                 labelStyle: TextStyle(
-                    fontFamily: "Ubuntu",
-                    color: Colors.black,
+                    fontFamily: "Poppins",
+                    color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 20),
                 unselectedLabelColor: Color.fromARGB(125, 0, 0, 0),
                 unselectedLabelStyle: TextStyle(
-                    fontFamily: "Ubuntu",
+                    fontFamily: "Poppins",
                     fontWeight: FontWeight.bold,
                     fontSize: 16),
                 labelPadding: EdgeInsets.symmetric(horizontal: 30.0),
                 indicator: BoxDecoration(
                     gradient: LinearGradient(colors: [
+                      Color.fromARGB(255, 85, 182, 153),
                       Color.fromARGB(255, 93, 201, 169),
-                      Color.fromARGB(255, 95, 168, 145)
                     ]),
                     borderRadius: BorderRadius.circular(50),
                     color: Colors.redAccent),
@@ -50,35 +56,14 @@ class ProductTabBar extends StatelessWidget {
                   child: Column(
                     children: [
                       Text('Tab 1'),
-                      Text('Tab 1'),
-                      Text('Tab 1'),
-                      Text('Tab 1'),
-                      Text('Tab 1'),
-                      Text('Tab 1'),
-                      Text('Tab 1'),
-                      Text('Tab 1'),
-                      Text('Tab 1'),
-                      Text('Tab 1'),
-                      Text('Tab 1'),
-                      Text('Tab 1'),
-                      Text('Tab 1'),
-                      Text('Tab 1'),
-                      Text('Tab 1'),
-                      Text('Tab 1'),
-                      Text('Tab 1'),
-                      Text('Tab 1'),
-                      Text('Tab 1'),
-                      Text('Tab 1'),
-                      Text('Tab 1'),
-                      Text('Tab 1'),
                     ],
                   ),
                 ),
               ),
             ),
             Container(
-              child: Center(
-                child: Text('Tab 2'),
+              child: SingleChildScrollView(
+                child: NutritionalFacts(product: product),
               ),
             ),
             Container(

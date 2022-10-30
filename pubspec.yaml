@@ -113,9 +113,15 @@ flutter:
   #         style: italic
     - family: Ubuntu
       fonts:
-        - asset: assets/fonts/Ubuntu/Ubuntu-Regular.ttf
-        - asset: assets/fonts/Ubuntu/Ubuntu-Bold.ttf
-        - asset: assets/fonts/Ubuntu/Ubuntu-Light.ttf
+        - asset: assets/fonts/ubuntu/ubuntu-Regular.ttf
+        - asset: assets/fonts/ubuntu/ubuntu-Bold.ttf
+        - asset: assets/fonts/ubuntu/ubuntu-Light.ttf
+        
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/poppins/Poppins-Regular.ttf
+        - asset: assets/fonts/poppins/Poppins-Bold.ttf
+        - asset: assets/fonts/poppins/Poppins-Light.ttf
         
   #   - family: Trajan Pro
   #     fonts:
