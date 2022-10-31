@@ -1,4 +1,4 @@
-import 'package:ar_grocery_companion/screens/admin/products/components/product_card.dart';
+import 'package:ar_grocery_companion/screens/home/components/product_card.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../models/product.dart';
@@ -16,7 +16,6 @@ Widget alternativeProducts(Size size) {
           child: ProductCard(
             size: size,
             product: Product.all[index],
-            voidCallback: () {},
           ),
         );
       }),

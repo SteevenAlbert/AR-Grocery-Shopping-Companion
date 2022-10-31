@@ -1,5 +1,3 @@
-import 'dart:io';
-import 'package:path_provider/path_provider.dart';
 import 'package:ar_grocery_companion/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -7,18 +5,20 @@ import 'package:image_picker/image_picker.dart';
 import '../../../../models/category.dart';
 
 // Create a Form widget.
-class AddingForm extends StatefulWidget {
-  const AddingForm({super.key});
+class EditingForm extends StatefulWidget {
+  EditingForm({super.key, required this.product});
+
+  Product product;
 
   @override
-  AddingFormState createState() {
-    return AddingFormState();
+  EditingFormState createState() {
+    return EditingFormState();
   }
 }
 
 // Create a corresponding State class.
 // This class holds data related to the form.
-class AddingFormState extends State<AddingForm> {
+class EditingFormState extends State<EditingForm> {
   final _formKey = GlobalKey<FormState>();
   String dropdownvalue = 'Choose category';
   String name = 'Nan';
@@ -38,55 +38,25 @@ class AddingFormState extends State<AddingForm> {
 
   @override
   Widget build(BuildContext context) {
+
+
     // Build a Form widget using the _formKey created above.
     return Form(
       key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          GestureDetector(
-            onTap: () async {
-              var source = ImageSource.gallery;
-              XFile image = await imagePicker.pickImage(
-                  source: source,
-                  imageQuality: 50,
-                  preferredCameraDevice: CameraDevice.front);
-
-              final Directory directory = await getApplicationDocumentsDirectory();
-              
-              newImage = await File(image.path).copy('${directory.path}/image2.png');
-
-              setState(() {
-                _image = File(image.path);
-              });
-            },
-            child: Container(
+          
+            Container(
               height: 400,
-              child: _image != null
-                  ? Image.file(
-                      _image,
-                      fit: BoxFit.fitWidth,
-                    )
-                  : Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(40),
-                            bottomRight: Radius.circular(40),
-                          ),
-                          color: Theme.of(context).highlightColor),
-                      height: 400,
-                      child: Icon(
-                        Icons.camera_alt,
-                        color: Colors.grey[800],
-                      ),
-                    ),
+              child: Image.asset(this.widget.product.image, fit: BoxFit.fitWidth),
             ),
-          ),
           Padding(
             padding: const EdgeInsets.all(20.0),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               TextFormField(
+                initialValue: this.widget.product.name,
                 decoration: const InputDecoration(
                   labelText: 'Name',
                 ),
@@ -99,14 +69,11 @@ class AddingFormState extends State<AddingForm> {
                   if (value == null || value.isEmpty) {
                     return 'Please enter the product name';
                   }
-                  if(value.length >=10)
-                  {
-                    return 'The name should be at most 10 characters';
-                  }
                   return null;
                 },
               ),
               TextFormField(
+                initialValue: this.widget.product.producer,
                 decoration: const InputDecoration(
                   labelText: 'Producer',
                 ),
@@ -118,10 +85,6 @@ class AddingFormState extends State<AddingForm> {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter the product producer';
-                  }
-                  else if(value.length >=15)
-                  {
-                    return 'The producer name should be at most 10 characters';
                   }
                   return null;
                 },
@@ -158,37 +121,9 @@ class AddingFormState extends State<AddingForm> {
                     onPressed: () {
                       // Validate returns true if the form is valid, or false otherwise.
                       if (_formKey.currentState!.validate()) {
+                        this.widget.product.name = name;
+                        this.widget.product.producer = producer;
 
-                        Product.add(Product(
-                            name: name,
-                            prices: {
-                              'Ragab Sons': 20,
-                              'Oscar': 35,
-                              'Panda': 25,
-                              'Hyper One': 22
-                            },
-                            calories: 40,
-                            ingredients: [
-                              "Milk",
-                              "Organic Guar Gum",
-                              "Vanilla Extract",
-                              "Pectin"
-                            ],
-                            servingSize: '60g',
-                            nutrients: {
-                              "FAT": {"amount": 7, "unit": "g"},
-                              "SATFAT": {"amount": 5, "unit": "g"},
-                              "TRANSFAT": {"amount": 2, "unit": "g"},
-                              "CHOLE": {"amount": 67.51, "unit": "g"},
-                              "NA": {"amount": 67.51, "unit": "g"},
-                              "CHOCDF": {"amount": 67.51, "unit": "g"},
-                              "FIBTG": {"amount": 67.51, "unit": "g"},
-                              "SUGAR": {"amount": 67.51, "unit": "g"},
-                              "PROCNT": {"amount": 67.51, "unit": "g"},
-                            },
-                            producer: producer,
-                            image: "assets/images/cadbury.png"));
-                            
                         GoRouter.of(context).pop();
                         GoRouter.of(context).push('/products_dashboard');
                       }
@@ -204,6 +139,3 @@ class AddingFormState extends State<AddingForm> {
     );
   }
 }
-
-
-

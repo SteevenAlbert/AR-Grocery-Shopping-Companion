@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/models/product.dart';
+import 'package:go_router/go_router.dart';
 import 'package:simple_shadow/simple_shadow.dart';
 
 class ProductCard extends StatefulWidget {
@@ -26,7 +27,11 @@ class _ProductCardState extends State<ProductCard> {
     return Column(
       children: <Widget>[
         InkWell(
-          onTap: () {},
+          onTap: () {
+            GoRouter.of(context).pop();
+            GoRouter.of(context)
+                .push('/edit_product_page', extra: this.widget.product);
+          },
           child: Container(
               width: widget.size.width * 0.4,
               decoration: BoxDecoration(

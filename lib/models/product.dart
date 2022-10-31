@@ -1,7 +1,7 @@
 import 'package:ar_grocery_companion/models/category.dart';
 
 class Product {
-  final String image, name, producer;
+   String image, name, producer;
   final int? id, calories;
   final String? servingSize;
   final List<String> ingredients;
@@ -67,7 +67,7 @@ class Product {
         servingSize: '200ml',
         calories: 20,
         ingredients: ["Non-fat Milk", "Vitamin A Palmitate", "VVitamin D3"],
-        prices: {'Gourmet': 45, 'Amazon': 30, 'Jumia': 38, 'Carrefour': 40},
+        prices: {'Noon': 45, 'Amazon': 30, 'Jumia': 38, 'Carrefour': 40},
         nutrients: {
           "FAT": {"amount": 12.51, "unit": "g"},
           "SATFAT": {"amount": 4.51, "unit": "g"},

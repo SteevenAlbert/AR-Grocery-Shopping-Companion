@@ -1,4 +1,5 @@
 import 'package:ar_grocery_companion/screens/authentication/authentication.dart';
+import 'package:ar_grocery_companion/screens/admin/products/edit_product_page.dart';
 import 'package:ar_grocery_companion/screens/authentication/log_in.dart';
 import 'package:ar_grocery_companion/screens/admin/home/admin_home_page.dart';
 import 'package:ar_grocery_companion/screens/admin/products/add_product_page.dart';
@@ -33,6 +34,11 @@ class MyRouter {
       GoRoute(
           path: '/add_product_page',
           builder: (context, state) => const AddProductPage()),
+      GoRoute(
+          name: 'EditProductPage',
+          path: '/edit_product_page',
+          builder: (context, state) =>
+              EditProductPage(product: state.extra as Product)),
     ],
   );
 }

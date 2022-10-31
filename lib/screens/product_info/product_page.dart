@@ -41,7 +41,7 @@ class ProductPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           IconButton(
-                              onPressed: () => context.go('/customer_home'),
+                              onPressed: () => context.go('/customer_home_page'),
                               icon: Image.asset('assets/images/backbtn.png')),
                           LikeButton()
                         ],

@@ -12,14 +12,14 @@ class HomePage extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Column(children: [
       Header(size: size),
-      Container(height: size.height * 0.15, child: CarouselSliderExample()),
-      Divider(
-        height: 20,
-        thickness: 1,
-        indent: 20,
-        endIndent: 20,
-        color: Theme.of(context).primaryColor,
-      ),
+      // Container(height: size.height * 0.15, child: CarouselSliderExample()),
+      // Divider(
+      //   height: 20,
+      //   thickness: 1,
+      //   indent: 20,
+      //   endIndent: 20,
+      //   color: Theme.of(context).primaryColor,
+      // ),
       const CategoriesBar(),
       SizedBox(height: 20),
       FeaturedProducts(size: size),

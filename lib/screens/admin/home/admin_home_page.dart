@@ -10,11 +10,13 @@ class AdminHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return ListView(children: [
-      Header(size: size),
-      BarChartSample3(),
-      LineChartSample2(),
-      OptionsList(),
-    ]);
+    return Scaffold(
+      body: ListView(children: [
+        Header(size: size),
+        BarChartSample3(),
+        LineChartSample2(),
+        OptionsList(),
+      ]),
+    );
   }
 }
