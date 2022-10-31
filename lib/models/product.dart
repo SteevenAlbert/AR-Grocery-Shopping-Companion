@@ -29,7 +29,7 @@ class Product {
     all.add(newProduct);
   }
 
-  static remove(Product product){
+  static remove(Product product) {
     all.remove(product);
   }
 
@@ -180,7 +180,7 @@ class Product {
         category: Category.all[0]),
     Product(
         id: 6,
-        name: "Lactose-free Milk",
+        name: "Lact-free Milk",
         prices: {'Noon': 30, 'Amazon': 35, 'Jumia': 30, 'Carrefour': 32},
         producer: "Juhayna",
         ingredients: ["Milk", "Organic Guar Gum", "Vanilla Extract", "Pectin"],

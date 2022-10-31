@@ -24,7 +24,7 @@ class _NavbarState extends State<Navbar> {
       screens: const [
         HomePage(),
         ScanPage(),
-        FavoritesPage(),
+        FavProductsPage(),
         AdminHomePage(),
       ],
       items: _navBarsItems(),

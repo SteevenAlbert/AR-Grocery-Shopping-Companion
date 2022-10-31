@@ -52,7 +52,7 @@ dependencies:
   url_launcher: ^6.1.6
   image_picker: ^0.8.6
   path_provider: ^2.0.11
-
+  carousel_slider: ^4.0.0
 # flutter_native_splash:
 #   color: "#ffffff"
 #   image: assets/icon/app_logo.png
@@ -112,6 +112,9 @@ flutter:
     - family: Nunito
       fonts:
         - asset: assets/fonts/Nunito-VariableFont_wght.ttf
+    - family: Recursive
+      fonts:
+        - asset: assets/fonts/Recursive-VariableFont_CASL,CRSV,MONO,slnt,wght.ttf
 
   #   - family: Schyler
   #     fonts:

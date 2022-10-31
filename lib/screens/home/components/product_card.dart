@@ -3,6 +3,7 @@ import 'package:ar_grocery_companion/models/product.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simple_shadow/simple_shadow.dart';
 import 'package:favorite_button/favorite_button.dart';
+import 'package:ar_grocery_companion/models/user/customer.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -43,7 +44,7 @@ class ProductCard extends StatelessWidget {
                               blurRadius: 50,
                               color: Theme.of(context)
                                   .primaryColor
-                                  .withOpacity(0.15),
+                                  .withOpacity(0.05),
                             )
                           ]),
                       child: SimpleShadow(
@@ -85,15 +86,26 @@ class ProductCard extends StatelessWidget {
                         alignment: Alignment.topRight,
                         child: Padding(
                           padding: const EdgeInsets.all(5.0),
-                          child: FavoriteButton(
-                            iconSize: 35,
-                            isFavorite: false,
-                            iconColor: Theme.of(context).primaryColor,
-                            // iconDisabledColor:
-                            //     Theme.of(context).highlightColor,
-                            valueChanged: (_isFavorite) {
-                              print('Is Favorite : $_isFavorite');
-                            },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Theme.of(context).primaryColor,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(3.0),
+                              child: FavoriteButton(
+                                iconSize: 30,
+                                isFavorite: false,
+                                iconColor: Theme.of(context).primaryColor,
+                                // iconDisabledColor:
+                                //     Theme.of(context).highlightColor,
+                                valueChanged: (_isFavorite) {
+                                  Customer.favourites!.add(product);
+                                },
+                              ),
+                            ),
                           ),
                         ),
                       ),
