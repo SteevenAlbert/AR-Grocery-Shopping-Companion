@@ -29,6 +29,10 @@ class Product {
     all.add(newProduct);
   }
 
+  static remove(Product product){
+    all.remove(product);
+  }
+
   static List<Product> all = [
     Product(
         id: 1,
