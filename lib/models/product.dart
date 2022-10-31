@@ -41,8 +41,8 @@ class Product {
         URLs: {
           'Amazon': Uri.parse("https://www.amazon.eg/"),
           'Noon': Uri.parse("https://www.noon.com/egypt-en/"),
-          'Jumia': Uri.parse("https://www.noon.com/egypt-en/"),
-          'Carrefour': Uri.parse("https://www.noon.com/egypt-en/"),
+          'Jumia': Uri.parse("https://www.jumia.com/"),
+          'Carrefour': Uri.parse("https://www.carrefouregypt.com/"),
         },
         calories: 40,
         ingredients: ["Milk", "Organic Guar Gum", "Vanilla Extract", "Pectin"],
@@ -82,8 +82,8 @@ class Product {
         URLs: {
           'Amazon': Uri.parse("https://www.amazon.eg/"),
           'Noon': Uri.parse("https://www.noon.com/egypt-en/"),
-          'Jumia': Uri.parse("https://www.noon.com/egypt-en/"),
-          'Carrefour': Uri.parse("https://www.noon.com/egypt-en/"),
+          'Jumia': Uri.parse("https://www.jumia.com/"),
+          'Carrefour': Uri.parse("https://www.carrefouregypt.com/"),
         },
         producer: "Juhayna",
         image: "assets/images/milk-1.png",
@@ -109,8 +109,8 @@ class Product {
         URLs: {
           'Amazon': Uri.parse("https://www.amazon.eg/"),
           'Noon': Uri.parse("https://www.noon.com/egypt-en/"),
-          'Jumia': Uri.parse("https://www.noon.com/egypt-en/"),
-          'Carrefour': Uri.parse("https://www.noon.com/egypt-en/"),
+          'Jumia': Uri.parse("https://www.jumia.com/"),
+          'Carrefour': Uri.parse("https://www.carrefouregypt.com/"),
         },
         producer: "Juhayna",
         image: "assets/images/milk-2.png",
@@ -147,8 +147,8 @@ class Product {
         URLs: {
           'Amazon': Uri.parse("https://www.amazon.eg/"),
           'Noon': Uri.parse("https://www.noon.com/egypt-en/"),
-          'Jumia': Uri.parse("https://www.noon.com/egypt-en/"),
-          'Carrefour': Uri.parse("https://www.noon.com/egypt-en/"),
+          'Jumia': Uri.parse("https://www.jumia.com/"),
+          'Carrefour': Uri.parse("https://www.carrefouregypt.com/"),
         },
         producer: "President",
         image: "assets/images/president.png",
@@ -156,7 +156,7 @@ class Product {
     Product(
         id: 5,
         name: "Salted Butter",
-        prices: {'Lulu Market': 50, 'Amazon': 45, 'Jumia': 48, 'Carrefour': 47},
+        prices: {'Noon': 50, 'Amazon': 45, 'Jumia': 48, 'Carrefour': 47},
         ingredients: ["Milk", "Organic Guar Gum", "Vanilla Extract", "Pectin"],
         nutrients: {
           "FAT": {"amount": 67.51, "unit": "g"},
@@ -172,8 +172,8 @@ class Product {
         URLs: {
           'Amazon': Uri.parse("https://www.amazon.eg/"),
           'Noon': Uri.parse("https://www.noon.com/egypt-en/"),
-          'Jumia': Uri.parse("https://www.noon.com/egypt-en/"),
-          'Carrefour': Uri.parse("https://www.noon.com/egypt-en/"),
+          'Jumia': Uri.parse("https://www.jumia.com/"),
+          'Carrefour': Uri.parse("https://www.carrefouregypt.com/"),
         },
         producer: "Lurpak",
         image: "assets/images/lurpak.png",
@@ -181,14 +181,14 @@ class Product {
     Product(
         id: 6,
         name: "Lactose-free Milk",
-        prices: {'Jumia': 30, 'Carrefour': 32},
+        prices: {'Noon': 30, 'Amazon': 35, 'Jumia': 30, 'Carrefour': 32},
         producer: "Juhayna",
         ingredients: ["Milk", "Organic Guar Gum", "Vanilla Extract", "Pectin"],
         URLs: {
           'Amazon': Uri.parse("https://www.amazon.eg/"),
           'Noon': Uri.parse("https://www.noon.com/egypt-en/"),
-          'Jumia': Uri.parse("https://www.noon.com/egypt-en/"),
-          'Carrefour': Uri.parse("https://www.noon.com/egypt-en/"),
+          'Jumia': Uri.parse("https://www.jumia.com/"),
+          'Carrefour': Uri.parse("https://www.carrefouregypt.com/"),
         },
         nutrients: {
           "FAT": {"amount": 67.51, "unit": "g"},
