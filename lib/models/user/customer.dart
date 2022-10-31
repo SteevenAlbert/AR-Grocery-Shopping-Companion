@@ -7,15 +7,6 @@ class Customer extends User {
 
   static List<Product>? favourites = [];
 
-  List<Customer> products = [
-    Customer(
-      0,
-      "customer@gmail.com",
-      "customer",
-      "CSC422",
-    )
-  ];
-
   //addToFav
 
   //removeFromFav
