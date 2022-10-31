@@ -60,6 +60,49 @@ class RegisterScreenState extends State<RegisterScreen> {
               child: Form(
                 key: _formKey,
                 child: ListView(children: [
+                  Center(
+                    child: Padding(
+                        padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+                        child: Text(
+                          "Register",
+                          style: TextStyle(
+                              fontFamily: "Ubuntu",
+                              fontSize: 33,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
+                        )),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+                    child: TextFormField(
+                      controller: usernameController,
+                      onChanged: (value) {},
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your email.';
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                        hintText: "Email",
+                        hintStyle: TextStyle(
+                          color: Theme.of(context).hintColor.withOpacity(0.5),
+                        ),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            width: 1.0,
+                            color: Theme.of(context).primaryColorDark,
+                          ),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide:
+                              BorderSide(width: 2, color: Colors.red.shade200),
+                        ),
+                      ),
+                    ),
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
                     child: TextFormField(
@@ -155,11 +198,12 @@ class RegisterScreenState extends State<RegisterScreen> {
                             ),
                           ),
                           onPressed: () async {
-                            // if (_formKey.currentState!.validate()) {
-                            await SessionManager()
-                                .set("name", usernameController.text);
-                            context.go('/customer_home_page');
-                            // }
+                            if (_formKey.currentState!.validate()) {
+                              //..create new user//
+                              await SessionManager()
+                                  .set("name", usernameController.text);
+                              context.go('/customer_home_page');
+                            }
                           }),
                     ),
                   ),

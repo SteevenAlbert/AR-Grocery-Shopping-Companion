@@ -13,17 +13,23 @@ class AccountState extends State<CustomDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-        child: Column(mainAxisSize: MainAxisSize.max, children: [
-      // Text('Top'),
-      Expanded(
-        child: Align(
-          alignment: Alignment.bottomCenter,
-          child: ListTile(
-              leading: Icon(Icons.logout),
-              title: Text("Sign Out"),
-              onTap: () => context.go('/')),
+        child: Container(
+      margin: EdgeInsets.only(left: 5, top: 35, right: 5, bottom: 35),
+      child: Column(mainAxisSize: MainAxisSize.max, children: [
+        // Text('Top'),
+        Expanded(
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: ListTile(
+                leading: Icon(Icons.logout),
+                title: Text("Sign Out"),
+                onTap: () {
+                  //..destroy session//
+                  context.go('/');
+                }),
+          ),
         ),
-      ),
-    ]));
+      ]),
+    ));
   }
 }

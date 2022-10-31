@@ -15,7 +15,7 @@ class CarouselSliderExample extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   image: DecorationImage(
-                    image: new AssetImage("images/gym.jpeg"),
+                    image: new AssetImage("assets/images/gym.jpeg"),
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -42,7 +42,7 @@ class CarouselSliderExample extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   image: DecorationImage(
-                    image: new AssetImage("images/bakery.jpeg"),
+                    image: new AssetImage("assets/images/bakery.jpeg"),
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -73,7 +73,7 @@ class CarouselSliderExample extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   image: DecorationImage(
-                    image: new AssetImage("images/pets.jpeg"),
+                    image: new AssetImage("assets/images/pets.jpeg"),
                     fit: BoxFit.fill,
                   ),
                 ),

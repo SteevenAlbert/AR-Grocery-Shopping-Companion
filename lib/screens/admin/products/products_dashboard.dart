@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import '../../../models/product.dart';
 import 'components/product_card.dart';
 
+import 'package:ar_grocery_companion/screens/home/components/drawer.dart';
+
 class ProductsDashboard extends StatefulWidget {
   const ProductsDashboard({super.key});
 
@@ -16,12 +18,12 @@ class _ProductsDashboardState extends State<ProductsDashboard> {
 
   @override
   Widget build(BuildContext context) {
-    
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
           title: Text("All products"),
         ),
+        drawer: CustomDrawer(),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             GoRouter.of(context).pop();

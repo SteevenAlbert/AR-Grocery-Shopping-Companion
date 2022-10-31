@@ -14,7 +14,8 @@ class _FavProductsListState extends State<FavProductsList> {
   @override
   Widget build(BuildContext context) {
     if (Customer.favourites == null || Customer.favourites!.isEmpty) {
-      final String assetName = 'images/heart/heart-circle-plus-custom.svg';
+      final String assetName =
+          'assets/images/heart/heart-circle-plus-custom.svg';
       return Center(
         child: Container(
           width: 80,
