@@ -72,15 +72,6 @@ class Customer extends User {
         category: Category.all[0]),
   ];
 
-  List<Customer> products = [
-    Customer(
-      0,
-      "customer@gmail.com",
-      "customer",
-      "CSC422",
-    )
-  ];
-
   //addToFav
 
   //removeFromFav

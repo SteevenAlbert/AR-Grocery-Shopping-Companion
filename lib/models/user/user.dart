@@ -7,11 +7,18 @@ class User {
 
   User(this.id, this.email, this.username, this.password, this.type);
 
+  static List<User> users = [
+    User(0, "customer@gmail.com", "customer", "CSC422", 1),
+    User(1, "admin@gmail.com", "admin", "CSC422", 0)
+  ];
+
   //addAccount
 
   //editAccount
 
   //deleteAccount
 
-  //retrieveAccount
+  static User? retrieveAccount(username) {
+    return users.firstWhere((element) => element.username == username);
+  }
 }
