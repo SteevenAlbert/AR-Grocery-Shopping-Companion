@@ -13,7 +13,11 @@ Widget alternativeProducts(Size size) {
       mainAxisSpacing: 8.0,
       children: List.generate(Product.all.length, (index) {
         return Center(
-          child: ProductCard(size: size, product: Product.all[index]),
+          child: ProductCard(
+            size: size,
+            product: Product.all[index],
+            voidCallback: () {},
+          ),
         );
       }),
     ),
