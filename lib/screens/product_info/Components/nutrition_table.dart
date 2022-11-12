@@ -1,24 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/models/metanutrients.dart';
 
-// class NutritionFacts extends StatelessWidget {
-//   final nutrientData;
-//   final Product product;
-//   NutritionFacts({@required this.nutrientData, required this.product})
-//       : assert(nutrientData != null);
-
-//   Widget build(BuildContext context) {
-//     return Container(
-//       padding: EdgeInsets.all(40.0),
-//       color: Colors.white,
-//       child: nutrientWidget(
-//           nutrientData: nutrientData,
-//           calories: product.calories,
-//           servingSize: product.servingSize),
-//     );
-//   }
-// }
-
 Widget nutrientWidget({nutrientData, int? calories, String? servingSize}) {
   return Container(
     padding: EdgeInsets.all(1.0),
@@ -60,35 +42,6 @@ Widget nutrientValues({nutrientData}) {
               showp: d["dly"]["male"] != null ? true : false,
             ))
         .toList(),
-  );
-}
-
-Widget vitaminValues({nutrientData}) {
-  //final n = (1.3456).toStringAsFixed(2);
-  //final s = double.parse("1.2345");
-  final nutrientTypes = MetaDataNutrient.vitaminTypes;
-  final vitaminLine = Container(
-      margin: EdgeInsetsDirectional.only(start: 1.0, end: 1.0),
-      height: 4.0,
-      color: Colors.black);
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[vitaminLine] +
-        nutrientTypes
-            .map((d) => vitaminLiner(
-                  nutrientName: d["name"],
-                  qty: nutrientData["${d["nutrient"]}"]["amount"],
-                  ptg: (d["dly"] as Map<String, num>)["male"] != null
-                      ? ((nutrientData["${d["nutrient"]}"]["amount"] * 100) /
-                              (d["dly"] as Map<String, num>)["male"])
-                          .toStringAsFixed(2)
-                      : "-",
-                  unit: nutrientData["${d["nutrient"]}"]["unit"],
-                  showp: (d["dly"] as Map<String, num>)["male"] != null
-                      ? true
-                      : false,
-                ))
-            .toList(),
   );
 }
 

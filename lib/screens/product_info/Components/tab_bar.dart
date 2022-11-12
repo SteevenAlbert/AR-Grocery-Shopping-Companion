@@ -1,5 +1,7 @@
+import 'package:ar_grocery_companion/screens/product_info/components/alternative_products_tab.dart';
 import 'package:flutter/material.dart';
 import '../../../models/product.dart';
+import '../../home/components/featured_products.dart';
 import 'nutritional_facts_tab.dart';
 import 'online_stores_tab.dart';
 
@@ -8,6 +10,7 @@ class ProductTabBar extends StatelessWidget {
   const ProductTabBar({super.key, required this.product});
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return DefaultTabController(
         length: 3,
         initialIndex: 1,
@@ -17,6 +20,7 @@ class ProductTabBar extends StatelessWidget {
             backgroundColor: Color.fromARGB(255, 250, 250, 250),
             elevation: 0,
             bottom: TabBar(
+                padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                 splashBorderRadius: BorderRadius.circular(50),
                 isScrollable: true,
                 labelColor: Colors.white,
@@ -46,7 +50,7 @@ class ProductTabBar extends StatelessWidget {
                     child: Text('Nutritional Facts'),
                   ),
                   Tab(
-                    child: Text('Reviews'),
+                    child: Text('Alternative Products'),
                   ),
                 ]),
           ),
@@ -54,16 +58,10 @@ class ProductTabBar extends StatelessWidget {
             SingleChildScrollView(
               child: OnlineStores(product: product),
             ),
-            Container(
-              child: SingleChildScrollView(
-                child: NutritionalFacts(product: product),
-              ),
+            SingleChildScrollView(
+              child: NutritionalFacts(product: product),
             ),
-            Container(
-              child: Center(
-                child: Text('Tab 3'),
-              ),
-            ),
+            alternativeProducts(size),
           ]),
         ));
   }

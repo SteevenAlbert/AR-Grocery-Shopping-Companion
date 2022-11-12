@@ -43,7 +43,7 @@ class LogInScreenState extends State<LogInScreen> {
                 bottomRight: Radius.circular(0)),
             boxShadow: [
               BoxShadow(
-                color: Colors.white.withOpacity(0.5),
+                color: Colors.white.withOpacity(0.3),
                 // spreadRadius: 25,
                 spreadRadius: 200,
                 blurRadius: 0,
@@ -60,6 +60,18 @@ class LogInScreenState extends State<LogInScreen> {
               child: Form(
                 key: _formKey,
                 child: ListView(children: [
+                  Center(
+                    child: Padding(
+                        padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+                        child: Text(
+                          "Log In",
+                          style: TextStyle(
+                              fontFamily: "Ubuntu",
+                              fontSize: 33,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
+                        )),
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
                     child: TextFormField(
@@ -98,9 +110,6 @@ class LogInScreenState extends State<LogInScreen> {
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your password.';
-                        } else if (!value
-                            .contains(new RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
-                          return 'Password must have a Special Character.';
                         }
                         return null;
                       },

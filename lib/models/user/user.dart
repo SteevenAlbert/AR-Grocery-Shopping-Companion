@@ -8,8 +8,8 @@ class User {
   User(this.id, this.email, this.username, this.password, this.type);
 
   static List<User> users = [
-    User(0, "customer@gmail.com", "customer", "CSC422", 1),
-    User(1, "admin@gmail.com", "admin", "CSC422", 0)
+    User(0, "customer@gmail.com", "customer", "CSC@422", 1),
+    User(1, "admin@gmail.com", "admin", "CSC@422", 0)
   ];
 
   //addAccount

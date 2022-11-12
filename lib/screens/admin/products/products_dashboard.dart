@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import '../../../models/product.dart';
 import 'components/product_card.dart';
 
+import 'package:ar_grocery_companion/screens/home/components/drawer.dart';
+
 class ProductsDashboard extends StatefulWidget {
   const ProductsDashboard({super.key});
 
@@ -12,6 +14,8 @@ class ProductsDashboard extends StatefulWidget {
 }
 
 class _ProductsDashboardState extends State<ProductsDashboard> {
+  List products = Product.all;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -19,8 +23,9 @@ class _ProductsDashboardState extends State<ProductsDashboard> {
         appBar: AppBar(
           title: Text("All products"),
         ),
+        drawer: CustomDrawer(),
         floatingActionButton: FloatingActionButton(
-          onPressed: (){
+          onPressed: () {
             GoRouter.of(context).pop();
             GoRouter.of(context).push('/add_product_page');
           },
@@ -35,9 +40,15 @@ class _ProductsDashboardState extends State<ProductsDashboard> {
                 crossAxisCount: 2,
                 crossAxisSpacing: 8.0,
                 mainAxisSpacing: 8.0,
-                children: List.generate(Product.all.length, (index) {
+                children: List.generate(products.length, (index) {
                   return Center(
-                    child: ProductCard(size: size, product: Product.all[index]),
+                    child: ProductCard(
+                        size: size,
+                        product: products[index],
+                        voidCallback: () {
+                          Product.remove(products[index]);
+                          setState(() {});
+                        }),
                   );
                 }),
               ),
