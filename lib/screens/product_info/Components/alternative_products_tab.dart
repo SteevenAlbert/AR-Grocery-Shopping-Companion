@@ -14,6 +14,7 @@ Widget alternativeProducts(Size size) {
       children: List.generate(Product.all.length, (index) {
         return Center(
           child: ProductCard(
+            sectionID: 1,
             size: size,
             product: Product.all[index],
           ),

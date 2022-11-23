@@ -13,17 +13,18 @@ class FeaturedProducts extends StatefulWidget {
 class _FeaturedProductsState extends State<FeaturedProducts> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: GridView.count(
-        crossAxisCount: 2,
-        crossAxisSpacing: 8.0,
-        mainAxisSpacing: 8.0,
-        children: List.generate(Product.all.length, (index) {
-          return Center(
-            child: ProductCard(size: widget.size, product: Product.all[index]),
-          );
-        }),
-      ),
+    return GridView.count(
+      physics: ScrollPhysics(),
+      shrinkWrap: true,
+      crossAxisCount: 2,
+      crossAxisSpacing: 8.0,
+      mainAxisSpacing: 8.0,
+      children: List.generate(Product.all.length, (index) {
+        return Center(
+          child: ProductCard(
+              sectionID: 1, size: widget.size, product: Product.all[index]),
+        );
+      }),
     );
   }
 }

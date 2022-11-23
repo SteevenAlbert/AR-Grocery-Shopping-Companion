@@ -1,8 +1,10 @@
-import 'package:ar_grocery_companion/screens/home/components/featured_products.dart';
-import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/components/categories_bar.dart';
+import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/components/header.dart';
-import 'components/carousel.dart';
+import 'package:ar_grocery_companion/screens/home/components/featured_products.dart';
+import 'package:ar_grocery_companion/screens/home/components/popular_prod.dart';
+import 'package:ar_grocery_companion/screens/home/components/tabs.dart';
+import 'package:ar_grocery_companion/screens/home/components/carousel.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -10,19 +12,28 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Column(children: [
+    return Scaffold(
+        body: ListView(children: [
       Header(size: size),
-      // Container(height: size.height * 0.15, child: CarouselSliderExample()),
-      // Divider(
-      //   height: 20,
-      //   thickness: 1,
-      //   indent: 20,
-      //   endIndent: 20,
-      //   color: Theme.of(context).primaryColor,
-      // ),
-      const CategoriesBar(),
-      SizedBox(height: 20),
-      FeaturedProducts(size: size),
-    ]);
+      Padding(
+        padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CarouselSliderExample(),
+            Text(
+              "Popular Products",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+            ),
+            SizedBox(height: 12),
+            ProductCarousel(size: size),
+            SizedBox(height: 12),
+            Cat_Tabs(size: size),
+            SizedBox(height: 12),
+            FeaturedProducts(size: size)
+          ],
+        ),
+      ),
+    ]));
   }
 }

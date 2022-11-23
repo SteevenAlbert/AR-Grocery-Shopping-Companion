@@ -1,9 +1,9 @@
 import 'package:ar_grocery_companion/models/category.dart';
 
 class Product {
-   String image, name, producer;
+  String image, name, producer;
   final int? id, calories;
-  final String? servingSize;
+  final String servingSize;
   final List<String> ingredients;
   final List<String>? allergyInfo;
   final Map<String, double> prices;
@@ -14,7 +14,7 @@ class Product {
     this.id,
     required this.name,
     this.calories,
-    this.servingSize,
+    required this.servingSize,
     required this.image,
     required this.prices,
     required this.producer,
@@ -131,7 +131,7 @@ class Product {
           "Guar gum",
           "Carob Bean Gum"
         ],
-        servingSize: 'slice',
+        servingSize: '8pcs',
         calories: 80,
         nutrients: {
           "FAT": {"amount": 12.51, "unit": "g"},
@@ -169,6 +169,7 @@ class Product {
           "SUGAR": {"amount": 67.51, "unit": "g"},
           "PROCNT": {"amount": 67.51, "unit": "g"},
         },
+        servingSize: '0.25Kg',
         URLs: {
           'Amazon': Uri.parse("https://www.amazon.eg/"),
           'Noon': Uri.parse("https://www.noon.com/egypt-en/"),
@@ -201,7 +202,143 @@ class Product {
           "SUGAR": {"amount": 67.51, "unit": "g"},
           "PROCNT": {"amount": 67.51, "unit": "g"},
         },
+        servingSize: '100ml',
         image: "assets/images/lactose.png",
+        category: Category.all[0]),
+    Product(
+        id: 7,
+        name: "Ripe Strawberry",
+        servingSize: '1Kg',
+        calories: 20,
+        ingredients: ["Non-fat Milk", "Vitamin A Palmitate", "VVitamin D3"],
+        prices: {'Noon': 45, 'Amazon': 30, 'Jumia': 38, 'Carrefour': 40},
+        nutrients: {
+          "FAT": {"amount": 12.51, "unit": "g"},
+          "SATFAT": {"amount": 4.51, "unit": "g"},
+          "TRANSFAT": {"amount": 0, "unit": "g"},
+          "CHOLE": {"amount": 6.51, "unit": "mg"},
+          "NA": {"amount": 67.51, "unit": "g"},
+          "CHOCDF": {"amount": 67.51, "unit": "g"},
+          "FIBTG": {"amount": 67.51, "unit": "g"},
+          "SUGAR": {"amount": 67.51, "unit": "g"},
+          "PROCNT": {"amount": 67.51, "unit": "g"},
+        },
+        URLs: {
+          'Amazon': Uri.parse("https://www.amazon.eg/"),
+          'Noon': Uri.parse("https://www.noon.com/egypt-en/"),
+          'Jumia': Uri.parse("https://www.jumia.com/"),
+          'Carrefour': Uri.parse("https://www.carrefouregypt.com/"),
+        },
+        producer: "Juhayna",
+        image: "assets/images/strawberry.png",
+        category: Category.all[0]),
+    Product(
+        id: 8,
+        name: "Bueno",
+        servingSize: '2bars',
+        calories: 20,
+        ingredients: ["Non-fat Milk", "Vitamin A Palmitate", "VVitamin D3"],
+        prices: {'Noon': 45, 'Amazon': 30, 'Jumia': 38, 'Carrefour': 40},
+        nutrients: {
+          "FAT": {"amount": 12.51, "unit": "g"},
+          "SATFAT": {"amount": 4.51, "unit": "g"},
+          "TRANSFAT": {"amount": 0, "unit": "g"},
+          "CHOLE": {"amount": 6.51, "unit": "mg"},
+          "NA": {"amount": 67.51, "unit": "g"},
+          "CHOCDF": {"amount": 67.51, "unit": "g"},
+          "FIBTG": {"amount": 67.51, "unit": "g"},
+          "SUGAR": {"amount": 67.51, "unit": "g"},
+          "PROCNT": {"amount": 67.51, "unit": "g"},
+        },
+        URLs: {
+          'Amazon': Uri.parse("https://www.amazon.eg/"),
+          'Noon': Uri.parse("https://www.noon.com/egypt-en/"),
+          'Jumia': Uri.parse("https://www.jumia.com/"),
+          'Carrefour': Uri.parse("https://www.carrefouregypt.com/"),
+        },
+        producer: "Juhayna",
+        image: "assets/images/kinder_bueno_6sticks.png",
+        category: Category.all[0]),
+    Product(
+        id: 9,
+        name: "Skimmed Milk",
+        servingSize: '200ml',
+        calories: 20,
+        ingredients: ["Non-fat Milk", "Vitamin A Palmitate", "VVitamin D3"],
+        prices: {'Noon': 45, 'Amazon': 30, 'Jumia': 38, 'Carrefour': 40},
+        nutrients: {
+          "FAT": {"amount": 12.51, "unit": "g"},
+          "SATFAT": {"amount": 4.51, "unit": "g"},
+          "TRANSFAT": {"amount": 0, "unit": "g"},
+          "CHOLE": {"amount": 6.51, "unit": "mg"},
+          "NA": {"amount": 67.51, "unit": "g"},
+          "CHOCDF": {"amount": 67.51, "unit": "g"},
+          "FIBTG": {"amount": 67.51, "unit": "g"},
+          "SUGAR": {"amount": 67.51, "unit": "g"},
+          "PROCNT": {"amount": 67.51, "unit": "g"},
+        },
+        URLs: {
+          'Amazon': Uri.parse("https://www.amazon.eg/"),
+          'Noon': Uri.parse("https://www.noon.com/egypt-en/"),
+          'Jumia': Uri.parse("https://www.jumia.com/"),
+          'Carrefour': Uri.parse("https://www.carrefouregypt.com/"),
+        },
+        producer: "Juhayna",
+        image: "assets/images/milk-1.png",
+        category: Category.all[0]),
+    Product(
+        id: 10,
+        name: "Cadbury",
+        servingSize: '10gr',
+        calories: 20,
+        ingredients: ["Non-fat Milk", "Vitamin A Palmitate", "VVitamin D3"],
+        prices: {'Noon': 45, 'Amazon': 30, 'Jumia': 38, 'Carrefour': 40},
+        nutrients: {
+          "FAT": {"amount": 12.51, "unit": "g"},
+          "SATFAT": {"amount": 4.51, "unit": "g"},
+          "TRANSFAT": {"amount": 0, "unit": "g"},
+          "CHOLE": {"amount": 6.51, "unit": "mg"},
+          "NA": {"amount": 67.51, "unit": "g"},
+          "CHOCDF": {"amount": 67.51, "unit": "g"},
+          "FIBTG": {"amount": 67.51, "unit": "g"},
+          "SUGAR": {"amount": 67.51, "unit": "g"},
+          "PROCNT": {"amount": 67.51, "unit": "g"},
+        },
+        URLs: {
+          'Amazon': Uri.parse("https://www.amazon.eg/"),
+          'Noon': Uri.parse("https://www.noon.com/egypt-en/"),
+          'Jumia': Uri.parse("https://www.jumia.com/"),
+          'Carrefour': Uri.parse("https://www.carrefouregypt.com/"),
+        },
+        producer: "Juhayna",
+        image: "assets/images/cadbury.png",
+        category: Category.all[0]),
+    Product(
+        id: 11,
+        name: "Skimmed Milk",
+        servingSize: '200ml',
+        calories: 20,
+        ingredients: ["Non-fat Milk", "Vitamin A Palmitate", "VVitamin D3"],
+        prices: {'Noon': 45, 'Amazon': 30, 'Jumia': 38, 'Carrefour': 40},
+        nutrients: {
+          "FAT": {"amount": 12.51, "unit": "g"},
+          "SATFAT": {"amount": 4.51, "unit": "g"},
+          "TRANSFAT": {"amount": 0, "unit": "g"},
+          "CHOLE": {"amount": 6.51, "unit": "mg"},
+          "NA": {"amount": 67.51, "unit": "g"},
+          "CHOCDF": {"amount": 67.51, "unit": "g"},
+          "FIBTG": {"amount": 67.51, "unit": "g"},
+          "SUGAR": {"amount": 67.51, "unit": "g"},
+          "PROCNT": {"amount": 67.51, "unit": "g"},
+        },
+        URLs: {
+          'Amazon': Uri.parse("https://www.amazon.eg/"),
+          'Noon': Uri.parse("https://www.noon.com/egypt-en/"),
+          'Jumia': Uri.parse("https://www.jumia.com/"),
+          'Carrefour': Uri.parse("https://www.carrefouregypt.com/"),
+        },
+        producer: "Juhayna",
+        image: "assets/images/milk-1.png",
         category: Category.all[0]),
   ];
 }
