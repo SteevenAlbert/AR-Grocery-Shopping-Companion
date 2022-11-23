@@ -9,20 +9,38 @@ class ProductCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: CarouselSlider(
-      options: CarouselOptions(viewportFraction: 0.4, height: 180),
-      items: [1, 2, 3, 4, 5].map((i) {
-        return Builder(
-          builder: (BuildContext context) {
-            return Container(
-                width: MediaQuery.of(context).size.width,
-                margin: EdgeInsets.symmetric(horizontal: 0.5),
-                child: ProductCard(
-                    sectionID: 0, size: size, product: Product.all[i]));
-          },
-        );
-      }).toList(),
-    ));
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "Popular Products",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+            ),
+            TextButton(
+                onPressed: () {},
+                child: Text("See All", style: TextStyle(fontSize: 15)))
+          ],
+        ),
+        SizedBox(height: 12),
+        Container(
+            child: CarouselSlider(
+          options: CarouselOptions(viewportFraction: 0.371, height: 180),
+          items: [1, 2, 3, 4, 5].map((i) {
+            return Builder(
+              builder: (BuildContext context) {
+                return Container(
+                    width: MediaQuery.of(context).size.width,
+                    margin: EdgeInsets.symmetric(horizontal: 0.5),
+                    child: ProductCard(
+                        sectionID: 0, size: size, product: Product.all[i]));
+              },
+            );
+          }).toList(),
+        )),
+      ],
+    );
   }
 }

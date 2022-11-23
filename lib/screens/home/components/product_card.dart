@@ -40,15 +40,29 @@ class ProductCard extends StatelessWidget {
                     child: Column(
                       children: [
                         Center(
-                          child: SimpleShadow(
-                              child: (sectionID == 1)
-                                  ? AspectRatio(
-                                      aspectRatio: 16 / 10,
-                                      child: Image.asset(
-                                        product.image,
-                                      ))
-                                  : Image.asset(product.image,
-                                      width: 100, height: 100)),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: Color(0xFFe5e5e5).withOpacity(0.4),
+                                boxShadow: [
+                                  BoxShadow(
+                                    offset: Offset(0, 3),
+                                    blurRadius: 50,
+                                    color: Theme.of(context)
+                                        .primaryColor
+                                        .withOpacity(0.05),
+                                  )
+                                ]),
+                            child: SimpleShadow(
+                                child: (sectionID == 1)
+                                    ? AspectRatio(
+                                        aspectRatio: 16 / 10,
+                                        child: Image.asset(
+                                          product.image,
+                                        ))
+                                    : Image.asset(product.image,
+                                        width: 100, height: 100)),
+                          ),
                         ),
                         SizedBox(height: 3),
                         Container(

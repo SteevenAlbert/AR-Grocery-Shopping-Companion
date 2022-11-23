@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/models/user/customer.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'fav_prod_tile.dart';
+import 'package:simple_shadow/simple_shadow.dart';
 
 class FavProductsList extends StatefulWidget {
   const FavProductsList({super.key});
@@ -53,26 +55,36 @@ class _FavProductsListState extends State<FavProductsList> {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   margin:
                       const EdgeInsets.only(left: 50, right: 50, bottom: 70),
-                  backgroundColor: Color(0xFFe5e5e5),
+                  elevation: 6.0,
+                  backgroundColor: Colors.amber[200],
                   behavior: SnackBarBehavior.floating,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
                   duration: const Duration(seconds: 1),
                   content: Text(
                     '${item.name} removed',
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(color: Colors.black.withOpacity(0.7)),
                   ),
                   action: SnackBarAction(
+                    textColor: Theme.of(context).primaryColor.withOpacity(0.5),
                     label: 'Undo',
                     onPressed: () {},
                   ),
                 ));
               },
               background: Container(
-                  color: Colors.red.withOpacity(0.8),
-                  child: Icon(
-                    Icons.delete_rounded,
-                    color: Colors.black,
-                    size: 24.0,
-                    semanticLabel: 'fav item',
+                  color: Colors.red,
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 15.0),
+                      child: Icon(
+                        Icons.delete_rounded,
+                        color: Colors.black,
+                        size: 24.0,
+                        semanticLabel: 'fav item',
+                      ),
+                    ),
                   )),
               child: Padding(
                 padding: const EdgeInsets.only(top: 12.0),
@@ -87,40 +99,16 @@ class _FavProductsListState extends State<FavProductsList> {
                         height: 79,
                         padding: const EdgeInsets.symmetric(vertical: 4.0),
                         alignment: Alignment.center,
-                        child: Image.asset(item.image),
+                        child: SimpleShadow(child: Image.asset(item.image)),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Color(0xFFe5e5e5),
+                          color: Color(0xFFe5e5e5).withOpacity(0.5),
                         )),
                   ),
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(item.name, style: TextStyle(fontSize: 14)),
-                          Padding(
-                            padding: const EdgeInsets.all(3.0),
-                            child: Container(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(item.category!.title,
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.grey,
-                                    )),
-                              ),
-                              decoration: BoxDecoration(
-                                  color: Theme.of(context)
-                                      .primaryColor
-                                      .withOpacity(0.3),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(30))),
-                            ),
-                          ),
-                        ],
-                      ),
+                      FavProduct(item: item),
                       Icon(
                         Icons.favorite,
                         color: Colors.pink,

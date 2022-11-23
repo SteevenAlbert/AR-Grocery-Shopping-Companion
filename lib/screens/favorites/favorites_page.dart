@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'components/fav_prod_list.dart';
-import 'package:ar_grocery_companion/components/header.dart';
 
 class FavProductsPage extends StatelessWidget {
   const FavProductsPage({super.key});
@@ -9,7 +8,14 @@ class FavProductsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Favourite Products"),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(30),
+            ),
+          ),
+          title: Text("Favourite Items",
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
         ),
         body: FavProductsList());
   }

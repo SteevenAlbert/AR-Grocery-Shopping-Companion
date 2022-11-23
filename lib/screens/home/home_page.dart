@@ -21,11 +21,6 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CarouselSliderExample(),
-            Text(
-              "Popular Products",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-            ),
-            SizedBox(height: 12),
             ProductCarousel(size: size),
             SizedBox(height: 12),
             Cat_Tabs(size: size),
