@@ -6,7 +6,7 @@ import '../../home/components/featured_products.dart';
 
 Widget alternativeProducts(Size size) {
   return Padding(
-    padding: const EdgeInsets.fromLTRB(0, 20, 0, 8.0),
+    padding: const EdgeInsets.fromLTRB(5, 10, 5, 8.0),
     child: GridView.count(
       crossAxisCount: 2,
       crossAxisSpacing: 8.0,

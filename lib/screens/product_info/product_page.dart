@@ -5,6 +5,9 @@ import 'package:go_router/go_router.dart';
 import 'package:like_button/like_button.dart';
 
 import '../../models/product.dart';
+import 'components/alternative_products_tab.dart';
+import 'components/nutritional_facts_tab.dart';
+import 'components/online_stores_tab.dart';
 import 'components/tab_bar.dart';
 
 class ProductPage extends StatelessWidget {
@@ -13,10 +16,199 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String assetName = 'assets/images/blob.svg';
-    final Widget blobSVG = SvgPicture.asset(assetName, semanticsLabel: 'Blob');
-    return Scaffold(
-      body: Align(
+    final List<String> tabs = <String>['Tab 1', 'Tab 2', 'Tab 3'];
+    return DefaultTabController(
+      length: 3,
+      initialIndex: 1,
+      child: Scaffold(
+        body: NestedScrollView(
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return <Widget>[
+              SliverOverlapAbsorber(
+                  handle:
+                      NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+                  sliver: SliverPadding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                    sliver: SliverAppBar(
+                        elevation: 0,
+                        pinned: true,
+                        automaticallyImplyLeading: false,
+                        expandedHeight: 400.0,
+                        collapsedHeight: 150,
+                        flexibleSpace: Container(
+                            color: Color.fromARGB(255, 250, 250, 250),
+                            child: Stack(children: [
+                              Positioned(
+                                top: 0,
+                                right: 0,
+                                left: 0,
+                                child: Column(children: <Widget>[
+                                  // Transform.scale(
+                                  //   scaleX: 2.8,
+                                  //   scaleY: 1.8,
+                                  //   child: SizedBox(
+                                  //     height: 370,
+                                  //     width: 500,
+                                  //     child: blobSVG,
+                                  //   ),
+                                  // ),
+                                  Center(
+                                      child: Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          20, 0, 20, 0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          IconButton(
+                                              onPressed: () => context.go('/'),
+                                              icon: Image.asset(
+                                                  'assets/images/backbtn.png')),
+                                          LikeButton()
+                                        ],
+                                      ),
+                                    ),
+                                  ))
+                                ]),
+                              ),
+                              Align(
+                                alignment: Alignment(
+                                    //little padding
+                                    0,
+                                    0),
+                                child: Container(
+                                  height:
+                                      MediaQuery.of(context).size.height / 3,
+                                  child: Image.asset(product.image),
+                                ),
+                              ),
+                              // Align(
+                              //   alignment: Alignment(
+                              //       //little padding
+                              //       0,
+                              //       0),
+                              //   child: Text(
+                              //     product.name,
+                              //     style: TextStyle(
+                              //       fontFamily: "Ubuntu",
+                              //       fontSize: 24,
+                              //       fontWeight: FontWeight.bold,
+                              //     ),
+                              //   ),
+                              // ),
+                              // here provide actions
+                            ])),
+                        bottom: ProductTabBar(product: product)),
+                  ))
+            ];
+          },
+          body: Expanded(
+            child: TabBarView(children: [
+              OnlineStores(product: product),
+              NutritionalFacts(product: product),
+              alternativeProducts(MediaQuery.of(context).size),
+            ]),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class MySliverHeaderDelegate extends SliverPersistentHeaderDelegate {
+  final double _maxExtent = 450;
+  final VoidCallback onActionTap;
+  final Product product;
+
+  final Widget blobSVG =
+      SvgPicture.asset('assets/images/blob.svg', semanticsLabel: 'Blob');
+  MySliverHeaderDelegate({
+    required this.onActionTap,
+    required this.product,
+  });
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    debugPrint(shrinkOffset.toString());
+    return Container(
+        child: Stack(children: [
+      Positioned(
+        top: 0,
+        right: 0,
+        left: 0,
+        child: Column(children: <Widget>[
+          // Transform.scale(
+          //   scaleX: 2.8,
+          //   scaleY: 1.8,
+          //   child: SizedBox(
+          //     height: 370,
+          //     width: 500,
+          //     child: blobSVG,
+          //   ),
+          // ),
+          Center(
+              child: Expanded(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                            onPressed: () => context.go('/'),
+                            icon: Image.asset('assets/images/backbtn.png')),
+                        LikeButton()
+                      ],
+                    ),
+                  ),
+                ]),
+          ))
+        ]),
+      ),
+      Align(
+        alignment: Alignment(
+            //little padding
+            0,
+            0),
+        child: Container(
+          height: MediaQuery.of(context).size.height / 3,
+          child: Image.asset(product.image),
+        ),
+      ),
+      Align(
+        alignment: Alignment(
+            //little padding
+            0,
+            0.5 - shrinkOffset / 2000),
+        child: Text(
+          product.name,
+          style: TextStyle(
+              fontFamily: "Ubuntu",
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(
+                  (shrinkOffset.toInt() - 255).abs(), 32, 69, 83)),
+        ),
+      ),
+      // here provide actions
+    ]));
+  }
+
+  @override
+  double get maxExtent => _maxExtent;
+
+  @override
+  double get minExtent => 200;
+
+  @override
+  bool shouldRebuild(covariant MySliverHeaderDelegate oldDelegate) {
+    return oldDelegate != this;
+  }
+}
+    /*Align(
         alignment: Alignment.topCenter,
         child: Container(
           alignment: Alignment.center,
@@ -41,7 +233,7 @@ class ProductPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           IconButton(
-                              onPressed: () => context.go('/customer_home_page'),
+                              onPressed: () => context.go('/customer_home'),
                               icon: Image.asset('assets/images/backbtn.png')),
                           LikeButton()
                         ],
@@ -118,16 +310,10 @@ class ProductPage extends StatelessWidget {
                         ],
                       )
                     ]),
-                    Expanded(
-                      child: ProductTabBar(
-                        product: product,
-                      ),
-                    )
+                    Expanded(child: ProductTabBar(product: product))
                   ]),
             )),
           ]),
         ),
       ),
-    );
-  }
-}
+    );*/

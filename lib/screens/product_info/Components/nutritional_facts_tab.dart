@@ -9,60 +9,75 @@ class NutritionalFacts extends StatelessWidget {
   const NutritionalFacts({super.key, required this.product});
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.fromLTRB(15, 10.0, 15, 10.0),
-        child: Center(
-            child: Column(children: [
-          Text(
-            "Ingredients",
-            style: TextStyle(
-                fontFamily: "Poppins",
-                fontSize: 18,
-                fontWeight: FontWeight.bold),
-          ),
-          Text(
-            product.ingredients.join(' - '),
-            style: TextStyle(fontFamily: "Poppins", fontSize: 16),
-            textAlign: TextAlign.center,
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          //Allergy Information
-          Container(
-              alignment: Alignment.center,
-              width: MediaQuery.of(context).size.width / 1.2,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    "Allergy Information",
-                    style: TextStyle(
-                        fontFamily: "Poppins",
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    "Milk Chocolate (31.5%) (Sugar, Cocoa Butter, Cocoa Mass, Skimmed Milk Powder, Anhydrous, Milkfat, Emlsifiers Lecithins...",
-                    style: TextStyle(fontFamily: "Poppins", fontSize: 16),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              )),
-          SizedBox(
-            height: 20,
-          ),
-          Container(
-            alignment: Alignment.center,
-            child: Column(
-              children: [
-                nutrientWidget(
-                    nutrientData: product.nutrients,
-                    calories: product.calories,
-                    servingSize: product.servingSize)
-              ],
-            ),
-          ),
-        ])));
+    return Builder(
+      builder: (BuildContext context) {
+        return CustomScrollView(
+          key: PageStorageKey<String>("NutritionalFacts"),
+          slivers: <Widget>[
+            SliverOverlapInjector(
+                handle:
+                    NestedScrollView.sliverOverlapAbsorberHandleFor(context)),
+            SliverPadding(
+                padding: const EdgeInsets.fromLTRB(15, 10.0, 15, 25.0),
+                sliver: SliverToBoxAdapter(
+                  child: Center(
+                      child: Column(children: [
+                    Text(
+                      "Ingredients",
+                      style: TextStyle(
+                          fontFamily: "Poppins",
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      product.ingredients.join(' - '),
+                      style: TextStyle(fontFamily: "Poppins", fontSize: 16),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    //Allergy Information
+                    Container(
+                        alignment: Alignment.center,
+                        width: MediaQuery.of(context).size.width / 1.2,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Allergy Information",
+                              style: TextStyle(
+                                  fontFamily: "Poppins",
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "Milk Chocolate (31.5%) (Sugar, Cocoa Butter, Cocoa Mass, Skimmed Milk Powder, Anhydrous, Milkfat, Emlsifiers Lecithins...",
+                              style: TextStyle(
+                                  fontFamily: "Poppins", fontSize: 16),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        )),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      child: Column(
+                        children: [
+                          nutrientWidget(
+                              nutrientData: product.nutrients,
+                              calories: product.calories,
+                              servingSize: product.servingSize)
+                        ],
+                      ),
+                    ),
+                  ])),
+                )),
+          ],
+        );
+      },
+    );
   }
 }

@@ -16,7 +16,8 @@ class MyRouter {
     debugLogDiagnostics: true, //set to false in Production
     routes: [
       //Add Routes Here
-      GoRoute(path: '/', builder: (context, state) => const LogInScreen()),
+      //GoRoute(path: '/', builder: (context, state) => const LogInScreen()),
+      GoRoute(path: '/', builder: (context, state) => const MainPage()),
       GoRoute(
           path: '/customer_home_page',
           builder: (context, state) => const MainPage()),
