@@ -49,4 +49,5 @@ macos/Podfile
 /android/.
 key.properties
 
-
+# Plugins
+/plugin
