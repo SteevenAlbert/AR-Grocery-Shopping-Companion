@@ -1,9 +1,9 @@
 import 'package:ar_grocery_companion/screens/admin/home/admin_home_page.dart';
+import 'package:ar_grocery_companion/screens/scan/scan_intro_page.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:ar_grocery_companion/screens/home/home_page.dart';
 import 'package:ar_grocery_companion/screens/favorites/favorites_page.dart';
-import 'package:ar_grocery_companion/screens/scan/arview.dart';
 
 class Navbar extends StatefulWidget {
   const Navbar({super.key});
@@ -23,7 +23,7 @@ class _NavbarState extends State<Navbar> {
       controller: _controller,
       screens: const [
         HomePage(),
-        // ARView(),
+        ScanPage(),
         FavProductsPage(),
         AdminHomePage(),
       ],
@@ -41,12 +41,12 @@ class _NavbarState extends State<Navbar> {
         activeColorPrimary: Theme.of(context).primaryColor,
         inactiveColorPrimary: Theme.of(context).disabledColor,
       ),
-      // PersistentBottomNavBarItem(
-      //   icon: const Icon(Icons.camera),
-      //   title: ("Scan"),
-      //   activeColorPrimary: Theme.of(context).primaryColor,
-      //   inactiveColorPrimary: Theme.of(context).disabledColor,
-      // ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.camera),
+        title: ("Scan"),
+        activeColorPrimary: Theme.of(context).primaryColor,
+        inactiveColorPrimary: Theme.of(context).disabledColor,
+      ),
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.favorite),
         title: ("Favorites"),

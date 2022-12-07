@@ -104,6 +104,11 @@ flutter:
     - assets/images/background/
     - assets/images/heart/
     - assets/images/store_logos/
+    - samples/
+    - samples/01_ImageTracking_4_HtmlDrawable/
+    - samples/01_ImageTracking_4_HtmlDrawable/js/
+    - samples/01_ImageTracking_4_HtmlDrawable/css/
+    - samples/01_ImageTracking_4_HtmlDrawable/assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
