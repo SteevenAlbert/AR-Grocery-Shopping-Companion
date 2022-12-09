@@ -52,9 +52,11 @@ class AddingFormState extends State<AddingForm> {
                   imageQuality: 50,
                   preferredCameraDevice: CameraDevice.front);
 
-              final Directory directory = await getApplicationDocumentsDirectory();
-              
-              newImage = await File(image.path).copy('${directory.path}/image2.png');
+              final Directory directory =
+                  await getApplicationDocumentsDirectory();
+
+              newImage =
+                  await File(image.path).copy('${directory.path}/image2.png');
 
               setState(() {
                 _image = File(image.path);
@@ -99,8 +101,7 @@ class AddingFormState extends State<AddingForm> {
                   if (value == null || value.isEmpty) {
                     return 'Please enter the product name';
                   }
-                  if(value.length >=10)
-                  {
+                  if (value.length >= 10) {
                     return 'The name should be at most 10 characters';
                   }
                   return null;
@@ -118,9 +119,7 @@ class AddingFormState extends State<AddingForm> {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter the product producer';
-                  }
-                  else if(value.length >=15)
-                  {
+                  } else if (value.length >= 15) {
                     return 'The producer name should be at most 10 characters';
                   }
                   return null;
@@ -158,14 +157,13 @@ class AddingFormState extends State<AddingForm> {
                     onPressed: () {
                       // Validate returns true if the form is valid, or false otherwise.
                       if (_formKey.currentState!.validate()) {
-
                         Product.add(Product(
                             name: name,
                             prices: {
-                              'Ragab Sons': 20,
-                              'Oscar': 35,
-                              'Panda': 25,
-                              'Hyper One': 22
+                              'Ragab Sons': "20",
+                              'Oscar': "35",
+                              'Panda': "25",
+                              'Hyper One': "22"
                             },
                             calories: 40,
                             ingredients: [
@@ -188,7 +186,7 @@ class AddingFormState extends State<AddingForm> {
                             },
                             producer: producer,
                             image: "assets/images/cadbury.png"));
-                            
+
                         GoRouter.of(context).pop();
                         GoRouter.of(context).push('/products_dashboard');
                       }
@@ -204,6 +202,3 @@ class AddingFormState extends State<AddingForm> {
     );
   }
 }
-
-
-
