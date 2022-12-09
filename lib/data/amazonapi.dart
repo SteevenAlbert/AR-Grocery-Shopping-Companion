@@ -4,8 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import '../models/product.dart';
 
+const String APIKey = "619EB9AC27F94152828E0F81F4E88411";
 const String baseURL =
-    "https://api.rainforestapi.com/request?api_key=619EB9AC27F94152828E0F81F4E88411&type=product&url=";
+    "https://api.rainforestapi.com/request?api_key=$APIKey&type=product&url=";
 
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^///
 //The Function below is commented to perserve our API Calls Quota
