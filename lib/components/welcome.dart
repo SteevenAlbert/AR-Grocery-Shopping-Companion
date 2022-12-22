@@ -14,6 +14,7 @@ class Welcome extends StatelessWidget {
         right: defaultPadding,
       ),
       height: size.height * 0.2 - 27,
+      width: size.width,
       decoration: BoxDecoration(
         color: Theme.of(context).primaryColor,
         borderRadius: const BorderRadius.only(
@@ -21,14 +22,26 @@ class Welcome extends StatelessWidget {
           bottomRight: Radius.circular(36),
         ),
       ),
-      child: Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            'Welcome back!',
+            'Hi Samir,',
             style: Theme.of(context)
                 .textTheme
                 .headline5!
                 .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          Text(
+            'Wanna check some products?',
+            style: Theme.of(context)
+                .textTheme
+                .headline6!
+                .copyWith(color: Colors.white),
           ),
         ],
       ),
