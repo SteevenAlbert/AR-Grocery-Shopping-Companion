@@ -1,4 +1,4 @@
-import 'package:ar_grocery_companion/constants.dart';
+import 'package:ar_grocery_companion/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 import 'package:augmented_reality_plugin_wikitude/wikitude_plugin.dart';

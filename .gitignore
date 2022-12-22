@@ -51,3 +51,6 @@ key.properties
 
 # Plugins
 /plugin
+
+# Licenses
+/lib/constants/keys.dart
