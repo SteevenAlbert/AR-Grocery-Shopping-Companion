@@ -1,3 +1,4 @@
+import 'package:ar_grocery_companion/models/sample.dart';
 import 'package:ar_grocery_companion/screens/authentication/authentication.dart';
 import 'package:ar_grocery_companion/screens/admin/products/edit_product_page.dart';
 import 'package:ar_grocery_companion/screens/authentication/log_in.dart';
@@ -6,6 +7,7 @@ import 'package:ar_grocery_companion/screens/admin/products/add_product_page.dar
 import 'package:ar_grocery_companion/screens/admin/products/products_dashboard.dart';
 import 'package:ar_grocery_companion/screens/main_page.dart';
 import 'package:ar_grocery_companion/screens/product_info/product_page.dart';
+import 'package:ar_grocery_companion/screens/scan/arview.dart';
 import 'package:ar_grocery_companion/screens/profile/profile_page.dart';
 import 'package:go_router/go_router.dart';
 
@@ -44,6 +46,11 @@ class MyRouter {
           path: '/edit_product_page',
           builder: (context, state) =>
               EditProductPage(product: state.extra as Product)),
+      GoRoute(
+          name: 'ARView',
+          path: '/arview',
+          builder: (context, state) =>
+              ARView(sample: state.extra as Sample)),
     ],
   );
 }
