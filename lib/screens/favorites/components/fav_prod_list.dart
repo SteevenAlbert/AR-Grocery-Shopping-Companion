@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'fav_prod_tile.dart';
 import 'package:simple_shadow/simple_shadow.dart';
+import 'package:favorite_button/favorite_button.dart';
 
 class FavProductsList extends StatefulWidget {
   const FavProductsList({super.key});
@@ -109,12 +110,13 @@ class _FavProductsListState extends State<FavProductsList> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       FavProduct(item: item),
-                      Icon(
-                        Icons.favorite,
-                        color: Colors.pink,
-                        size: 24.0,
-                        semanticLabel: 'fav item',
-                      )
+                      FavoriteButton(
+                        iconSize: 30,
+                        isFavorite: true,
+                        iconColor: Colors.red,
+                        iconDisabledColor: Colors.amber.withOpacity(0.4),
+                        valueChanged: (_isFavorite) {},
+                      ),
                     ],
                   ),
                   onTap: () {

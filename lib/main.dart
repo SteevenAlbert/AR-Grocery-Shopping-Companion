@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       routerConfig: MyRouter.router,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: const MaterialColor(0xFF1BD2AD, const {
+        primarySwatch: const MaterialColor(0xFF549E83, const {
           50: Color.fromARGB(85, 27, 210, 173),
           100: Color.fromARGB(105, 27, 210, 173),
           200: Color.fromARGB(125, 27, 210, 173),

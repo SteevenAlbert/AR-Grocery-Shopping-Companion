@@ -12,7 +12,7 @@ class Header extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(bottom: defaultPadding),
       // It will cover 20% of our total height
-      height: size.height * 0.2,
+      height: size.height * 0.099,
       child: Stack(
         children: <Widget>[
           Welcome(size: size),
