@@ -16,7 +16,7 @@ class _FeaturedProductsState extends State<FeaturedProducts> {
     return GridView.count(
       physics: ScrollPhysics(),
       shrinkWrap: true,
-      crossAxisCount: 2,
+      crossAxisCount: (MediaQuery.of(context).size.width ~/ 250).toInt(),
       crossAxisSpacing: 8.0,
       mainAxisSpacing: 8.0,
       children: List.generate(Product.all.length, (index) {
