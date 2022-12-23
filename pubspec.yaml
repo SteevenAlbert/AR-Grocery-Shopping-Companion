@@ -59,6 +59,7 @@ dependencies:
   flutter_session_manager: ^1.0.1
   carousel_slider: ^4.0.0
   wakelock: ^0.6.2
+  flutter_riverpod: ^2.1.1
 
 
 flutter_native_splash:

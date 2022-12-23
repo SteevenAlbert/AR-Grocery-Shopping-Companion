@@ -37,7 +37,7 @@ class MyRouter {
           builder: (context, state) => const ProfilePage()),
       GoRoute(
           path: '/products_dashboard',
-          builder: (context, state) => const ProductsDashboard()),
+          builder: (context, state) => ProductsDashboard()),
       GoRoute(
           path: '/add_product_page',
           builder: (context, state) => const AddProductPage()),

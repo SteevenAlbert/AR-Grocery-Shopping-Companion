@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../models/product.dart';
@@ -6,18 +7,15 @@ import 'components/product_card.dart';
 
 import 'package:ar_grocery_companion/screens/home/components/drawer.dart';
 
-class ProductsDashboard extends StatefulWidget {
-  const ProductsDashboard({super.key});
+class ProductsDashboard extends ConsumerWidget {
+  ProductsDashboard({super.key});
+
+  final productsProvider = Provider<List<Product>>((ref) {
+    return Product.all;
+  });
 
   @override
-  State<ProductsDashboard> createState() => _ProductsDashboardState();
-}
-
-class _ProductsDashboardState extends State<ProductsDashboard> {
-  List products = Product.all;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
@@ -26,7 +24,6 @@ class _ProductsDashboardState extends State<ProductsDashboard> {
         drawer: CustomDrawer(),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            GoRouter.of(context).pop();
             GoRouter.of(context).push('/add_product_page');
           },
           tooltip: 'Increment',
@@ -36,21 +33,25 @@ class _ProductsDashboardState extends State<ProductsDashboard> {
           children: [
             SizedBox(height: 20),
             Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
-                crossAxisSpacing: 8.0,
-                mainAxisSpacing: 8.0,
-                children: List.generate(products.length, (index) {
-                  return Center(
-                    child: ProductCard(
-                        size: size,
-                        product: products[index],
-                        voidCallback: () {
-                          Product.remove(products[index]);
-                          setState(() {});
-                        }),
+              child: Consumer(
+                builder: (context, ref, _) {
+                  final products = ref.watch(productsProvider);
+                  return GridView.count(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 8.0,
+                    mainAxisSpacing: 8.0,
+                    children: List.generate(products.length, (index) {
+                      return Center(
+                        child: ProductCard(
+                            size: size,
+                            product: products[index],
+                            voidCallback: () {
+                              Product.remove(products[index]);
+                            }),
+                      );
+                    }),
                   );
-                }),
+                },
               ),
             ),
           ],

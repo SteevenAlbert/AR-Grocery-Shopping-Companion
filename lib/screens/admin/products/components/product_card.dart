@@ -28,7 +28,6 @@ class _ProductCardState extends State<ProductCard> {
       children: <Widget>[
         InkWell(
           onTap: () {
-            GoRouter.of(context).pop();
             GoRouter.of(context)
                 .push('/edit_product_page', extra: this.widget.product);
           },

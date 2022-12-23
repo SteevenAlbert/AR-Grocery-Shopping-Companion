@@ -188,7 +188,6 @@ class AddingFormState extends State<AddingForm> {
                             image: "assets/images/cadbury.png"));
 
                         GoRouter.of(context).pop();
-                        GoRouter.of(context).push('/products_dashboard');
                       }
                     },
                     child: const Text('Submit'),

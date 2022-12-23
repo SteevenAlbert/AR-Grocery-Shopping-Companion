@@ -125,7 +125,6 @@ class EditingFormState extends State<EditingForm> {
                         this.widget.product.producer = producer;
 
                         GoRouter.of(context).pop();
-                        GoRouter.of(context).push('/products_dashboard');
                       }
                     },
                     child: const Text('Submit'),
