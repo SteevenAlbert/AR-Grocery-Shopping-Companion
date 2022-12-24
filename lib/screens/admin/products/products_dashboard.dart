@@ -18,10 +18,12 @@ class _ProductsDashboardState extends State<ProductsDashboard> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
           title: Text("All products"),
+          backgroundColor: Theme.of(context).canvasColor,
+          foregroundColor: Theme.of(context).primaryColor,
+          elevation: 0,
         ),
         drawer: CustomDrawer(),
         floatingActionButton: FloatingActionButton(
@@ -36,19 +38,17 @@ class _ProductsDashboardState extends State<ProductsDashboard> {
           children: [
             Expanded(
               child: GridView.count(
-                crossAxisCount: 2,
+                crossAxisCount: (MediaQuery.of(context).size.width ~/ 250).toInt(),
                 crossAxisSpacing: 8.0,
                 mainAxisSpacing: 8.0,
+                childAspectRatio: 26/25,
                 children: List.generate(products.length, (index) {
-                  return Center(
-                    child: ProductCard(
-                        size: size,
-                        product: products[index],
-                        voidCallback: () {
-                          Product.remove(products[index]);
-                          setState(() {});
-                        }),
-                  );
+                  return ProductCard(
+                      product: products[index],
+                      voidCallback: () {
+                        Product.remove(products[index]);
+                        setState(() {});
+                      });
                 }),
               ),
             ),

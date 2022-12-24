@@ -14,11 +14,12 @@ class _FeaturedProductsState extends State<FeaturedProducts> {
   @override
   Widget build(BuildContext context) {
     return GridView.count(
+      childAspectRatio: 24/23,
       physics: ScrollPhysics(),
       shrinkWrap: true,
       crossAxisCount: (MediaQuery.of(context).size.width ~/ 250).toInt(),
-      crossAxisSpacing: 8.0,
       mainAxisSpacing: 8.0,
+      crossAxisSpacing: 8.0,
       children: List.generate(Product.all.length, (index) {
         return Center(
           child: ProductCard(

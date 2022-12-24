@@ -8,6 +8,7 @@ Widget alternativeProducts(context) {
     padding: const EdgeInsets.fromLTRB(5, 10, 5, 8.0),
     child: GridView.count(
       crossAxisCount: (MediaQuery.of(context).size.width ~/ 250).toInt(),
+      childAspectRatio: 24/23,
       crossAxisSpacing: 8.0,
       mainAxisSpacing: 8.0,
       children: List.generate(Product.all.length, (index) {
