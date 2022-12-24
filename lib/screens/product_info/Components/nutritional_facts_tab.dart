@@ -24,14 +24,11 @@ class NutritionalFacts extends StatelessWidget {
                       child: Column(children: [
                     Text(
                       "Ingredients",
-                      style: TextStyle(
-                          fontFamily: "Poppins",
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                     Text(
                       product.ingredients.join(' - '),
-                      style: TextStyle(fontFamily: "Poppins", fontSize: 16),
+                      style: Theme.of(context).textTheme.bodyMedium,
                       textAlign: TextAlign.center,
                     ),
                     SizedBox(
@@ -46,15 +43,11 @@ class NutritionalFacts extends StatelessWidget {
                           children: [
                             Text(
                               "Allergy Information",
-                              style: TextStyle(
-                                  fontFamily: "Poppins",
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold),
+                              style: Theme.of(context).textTheme.titleLarge,
                             ),
                             Text(
                               "Milk Chocolate (31.5%) (Sugar, Cocoa Butter, Cocoa Mass, Skimmed Milk Powder, Anhydrous, Milkfat, Emlsifiers Lecithins...",
-                              style: TextStyle(
-                                  fontFamily: "Poppins", fontSize: 16),
+                              style: Theme.of(context).textTheme.bodyMedium,
                               textAlign: TextAlign.center,
                             ),
                           ],

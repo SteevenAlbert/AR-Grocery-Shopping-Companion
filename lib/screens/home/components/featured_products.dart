@@ -14,7 +14,6 @@ class _FeaturedProductsState extends State<FeaturedProducts> {
   @override
   Widget build(BuildContext context) {
     return GridView.count(
-      childAspectRatio: 24/23,
       physics: ScrollPhysics(),
       shrinkWrap: true,
       crossAxisCount: (MediaQuery.of(context).size.width ~/ 200).toInt(),

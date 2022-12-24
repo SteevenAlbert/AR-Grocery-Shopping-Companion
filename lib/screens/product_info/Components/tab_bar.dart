@@ -26,14 +26,9 @@ class ProductTabBarState extends State<ProductTabBar> {
         splashBorderRadius: BorderRadius.circular(50),
         isScrollable: true,
         labelColor: Colors.white,
-        labelStyle: TextStyle(
-            fontFamily: "Poppins",
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 20),
+        labelStyle: Theme.of(context).textTheme.labelLarge,
         unselectedLabelColor: Color.fromARGB(125, 0, 0, 0),
-        unselectedLabelStyle: TextStyle(
-            fontFamily: "Poppins", fontWeight: FontWeight.bold, fontSize: 16),
+        unselectedLabelStyle: Theme.of(context).textTheme.labelMedium,
         labelPadding: EdgeInsets.symmetric(horizontal: 30.0),
         indicator: BoxDecoration(
             gradient: LinearGradient(colors: [

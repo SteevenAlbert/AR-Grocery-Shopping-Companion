@@ -84,23 +84,21 @@ class ProductCard extends StatelessWidget {
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 1,
                                     softWrap: false,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 13),
+                                    style:
+                                        Theme.of(context).textTheme.titleSmall,
                                   ),
                                 ),
                                 SizedBox(height: 3),
                                 Align(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(product.servingSize,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 10,
-                                          color: Colors.grey)),
+                                  child: Text(
+                                    product.servingSize,
+                                    style:
+                                        Theme.of(context).textTheme.bodySmall,
+                                  ),
                                 ),
                               ]),
                         ),
-                        
                       ])),
                 ],
               ),

@@ -41,7 +41,6 @@ class _ProductsDashboardState extends State<ProductsDashboard> {
                 crossAxisCount: (MediaQuery.of(context).size.width ~/ 200).toInt(),
                 crossAxisSpacing: 8.0,
                 mainAxisSpacing: 8.0,
-                childAspectRatio: 26/25,
                 children: List.generate(products.length, (index) {
                   return ProductCard(
                       product: products[index],
