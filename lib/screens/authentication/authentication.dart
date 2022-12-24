@@ -15,7 +15,6 @@ class AuthenticationPage extends StatefulWidget {
 class LogInPageState extends State<AuthenticationPage> {
   final PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);
-  final GlobalKey<FormState> _formKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +24,7 @@ class LogInPageState extends State<AuthenticationPage> {
         Background2(),
         //----- Card Container -----//
         Container(
-          padding: EdgeInsets.only(left: 25, top: 250, right: 15, bottom: 0),
+          padding: EdgeInsets.only(left: 25, top: 250, right: 25, bottom: 0),
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
@@ -37,33 +36,28 @@ class LogInPageState extends State<AuthenticationPage> {
             ],
           ),
           child: Container(
-            padding: EdgeInsets.only(top: 20, bottom: 0, left: 20, right: 20),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(60),
-                  topRight: Radius.circular(60),
-                  bottomLeft: Radius.circular(0),
-                  bottomRight: Radius.circular(0)),
-            ),
-            child: Container(
-              margin: EdgeInsets.only(top: 2, right: 5, left: 5),
-              child: Form(
-                  key: _formKey,
+              padding: EdgeInsets.only(top: 20, bottom: 0, left: 20, right: 20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(60),
+                    topRight: Radius.circular(60),
+                    bottomLeft: Radius.circular(0),
+                    bottomRight: Radius.circular(0)),
+              ),
+              child:
                   //----- Nav Bar -----//
-                  child: PersistentTabView(
-                    backgroundColor: Colors.white,
-                    context,
-                    controller: _controller,
-                    screens: _buildScreens(),
-                    items: _navBarsItems(context),
-                    navBarStyle: NavBarStyle.style14,
-                    // navBarStyle: NavBarStyle.style3,
-                    // navBarStyle: NavBarStyle.style6,
-                    // navBarStyle: NavBarStyle.style8,
-                  )),
-            ),
-          ),
+                  PersistentTabView(
+                backgroundColor: Colors.white,
+                context,
+                controller: _controller,
+                screens: _buildScreens(),
+                items: _navBarsItems(context),
+                navBarStyle: NavBarStyle.style14,
+                // navBarStyle: NavBarStyle.style3,
+                // navBarStyle: NavBarStyle.style6,
+                // navBarStyle: NavBarStyle.style8,
+              )),
         ),
       ]),
     );

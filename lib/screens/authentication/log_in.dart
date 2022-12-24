@@ -14,7 +14,7 @@ class LogInScreen extends StatefulWidget {
 }
 
 class LogInScreenState extends State<LogInScreen> {
-  final GlobalKey<FormState> _formKeyy = GlobalKey();
+  final GlobalKey<FormState> _formKey = GlobalKey();
   TextEditingController usernameController = new TextEditingController();
 
   bool _isHidden = true;
@@ -26,27 +26,27 @@ class LogInScreenState extends State<LogInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: ListView(shrinkWrap: false, children: [
-        Center(
-          child: Padding(
-              padding:
-                  const EdgeInsets.only(top: 0, bottom: 10, left: 0, right: 0),
-              child: Text(
-                "Log In",
-                style: TextStyle(
-                    fontFamily: "Ubuntu",
-                    fontSize: 33,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black),
-              )),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(
-              top: 10, bottom: 10, left: 15.0, right: 15.0),
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height / 13,
+    return Form(
+      key: _formKey,
+      child: Container(
+        color: Colors.white,
+        child: ListView(shrinkWrap: false, children: [
+          Center(
+            child: Padding(
+                padding: const EdgeInsets.only(
+                    top: 10, bottom: 20, left: 15, right: 15),
+                child: Text(
+                  "Log In",
+                  style: TextStyle(
+                      fontFamily: "Ubuntu",
+                      fontSize: 33,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black),
+                )),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+                top: 10, bottom: 10, left: 15.0, right: 15.0),
             child: TextFormField(
               controller: usernameController,
               onChanged: (value) {},
@@ -72,15 +72,23 @@ class LogInScreenState extends State<LogInScreen> {
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide(width: 2, color: Colors.red.shade200),
                 ),
+                suffixIcon: InkWell(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      right: 8.0,
+                    ),
+                    child: Icon(
+                      Icons.person,
+                      // color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(
-              top: 10, bottom: 10, left: 15.0, right: 15.0),
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height / 13,
+          Padding(
+            padding: const EdgeInsets.only(
+                top: 10, bottom: 10, left: 15.0, right: 15.0),
             child: TextFormField(
               onChanged: (value) {},
               validator: (value) {
@@ -106,53 +114,51 @@ class LogInScreenState extends State<LogInScreen> {
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide(width: 2, color: Colors.red.shade200),
                 ),
-                suffix: InkWell(
+                suffixIcon: InkWell(
                   onTap: _togglePasswordView,
                   child: Padding(
-                    padding: const EdgeInsets.only(
-                      right: 8.0,
-                    ),
+                    padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                     child: Icon(
                       (_isHidden ? Icons.visibility : Icons.visibility_off),
-                      color: Theme.of(context).primaryColor,
                     ),
                   ),
                 ),
               ),
             ),
           ),
-        ),
-        Center(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-            child: AnimatedButton(
-                width: MediaQuery.of(context).size.width / 2,
-                height: MediaQuery.of(context).size.height / 13,
-                color: Theme.of(context).primaryColor,
-                child: Text(
-                  'Log In',
-                  style: TextStyle(
-                    fontSize: 23,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500,
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+              child: AnimatedButton(
+                  width: MediaQuery.of(context).size.width / 2,
+                  height: MediaQuery.of(context).size.height / 13,
+                  color: Theme.of(context).primaryColor,
+                  child: Text(
+                    'Log In',
+                    style: TextStyle(
+                      fontSize: 23,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                ),
-                onPressed: () async {
-                  if (_formKeyy.currentState!.validate()) {
-                    User? user = User.retrieveAccount(usernameController.text);
-                    if (user == null) {
-                    } else if (user.type == 0 || user.type == 0) {
-                      await SessionManager().set("name", user.username);
-                      context.go('/admin_home_page');
-                    } else if (user.type == 1 || user.type == 1) {
-                      await SessionManager().set("name", user.username);
-                      context.go('/customer_home_page');
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+                      User? user =
+                          User.retrieveAccount(usernameController.text);
+                      if (user == null) {
+                      } else if (user.type == 0 || user.type == 0) {
+                        await SessionManager().set("name", user.username);
+                        context.go('/admin_home_page');
+                      } else if (user.type == 1 || user.type == 1) {
+                        await SessionManager().set("name", user.username);
+                        context.go('/customer_home_page');
+                      }
                     }
-                  }
-                }),
+                  }),
+            ),
           ),
-        ),
-      ]),
+        ]),
+      ),
     );
   }
 }
