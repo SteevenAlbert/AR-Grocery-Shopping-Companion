@@ -3,7 +3,7 @@ import 'package:ar_grocery_companion/screens/home/components/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/components/header.dart';
 import 'package:ar_grocery_companion/screens/home/components/featured_products.dart';
-import 'package:ar_grocery_companion/screens/home/components/popular_prod.dart';
+import 'package:ar_grocery_companion/screens/home/components/popular_products.dart';
 import 'package:ar_grocery_companion/screens/home/components/tabs.dart';
 import 'package:ar_grocery_companion/screens/home/components/carousel.dart';
 

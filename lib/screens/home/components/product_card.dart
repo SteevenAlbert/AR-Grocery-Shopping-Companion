@@ -12,17 +12,15 @@ class ProductCard extends StatelessWidget {
   final int sectionID;
   const ProductCard({
     Key? key,
-    required this.size,
     required this.product,
     required this.sectionID,
     this.press,
   }) : super(key: key);
-  final Size size;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        onTap: () =>
-            GoRouter.of(context).push("/product_page", extra: product),
+        onTap: () => GoRouter.of(context).push("/product_page", extra: product),
         child: Card(
             elevation: 0,
             shape: RoundedRectangleBorder(
@@ -63,40 +61,44 @@ class ProductCard extends StatelessWidget {
                   SizedBox(height: 3),
                   Container(
                       child: Row(
-                          mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Align(
+                        Expanded(
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: IconTheme(
+                                        data: IconThemeData(
+                                          color: Colors.amber,
+                                          size: 11,
+                                        ),
+                                        child: StarDisplay(value: 3))),
+                                SizedBox(height: 3),
+                                Align(
                                   alignment: Alignment.centerLeft,
-                                  child: IconTheme(
-                                      data: IconThemeData(
-                                        color: Colors.amber,
-                                        size: 11,
-                                      ),
-                                      child: StarDisplay(value: 3))),
-                              SizedBox(height: 3),
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  product.name,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 13),
-                                ),
-                              ),
-                              SizedBox(height: 3),
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(product.servingSize,
+                                  child: Text(
+                                    product.name,
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
+                                    softWrap: false,
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 10,
-                                        color: Colors.grey)),
-                              ),
-                            ]),
+                                        fontSize: 13),
+                                  ),
+                                ),
+                                SizedBox(height: 3),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(product.servingSize,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 10,
+                                          color: Colors.grey)),
+                                ),
+                              ]),
+                        ),
                         if (sectionID == 1) FavIcon(product: product)
                       ])),
                 ],

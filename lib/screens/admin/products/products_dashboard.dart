@@ -34,7 +34,6 @@ class _ProductsDashboardState extends State<ProductsDashboard> {
         ),
         body: Column(
           children: [
-            SizedBox(height: 20),
             Expanded(
               child: GridView.count(
                 crossAxisCount: 2,

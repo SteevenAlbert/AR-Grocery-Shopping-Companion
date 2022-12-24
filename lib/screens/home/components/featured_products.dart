@@ -22,7 +22,7 @@ class _FeaturedProductsState extends State<FeaturedProducts> {
       children: List.generate(Product.all.length, (index) {
         return Center(
           child: ProductCard(
-              sectionID: 1, size: widget.size, product: Product.all[index]),
+              sectionID: 1, product: Product.all[index]),
         );
       }),
     );

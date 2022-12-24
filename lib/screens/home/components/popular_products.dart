@@ -35,7 +35,7 @@ class ProductCarousel extends StatelessWidget {
                   constraints: BoxConstraints(maxWidth: 300),
                   margin: EdgeInsets.symmetric(horizontal: 0.5),
                   child: ProductCard(
-                      sectionID: 0, size: size, product: Product.all[i]),
+                      sectionID: 0, product: Product.all[i]),
                 );
               },
             );

@@ -3,6 +3,7 @@ import 'package:ar_grocery_companion/models/metanutrients.dart';
 
 Widget nutrientWidget({nutrientData, int? calories, String? servingSize}) {
   return Container(
+    constraints: BoxConstraints(maxWidth: 800),
     padding: EdgeInsets.all(1.0),
     decoration:
         BoxDecoration(border: new Border.all(color: Colors.black, width: 2.0)),

@@ -17,7 +17,7 @@ class OnlineStores extends StatelessWidget {
           future: fetchPrice(product),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return Column(
+              return ListView(
                 children: [
                   storeCard(
                       "assets/images/store_logos/amazon.png",

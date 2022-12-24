@@ -106,7 +106,7 @@ class ProductPage extends StatelessWidget {
             child: TabBarView(children: [
               OnlineStores(product: product),
               NutritionalFacts(product: product),
-              alternativeProducts(MediaQuery.of(context).size),
+              alternativeProducts(context),
             ]),
           ),
         ),
