@@ -100,7 +100,7 @@ class ProductCard extends StatelessWidget {
                                 ),
                               ]),
                         ),
-                        if (sectionID == 1) FavIcon(product: product)
+                        
                       ])),
                 ],
               ),
