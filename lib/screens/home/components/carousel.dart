@@ -9,35 +9,20 @@ class CarouselSliderExample extends StatelessWidget {
         items: [
           Stack(children: [
             Container(
+              margin: EdgeInsets.symmetric(vertical: 16.0),
               width: MediaQuery.of(context).size.width,
-              height: 150,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0),
                 image: DecorationImage(
                   image: new AssetImage("assets/images/gym.jpeg"),
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
-            Positioned(
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: Colors.white.withOpacity(0.7),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 8.0, left: 8, right: 4),
-                  child: Text(
-                    'Gym Essentials',
-                    style: TextStyle(fontSize: 30),
-                  ),
-                ),
-              ),
-            )
           ]),
         ],
         options: CarouselOptions(
-          height: 200.0,
+          height: MediaQuery.of(context).size.height*0.2,
           enlargeCenterPage: true,
           autoPlay: true,
           aspectRatio: 16 / 9,
