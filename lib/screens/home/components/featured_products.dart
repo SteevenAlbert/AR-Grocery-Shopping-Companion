@@ -16,13 +16,12 @@ class _FeaturedProductsState extends State<FeaturedProducts> {
     return GridView.count(
       physics: ScrollPhysics(),
       shrinkWrap: true,
-      crossAxisCount: 2,
-      crossAxisSpacing: 8.0,
+      crossAxisCount: (MediaQuery.of(context).size.width ~/ 200).toInt(),
       mainAxisSpacing: 8.0,
+      crossAxisSpacing: 8.0,
       children: List.generate(Product.all.length, (index) {
         return Center(
-          child: ProductCard(
-              sectionID: 1, size: widget.size, product: Product.all[index]),
+          child: ProductCard(sectionID: 1, product: Product.all[index]),
         );
       }),
     );

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/models/product.dart';
 import 'package:go_router/go_router.dart';
-import 'package:simple_shadow/simple_shadow.dart';
 
 class ProductCard extends StatefulWidget {
   final VoidCallback voidCallback;
@@ -9,13 +8,10 @@ class ProductCard extends StatefulWidget {
   final Function? press;
   const ProductCard({
     Key? key,
-    required this.size,
     required this.product,
     required this.voidCallback,
     this.press,
   }) : super(key: key);
-
-  final Size size;
 
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -24,82 +20,63 @@ class ProductCard extends StatefulWidget {
 class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        InkWell(
-          onTap: () {
-            GoRouter.of(context)
-                .push('/edit_product_page', extra: this.widget.product);
-          },
-          child: Container(
-              width: widget.size.width * 0.4,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                // color: Colors.blue,
+    return InkWell(
+      onTap: () => GoRouter.of(context)
+          .push("/edit_product_page", extra: widget.product),
+      child: Card(
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            color: Colors.black12,
+          ),
+          borderRadius: const BorderRadius.all(Radius.circular(12)),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Center(
+                child: AspectRatio(
+                  aspectRatio: 16 / 10,
+                  child: Image.asset(
+                    widget.product.image,
+                  ),
+                ),
               ),
-              child: Center(
-                child: Column(children: <Widget>[
-                  Center(
-                    child: Container(
-                      height: 110,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Color(0xFFe5e5e5),
-                          boxShadow: [
-                            BoxShadow(
-                              offset: Offset(0, 3),
-                              blurRadius: 50,
-                              color: Theme.of(context)
-                                  .primaryColor
-                                  .withOpacity(0.15),
-                            )
-                          ]),
-                      child: SimpleShadow(
-                        child: Center(child: Image.asset(widget.product.image)),
-                        offset: Offset(0, 6),
+
+              Container(
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: ListTile(
+                        trailing: IconButton(
+                          onPressed: () =>
+                            buildIconButton(),
+                          icon: Icon(Icons.delete_outline_outlined,
+                          color: Theme.of(context).primaryColor),
+                        ),
+                        title: Text(
+                          widget.product.name,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          softWrap: false,
+                        ),
+                        subtitle: Text(
+                          widget.product.producer,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          softWrap: false,
+                        ),
                       ),
                     ),
-                  ),
-                  Stack(
-                    children: [
-                      Container(
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    widget.product.name,
-                                    style: TextStyle(
-                                      fontFamily: "Nunito",
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        padding: EdgeInsets.all(20 / 2),
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              offset: Offset(0, 5),
-                              blurRadius: 50,
-                              color: Colors.black12,
-                            ),
-                          ],
-                        ),
-                      ),
-                      buildIconButton(),
-                    ],
-                  )
-                ]),
-              )),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
-      ],
+      ),
     );
   }
 

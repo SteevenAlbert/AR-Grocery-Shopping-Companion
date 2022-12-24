@@ -20,6 +20,9 @@ class ProductsDashboard extends ConsumerWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text("All products"),
+          backgroundColor: Theme.of(context).canvasColor,
+          foregroundColor: Theme.of(context).primaryColor,
+          elevation: 0,
         ),
         drawer: CustomDrawer(),
         floatingActionButton: FloatingActionButton(
@@ -31,19 +34,18 @@ class ProductsDashboard extends ConsumerWidget {
         ),
         body: Column(
           children: [
-            SizedBox(height: 20),
             Expanded(
               child: Consumer(
                 builder: (context, ref, _) {
                   final products = ref.watch(productsProvider);
                   return GridView.count(
-                    crossAxisCount: 2,
+                    crossAxisCount:
+                        (MediaQuery.of(context).size.width ~/ 200).toInt(),
                     crossAxisSpacing: 8.0,
                     mainAxisSpacing: 8.0,
                     children: List.generate(products.length, (index) {
                       return Center(
                         child: ProductCard(
-                            size: size,
                             product: products[index],
                             voidCallback: () {
                               Product.remove(products[index]);

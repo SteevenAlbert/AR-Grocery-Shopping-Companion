@@ -17,25 +17,27 @@ class ProductCarousel extends StatelessWidget {
           children: [
             Text(
               "Popular Products",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+              style: Theme.of(context).textTheme.titleLarge,
             ),
             TextButton(
                 onPressed: () {},
-                child: Text("See All", style: TextStyle(fontSize: 15)))
+                child: Text("See All", style: Theme.of(context).textTheme.labelLarge)
+                )
           ],
         ),
         SizedBox(height: 12),
         Container(
             child: CarouselSlider(
-          options: CarouselOptions(viewportFraction: 0.371, height: 180),
+          options: CarouselOptions(viewportFraction: 300/MediaQuery.of(context).size.width, height: 190,),
           items: [1, 2, 3, 4, 5].map((i) {
             return Builder(
               builder: (BuildContext context) {
                 return Container(
-                    width: MediaQuery.of(context).size.width,
-                    margin: EdgeInsets.symmetric(horizontal: 0.5),
-                    child: ProductCard(
-                        sectionID: 0, size: size, product: Product.all[i]));
+                  constraints: BoxConstraints(maxWidth: 300),
+                  margin: EdgeInsets.symmetric(horizontal: 0.5),
+                  child: ProductCard(
+                      sectionID: 0, product: Product.all[i]),
+                );
               },
             );
           }).toList(),

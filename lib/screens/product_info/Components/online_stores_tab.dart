@@ -17,17 +17,19 @@ class OnlineStores extends StatelessWidget {
           future: fetchPrice(product),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return Column(
+              return ListView(
                 children: [
                   storeCard(
+                      context,
                       "assets/images/store_logos/amazon.png",
                       snapshot.data!.prices['Amazon']!,
                       product.URLs!["Amazon"]!),
-                  storeCard("assets/images/store_logos/noon.png",
+                  storeCard(context, "assets/images/store_logos/noon.png",
                       product.prices['Noon']!, product.URLs!["Noon"]!),
-                  storeCard("assets/images/store_logos/jumia.png",
+                  storeCard(context, "assets/images/store_logos/jumia.png",
                       product.prices['Jumia']!, product.URLs!["Jumia"]!),
                   storeCard(
+                      context,
                       "assets/images/store_logos/carrefour.png",
                       product.prices['Carrefour']!,
                       product.URLs!["Carrefour"]!),
