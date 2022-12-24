@@ -26,193 +26,173 @@ class RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
-      body: Stack(children: [
-        Background2(),
-        Container(
-          margin: EdgeInsets.only(left: 15, top: 250, right: 15, bottom: 0),
-          height: double.infinity,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(1),
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(60),
-                topRight: Radius.circular(60),
-                bottomLeft: Radius.circular(0),
-                bottomRight: Radius.circular(0)),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.white.withOpacity(0.5),
-                // spreadRadius: 25,
-                spreadRadius: 200,
-                blurRadius: 0,
-                // offset: Offset(0, 0),
-                offset: Offset(-30, -100),
-              ),
-            ],
+    return Form(
+      key: _formKey,
+      child: Container(
+        color: Colors.white,
+        child: ListView(children: [
+          Center(
+            child: Padding(
+                padding:
+                    EdgeInsets.only(top: 10, bottom: 20, left: 15, right: 15),
+                child: Text(
+                  "Register",
+                  style: TextStyle(
+                      fontFamily: "Ubuntu",
+                      fontSize: 33,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black),
+                )),
           ),
-          child: Stack(alignment: Alignment.center, children: [
-            Container(
-              margin: EdgeInsets.only(left: 35, top: 35, right: 35, bottom: 0),
-              height: double.infinity,
-              width: double.infinity,
-              child: Form(
-                key: _formKey,
-                child: ListView(children: [
-                  Center(
-                    child: Padding(
-                        padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                        child: Text(
-                          "Register",
-                          style: TextStyle(
-                              fontFamily: "Ubuntu",
-                              fontSize: 33,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black),
-                        )),
+          Padding(
+            padding: const EdgeInsets.only(
+                top: 10, bottom: 10, left: 15.0, right: 15.0),
+            child: TextFormField(
+              controller: usernameController,
+              onChanged: (value) {},
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your email.';
+                }
+                return null;
+              },
+              decoration: InputDecoration(
+                hintText: "Email",
+                hintStyle: TextStyle(
+                  color: Theme.of(context).hintColor.withOpacity(0.5),
+                ),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    width: 1.0,
+                    color: Theme.of(context).primaryColorDark,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                    child: TextFormField(
-                      controller: usernameController,
-                      onChanged: (value) {},
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your email.';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        hintText: "Email",
-                        hintStyle: TextStyle(
-                          color: Theme.of(context).hintColor.withOpacity(0.5),
-                        ),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 1.0,
-                            color: Theme.of(context).primaryColorDark,
-                          ),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide:
-                              BorderSide(width: 2, color: Colors.red.shade200),
-                        ),
-                      ),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                focusedErrorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(width: 2, color: Colors.red.shade200),
+                ),
+                suffixIcon: InkWell(
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 8.0, left: 8.0),
+                    child: Icon(
+                      Icons.mail,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                    child: TextFormField(
-                      controller: usernameController,
-                      onChanged: (value) {},
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your username.';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        hintText: "Username",
-                        hintStyle: TextStyle(
-                          color: Theme.of(context).hintColor.withOpacity(0.5),
-                        ),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 1.0,
-                            color: Theme.of(context).primaryColorDark,
-                          ),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide:
-                              BorderSide(width: 2, color: Colors.red.shade200),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                    child: TextFormField(
-                      onChanged: (value) {},
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your password.';
-                        } else if (!value
-                            .contains(new RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
-                          return 'Password must have a Special Character.';
-                        }
-                        return null;
-                      },
-                      obscureText: _isHidden,
-                      decoration: InputDecoration(
-                        hintText: "Password",
-                        hintStyle: TextStyle(
-                          color: Theme.of(context).hintColor.withOpacity(0.5),
-                        ),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 1.0,
-                            color: Theme.of(context).primaryColorDark,
-                          ),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide:
-                              BorderSide(width: 2, color: Colors.red.shade200),
-                        ),
-                        suffix: InkWell(
-                          onTap: _togglePasswordView,
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                              right: 8.0,
-                            ),
-                            child: Icon(
-                              (_isHidden
-                                  ? Icons.visibility
-                                  : Icons.visibility_off),
-                              color: Theme.of(context).primaryColor,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                      child: AnimatedButton(
-                          width: 275,
-                          height: 57,
-                          color: Theme.of(context).primaryColor,
-                          child: Text(
-                            'Register',
-                            style: TextStyle(
-                              fontSize: 23,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          onPressed: () async {
-                            if (_formKey.currentState!.validate()) {
-                              //..create new user//
-                              await SessionManager()
-                                  .set("name", usernameController.text);
-                              context.go('/customer_home_page');
-                            }
-                          }),
-                    ),
-                  ),
-                ]),
+                ),
               ),
             ),
-          ]),
-        )
-      ]),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+                top: 10, bottom: 10, left: 15.0, right: 15.0),
+            child: TextFormField(
+              controller: usernameController,
+              onChanged: (value) {},
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your username.';
+                }
+                return null;
+              },
+              decoration: InputDecoration(
+                hintText: "Username",
+                hintStyle: TextStyle(
+                  color: Theme.of(context).hintColor.withOpacity(0.5),
+                ),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    width: 1.0,
+                    color: Theme.of(context).primaryColorDark,
+                  ),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                focusedErrorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(width: 2, color: Colors.red.shade200),
+                ),
+                suffixIcon: InkWell(
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 8.0, left: 8.0),
+                    child: Icon(
+                      Icons.person,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+                top: 10, bottom: 10, left: 15.0, right: 15.0),
+            child: TextFormField(
+              onChanged: (value) {},
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your password.';
+                } else if (!value
+                    .contains(new RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
+                  return 'Password must have a Special Character.';
+                }
+                return null;
+              },
+              obscureText: _isHidden,
+              decoration: InputDecoration(
+                hintText: "Password",
+                hintStyle: TextStyle(
+                  color: Theme.of(context).hintColor.withOpacity(0.5),
+                ),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    width: 1.0,
+                    color: Theme.of(context).primaryColorDark,
+                  ),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                focusedErrorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(width: 2, color: Colors.red.shade200),
+                ),
+                suffixIcon: InkWell(
+                  onTap: _togglePasswordView,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 8.0, left: 8.0),
+                    child: Icon(
+                      (_isHidden ? Icons.visibility : Icons.visibility_off),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                  top: 15.0, bottom: 15.0, left: 15.0, right: 15.0),
+              child: AnimatedButton(
+                  width: MediaQuery.of(context).size.width / 2,
+                  height: MediaQuery.of(context).size.height / 13,
+                  color: Theme.of(context).primaryColor,
+                  child: Text(
+                    'Register',
+                    style: TextStyle(
+                      fontSize: 23,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+                      //..create new user//
+                      await SessionManager()
+                          .set("name", usernameController.text);
+                      context.go('/customer_home_page');
+                    }
+                  }),
+            ),
+          ),
+        ]),
+      ),
     );
   }
 }
