@@ -28,7 +28,7 @@ class _NavbarState extends State<Navbar> {
         AdminHomePage(),
       ],
       items: _navBarsItems(),
-      navBarStyle: NavBarStyle.style12,
+      navBarStyle: NavBarStyle.style1,
       backgroundColor: Theme.of(context).canvasColor,
     );
   }

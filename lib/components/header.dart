@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ar_grocery_companion/components/welcome.dart';
+import 'package:go_router/go_router.dart';
 
 class Header extends StatelessWidget {
   const Header({super.key, required this.size});
@@ -8,14 +8,37 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double defaultPadding = 8.0;
-    return Container(
-      margin: EdgeInsets.only(bottom: defaultPadding),
-      // It will cover 20% of our total height
-      height: size.height * 0.099,
-      child: Stack(
-        children: <Widget>[
-          Welcome(size: size),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Good Morning Samir",
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+                Text(
+                  "Wanna check some products?",
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+              ],
+            ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              InkWell(
+                  onTap: () => GoRouter.of(context).push("/profile_page"),
+                  child: CircleAvatar(
+                    backgroundImage:
+                        AssetImage("assets/images/profilepic.jpeg"),
+                    radius: 25,
+                  )),
+            ],
+          )
         ],
       ),
     );

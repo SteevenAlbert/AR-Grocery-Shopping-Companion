@@ -5,27 +5,23 @@ class SearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      decoration: InputDecoration(
-        border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide.none),
-        prefixIcon: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: Theme.of(context).primaryColor),
-            // color: Theme.of(context).primaryColor,
-            child: Icon(color: Colors.white, Icons.search)),
-        labelText: "  Search Products",
-        fillColor: Colors.white,
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Theme.of(context).primaryColor,
-            width: 1.0,
+    return Row(
+      children: [
+        Expanded(
+          child: TextField(
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: BorderSide.none),
+              prefixIcon: Icon(Icons.search),
+              hintText: "Search Products",
+              filled: true,
+              fillColor: Colors.grey[200],
+              suffixIcon:  Icon(Icons.qr_code_scanner),
+            ),
           ),
-          borderRadius: BorderRadius.circular(10.0),
         ),
-      ),
+      ],
     );
   }
 }

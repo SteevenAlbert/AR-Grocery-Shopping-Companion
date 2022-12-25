@@ -25,8 +25,8 @@ class HomePage extends StatelessWidget {
             SearchBar(),
             SizedBox(height: 12),
             CarouselSliderExample(),
-            ProductCarousel(size: size),
-            SizedBox(height: 12),
+            // ProductCarousel(size: size),
+            // SizedBox(height: 12),
             Cat_Tabs(size: size),
             SizedBox(height: 12),
             FeaturedProducts(size: size)

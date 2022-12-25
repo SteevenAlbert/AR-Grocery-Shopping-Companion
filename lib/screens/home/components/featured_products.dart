@@ -17,8 +17,8 @@ class _FeaturedProductsState extends State<FeaturedProducts> {
       physics: ScrollPhysics(),
       shrinkWrap: true,
       crossAxisCount: (MediaQuery.of(context).size.width ~/ 200).toInt(),
-      mainAxisSpacing: 8.0,
       crossAxisSpacing: 8.0,
+      mainAxisSpacing: 8.0,
       children: List.generate(Product.all.length, (index) {
         return Center(
           child: ProductCard(sectionID: 1, product: Product.all[index]),

@@ -8,28 +8,41 @@ class CarouselSliderExample extends StatelessWidget {
       child: CarouselSlider(
         items: [
           Stack(children: [
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 16.0),
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                image: DecorationImage(
-                  image: new AssetImage("assets/images/gym.jpeg"),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                margin: EdgeInsets.symmetric(vertical: 50.0),
+                constraints: BoxConstraints(
+                    minWidth: MediaQuery.of(context).size.width * 0.8,
+                    minHeight: MediaQuery.of(context).size.height * 0.3),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  image: DecorationImage(
+                  image: new AssetImage("assets/images/healthy_green.png"),
                   fit: BoxFit.cover,
                 ),
+                ),
+                
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Image.asset(
+                "assets/images/avocado.png",
+                width: MediaQuery.of(context).size.width * 0.4,
               ),
             ),
           ]),
         ],
         options: CarouselOptions(
-          height: MediaQuery.of(context).size.height*0.2,
+          height: MediaQuery.of(context).size.height * 0.3,
           enlargeCenterPage: true,
-          autoPlay: true,
+          //autoPlay: true,
           aspectRatio: 16 / 9,
           autoPlayCurve: Curves.fastOutSlowIn,
           enableInfiniteScroll: true,
           autoPlayAnimationDuration: Duration(milliseconds: 800),
-          viewportFraction: 0.8,
+          viewportFraction: 1.0,
         ),
       ),
     );
