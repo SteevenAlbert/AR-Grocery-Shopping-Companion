@@ -1,6 +1,7 @@
 import 'package:ar_grocery_companion/screens/product_info/components/store_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ar_grocery_companion/webscrappers/carrefour_scrapper.dart';
 
 import '../../../data/amazonapi.dart';
 import '../../../models/product.dart';
@@ -13,21 +14,18 @@ class OnlineStores extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 20, 0, 8.0),
-      child: FutureBuilder<Product>(
-          future: fetchPrice(product),
+      child: FutureBuilder<String>(
+          future: getPrice(product.URLs!["Jumia"]),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return ListView(
                 children: [
-                  storeCard(
-                      context,
-                      "assets/images/store_logos/amazon.png",
-                      snapshot.data!.prices['Amazon']!,
-                      product.URLs!["Amazon"]!),
+                  storeCard(context, "assets/images/store_logos/amazon.png",
+                      "16", product.URLs!["Amazon"]!),
                   storeCard(context, "assets/images/store_logos/noon.png",
                       product.prices['Noon']!, product.URLs!["Noon"]!),
                   storeCard(context, "assets/images/store_logos/jumia.png",
-                      product.prices['Jumia']!, product.URLs!["Jumia"]!),
+                      snapshot.data!, product.URLs!["Jumia"]!),
                   storeCard(
                       context,
                       "assets/images/store_logos/carrefour.png",

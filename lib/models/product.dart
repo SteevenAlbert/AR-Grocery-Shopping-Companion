@@ -125,7 +125,8 @@ class Product {
           'Amazon':
               "https://www.amazon.eg/-/en/Gardino-Tomato-Sauce-380-gm/dp/B07VSX3HV7?ref_=Oct_d_obs_d_21840401031&pd_rd_w=O2szN&content-id=amzn1.sym.3dfd202c-0419-4dc2-a7f1-f3fc9bea0ba1&pf_rd_p=3dfd202c-0419-4dc2-a7f1-f3fc9bea0ba1&pf_rd_r=YFHDGEPA0J8GGXGF71GM&pd_rd_wg=QPz6W&pd_rd_r=c0e640bc-4202-4218-a779-1cd696090940&pd_rd_i=B07VSX3HV7",
           'Noon': "https://www.noon.com/egypt-en/",
-          'Jumia': "https://www.jumia.com/",
+          'Jumia':
+              "https://www.jumia.com.eg/tomato-paste-can-380g-giardino-mpg862656.html",
           'Carrefour': "https://www.carrefouregypt.com/",
         },
         producer: "Gardino",
