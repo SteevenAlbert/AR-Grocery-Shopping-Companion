@@ -13,7 +13,7 @@ const String baseURL =
 //To use in production, uncomment it and comment the function below it
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
 
-// Future<Product> fetchPrice(Product product) async {
+// Future<Product> fetchAmazonPrice(Product product) async {
 //   final response =
 //       await http.get(Uri.parse(baseURL + product.URLs!["Amazon"]!));
 
@@ -35,7 +35,7 @@ const String baseURL =
 //   return product;
 // }
 
-Future<Product> fetchPrice(Product product) async {
+Future<Product> fetchAmazonPrice(Product product) async {
   final String response = await rootBundle.loadString('assets/sample.json');
   final data = await json.decode(response);
 

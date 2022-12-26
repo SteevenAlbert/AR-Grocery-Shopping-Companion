@@ -40,6 +40,7 @@ MaterialColor createMaterialColor(Color color) {
       b + ((ds < 0 ? b : (255 - b)) * ds).round(),
       1,
     );
-  };
+  }
+  ;
   return MaterialColor(color.value, swatch);
 }
