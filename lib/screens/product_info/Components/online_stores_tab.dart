@@ -14,21 +14,27 @@ class OnlineStores extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 20, 0, 8.0),
-      child: FutureBuilder<String>(
+      child: FutureBuilder(
           future: Future.wait([
-            fetchAmazonPrice(product), //Future that returns bool
-            fetchJumiaPrice(product), //Future that returns bool
+            fetchAmazonPrice(product),
+            fetchJumiaPrice(product),
           ]),
-          builder: (context, snapshot) {
+          builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
             if (snapshot.hasData) {
               return ListView(
                 children: [
-                  storeCard(context, "assets/images/store_logos/amazon.png",
-                      "16", product.URLs!["Amazon"]!),
+                  storeCard(
+                      context,
+                      "assets/images/store_logos/amazon.png",
+                      snapshot.data![0].prices['Amazon'],
+                      product.URLs!["Amazon"]!),
                   storeCard(context, "assets/images/store_logos/noon.png",
                       product.prices['Noon']!, product.URLs!["Noon"]!),
-                  storeCard(context, "assets/images/store_logos/jumia.png",
-                      snapshot.data!, product.URLs!["Jumia"]!),
+                  storeCard(
+                      context,
+                      "assets/images/store_logos/jumia.png",
+                      snapshot.data![1].prices['Jumia'],
+                      product.URLs!["Jumia"]!),
                   storeCard(
                       context,
                       "assets/images/store_logos/carrefour.png",
