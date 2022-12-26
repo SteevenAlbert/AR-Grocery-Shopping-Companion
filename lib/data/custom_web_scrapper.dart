@@ -5,7 +5,7 @@ import '../constants/constants.dart';
 import '../models/product.dart';
 
 Future<Product> fetchJumiaPrice(Product product) async {
-  String serverResponse = "___";
+  String serverResponse = "";
 
   // Establish connection with the server.
   final socket = await Socket.connect(webscraperVPSAddress, webscraperVPSPort);
