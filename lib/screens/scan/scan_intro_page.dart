@@ -19,29 +19,31 @@ class _ScanPageState extends State<ScanPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        ElevatedButton(
-          onPressed: () async {
-            setState(() {
-              _isLoading = true;
-            });
-            await _pushArView(sample: imageTrackingSample);
-            setState(() {
-              _isLoading = false;
-            });
-          },
-          child: !_isLoading
-              ? const Text("Scan")
-              : const CircularProgressIndicator(
-                  color: Colors.white,
-                ),
-        ),
-      ],
-    ));
+    return Scaffold(
+      body: Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          ElevatedButton(
+            onPressed: () async {
+              setState(() {
+                _isLoading = true;
+              });
+              await _pushArView(sample: imageTrackingSample);
+              setState(() {
+                _isLoading = false;
+              });
+            },
+            child: !_isLoading
+                ? const Text("Scan")
+                : const CircularProgressIndicator(
+                    color: Colors.white,
+                  ),
+          ),
+        ],
+      )),
+    );
   }
 
   Future<WikitudeResponse> _requestARPermissions(List<String> features) async {

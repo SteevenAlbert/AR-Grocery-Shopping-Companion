@@ -23,42 +23,54 @@ class _SearchPageState extends State<SearchPage> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  child: TextField(
-                    onChanged: searchProducts,
-                    controller: controller,
-                    autofocus: true,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(18),
-                          borderSide: BorderSide.none),
-                      suffixIcon: IntrinsicHeight(
-                          child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                            Icon(Icons.qr_code_scanner),
-                            SizedBox(width: 9),
-                            Container(
-                                height: 60,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(13),
-                                    color: Theme.of(context).primaryColor),
-                                child: Icon(color: Colors.white, Icons.search)),
-                          ])),
-                      labelText: "Search Products",
-                      fillColor: Colors.white,
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Theme.of(context).primaryColor,
-                          width: 1.0,
+                padding: const EdgeInsets.only(top: 8.0, left: 8.0),
+                child: Row(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      child: TextField(
+                        onChanged: searchProducts,
+                        controller: controller,
+                        autofocus: true,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(18),
+                              borderSide: BorderSide.none),
+                          suffixIcon: IntrinsicHeight(
+                              child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                InkWell(
+                                    onTap: () => GoRouter.of(context)
+                                        .push('/scan_intro_page'),
+                                    child: Icon(Icons.qr_code_scanner)),
+                                SizedBox(width: 9),
+                                Container(
+                                    height: 60,
+                                    width: 50,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(13),
+                                        color: Theme.of(context).primaryColor),
+                                    child: Icon(
+                                        color: Colors.white, Icons.search)),
+                              ])),
+                          labelText: "Search Products",
+                          fillColor: Colors.white,
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Theme.of(context).primaryColor,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
                         ),
-                        borderRadius: BorderRadius.circular(10.0),
                       ),
                     ),
-                  ),
+                    TextButton(
+                        onPressed: GoRouter.of(context).pop,
+                        child: Text("Cancel", style: TextStyle(fontSize: 16)))
+                  ],
                 ),
               ),
               Expanded(

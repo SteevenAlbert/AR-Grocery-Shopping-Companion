@@ -12,6 +12,7 @@ class SearchBar extends StatelessWidget {
         child: GestureDetector(
           onTap: () => GoRouter.of(context).push("/search_page"),
           child: Container(
+            width: size.width,
             decoration: BoxDecoration(
               color: Colors.grey[100],
               borderRadius: BorderRadius.circular(15),
@@ -19,7 +20,7 @@ class SearchBar extends StatelessWidget {
             child: IntrinsicHeight(
               child: Row(
                 mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 15.0),
@@ -27,19 +28,26 @@ class SearchBar extends StatelessWidget {
                         style:
                             TextStyle(fontSize: 16, color: Colors.grey[600])),
                   ),
-                  SizedBox(width: size.width / 3.5),
-                  Icon(
-                    Icons.qr_code_scanner,
-                    color: Colors.grey[600],
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () =>
+                            GoRouter.of(context).push('/scan_intro_page'),
+                        child: Icon(
+                          Icons.qr_code_scanner,
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                      SizedBox(width: 9),
+                      Container(
+                          height: 60,
+                          width: 50,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: Theme.of(context).primaryColor),
+                          child: Icon(color: Colors.white, Icons.search)),
+                    ],
                   ),
-                  SizedBox(width: 9),
-                  Container(
-                      height: 60,
-                      width: 50,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: Theme.of(context).primaryColor),
-                      child: Icon(color: Colors.white, Icons.search)),
                 ],
               ),
             ),
