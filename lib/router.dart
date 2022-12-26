@@ -9,6 +9,7 @@ import 'package:ar_grocery_companion/screens/main_page.dart';
 import 'package:ar_grocery_companion/screens/product_info/product_page.dart';
 import 'package:ar_grocery_companion/screens/scan/arview.dart';
 import 'package:ar_grocery_companion/screens/profile/profile_page.dart';
+import 'package:ar_grocery_companion/screens/search/search_page.dart';
 import 'package:go_router/go_router.dart';
 
 import 'models/product.dart';
@@ -34,6 +35,10 @@ class MyRouter {
       GoRoute(
           path: '/profile_page',
           builder: (context, state) => const ProfilePage()),
+      GoRoute(
+          path: '/search_page',
+          builder: (context, state) => const SearchPage()),
+
       GoRoute(
           path: '/products_dashboard',
           builder: (context, state) => const ProductsDashboard()),
