@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class SearchBar extends StatelessWidget {
-  const SearchBar({super.key});
+  final Size size;
+  const SearchBar({super.key, required this.size});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class SearchBar extends StatelessWidget {
                         style:
                             TextStyle(fontSize: 16, color: Colors.grey[600])),
                   ),
-                  SizedBox(width: MediaQuery.of(context).size.width / 2.6),
+                  SizedBox(width: size.width / 3.5),
                   Icon(
                     Icons.qr_code_scanner,
                     color: Colors.grey[600],

@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 20),
-            SearchBar(),
+            SearchBar(size: size),
             CarouselSliderExample(),
             // ProductCarousel(size: size),
             // SizedBox(height: 12),
