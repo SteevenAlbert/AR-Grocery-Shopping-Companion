@@ -17,20 +17,34 @@ class _FavProductsListState extends State<FavProductsList> {
   @override
   Widget build(BuildContext context) {
     if (Customer.favourites == null || Customer.favourites!.isEmpty) {
-      final String assetName =
-          'assets/images/heart/heart-circle-plus-custom.svg';
+      final String assetName = 'assets/images/heart/empty_wishlist.svg';
       return Center(
         child: Container(
-          width: 80,
-          height: 80,
+          width: 400,
+          height: 400,
           alignment: Alignment.center,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
           ),
-          child: SvgPicture.asset(
-            assetName,
-            height: 100,
-            width: 100,
+          child: Column(
+            children: [
+              SvgPicture.asset(
+                assetName,
+                height: 300,
+                width: 300,
+              ),
+              Text("You have no saved items in your list",
+                  style: TextStyle(fontSize: 16)),
+              SizedBox(height: 30),
+              ElevatedButton(
+                onPressed: () => GoRouter.of(context).push('/'),
+                child: Text("Browse Products", style: TextStyle(fontSize: 16)),
+                style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                )),
+              ),
+            ],
           ),
         ),
       );
