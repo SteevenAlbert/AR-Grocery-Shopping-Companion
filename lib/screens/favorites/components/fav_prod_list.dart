@@ -5,55 +5,53 @@ import 'package:go_router/go_router.dart';
 import 'fav_prod_tile.dart';
 import 'package:simple_shadow/simple_shadow.dart';
 import 'package:favorite_button/favorite_button.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ar_grocery_companion/models/product.dart';
 
-class FavProductsList extends StatefulWidget {
-  const FavProductsList({super.key});
+class FavProductsList extends ConsumerStatefulWidget {
+  final height;
+  const FavProductsList({super.key, required this.height});
 
   @override
-  State<FavProductsList> createState() => _FavProductsListState();
+  ConsumerState<FavProductsList> createState() => _FavProductsListState();
 }
 
-class _FavProductsListState extends State<FavProductsList> {
+class _FavProductsListState extends ConsumerState<FavProductsList> {
   @override
   Widget build(BuildContext context) {
-    if (Customer.favourites == null || Customer.favourites!.isEmpty) {
+    List<int> favs = ref.watch(favsProvider);
+    if (favs.isEmpty) {
       final String assetName = 'assets/images/heart/empty_wishlist.svg';
       return Center(
-        child: Container(
-          width: 400,
-          height: 400,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Column(
-            children: [
-              SvgPicture.asset(
-                assetName,
-                height: 300,
-                width: 300,
-              ),
-              Text("You have no saved items in your list",
-                  style: TextStyle(fontSize: 16)),
-              SizedBox(height: 30),
-              ElevatedButton(
-                onPressed: () => GoRouter.of(context).push('/'),
-                child: Text("Browse Products", style: TextStyle(fontSize: 16)),
-                style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                )),
-              ),
-            ],
-          ),
+        child: Column(
+          children: [
+            SizedBox(height: widget.height * 0.05),
+            SvgPicture.asset(
+              assetName,
+              height: 300,
+              width: 300,
+            ),
+            Text("You have no saved items in your list",
+                style: TextStyle(fontSize: 16)),
+            SizedBox(height: 30),
+            ElevatedButton(
+              onPressed: () => GoRouter.of(context).push('/'),
+              child: Text("Browse Products", style: TextStyle(fontSize: 16)),
+              style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
+              )),
+            ),
+          ],
         ),
       );
     } else {
       return Container(
           child: ListView.builder(
-        itemCount: Customer.favourites!.length,
+        shrinkWrap: true,
+        itemCount: favs.length,
         itemBuilder: (context, index) {
-          final item = Customer.favourites![index];
+          final Product item = Product.retrieveProduct(favs[index])!;
           return Dismissible(
               // Each Dismissible must contain a Key. Keys allow Flutter to
               // uniquely identify widgets.
@@ -129,7 +127,15 @@ class _FavProductsListState extends State<FavProductsList> {
                         isFavorite: true,
                         iconColor: Colors.red,
                         iconDisabledColor: Colors.amber.withOpacity(0.4),
-                        valueChanged: (_isFavorite) {},
+                        valueChanged: (isFavorite) {
+                          if (isFavorite) {
+                            ref.read(favsProvider.notifier).addItem(item.id!);
+                          } else {
+                            ref
+                                .read(favsProvider.notifier)
+                                .removeItem(item.id!);
+                          }
+                        },
                       ),
                     ],
                   ),

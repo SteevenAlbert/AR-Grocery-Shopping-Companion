@@ -33,6 +33,10 @@ class Product {
     all.remove(product);
   }
 
+  static Product? retrieveProduct(productId) {
+    return all.firstWhere((product) => product.id == productId);
+  }
+
   static List<Product> all = [
     Product(
         id: 1,
@@ -362,6 +366,38 @@ class Product {
         category: Category.all[0]),
     Product(
         id: 11,
+        name: "Skimmed Milk",
+        servingSize: '200ml',
+        calories: 20,
+        ingredients: ["Non-fat Milk", "Vitamin A Palmitate", "VVitamin D3"],
+        prices: {
+          'Noon': "45",
+          'Amazon': "30",
+          'Jumia': "38",
+          'Carrefour': "40"
+        },
+        nutrients: {
+          "FAT": {"amount": 12.51, "unit": "g"},
+          "SATFAT": {"amount": 4.51, "unit": "g"},
+          "TRANSFAT": {"amount": 0, "unit": "g"},
+          "CHOLE": {"amount": 6.51, "unit": "mg"},
+          "NA": {"amount": 67.51, "unit": "g"},
+          "CHOCDF": {"amount": 67.51, "unit": "g"},
+          "FIBTG": {"amount": 67.51, "unit": "g"},
+          "SUGAR": {"amount": 67.51, "unit": "g"},
+          "PROCNT": {"amount": 67.51, "unit": "g"},
+        },
+        URLs: {
+          'Amazon': "https://www.amazon.eg/",
+          'Noon': "https://www.noon.com/egypt-en/",
+          'Jumia': "https://www.jumia.com/",
+          'Carrefour': "https://www.carrefouregypt.com/",
+        },
+        producer: "Juhayna",
+        image: "assets/images/milk-1.png",
+        category: Category.all[0]),
+    Product(
+        id: 12,
         name: "Skimmed Milk",
         servingSize: '200ml',
         calories: 20,
