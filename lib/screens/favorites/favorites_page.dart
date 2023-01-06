@@ -7,21 +7,22 @@ class FavProductsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 19.0),
-          child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text("My items",
-                  style: TextStyle(
-                      fontSize: 25,
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.w600))),
-        ),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-        FavProductsList(),
-      ],
+        body: SingleChildScrollView(
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 19.0),
+            child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text("My items",
+                    style: TextStyle(
+                        fontSize: 25,
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.w600))),
+          ),
+          FavProductsList(height: MediaQuery.of(context).size.height),
+        ],
+      ),
     ));
   }
 }

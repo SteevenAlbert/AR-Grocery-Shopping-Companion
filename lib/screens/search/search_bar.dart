@@ -14,7 +14,7 @@ class SearchBar extends StatelessWidget {
           child: Container(
             width: size.width,
             decoration: BoxDecoration(
-              color: Colors.grey[100],
+              color: Colors.grey[200],
               borderRadius: BorderRadius.circular(15),
             ),
             child: IntrinsicHeight(
@@ -26,7 +26,7 @@ class SearchBar extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 15.0),
                     child: Text("Search Products",
                         style:
-                            TextStyle(fontSize: 16, color: Colors.grey[600])),
+                            TextStyle(fontSize: 16, color: Colors.grey[700])),
                   ),
                   Row(
                     children: [
@@ -35,7 +35,7 @@ class SearchBar extends StatelessWidget {
                             GoRouter.of(context).push('/scan_intro_page'),
                         child: Icon(
                           Icons.qr_code_scanner,
-                          color: Colors.grey[600],
+                          color: Colors.grey[700],
                         ),
                       ),
                       SizedBox(width: 9),

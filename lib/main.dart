@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'router.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-  runApp(const MyApp());
+  runApp(
+    ProviderScope(child: const MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {

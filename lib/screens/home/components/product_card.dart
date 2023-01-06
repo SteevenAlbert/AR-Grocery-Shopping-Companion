@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/models/product.dart';
 import 'package:ar_grocery_companion/screens/home/components/stars.dart';
 import 'package:ar_grocery_companion/screens/home/components/fav_icon.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_shadow/simple_shadow.dart';
-
 import 'package:go_router/go_router.dart';
 
-class ProductCard extends StatelessWidget {
+class ProductCard extends ConsumerWidget {
   final Product product;
   final Function? press;
   final int sectionID;
@@ -18,7 +18,7 @@ class ProductCard extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return InkWell(
         onTap: () => GoRouter.of(context).push("/product_page", extra: product),
         child: Card(
