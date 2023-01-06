@@ -1,4 +1,5 @@
 import 'package:ar_grocery_companion/models/user/user.dart';
+import 'package:ar_grocery_companion/screens/authentication/custom_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ar_grocery_companion/components/authentication/background1.dart';
@@ -47,7 +48,14 @@ class LogInScreenState extends State<LogInScreen> {
           Padding(
             padding: const EdgeInsets.only(
                 top: 10, bottom: 10, left: 15.0, right: 15.0),
-            child: TextFormField(
+            child:
+                // customTextFormField(
+                //       context: context,
+                //       controller: usernameController,
+                //       hintText: "Username",
+                //       icon: Icons.person,
+                //       errorMessage: 'Please enter your username.')),
+                TextFormField(
               controller: usernameController,
               onChanged: (value) {},
               validator: (value) {
