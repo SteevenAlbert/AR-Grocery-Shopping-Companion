@@ -33,7 +33,7 @@ class _FavProductsListState extends ConsumerState<FavProductsList> {
             ),
             Text("You have no saved items in your list",
                 style: TextStyle(fontSize: 16)),
-            SizedBox(height: 30),
+            SizedBox(height: 20),
             ElevatedButton(
               onPressed: () => GoRouter.of(context).push('/'),
               child: Text("Browse Products", style: TextStyle(fontSize: 16)),
@@ -60,28 +60,35 @@ class _FavProductsListState extends ConsumerState<FavProductsList> {
               // what to do after an item has been swiped away.
               onDismissed: (direction) {
                 // Remove the item from the data source.
-                setState(() {
-                  Customer.favourites!.removeAt(index);
-                });
+                ref.read(favsProvider.notifier).removeItem(item.id!);
 
                 // Then show a snackbar.
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   margin:
                       const EdgeInsets.only(left: 50, right: 50, bottom: 70),
                   elevation: 6.0,
-                  backgroundColor: Colors.amber[200],
+                  backgroundColor: Theme.of(context).primaryColor,
                   behavior: SnackBarBehavior.floating,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(20))),
                   duration: const Duration(seconds: 1),
-                  content: Text(
-                    '${item.name} removed',
-                    style: TextStyle(color: Colors.black.withOpacity(0.7)),
+                  content: Row(
+                    children: [
+                      Icon(Icons.check_circle, color: Colors.white),
+                      SizedBox(width: 4),
+                      Text(
+                        'Item removed',
+                        style:
+                            TextStyle(color: Colors.white, letterSpacing: 0.3),
+                      ),
+                    ],
                   ),
                   action: SnackBarAction(
-                    textColor: Theme.of(context).primaryColor.withOpacity(0.5),
+                    textColor: Colors.white,
                     label: 'Undo',
-                    onPressed: () {},
+                    onPressed: () {
+                      ref.read(favsProvider.notifier).addItem(item.id!);
+                    },
                   ),
                 ));
               },
@@ -105,8 +112,6 @@ class _FavProductsListState extends ConsumerState<FavProductsList> {
                   horizontalTitleGap: 16.0,
                   leading: GestureDetector(
                     behavior: HitTestBehavior.translucent,
-                    // onTap: () {},
-
                     child: Container(
                         width: 79,
                         height: 79,
@@ -131,6 +136,38 @@ class _FavProductsListState extends ConsumerState<FavProductsList> {
                           if (isFavorite) {
                             ref.read(favsProvider.notifier).addItem(item.id!);
                           } else {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              margin: const EdgeInsets.only(
+                                  left: 50, right: 50, bottom: 70),
+                              elevation: 6.0,
+                              backgroundColor: Theme.of(context).primaryColor,
+                              behavior: SnackBarBehavior.floating,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20))),
+                              duration: const Duration(seconds: 1),
+                              content: Row(
+                                children: [
+                                  Icon(Icons.check_circle, color: Colors.white),
+                                  SizedBox(width: 4),
+                                  Text(
+                                    'Item removed',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        letterSpacing: 0.3),
+                                  ),
+                                ],
+                              ),
+                              action: SnackBarAction(
+                                textColor: Colors.white,
+                                label: 'Undo',
+                                onPressed: () {
+                                  ref
+                                      .read(favsProvider.notifier)
+                                      .addItem(item.id!);
+                                },
+                              ),
+                            ));
                             ref
                                 .read(favsProvider.notifier)
                                 .removeItem(item.id!);

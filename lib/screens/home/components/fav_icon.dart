@@ -49,6 +49,42 @@ class _FavIconState extends State<FavIcon> {
                             .read(favsProvider.notifier)
                             .removeItem(widget.product.id!);
                       }
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        margin: const EdgeInsets.only(
+                            left: 50, right: 50, bottom: 70),
+                        elevation: 6.0,
+                        backgroundColor: Theme.of(context).primaryColor,
+                        behavior: SnackBarBehavior.floating,
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20))),
+                        duration: const Duration(seconds: 1),
+                        content: isFavo
+                            ? Row(
+                                children: [
+                                  Icon(Icons.check_circle, color: Colors.white),
+                                  SizedBox(width: 6),
+                                  Text(
+                                    'Item added to favorites',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        letterSpacing: 0.7),
+                                  ),
+                                ],
+                              )
+                            : Row(
+                                children: [
+                                  Icon(Icons.check_circle, color: Colors.white),
+                                  SizedBox(width: 4),
+                                  Text(
+                                    'Item removed from favorites',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        letterSpacing: 0.3),
+                                  ),
+                                ],
+                              ),
+                      ));
                     },
                     icon: Icon(Icons.favorite,
                         size: 22,
