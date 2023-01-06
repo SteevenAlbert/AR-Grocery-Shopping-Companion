@@ -24,7 +24,7 @@ class LogInPageState extends State<AuthenticationPage> {
         Background2(),
         //----- Card Container -----//
         Container(
-          padding: EdgeInsets.only(left: 25, top: 250, right: 25, bottom: 0),
+          padding: EdgeInsets.only(left: 25, top: 125, right: 25, bottom: 0),
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
@@ -47,16 +47,20 @@ class LogInPageState extends State<AuthenticationPage> {
               ),
               child:
                   //----- Nav Bar -----//
-                  PersistentTabView(
-                backgroundColor: Colors.white,
-                context,
-                controller: _controller,
-                screens: _buildScreens(),
-                items: _navBarsItems(context),
-                navBarStyle: NavBarStyle.style14,
-                // navBarStyle: NavBarStyle.style3,
-                // navBarStyle: NavBarStyle.style6,
-                // navBarStyle: NavBarStyle.style8,
+                  Container(
+                margin: EdgeInsets.only(left: 3, right: 3, top: 3),
+                color: Colors.white,
+                child: PersistentTabView(
+                  backgroundColor: Colors.white,
+                  context,
+                  controller: _controller,
+                  screens: _buildScreens(),
+                  items: _navBarsItems(context),
+                  navBarStyle: NavBarStyle.style14,
+                  // navBarStyle: NavBarStyle.style3,
+                  // navBarStyle: NavBarStyle.style6,
+                  // navBarStyle: NavBarStyle.style8,
+                ),
               )),
         ),
       ]),

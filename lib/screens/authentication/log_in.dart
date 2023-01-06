@@ -2,9 +2,8 @@ import 'package:ar_grocery_companion/models/user/user.dart';
 import 'package:ar_grocery_companion/screens/authentication/custom_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:ar_grocery_companion/components/authentication/background1.dart';
-import 'package:ar_grocery_companion/components/authentication/background2.dart';
-import 'package:animated_button/animated_button.dart';
+// import 'package:ar_grocery_companion/components/authentication/background1.dart';
+// import 'package:ar_grocery_companion/components/authentication/background2.dart';
 import 'package:flutter_session_manager/flutter_session_manager.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -25,6 +24,20 @@ class LogInScreenState extends State<LogInScreen> {
     });
   }
 
+  void _logIn() async {
+    if (_formKey.currentState!.validate()) {
+      User? user = User.retrieveAccount(usernameController.text);
+      if (user == null) {
+      } else if (user.type == 0 || user.type == 0) {
+        await SessionManager().set("name", user.username);
+        context.go('/admin_home_page');
+      } else if (user.type == 1 || user.type == 1) {
+        await SessionManager().set("name", user.username);
+        context.go('/customer_home_page');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -32,139 +45,24 @@ class LogInScreenState extends State<LogInScreen> {
       child: Container(
         color: Colors.white,
         child: ListView(shrinkWrap: false, children: [
-          Center(
-            child: Padding(
-                padding: const EdgeInsets.only(
-                    top: 10, bottom: 20, left: 15, right: 15),
-                child: Text(
-                  "Log In",
-                  style: TextStyle(
-                      fontFamily: "Ubuntu",
-                      fontSize: 33,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
-                )),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-                top: 10, bottom: 10, left: 15.0, right: 15.0),
-            child:
-                // customTextFormField(
-                //       context: context,
-                //       controller: usernameController,
-                //       hintText: "Username",
-                //       icon: Icons.person,
-                //       errorMessage: 'Please enter your username.')),
-                TextFormField(
+          Center(child: customTitle(context: context, text: "Log In")),
+          customTextFormField(
+              context: context,
               controller: usernameController,
-              onChanged: (value) {},
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your username.';
-                }
-                return null;
-              },
-              decoration: InputDecoration(
-                hintText: "Username",
-                hintStyle: TextStyle(
-                  color: Theme.of(context).hintColor.withOpacity(0.5),
-                ),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    width: 1.0,
-                    color: Theme.of(context).primaryColorDark,
-                  ),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                focusedErrorBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(width: 2, color: Colors.red.shade200),
-                ),
-                suffixIcon: InkWell(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      right: 8.0,
-                    ),
-                    child: Icon(
-                      Icons.person,
-                      // color: Theme.of(context).primaryColor,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-                top: 10, bottom: 10, left: 15.0, right: 15.0),
-            child: TextFormField(
-              onChanged: (value) {},
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your password.';
-                }
-                return null;
-              },
-              obscureText: _isHidden,
-              decoration: InputDecoration(
-                hintText: "Password",
-                hintStyle: TextStyle(
-                  color: Theme.of(context).hintColor.withOpacity(0.5),
-                ),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    width: 1.0,
-                    color: Theme.of(context).primaryColorDark,
-                  ),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                focusedErrorBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(width: 2, color: Colors.red.shade200),
-                ),
-                suffixIcon: InkWell(
-                  onTap: _togglePasswordView,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                    child: Icon(
-                      (_isHidden ? Icons.visibility : Icons.visibility_off),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+              labelText: "Username",
+              icon: Icons.person,
+              errorMessage: 'Please enter your username.'),
+          customTextFormField(
+            context: context,
+            labelText: "Password",
+            icon: (_isHidden ? Icons.visibility : Icons.visibility_off),
+            errorMessage: 'Please enter your password.',
+            obscureText: _isHidden,
+            toggle: _togglePasswordView,
           ),
           Center(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-              child: AnimatedButton(
-                  width: MediaQuery.of(context).size.width / 2,
-                  height: MediaQuery.of(context).size.height / 13,
-                  color: Theme.of(context).primaryColor,
-                  child: Text(
-                    'Log In',
-                    style: TextStyle(
-                      fontSize: 23,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  onPressed: () async {
-                    if (_formKey.currentState!.validate()) {
-                      User? user =
-                          User.retrieveAccount(usernameController.text);
-                      if (user == null) {
-                      } else if (user.type == 0 || user.type == 0) {
-                        await SessionManager().set("name", user.username);
-                        context.go('/admin_home_page');
-                      } else if (user.type == 1 || user.type == 1) {
-                        await SessionManager().set("name", user.username);
-                        context.go('/customer_home_page');
-                      }
-                    }
-                  }),
-            ),
-          ),
+              child: customAnimatedButton(
+                  context: context, text: "Log In", func: _logIn)),
         ]),
       ),
     );

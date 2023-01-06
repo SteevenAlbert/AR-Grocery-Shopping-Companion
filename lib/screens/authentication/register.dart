@@ -1,10 +1,11 @@
 import 'package:ar_grocery_companion/models/user/user.dart';
+import 'package:ar_grocery_companion/screens/authentication/custom_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:ar_grocery_companion/components/authentication/background1.dart';
-import 'package:ar_grocery_companion/components/authentication/background2.dart';
-import 'package:animated_button/animated_button.dart';
+// import 'package:ar_grocery_companion/components/authentication/background1.dart';
+// import 'package:ar_grocery_companion/components/authentication/background2.dart';
 import 'package:flutter_session_manager/flutter_session_manager.dart';
+import 'package:intl/intl.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -18,10 +19,45 @@ class RegisterScreenState extends State<RegisterScreen> {
   TextEditingController usernameController = new TextEditingController();
 
   bool _isHidden = true;
+
+  @override
+  void initState() {
+    dateinput.text = "";
+    super.initState();
+  }
+
   void _togglePasswordView() {
     setState(() {
       _isHidden = !_isHidden;
     });
+  }
+
+  TextEditingController dateinput = TextEditingController();
+
+  void datePicker() async {
+    DateTime? pickedDate = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(1940),
+        lastDate: DateTime(
+            DateTime.now().year, DateTime.now().month, DateTime.now().day));
+    if (pickedDate != null) {
+      String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+      setState(() {
+        dateinput.text = formattedDate;
+      });
+    }
+    //else {
+    //   print("Date is not selected");
+    // }
+  }
+
+  void _register() async {
+    if (_formKey.currentState!.validate()) {
+      //..create new user//
+      await SessionManager().set("name", usernameController.text);
+      context.go('/customer_home_page');
+    }
   }
 
   @override
@@ -32,163 +68,45 @@ class RegisterScreenState extends State<RegisterScreen> {
         color: Colors.white,
         child: ListView(children: [
           Center(
-            child: Padding(
-                padding:
-                    EdgeInsets.only(top: 10, bottom: 20, left: 15, right: 15),
-                child: Text(
-                  "Register",
-                  style: TextStyle(
-                      fontFamily: "Ubuntu",
-                      fontSize: 33,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
-                )),
+            child: customTitle(context: context, text: "Register"),
           ),
-          Padding(
-            padding: const EdgeInsets.only(
-                top: 10, bottom: 10, left: 15.0, right: 15.0),
-            child: TextFormField(
-              controller: usernameController,
-              onChanged: (value) {},
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your email.';
-                }
-                return null;
-              },
-              decoration: InputDecoration(
-                hintText: "Email",
-                hintStyle: TextStyle(
-                  color: Theme.of(context).hintColor.withOpacity(0.5),
-                ),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    width: 1.0,
-                    color: Theme.of(context).primaryColorDark,
-                  ),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                focusedErrorBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(width: 2, color: Colors.red.shade200),
-                ),
-                suffixIcon: InkWell(
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 8.0, left: 8.0),
-                    child: Icon(
-                      Icons.mail,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+          customTextFormField(
+            context: context,
+            // controller: usernameController,
+            errorMessage: 'Please enter your email.',
+            labelText: "Email",
+            icon: Icons.mail,
           ),
-          Padding(
-            padding: const EdgeInsets.only(
-                top: 10, bottom: 10, left: 15.0, right: 15.0),
-            child: TextFormField(
-              controller: usernameController,
-              onChanged: (value) {},
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your username.';
-                }
-                return null;
-              },
-              decoration: InputDecoration(
-                hintText: "Username",
-                hintStyle: TextStyle(
-                  color: Theme.of(context).hintColor.withOpacity(0.5),
-                ),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    width: 1.0,
-                    color: Theme.of(context).primaryColorDark,
-                  ),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                focusedErrorBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(width: 2, color: Colors.red.shade200),
-                ),
-                suffixIcon: InkWell(
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 8.0, left: 8.0),
-                    child: Icon(
-                      Icons.person,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+          customTextFormField(
+            context: context,
+            controller: usernameController,
+            errorMessage: 'Please enter your username.',
+            labelText: "Username",
+            icon: Icons.person,
           ),
-          Padding(
-            padding: const EdgeInsets.only(
-                top: 10, bottom: 10, left: 15.0, right: 15.0),
-            child: TextFormField(
-              onChanged: (value) {},
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your password.';
-                } else if (!value
-                    .contains(new RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
-                  return 'Password must have a Special Character.';
-                }
-                return null;
-              },
-              obscureText: _isHidden,
-              decoration: InputDecoration(
-                hintText: "Password",
-                hintStyle: TextStyle(
-                  color: Theme.of(context).hintColor.withOpacity(0.5),
-                ),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    width: 1.0,
-                    color: Theme.of(context).primaryColorDark,
-                  ),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                focusedErrorBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(width: 2, color: Colors.red.shade200),
-                ),
-                suffixIcon: InkWell(
-                  onTap: _togglePasswordView,
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 8.0, left: 8.0),
-                    child: Icon(
-                      (_isHidden ? Icons.visibility : Icons.visibility_off),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+          customTextFormField(
+            context: context,
+            errorMessage: 'Please enter your password.',
+            regex: "r'[!@#\$%^&*(),.?\":{}|<>]'",
+            errorMessage2: 'Password must have a Special Character.',
+            obscureText: _isHidden,
+            labelText: "Password",
+            onTap: _togglePasswordView,
+            icon: (_isHidden ? Icons.visibility : Icons.visibility_off),
           ),
+          customTextFormField(
+              context: context,
+              labelText: "Date of Birth",
+              icon: Icons.calendar_today,
+              errorMessage: "Please enter Date of Birth",
+              controller: dateinput,
+              readOnly: true,
+              onTap: datePicker),
           Center(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                  top: 15.0, bottom: 15.0, left: 15.0, right: 15.0),
-              child: AnimatedButton(
-                  width: MediaQuery.of(context).size.width / 2,
-                  height: MediaQuery.of(context).size.height / 13,
-                  color: Theme.of(context).primaryColor,
-                  child: Text(
-                    'Register',
-                    style: TextStyle(
-                      fontSize: 23,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  onPressed: () async {
-                    if (_formKey.currentState!.validate()) {
-                      //..create new user//
-                      await SessionManager()
-                          .set("name", usernameController.text);
-                      context.go('/customer_home_page');
-                    }
-                  }),
+            child: customAnimatedButton(
+              context: context,
+              text: 'Register',
+              func: _register,
             ),
           ),
         ]),
