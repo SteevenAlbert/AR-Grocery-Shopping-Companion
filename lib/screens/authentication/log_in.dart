@@ -1,10 +1,10 @@
+// import 'package:ar_grocery_companion/components/authentication/background1.dart';
+// import 'package:ar_grocery_companion/components/authentication/background2.dart';
 import 'package:ar_grocery_companion/models/user/user.dart';
 import 'package:ar_grocery_companion/screens/authentication/custom_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-// import 'package:ar_grocery_companion/components/authentication/background1.dart';
-// import 'package:ar_grocery_companion/components/authentication/background2.dart';
-import 'package:flutter_session_manager/flutter_session_manager.dart';
+// import 'package:flutter_session_manager/flutter_session_manager.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({super.key});
@@ -28,11 +28,14 @@ class LogInScreenState extends State<LogInScreen> {
     if (_formKey.currentState!.validate()) {
       User? user = User.retrieveAccount(usernameController.text);
       if (user == null) {
+        //...validation error...//
       } else if (user.type == 0 || user.type == 0) {
-        await SessionManager().set("name", user.username);
+        //...set session (admin)...//
+        // await SessionManager().set("name", user.username);
         context.go('/admin_home_page');
       } else if (user.type == 1 || user.type == 1) {
-        await SessionManager().set("name", user.username);
+        //...set session (customer)...//
+        // await SessionManager().set("name", user.username);
         context.go('/customer_home_page');
       }
     }

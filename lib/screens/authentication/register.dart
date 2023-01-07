@@ -1,10 +1,10 @@
+// import 'package:ar_grocery_companion/components/authentication/background1.dart';
+// import 'package:ar_grocery_companion/components/authentication/background2.dart';
 import 'package:ar_grocery_companion/models/user/user.dart';
 import 'package:ar_grocery_companion/screens/authentication/custom_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-// import 'package:ar_grocery_companion/components/authentication/background1.dart';
-// import 'package:ar_grocery_companion/components/authentication/background2.dart';
-import 'package:flutter_session_manager/flutter_session_manager.dart';
+// import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:intl/intl.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -47,15 +47,15 @@ class RegisterScreenState extends State<RegisterScreen> {
         dateinput.text = formattedDate;
       });
     }
-    //else {
-    //   print("Date is not selected");
-    // }
   }
 
   void _register() async {
     if (_formKey.currentState!.validate()) {
-      //..create new user//
-      await SessionManager().set("name", usernameController.text);
+      print(dateinput.text);
+                        //...create new user...//
+                  //...set session...//
+
+      // await SessionManager().set("name", usernameController.text);
       context.go('/customer_home_page');
     }
   }

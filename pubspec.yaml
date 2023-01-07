@@ -56,7 +56,7 @@ dependencies:
   url_launcher: ^6.1.6
   image_picker: ^0.8.6
   path_provider: ^2.0.11
-  flutter_session_manager: ^1.0.1
+  # flutter_session_manager: ^1.0.1
   carousel_slider: ^4.0.0
   wakelock: ^0.6.2
   http: 

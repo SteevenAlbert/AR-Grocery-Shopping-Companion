@@ -1,7 +1,7 @@
 import 'package:ar_grocery_companion/models/sample.dart';
+import 'package:ar_grocery_companion/screens/error_page.dart';
 import 'package:ar_grocery_companion/screens/authentication/authentication.dart';
 import 'package:ar_grocery_companion/screens/admin/products/edit_product_page.dart';
-import 'package:ar_grocery_companion/screens/authentication/log_in.dart';
 import 'package:ar_grocery_companion/screens/admin/home/admin_home_page.dart';
 import 'package:ar_grocery_companion/screens/admin/products/add_product_page.dart';
 import 'package:ar_grocery_companion/screens/admin/products/products_dashboard.dart';
@@ -21,10 +21,18 @@ class MyRouter {
     debugLogDiagnostics: true, //set to false in Production
     routes: [
       //Add Routes Here
-      // GoRoute(path: '/', builder: (context, state) => const MainPage()),
+      //if session loggedIn as customer
       GoRoute(path: '/', builder: (context, state) => const MainPage()),
+      //else if session loggedIn as admin
+      // GoRoute(
+      //   path: '/',
+      //   builder: (context, state) => const AdminHomePage()),
+      //else if session not loggedIn
+      // GoRoute(
+      //     path: '/', builder: (context, state) => const AuthenticationPage()),
       GoRoute(
-          path: '/Authenticate', builder: (context, state) => const MainPage()),
+          path: '/customer_home_page',
+          builder: (context, state) => const MainPage()),
       GoRoute(
           name: 'ProductPage',
           path: '/product_page',
@@ -59,5 +67,6 @@ class MyRouter {
           path: '/arview',
           builder: (context, state) => ARView(sample: state.extra as Sample)),
     ],
+    errorBuilder: (context, state) => SomethingWentWrongScreen(),
   );
 }

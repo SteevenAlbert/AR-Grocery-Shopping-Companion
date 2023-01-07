@@ -16,7 +16,13 @@ class AccountState extends State<CustomDrawer> {
         child: Container(
       margin: EdgeInsets.only(left: 5, top: 35, right: 5, bottom: 35),
       child: Column(mainAxisSize: MainAxisSize.max, children: [
-        // Text('Top'),
+        ListTile(
+            leading: Icon(Icons.settings),
+            title: Text("Settings"),
+            onTap: () {
+              //...destroy session...//
+              context.go('/settings_page');
+            }),
         Expanded(
           child: Align(
             alignment: Alignment.bottomCenter,
@@ -24,7 +30,7 @@ class AccountState extends State<CustomDrawer> {
                 leading: Icon(Icons.logout),
                 title: Text("Sign Out"),
                 onTap: () {
-                  //..destroy session//
+                  //...destroy session...//
                   context.go('/');
                 }),
           ),
