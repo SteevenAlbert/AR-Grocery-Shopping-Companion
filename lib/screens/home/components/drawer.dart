@@ -20,7 +20,6 @@ class AccountState extends State<CustomDrawer> {
             leading: Icon(Icons.settings),
             title: Text("Settings"),
             onTap: () {
-              //...destroy session...//
               context.go('/settings_page');
             }),
         Expanded(

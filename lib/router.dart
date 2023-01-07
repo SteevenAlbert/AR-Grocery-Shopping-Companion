@@ -1,4 +1,5 @@
 import 'package:ar_grocery_companion/models/sample.dart';
+import 'package:ar_grocery_companion/splash_screen.dart';
 import 'package:ar_grocery_companion/screens/error_page.dart';
 import 'package:ar_grocery_companion/screens/authentication/authentication.dart';
 import 'package:ar_grocery_companion/screens/admin/products/edit_product_page.dart';
@@ -20,16 +21,19 @@ class MyRouter {
   static late final router = GoRouter(
     debugLogDiagnostics: true, //set to false in Production
     routes: [
+      GoRoute(path: '/', builder: (context, state) => const SplashScreen()),
       //Add Routes Here
       //if session loggedIn as customer
-      GoRoute(path: '/', builder: (context, state) => const MainPage()),
+      GoRoute(
+          path: '/authenticate', builder: (context, state) => const MainPage()),
       //else if session loggedIn as admin
       // GoRoute(
-      //   path: '/',
+      //   path: '/authenticate',
       //   builder: (context, state) => const AdminHomePage()),
       //else if session not loggedIn
       // GoRoute(
-      //     path: '/', builder: (context, state) => const AuthenticationPage()),
+      //     path: '/authenticate',
+      //     builder: (context, state) => const AuthenticationPage()),
       GoRoute(
           path: '/customer_home_page',
           builder: (context, state) => const MainPage()),

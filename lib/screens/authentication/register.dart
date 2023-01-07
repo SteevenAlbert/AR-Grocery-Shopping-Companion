@@ -42,7 +42,7 @@ class RegisterScreenState extends State<RegisterScreen> {
         lastDate: DateTime(
             DateTime.now().year, DateTime.now().month, DateTime.now().day));
     if (pickedDate != null) {
-      String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+      String formattedDate = DateFormat('dd-MM-yyyy').format(pickedDate);
       setState(() {
         dateinput.text = formattedDate;
       });
@@ -52,8 +52,8 @@ class RegisterScreenState extends State<RegisterScreen> {
   void _register() async {
     if (_formKey.currentState!.validate()) {
       print(dateinput.text);
-                        //...create new user...//
-                  //...set session...//
+      //...create new user...//
+      //...set session...//
 
       // await SessionManager().set("name", usernameController.text);
       context.go('/customer_home_page');
@@ -91,7 +91,7 @@ class RegisterScreenState extends State<RegisterScreen> {
             errorMessage2: 'Password must have a Special Character.',
             obscureText: _isHidden,
             labelText: "Password",
-            onTap: _togglePasswordView,
+            toggle: _togglePasswordView,
             icon: (_isHidden ? Icons.visibility : Icons.visibility_off),
           ),
           customTextFormField(

@@ -10,7 +10,8 @@ class SomethingWentWrongScreen extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           Image.asset(
-            "assets/images/3_Something_Went_Wrong.png",
+            // "assets/images/3_Something_Went_Wrong.png",
+            "assets/images/7_Error.png",
             fit: BoxFit.cover,
           ),
           Positioned(
