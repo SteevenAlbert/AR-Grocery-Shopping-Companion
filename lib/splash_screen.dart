@@ -42,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen>
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Theme.of(context).canvasColor,
             ),
             child: Lottie.asset(
               'assets/splash/splash1.json',

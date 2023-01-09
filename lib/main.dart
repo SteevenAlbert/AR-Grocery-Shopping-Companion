@@ -19,8 +19,7 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var darkMode =
-        ref.watch(themeModeProvider) ? ThemeMode.dark : ThemeMode.light;
+    var darkMode = ref.watch(themeModeProvider);
     return MaterialApp.router(
       routerConfig: MyRouter.router,
       debugShowCheckedModeBanner: false,

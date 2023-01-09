@@ -8,7 +8,7 @@ class SettingsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var darkMode = ref.watch(themeModeProvider);
+    var themeMode = ref.watch(themeModeProvider);
     return Scaffold(
       appBar: AppBar(title: const Text("Preferences")),
       body: ListView(
@@ -16,7 +16,7 @@ class SettingsPage extends ConsumerWidget {
           ListTile(
             title: const Text("Dark mode"),
             trailing: Switch(
-              value: darkMode,
+              value: themeMode == ThemeMode.dark,
               onChanged: (value) {
                 ref.read(themeModeProvider.notifier).toggle();
               },
