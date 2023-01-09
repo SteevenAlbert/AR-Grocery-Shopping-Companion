@@ -1,6 +1,10 @@
 import 'package:ar_grocery_companion/models/sample.dart';
 
 import 'package:augmented_reality_plugin_wikitude/startupConfiguration.dart';
+import 'package:flutter/material.dart';
+
+// Theme
+Color kAppPrimaryColor = Color(0xFF549E83);
 
 //Networking
 String webscraperVPSAddress = "159.65.48.19";

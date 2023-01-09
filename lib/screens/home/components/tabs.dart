@@ -30,7 +30,7 @@ class _Cat_TabsState extends State<Cat_Tabs>
         children: [
           TabBar(
             isScrollable: true,
-            unselectedLabelColor: Colors.grey,
+            unselectedLabelColor: Theme.of(context).disabledColor,
             labelColor: Theme.of(context).primaryColor,
             tabs: List.generate(
               Category.all.length,

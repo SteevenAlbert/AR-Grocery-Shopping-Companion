@@ -1,3 +1,4 @@
+import 'package:ar_grocery_companion/constants/constants.dart';
 import 'package:ar_grocery_companion/data/providers/theme_mode_provider.dart';
 import 'package:flutter/material.dart';
 import 'router.dart';
@@ -24,9 +25,13 @@ class MyApp extends ConsumerWidget {
       routerConfig: MyRouter.router,
       debugShowCheckedModeBanner: false,
       themeMode: darkMode,
-      darkTheme: ThemeData.dark(),
+      darkTheme: ThemeData.dark().copyWith(
+        primaryColor: kAppPrimaryColor,
+        colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: createMaterialColor(kAppPrimaryColor)),
+      ),
       theme: ThemeData(
-        primarySwatch: createMaterialColor(Color(0xFF549E83)),
+        primarySwatch: createMaterialColor(kAppPrimaryColor),
       ),
     );
   }
