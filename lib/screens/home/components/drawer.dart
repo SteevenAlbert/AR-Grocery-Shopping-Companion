@@ -20,7 +20,7 @@ class AccountState extends State<CustomDrawer> {
             leading: Icon(Icons.settings),
             title: Text("Settings"),
             onTap: () {
-              context.go('/settings_page');
+              context.push('/settings_page');
             }),
         Expanded(
           child: Align(

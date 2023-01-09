@@ -1,4 +1,5 @@
 import 'package:ar_grocery_companion/models/sample.dart';
+import 'package:ar_grocery_companion/screens/settings/settings_page.dart';
 import 'package:ar_grocery_companion/splash_screen.dart';
 import 'package:ar_grocery_companion/screens/error_page.dart';
 import 'package:ar_grocery_companion/screens/authentication/authentication.dart';
@@ -51,6 +52,9 @@ class MyRouter {
       GoRoute(
           path: '/search_page',
           builder: (context, state) => const SearchPage()),
+      GoRoute(
+          path: '/settings_page',
+          builder: (context, state) => const SettingsPage()),
 
       GoRoute(
           path: '/products_dashboard',

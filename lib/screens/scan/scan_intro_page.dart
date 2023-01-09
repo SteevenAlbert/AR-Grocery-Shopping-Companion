@@ -25,22 +25,21 @@ class _ScanPageState extends State<ScanPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ElevatedButton(
-            onPressed: () async {
-              setState(() {
-                _isLoading = true;
-              });
-              await _pushArView(sample: imageTrackingSample);
-              setState(() {
-                _isLoading = false;
-              });
-            },
-            child: !_isLoading
-                ? const Text("Scan")
-                : const CircularProgressIndicator(
-                    color: Colors.white,
-                  ),
-          ),
+          !_isLoading
+              ? ElevatedButton(
+                  onPressed: () async {
+                    setState(() {
+                      _isLoading = true;
+                    });
+                    await _pushArView(sample: imageTrackingSample);
+                    setState(() {
+                      _isLoading = false;
+                    });
+                  },
+                  child: const Text("Scan"))
+              : const CircularProgressIndicator(
+                  color: Colors.black,
+                ),
         ],
       )),
     );

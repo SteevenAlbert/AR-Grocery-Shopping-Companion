@@ -16,7 +16,7 @@ class SearchBar extends StatelessWidget {
               prefixIcon: Icon(Icons.search),
               hintText: "Search Products",
               filled: true,
-              fillColor: Colors.grey[200],
+              fillColor: Theme.of(context).primaryColor,
               suffixIcon:  Icon(Icons.qr_code_scanner),
             ),
           ),

@@ -34,7 +34,7 @@ class ProductPage extends StatelessWidget {
                         expandedHeight: 400.0,
                         collapsedHeight: 150,
                         flexibleSpace: Container(
-                            color: Color.fromARGB(255, 250, 250, 250),
+                            color: Theme.of(context).canvasColor,
                             child: Stack(children: [
                               Positioned(
                                 top: 0,

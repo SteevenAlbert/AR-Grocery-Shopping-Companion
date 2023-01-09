@@ -1,3 +1,5 @@
+import 'package:ar_grocery_companion/constants/constants.dart';
+import 'package:ar_grocery_companion/data/providers/theme_mode_provider.dart';
 import 'package:flutter/material.dart';
 import 'router.dart';
 import 'utils.dart';
@@ -12,17 +14,23 @@ void main() {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    var darkMode = ref.watch(themeModeProvider);
     return MaterialApp.router(
       routerConfig: MyRouter.router,
       debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.dark,
+      themeMode: darkMode,
+      darkTheme: ThemeData.dark().copyWith(
+        primaryColor: kAppPrimaryColor,
+        colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: createMaterialColor(kAppPrimaryColor)),
+      ),
       theme: ThemeData(
-        primarySwatch: createMaterialColor(Color(0xFF549E83)),
+        primarySwatch: createMaterialColor(kAppPrimaryColor),
       ),
     );
   }
