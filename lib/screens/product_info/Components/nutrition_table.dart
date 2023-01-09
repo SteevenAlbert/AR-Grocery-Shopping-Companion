@@ -54,7 +54,7 @@ Widget nutriHeader({calories, servingSize, servings}) {
         "Nutrition Facts",
         textAlign: TextAlign.left,
         style: TextStyle(
-            fontFamily: "Poppins", fontSize: 24, fontWeight: FontWeight.bold),
+            fontFamily: "Poppins", fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black,),
       ),
       Text(
         "Serving Size $servingSize",
