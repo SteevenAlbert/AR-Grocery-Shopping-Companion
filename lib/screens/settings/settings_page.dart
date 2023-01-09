@@ -5,6 +5,20 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(title: const Text("Preferences")),
+      body: ListView(
+        children: [
+          ListTile(
+            title: const Text("Dark mode"),
+            trailing: Switch(
+                value: true,
+                onChanged: (value) {
+                  
+                }),
+          ),
+        ],
+      ),
+    );
   }
 }
