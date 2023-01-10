@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ar_grocery_companion/presentation/home/components/product_card.dart';
-import 'package:ar_grocery_companion/models/product/product.dart';
+import 'package:ar_grocery_companion/domain/models/product/product.dart';
 
 class ProductCarousel extends StatelessWidget {
   final Size size;

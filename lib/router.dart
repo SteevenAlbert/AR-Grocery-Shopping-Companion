@@ -1,4 +1,4 @@
-import 'package:ar_grocery_companion/models/sample.dart';
+import 'package:ar_grocery_companion/domain/sample.dart';
 import 'package:ar_grocery_companion/presentation/settings/settings_page.dart';
 import 'package:ar_grocery_companion/presentation/splash_screen.dart';
 import 'package:ar_grocery_companion/presentation/error_page.dart';
@@ -15,8 +15,8 @@ import 'package:ar_grocery_companion/presentation/scan/scan_intro_page.dart';
 import 'package:ar_grocery_companion/presentation/search/search_page.dart';
 import 'package:go_router/go_router.dart';
 
-import 'models/product/concrete_products/food_product.dart';
-import 'models/product/product.dart';
+import 'domain/models/product/concrete_products/food_product.dart';
+import 'domain/models/product/product.dart';
 
 class MyRouter {
   MyRouter();

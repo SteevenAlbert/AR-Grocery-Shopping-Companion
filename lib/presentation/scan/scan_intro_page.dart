@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:augmented_reality_plugin_wikitude/wikitude_plugin.dart';
 import 'package:augmented_reality_plugin_wikitude/wikitude_response.dart';
 
-import 'package:ar_grocery_companion/models/sample.dart';
+import 'package:ar_grocery_companion/domain/sample.dart';
 import 'package:go_router/go_router.dart';
 
 class ScanPage extends StatefulWidget {

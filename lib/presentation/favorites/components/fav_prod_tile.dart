@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ar_grocery_companion/models/product/product.dart';
+import 'package:ar_grocery_companion/domain/models/product/product.dart';
 
 class FavProduct extends StatelessWidget {
   final Product item;

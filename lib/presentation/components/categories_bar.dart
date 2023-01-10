@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:chip_list/chip_list.dart';
-import 'package:ar_grocery_companion/models/product/product_category.dart';
+import 'package:ar_grocery_companion/domain/models/product/product_category.dart';
 
 class CategoriesBar extends StatelessWidget {
   const CategoriesBar({Key? key}) : super(key: key);

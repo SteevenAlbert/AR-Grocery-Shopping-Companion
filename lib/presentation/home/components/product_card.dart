@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ar_grocery_companion/models/product/product.dart';
+import 'package:ar_grocery_companion/domain/models/product/product.dart';
 import 'package:ar_grocery_companion/presentation/home/components/stars.dart';
 import 'package:ar_grocery_companion/presentation/home/components/fav_icon.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

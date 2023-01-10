@@ -1,4 +1,4 @@
-import 'package:ar_grocery_companion/models/product/product.dart';
+import 'package:ar_grocery_companion/domain/models/product/product.dart';
 import 'user.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

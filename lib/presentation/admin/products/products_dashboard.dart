@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../models/product/product.dart';
+import '../../../domain/models/product/product.dart';
 import 'components/product_card.dart';
 
 import 'package:ar_grocery_companion/presentation/home/components/drawer.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../models/product/product.dart';
+import '../../domain/models/product/product.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simple_shadow/simple_shadow.dart';
 

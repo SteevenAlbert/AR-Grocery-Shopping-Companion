@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ar_grocery_companion/models/metanutrients.dart';
+import 'package:ar_grocery_companion/domain/models/metanutrients.dart';
 
 Widget nutrientWidget({nutrientData, int? calories, String? servingSize}) {
   return Container(

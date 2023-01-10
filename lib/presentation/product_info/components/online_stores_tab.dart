@@ -2,7 +2,7 @@ import 'package:ar_grocery_companion/presentation/product_info/components/store_
 import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/services/amazonapi.dart';
 import 'package:ar_grocery_companion/services/custom_web_scrapper.dart';
-import '../../../models/product/product.dart';
+import '../../../domain/models/product/product.dart';
 
 class OnlineStores extends StatelessWidget {
   final Product product;

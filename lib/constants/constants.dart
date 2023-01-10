@@ -1,4 +1,4 @@
-import 'package:ar_grocery_companion/models/sample.dart';
+import 'package:ar_grocery_companion/domain/sample.dart';
 
 import 'package:augmented_reality_plugin_wikitude/startupConfiguration.dart';
 import 'package:flutter/material.dart';

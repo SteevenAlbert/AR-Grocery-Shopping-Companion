@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import "package:http/http.dart" as http;
 import '../constants/constants.dart';
-import '../models/product/product.dart';
+import '/domain/models/product/product.dart';
 
 Future<Product> fetchJumiaPrice(Product product) async {
   String serverResponse = "";

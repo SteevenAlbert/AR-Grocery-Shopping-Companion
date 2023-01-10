@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ar_grocery_companion/models/user/customer.dart';
-import 'package:ar_grocery_companion/models/product/product.dart';
+import 'package:ar_grocery_companion/domain/models/user/customer.dart';
+import 'package:ar_grocery_companion/domain/models/product/product.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class FavIcon extends StatefulWidget {

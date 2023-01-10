@@ -1,6 +1,6 @@
 // import 'package:ar_grocery_companion/components/authentication/background1.dart';
 // import 'package:ar_grocery_companion/components/authentication/background2.dart';
-import 'package:ar_grocery_companion/models/user/user.dart';
+import 'package:ar_grocery_companion/domain/models/user/user.dart';
 import 'package:ar_grocery_companion/presentation/authentication/custom_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

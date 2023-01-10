@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:ar_grocery_companion/models/product/product_decorator.dart';
+import 'package:ar_grocery_companion/domain/models/product/product_decorator.dart';
 
 class MachineProduct extends ProductDecorator {
   

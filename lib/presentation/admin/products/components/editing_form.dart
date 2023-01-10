@@ -1,8 +1,8 @@
-import 'package:ar_grocery_companion/models/product/product.dart';
+import 'package:ar_grocery_companion/domain/models/product/product.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../../../models/product/product_category.dart';
+import '../../../../domain/models/product/product_category.dart';
 
 // Create a Form widget.
 class EditingForm extends StatefulWidget {

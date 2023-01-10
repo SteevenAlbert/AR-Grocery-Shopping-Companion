@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/foundation.dart';
 
-import 'package:ar_grocery_companion/models/product/product_category.dart';
-import 'package:ar_grocery_companion/models/company.dart';
+import 'package:ar_grocery_companion/domain/models/product/product_category.dart';
+import 'package:ar_grocery_companion/domain/models/company.dart';
 
 abstract class Product {
 

@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:ar_grocery_companion/models/product/product_decorator.dart';
+import 'package:ar_grocery_companion/domain/models/product/product_decorator.dart';
 
 class CleaningProduct extends ProductDecorator {
   
