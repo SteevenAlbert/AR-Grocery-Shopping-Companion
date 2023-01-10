@@ -4,6 +4,8 @@ import 'package:ar_grocery_companion/models/user/user.dart';
 import 'package:ar_grocery_companion/screens/authentication/custom_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 // import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:intl/intl.dart';
 
@@ -50,13 +52,21 @@ class RegisterScreenState extends State<RegisterScreen> {
   }
 
   void _register() async {
+    final docUser = FirebaseFirestore.instance.collection('users').doc();
+    final json = {
+      'name': "Steven!!!",
+      'age': 21,
+    };
+
+    await docUser.set(json);
     if (_formKey.currentState!.validate()) {
       print(dateinput.text);
+
       //...create new user...//
       //...set session...//
 
       // await SessionManager().set("name", usernameController.text);
-      context.go('/customer_home_page');
+      //context.go('/customer_home_page');
     }
   }
 
