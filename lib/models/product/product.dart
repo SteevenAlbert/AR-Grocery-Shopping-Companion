@@ -14,6 +14,9 @@ abstract class Product {
 
   Map<String, String>? prices;
   Map<String, String>? storesURLs;
+
+  ProductCategory? category;
+
   Product({
     this.id,
     required this.name,
@@ -22,8 +25,6 @@ abstract class Product {
     this.prices,
     this.storesURLs,
   });
-
-  ProductCategory? category;
 
   @override
   String toString() {
