@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:like_button/like_button.dart';
-import '../../models/product.dart';
+import '../../models/product/product.dart';
 import 'components/alternative_products_tab.dart';
 import 'components/nutritional_facts_tab.dart';
 import 'components/online_stores_tab.dart';
@@ -78,7 +78,7 @@ class ProductPage extends StatelessWidget {
                                 child: Container(
                                   height:
                                       MediaQuery.of(context).size.height / 3,
-                                  child: Image.asset(product.image),
+                                  child: Image.asset(product.imagePath),
                                 ),
                               ),
                               // Align(
@@ -173,7 +173,7 @@ class MySliverHeaderDelegate extends SliverPersistentHeaderDelegate {
             0),
         child: Container(
           height: MediaQuery.of(context).size.height / 3,
-          child: Image.asset(product.image),
+          child: Image.asset(product.imagePath),
         ),
       ),
       Align(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ar_grocery_companion/models/product.dart';
+import 'package:ar_grocery_companion/models/product/product.dart';
 import 'package:go_router/go_router.dart';
 
 class ProductCard extends StatefulWidget {
@@ -40,7 +40,7 @@ class _ProductCardState extends State<ProductCard> {
                 child: AspectRatio(
                   aspectRatio: 16 / 10,
                   child: Image.asset(
-                    widget.product.image,
+                    widget.product.imagePath,
                   ),
                 ),
               ),
@@ -63,7 +63,7 @@ class _ProductCardState extends State<ProductCard> {
                           softWrap: false,
                         ),
                         subtitle: Text(
-                          widget.product.producer,
+                          widget.product.manufacturer,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                           softWrap: false,

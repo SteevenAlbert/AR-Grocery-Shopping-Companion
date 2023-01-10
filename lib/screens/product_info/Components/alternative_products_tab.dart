@@ -1,7 +1,7 @@
 import 'package:ar_grocery_companion/screens/home/components/product_card.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../../../models/product.dart';
+import '../../../models/product/product.dart';
 
 Widget alternativeProducts(context) {
   return Padding(

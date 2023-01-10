@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ar_grocery_companion/models/category.dart';
+import 'package:ar_grocery_companion/models/product/product_category.dart';
 import 'package:ar_grocery_companion/screens/home/components/featured_products.dart';
 
 class Cat_Tabs extends StatefulWidget {
@@ -15,10 +15,10 @@ class _Cat_TabsState extends State<Cat_Tabs>
 
   @override
   void initState() {
-    Category allvar = Category(title: "All");
-    Category.all.insert(0, allvar);
+    ProductCategory allvar = ProductCategory(name: "All");
+    ProductCategory.all.insert(0, allvar);
     _tabController =
-        new TabController(length: Category.all.length, vsync: this);
+        new TabController(length: ProductCategory.all.length, vsync: this);
     super.initState();
   }
 
@@ -33,8 +33,8 @@ class _Cat_TabsState extends State<Cat_Tabs>
             unselectedLabelColor: Theme.of(context).disabledColor,
             labelColor: Theme.of(context).primaryColor,
             tabs: List.generate(
-              Category.all.length,
-              (index) => Tab(text: Category.all[index].title),
+              ProductCategory.all.length,
+              (index) => Tab(text: ProductCategory.all[index].name),
             ),
             controller: _tabController,
             indicatorSize: TabBarIndicatorSize.tab,

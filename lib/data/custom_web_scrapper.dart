@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import "package:http/http.dart" as http;
 import '../constants/constants.dart';
-import '../models/product.dart';
+import '../models/product/product.dart';
 
 Future<Product> fetchJumiaPrice(Product product) async {
   String serverResponse = "";
@@ -11,7 +11,7 @@ Future<Product> fetchJumiaPrice(Product product) async {
   final socket = await Socket.connect(webscraperVPSAddress, webscraperVPSPort);
 
   // Send the URL to the server.
-  socket.write(product.URLs!["Jumia"]);
+  socket.write(product.storesURLs!["Jumia"]);
 
   // Listen for the server response.
   await socket.listen(

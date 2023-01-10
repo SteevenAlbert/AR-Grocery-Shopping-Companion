@@ -1,8 +1,8 @@
-import 'package:ar_grocery_companion/models/product.dart';
+import 'package:ar_grocery_companion/models/product/product.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../../../models/category.dart';
+import '../../../../models/product/product_category.dart';
 
 // Create a Form widget.
 class EditingForm extends StatefulWidget {
@@ -49,7 +49,7 @@ class EditingFormState extends State<EditingForm> {
           
             Container(
               height: 400,
-              child: Image.asset(this.widget.product.image, fit: BoxFit.fitWidth),
+              child: Image.asset(this.widget.product.imagePath, fit: BoxFit.fitWidth),
             ),
           Padding(
             padding: const EdgeInsets.all(20.0),
@@ -73,7 +73,7 @@ class EditingFormState extends State<EditingForm> {
                 },
               ),
               TextFormField(
-                initialValue: this.widget.product.producer,
+                initialValue: this.widget.product.manufacturer,
                 decoration: const InputDecoration(
                   labelText: 'Producer',
                 ),
@@ -90,8 +90,8 @@ class EditingFormState extends State<EditingForm> {
                 },
               ),
               DropdownButtonFormField(
-                items: Category.all
-                    .map((e) => e.title)
+                items: ProductCategory.all
+                    .map((e) => e.name)
                     .toList()
                     .map((String items) {
                   return DropdownMenuItem(
@@ -122,7 +122,7 @@ class EditingFormState extends State<EditingForm> {
                       // Validate returns true if the form is valid, or false otherwise.
                       if (_formKey.currentState!.validate()) {
                         this.widget.product.name = name;
-                        this.widget.product.producer = producer;
+                        this.widget.product.manufacturer = producer;
 
                         GoRouter.of(context).pop();
                         GoRouter.of(context).push('/products_dashboard');

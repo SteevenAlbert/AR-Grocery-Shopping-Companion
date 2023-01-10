@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ar_grocery_companion/models/product.dart';
+import 'package:ar_grocery_companion/models/product/product.dart';
 
 class FavProduct extends StatelessWidget {
   final Product item;
@@ -24,7 +24,7 @@ class FavProduct extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(2.0),
                     child: Center(
-                      child: Text(item.category!.title,
+                      child: Text(item.category!.name,
                           style: TextStyle(
                             fontSize: 12,
                             color: Colors.grey,

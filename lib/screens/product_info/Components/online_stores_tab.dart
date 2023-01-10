@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/data/custom_web_scrapper.dart';
 
 import '../../../data/amazonapi.dart';
-import '../../../models/product.dart';
+import '../../../models/product/product.dart';
 
 class OnlineStores extends StatelessWidget {
   final Product product;
@@ -27,19 +27,19 @@ class OnlineStores extends StatelessWidget {
                       context,
                       "assets/images/store_logos/amazon.png",
                       snapshot.data![0].prices['Amazon'],
-                      product.URLs!["Amazon"]!),
+                      product.storesURLs!["Amazon"]!),
                   storeCard(context, "assets/images/store_logos/noon.png",
-                      product.prices['Noon']!, product.URLs!["Noon"]!),
+                      product.prices['Noon']!, product.storesURLs!["Noon"]!),
                   storeCard(
                       context,
                       "assets/images/store_logos/jumia.png",
                       snapshot.data![1].prices['Jumia'],
-                      product.URLs!["Jumia"]!),
+                      product.storesURLs!["Jumia"]!),
                   storeCard(
                       context,
                       "assets/images/store_logos/carrefour.png",
                       product.prices['Carrefour']!,
-                      product.URLs!["Carrefour"]!),
+                      product.storesURLs!["Carrefour"]!),
                 ],
               );
             } else if (snapshot.hasError) {

@@ -6,7 +6,7 @@ import 'fav_prod_tile.dart';
 import 'package:simple_shadow/simple_shadow.dart';
 import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ar_grocery_companion/models/product.dart';
+import 'package:ar_grocery_companion/models/product/product.dart';
 
 class FavProductsList extends ConsumerStatefulWidget {
   final height;
@@ -117,7 +117,7 @@ class _FavProductsListState extends ConsumerState<FavProductsList> {
                         height: 79,
                         padding: const EdgeInsets.symmetric(vertical: 4.0),
                         alignment: Alignment.center,
-                        child: SimpleShadow(child: Image.asset(item.image)),
+                        child: SimpleShadow(child: Image.asset(item.imagePath)),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           color: Color(0xFFe5e5e5).withOpacity(0.5),

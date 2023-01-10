@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
-import 'package:ar_grocery_companion/models/product.dart';
+import 'package:ar_grocery_companion/models/product/product.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../../../models/category.dart';
+import '../../../../models/product/product_category.dart';
 
 // Create a Form widget.
 class AddingForm extends StatefulWidget {
@@ -126,8 +126,8 @@ class AddingFormState extends State<AddingForm> {
                 },
               ),
               DropdownButtonFormField(
-                items: Category.all
-                    .map((e) => e.title)
+                items: ProductCategory.all
+                    .map((e) => e.name)
                     .toList()
                     .map((String items) {
                   return DropdownMenuItem(
@@ -184,8 +184,8 @@ class AddingFormState extends State<AddingForm> {
                               "SUGAR": {"amount": 67.51, "unit": "g"},
                               "PROCNT": {"amount": 67.51, "unit": "g"},
                             },
-                            producer: producer,
-                            image: "assets/images/cadbury.png"));
+                            manufacturer: producer,
+                            imagePath: "assets/images/cadbury.png"));
 
                         GoRouter.of(context).pop();
                         GoRouter.of(context).push('/products_dashboard');

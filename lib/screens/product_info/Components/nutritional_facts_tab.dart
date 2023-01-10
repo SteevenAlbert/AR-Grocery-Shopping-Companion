@@ -2,7 +2,7 @@ import 'package:ar_grocery_companion/screens/product_info/Components/nutrition_t
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../models/product.dart';
+import '../../../models/product/product.dart';
 
 class NutritionalFacts extends StatelessWidget {
   final Product product;

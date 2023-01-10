@@ -15,7 +15,7 @@ import 'package:ar_grocery_companion/screens/scan/scan_intro_page.dart';
 import 'package:ar_grocery_companion/screens/search/search_page.dart';
 import 'package:go_router/go_router.dart';
 
-import 'models/product.dart';
+import 'models/product/product.dart';
 
 class MyRouter {
   MyRouter();
