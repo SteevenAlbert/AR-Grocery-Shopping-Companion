@@ -1,9 +1,7 @@
 import 'package:ar_grocery_companion/presentation/product_info/components/store_card.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ar_grocery_companion/data/custom_web_scrapper.dart';
-
-import '../../../data/amazonapi.dart';
+import 'package:ar_grocery_companion/services/amazonapi.dart';
+import 'package:ar_grocery_companion/services/custom_web_scrapper.dart';
 import '../../../models/product/product.dart';
 
 class OnlineStores extends StatelessWidget {
@@ -29,7 +27,7 @@ class OnlineStores extends StatelessWidget {
                       snapshot.data![0].prices['Amazon'],
                       product.storesURLs!["Amazon"]!),
                   storeCard(context, "assets/images/store_logos/noon.png",
-                      product.prices['Noon']!, product.storesURLs!["Noon"]!),
+                      product.prices!['Noon']!, product.storesURLs!["Noon"]!),
                   storeCard(
                       context,
                       "assets/images/store_logos/jumia.png",
@@ -38,7 +36,7 @@ class OnlineStores extends StatelessWidget {
                   storeCard(
                       context,
                       "assets/images/store_logos/carrefour.png",
-                      product.prices['Carrefour']!,
+                      product.prices!['Carrefour']!,
                       product.storesURLs!["Carrefour"]!),
                 ],
               );

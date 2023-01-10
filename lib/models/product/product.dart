@@ -53,4 +53,7 @@ abstract class Product {
       prices.hashCode ^
       storesURLs.hashCode;
   }
+
+  // Temporary
+  static List<Product> all = [];
 }

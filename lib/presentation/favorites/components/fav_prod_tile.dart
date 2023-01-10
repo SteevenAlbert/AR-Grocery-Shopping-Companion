@@ -15,7 +15,7 @@ class FavProduct extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(item.servingSize,
+              Text(item.manufacturer.name,
                   style: TextStyle(fontSize: 10, color: Colors.grey)),
               Align(
                 alignment: Alignment.centerRight,

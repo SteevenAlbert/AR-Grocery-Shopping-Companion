@@ -92,7 +92,7 @@ class ProductCard extends ConsumerWidget {
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    product.servingSize,
+                                    product.manufacturer.name,
                                     style:
                                         Theme.of(context).textTheme.bodySmall,
                                   ),

@@ -1,11 +1,9 @@
-import 'package:ar_grocery_companion/screens/product_info/Components/nutrition_table.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:ar_grocery_companion/models/product/concrete_products/food_product.dart';
+import 'package:ar_grocery_companion/presentation/product_info/components/nutrition_table.dart';
 import 'package:flutter/material.dart';
 
-import '../../../models/product/product.dart';
-
 class NutritionalFacts extends StatelessWidget {
-  final Product product;
+  final FoodProduct product;
   const NutritionalFacts({super.key, required this.product});
   @override
   Widget build(BuildContext context) {
@@ -27,7 +25,7 @@ class NutritionalFacts extends StatelessWidget {
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                     Text(
-                      product.ingredients.join(' - '),
+                      product.ingredients?.join(' - ') ?? "",
                       style: Theme.of(context).textTheme.bodyMedium,
                       textAlign: TextAlign.center,
                     ),

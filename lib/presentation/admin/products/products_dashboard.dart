@@ -45,7 +45,8 @@ class _ProductsDashboardState extends State<ProductsDashboard> {
                   return ProductCard(
                       product: products[index],
                       voidCallback: () {
-                        Product.remove(products[index]);
+                        // TODO: remove
+                        //Product.remove(products[index]);
                         setState(() {});
                       });
                 }),

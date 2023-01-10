@@ -73,7 +73,7 @@ class EditingFormState extends State<EditingForm> {
                 },
               ),
               TextFormField(
-                initialValue: this.widget.product.manufacturer,
+                initialValue: this.widget.product.manufacturer.name,
                 decoration: const InputDecoration(
                   labelText: 'Producer',
                 ),
@@ -122,7 +122,7 @@ class EditingFormState extends State<EditingForm> {
                       // Validate returns true if the form is valid, or false otherwise.
                       if (_formKey.currentState!.validate()) {
                         this.widget.product.name = name;
-                        this.widget.product.manufacturer = producer;
+                        this.widget.product.manufacturer.name = producer;
 
                         GoRouter.of(context).pop();
                         GoRouter.of(context).push('/products_dashboard');

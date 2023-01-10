@@ -109,7 +109,7 @@ class _SearchPageState extends State<SearchPage> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(product.servingSize,
+                                      Text(product.manufacturer.name,
                                           style: TextStyle(
                                               fontSize: 10,
                                               color: Colors.grey)),

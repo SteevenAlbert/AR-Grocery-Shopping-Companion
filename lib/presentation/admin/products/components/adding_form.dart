@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
-import 'package:ar_grocery_companion/models/product/product.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
@@ -157,36 +156,7 @@ class AddingFormState extends State<AddingForm> {
                     onPressed: () {
                       // Validate returns true if the form is valid, or false otherwise.
                       if (_formKey.currentState!.validate()) {
-                        Product.add(Product(
-                            name: name,
-                            prices: {
-                              'Ragab Sons': "20",
-                              'Oscar': "35",
-                              'Panda': "25",
-                              'Hyper One': "22"
-                            },
-                            calories: 40,
-                            ingredients: [
-                              "Milk",
-                              "Organic Guar Gum",
-                              "Vanilla Extract",
-                              "Pectin"
-                            ],
-                            servingSize: '60g',
-                            nutrients: {
-                              "FAT": {"amount": 7, "unit": "g"},
-                              "SATFAT": {"amount": 5, "unit": "g"},
-                              "TRANSFAT": {"amount": 2, "unit": "g"},
-                              "CHOLE": {"amount": 67.51, "unit": "g"},
-                              "NA": {"amount": 67.51, "unit": "g"},
-                              "CHOCDF": {"amount": 67.51, "unit": "g"},
-                              "FIBTG": {"amount": 67.51, "unit": "g"},
-                              "SUGAR": {"amount": 67.51, "unit": "g"},
-                              "PROCNT": {"amount": 67.51, "unit": "g"},
-                            },
-                            manufacturer: producer,
-                            imagePath: "assets/images/cadbury.png"));
-
+                        // TODO: add product
                         GoRouter.of(context).pop();
                         GoRouter.of(context).push('/products_dashboard');
                       }

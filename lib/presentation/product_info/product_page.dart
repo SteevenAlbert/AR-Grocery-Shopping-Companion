@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:like_button/like_button.dart';
-import '../../models/product/product.dart';
+import '../../models/product/concrete_products/food_product.dart';
 import 'components/alternative_products_tab.dart';
 import 'components/nutritional_facts_tab.dart';
 import 'components/online_stores_tab.dart';
 import 'components/tab_bar.dart';
 
 class ProductPage extends StatelessWidget {
-  final Product product;
+  final FoodProduct product;
   const ProductPage({required this.product, super.key});
 
   @override
@@ -104,7 +104,7 @@ class ProductPage extends StatelessWidget {
           body: Expanded(
             child: TabBarView(children: [
               OnlineStores(product: product),
-              NutritionalFacts(product: product),
+              //NutritionalFacts(product: product),
               alternativeProducts(context),
             ]),
           ),
@@ -117,7 +117,7 @@ class ProductPage extends StatelessWidget {
 class MySliverHeaderDelegate extends SliverPersistentHeaderDelegate {
   final double _maxExtent = 450;
   final VoidCallback onActionTap;
-  final Product product;
+  final FoodProduct product;
 
   final Widget blobSVG =
       SvgPicture.asset('assets/images/blob.svg', semanticsLabel: 'Blob');

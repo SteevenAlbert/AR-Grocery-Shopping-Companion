@@ -31,7 +31,7 @@ Future<Product> fetchJumiaPrice(Product product) async {
 
   // Return the result
   await Future.delayed(const Duration(seconds: 2));
-  product.prices["Jumia"] = serverResponse;
+  product.prices?["Jumia"] = serverResponse;
   return product;
 }
 

@@ -63,7 +63,7 @@ class _ProductCardState extends State<ProductCard> {
                           softWrap: false,
                         ),
                         subtitle: Text(
-                          widget.product.manufacturer,
+                          widget.product.manufacturer.name,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                           softWrap: false,
