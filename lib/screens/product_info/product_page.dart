@@ -31,7 +31,7 @@ class ProductPage extends StatelessWidget {
                         elevation: 0,
                         pinned: true,
                         automaticallyImplyLeading: false,
-                        expandedHeight: 400.0,
+                        expandedHeight: 600.0,
                         collapsedHeight: 150,
                         flexibleSpace: Container(
                             color: Theme.of(context).canvasColor,
@@ -81,32 +81,21 @@ class ProductPage extends StatelessWidget {
                                   child: Image.asset(product.image),
                                 ),
                               ),
-                              // Align(
-                              //   alignment: Alignment(
-                              //       //little padding
-                              //       0,
-                              //       0),
-                              //   child: Text(
-                              //     product.name,
-                              //     style: TextStyle(
-                              //       fontFamily: "Ubuntu",
-                              //       fontSize: 24,
-                              //       fontWeight: FontWeight.bold,
-                              //     ),
-                              //   ),
-                              // ),
-                              // here provide actions
                             ])),
                         bottom: ProductTabBar(product: product)),
                   ))
             ];
           },
-          body: Expanded(
-            child: TabBarView(children: [
-              OnlineStores(product: product),
-              NutritionalFacts(product: product),
-              alternativeProducts(context),
-            ]),
+          body: Column(
+            children: [
+              Expanded(
+                child: TabBarView(children: [
+                  OnlineStores(product: product),
+                  NutritionalFacts(product: product),
+                  alternativeProducts(context),
+                ]),
+              ),
+            ],
           ),
         ),
       ),

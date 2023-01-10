@@ -1,4 +1,4 @@
-package com.example.ar_grocery_companion
+package eg.edu.miuegypt.csc422.grocar
 
 import io.flutter.embedding.android.FlutterActivity
 

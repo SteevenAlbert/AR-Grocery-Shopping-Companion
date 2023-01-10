@@ -26,7 +26,8 @@ class MyRouter {
       //Add Routes Here
       //if session loggedIn as customer
       GoRoute(
-          path: '/authenticate', builder: (context, state) => const MainPage()),
+          path: '/authenticate',
+          builder: (context, state) => const AuthenticationPage()),
       //else if session loggedIn as admin
       // GoRoute(
       //   path: '/authenticate',
