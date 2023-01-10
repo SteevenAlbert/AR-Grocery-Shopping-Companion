@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/models/product/product_category.dart';
-import 'package:ar_grocery_companion/screens/home/components/featured_products.dart';
+import 'package:ar_grocery_companion/presentation/home/components/featured_products.dart';
 
 class Cat_Tabs extends StatefulWidget {
   final Size size;

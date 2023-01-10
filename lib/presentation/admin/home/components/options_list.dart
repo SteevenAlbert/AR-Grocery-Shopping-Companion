@@ -1,4 +1,4 @@
-import 'package:ar_grocery_companion/screens/admin/home/components/option.dart';
+import 'package:ar_grocery_companion/presentation/admin/home/components/option.dart';
 import 'package:flutter/material.dart';
 
 class OptionsList extends StatelessWidget {

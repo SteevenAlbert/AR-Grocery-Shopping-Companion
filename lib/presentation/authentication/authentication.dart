@@ -1,8 +1,8 @@
 // import 'dart:js';
 import 'package:flutter/material.dart';
-import 'package:ar_grocery_companion/components/authentication/background2.dart';
-import 'package:ar_grocery_companion/screens/authentication/log_in.dart';
-import 'package:ar_grocery_companion/screens/authentication/register.dart';
+import 'package:ar_grocery_companion/presentation/components/authentication/background2.dart';
+import 'package:ar_grocery_companion/presentation/authentication/log_in.dart';
+import 'package:ar_grocery_companion/presentation/authentication/register.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class AuthenticationPage extends StatefulWidget {

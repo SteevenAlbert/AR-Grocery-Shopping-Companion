@@ -1,4 +1,4 @@
-import 'package:ar_grocery_companion/screens/admin/products/components/adding_form.dart';
+import 'package:ar_grocery_companion/presentation/admin/products/components/adding_form.dart';
 import 'package:flutter/material.dart';
 
 class AddProductPage extends StatelessWidget {

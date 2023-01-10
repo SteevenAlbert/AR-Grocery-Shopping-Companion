@@ -1,7 +1,7 @@
-import 'package:ar_grocery_companion/components/header.dart';
-import 'package:ar_grocery_companion/screens/admin/home/components/options_list.dart';
-import 'package:ar_grocery_companion/screens/admin/home/components/products_barchart.dart';
-import 'package:ar_grocery_companion/screens/admin/home/components/products_linechart.dart';
+import 'package:ar_grocery_companion/presentation/components/header.dart';
+import 'package:ar_grocery_companion/presentation/admin/home/components/options_list.dart';
+import 'package:ar_grocery_companion/presentation/admin/home/components/products_barchart.dart';
+import 'package:ar_grocery_companion/presentation/admin/home/components/products_linechart.dart';
 import 'package:flutter/material.dart';
 
 class AdminHomePage extends StatelessWidget {

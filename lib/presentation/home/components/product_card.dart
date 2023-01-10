@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/models/product/product.dart';
-import 'package:ar_grocery_companion/screens/home/components/stars.dart';
-import 'package:ar_grocery_companion/screens/home/components/fav_icon.dart';
+import 'package:ar_grocery_companion/presentation/home/components/stars.dart';
+import 'package:ar_grocery_companion/presentation/home/components/fav_icon.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_shadow/simple_shadow.dart';
 import 'package:go_router/go_router.dart';

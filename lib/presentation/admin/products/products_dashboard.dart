@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../../models/product/product.dart';
 import 'components/product_card.dart';
 
-import 'package:ar_grocery_companion/screens/home/components/drawer.dart';
+import 'package:ar_grocery_companion/presentation/home/components/drawer.dart';
 
 class ProductsDashboard extends StatefulWidget {
   const ProductsDashboard({super.key});

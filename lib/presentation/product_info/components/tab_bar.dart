@@ -1,9 +1,6 @@
-import 'package:ar_grocery_companion/screens/product_info/components/alternative_products_tab.dart';
+import 'package:ar_grocery_companion/presentation/product_info/components/alternative_products_tab.dart';
 import 'package:flutter/material.dart';
 import '../../../models/product/product.dart';
-import '../../home/components/featured_products.dart';
-import 'nutritional_facts_tab.dart';
-import 'online_stores_tab.dart';
 
 class ProductTabBar extends StatefulWidget with PreferredSizeWidget {
   @override

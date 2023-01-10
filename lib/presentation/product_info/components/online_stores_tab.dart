@@ -1,4 +1,4 @@
-import 'package:ar_grocery_companion/screens/product_info/components/store_card.dart';
+import 'package:ar_grocery_companion/presentation/product_info/components/store_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/data/custom_web_scrapper.dart';
