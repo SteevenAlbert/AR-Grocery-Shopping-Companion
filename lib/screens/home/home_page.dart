@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/components/header.dart';
 import 'package:ar_grocery_companion/screens/home/components/featured_products.dart';
-// import 'package:ar_grocery_companion/screens/home/components/popular_products.dart';
 import 'package:ar_grocery_companion/screens/home/components/tabs.dart';
 import 'package:ar_grocery_companion/screens/home/components/carousel.dart';
 import 'package:ar_grocery_companion/screens/search/search_bar.dart';
@@ -24,11 +23,8 @@ class HomePage extends StatelessWidget {
             SizedBox(height: 20),
             SearchBar(size: size),
             CarouselSliderExample(),
-            // ProductCarousel(size: size),
-            // SizedBox(height: 12),
             Cat_Tabs(size: size),
             SizedBox(height: 12),
-            FeaturedProducts(size: size)
           ],
         ),
       ),

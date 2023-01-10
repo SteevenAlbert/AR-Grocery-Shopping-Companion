@@ -69,7 +69,7 @@ class Product {
         },
         producer: "Juhayna",
         image: "assets/images/greek.png",
-        category: Category.all[0]),
+        category: Category.all[1]),
     Product(
         id: 2,
         name: "Skimmed Milk",
@@ -101,7 +101,7 @@ class Product {
         },
         producer: "Juhayna",
         image: "assets/images/milk-1.png",
-        category: Category.all[0]),
+        category: Category.all[1]),
     Product(
         id: 3,
         name: "Gardino Tomato Sauce",
@@ -135,7 +135,7 @@ class Product {
         },
         producer: "Gardino",
         image: "assets/images/gardino.jpg",
-        category: Category.all[0]),
+        category: Category.all[2]),
     Product(
         id: 4,
         name: "Creamy Cheese",
@@ -173,7 +173,7 @@ class Product {
         },
         producer: "President",
         image: "assets/images/president.png",
-        category: Category.all[0]),
+        category: Category.all[2]),
     Product(
         id: 5,
         name: "Salted Butter",
@@ -204,7 +204,7 @@ class Product {
         },
         producer: "Lurpak",
         image: "assets/images/lurpak.png",
-        category: Category.all[0]),
+        category: Category.all[3]),
     Product(
         id: 6,
         name: "Lact-free Milk",
@@ -235,7 +235,7 @@ class Product {
         },
         servingSize: '100ml',
         image: "assets/images/lactose.png",
-        category: Category.all[0]),
+        category: Category.all[3]),
     Product(
         id: 7,
         name: "Ripe Strawberry",
@@ -267,7 +267,7 @@ class Product {
         },
         producer: "Juhayna",
         image: "assets/images/strawberry.png",
-        category: Category.all[0]),
+        category: Category.all[5]),
     Product(
         id: 8,
         name: "Bueno",
@@ -299,7 +299,7 @@ class Product {
         },
         producer: "Juhayna",
         image: "assets/images/kinder_bueno_6sticks.png",
-        category: Category.all[0]),
+        category: Category.all[5]),
     Product(
         id: 9,
         name: "Skimmed Milk",
@@ -331,7 +331,7 @@ class Product {
         },
         producer: "Juhayna",
         image: "assets/images/milk-1.png",
-        category: Category.all[0]),
+        category: Category.all[5]),
     Product(
         id: 10,
         name: "Cadbury",
@@ -363,7 +363,7 @@ class Product {
         },
         producer: "Juhayna",
         image: "assets/images/cadbury.png",
-        category: Category.all[0]),
+        category: Category.all[5]),
     Product(
         id: 11,
         name: "Skimmed Milk",
@@ -395,7 +395,7 @@ class Product {
         },
         producer: "Juhayna",
         image: "assets/images/milk-1.png",
-        category: Category.all[0]),
+        category: Category.all[6]),
     Product(
         id: 12,
         name: "Skimmed Milk",
@@ -427,6 +427,6 @@ class Product {
         },
         producer: "Juhayna",
         image: "assets/images/milk-1.png",
-        category: Category.all[0]),
+        category: Category.all[6]),
   ];
 }

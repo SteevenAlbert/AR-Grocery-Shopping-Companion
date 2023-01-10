@@ -12,13 +12,12 @@ class Cat_Tabs extends StatefulWidget {
 class _Cat_TabsState extends State<Cat_Tabs>
     with SingleTickerProviderStateMixin {
   TabController? _tabController;
-
+  List<Category>? allcats;
   @override
   void initState() {
-    Category allvar = Category(title: "All");
-    Category.all.insert(0, allvar);
-    _tabController =
-        new TabController(length: Category.all.length, vsync: this);
+    allcats = Category.all;
+    allcats!.insert(0, Category(title: "All"));
+    _tabController = new TabController(length: allcats!.length, vsync: this);
     super.initState();
   }
 
@@ -33,14 +32,31 @@ class _Cat_TabsState extends State<Cat_Tabs>
             unselectedLabelColor: Theme.of(context).disabledColor,
             labelColor: Theme.of(context).primaryColor,
             tabs: List.generate(
-              Category.all.length,
-              (index) => Tab(text: Category.all[index].title),
+              allcats!.length,
+              (index) => Tab(text: allcats![index].title),
             ),
             controller: _tabController,
             indicatorSize: TabBarIndicatorSize.tab,
           ),
-
-          // FeaturedProducts(size: widget.size)
+          Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Expanded(
+                child: Container(
+                  width: widget.size.width,
+                  height: widget.size.height * 1.3,
+                  child: TabBarView(
+                    physics: NeverScrollableScrollPhysics(),
+                    controller: _tabController,
+                    children: [
+                      for (var i = 0; i < allcats!.length; i++)
+                        FeaturedProducts(
+                          size: widget.size,
+                          cat_index: i,
+                        )
+                    ],
+                  ),
+                ),
+              )),
         ],
       ),
     );
@@ -52,8 +68,3 @@ class _Cat_TabsState extends State<Cat_Tabs>
     super.dispose();
   }
 }
-// List.generate(Product.all.length, (index) {
-//           return Center(
-//             child: ProductCard(size: widget.size, product: Product.all[index]),
-//           );
-//         })
