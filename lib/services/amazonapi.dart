@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import 'package:http/http.dart' as http;
 import '/domain/models/product/product.dart';
 
 const String APIKey = "619EB9AC27F94152828E0F81F4E88411";

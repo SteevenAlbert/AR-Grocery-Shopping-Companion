@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:typed_data';
-import "package:http/http.dart" as http;
 import '../constants/constants.dart';
 import '/domain/models/product/product.dart';
 

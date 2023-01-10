@@ -1,7 +1,7 @@
+import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
 import 'package:ar_grocery_companion/presentation/home/components/product_card.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../../../domain/models/product/product.dart';
 
 Widget alternativeProducts(context) {
   return Padding(
@@ -10,11 +10,11 @@ Widget alternativeProducts(context) {
       crossAxisCount: (MediaQuery.of(context).size.width ~/ 200).toInt(),
       crossAxisSpacing: 8.0,
       mainAxisSpacing: 8.0,
-      children: List.generate(Product.all.length, (index) {
+      children: List.generate(ProductsRepository.queryAllDummyData().length, (index) {
         return Center(
           child: ProductCard(
             sectionID: 1,
-            product: Product.all[index],
+            product: ProductsRepository.queryAllDummyData()[index],
           ),
         );
       }),

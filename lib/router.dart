@@ -2,7 +2,6 @@ import 'package:ar_grocery_companion/domain/sample.dart';
 import 'package:ar_grocery_companion/presentation/settings/settings_page.dart';
 import 'package:ar_grocery_companion/presentation/splash_screen.dart';
 import 'package:ar_grocery_companion/presentation/error_page.dart';
-import 'package:ar_grocery_companion/presentation/authentication/authentication.dart';
 import 'package:ar_grocery_companion/presentation/admin/products/edit_product_page.dart';
 import 'package:ar_grocery_companion/presentation/admin/home/admin_home_page.dart';
 import 'package:ar_grocery_companion/presentation/admin/products/add_product_page.dart';

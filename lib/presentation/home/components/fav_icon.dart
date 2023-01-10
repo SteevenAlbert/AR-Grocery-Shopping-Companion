@@ -30,7 +30,7 @@ class _FavIconState extends State<FavIcon> {
           builder: (_, WidgetRef ref, __) {
             ref.watch(favsProvider);
             bool isFavo =
-                ref.watch(favsProvider.notifier).isFav(widget.product.id!);
+                ref.watch(favsProvider.notifier).isFav(widget.product.id);
             return Column(
               children: [
                 IconButton(
@@ -43,11 +43,11 @@ class _FavIconState extends State<FavIcon> {
                       if (isFavo) {
                         ref
                             .read(favsProvider.notifier)
-                            .addItem(widget.product.id!);
+                            .addItem(widget.product.id);
                       } else {
                         ref
                             .read(favsProvider.notifier)
-                            .removeItem(widget.product.id!);
+                            .removeItem(widget.product.id);
                       }
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         margin: const EdgeInsets.only(

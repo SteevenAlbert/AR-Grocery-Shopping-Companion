@@ -1,7 +1,7 @@
+import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../domain/models/product/product.dart';
 import 'components/product_card.dart';
 
 import 'package:ar_grocery_companion/presentation/home/components/drawer.dart';
@@ -14,7 +14,7 @@ class ProductsDashboard extends StatefulWidget {
 }
 
 class _ProductsDashboardState extends State<ProductsDashboard> {
-  List products = Product.all;
+  List products = ProductsRepository.queryAllDummyData();
 
   @override
   Widget build(BuildContext context) {

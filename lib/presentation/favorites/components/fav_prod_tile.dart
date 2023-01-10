@@ -11,30 +11,25 @@ class FavProduct extends StatelessWidget {
       children: [
         Text(item.name, style: TextStyle(fontSize: 14)),
         Container(
-          width: 85,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(item.manufacturer.name,
                   style: TextStyle(fontSize: 10, color: Colors.grey)),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Container(
-                  width: 50,
-                  child: Padding(
-                    padding: const EdgeInsets.all(2.0),
-                    child: Center(
-                      child: Text(item.category!.name,
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey,
-                          )),
-                    ),
-                  ),
-                  decoration: BoxDecoration(
-                      color: Colors.amber.withOpacity(0.3),
-                      borderRadius: BorderRadius.all(Radius.circular(30))),
-                ),
+              Container(
+                margin: EdgeInsets.all(4.0),
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4.0),
+                child: Text(item.category?.name ?? "Dairy",
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    softWrap: false,
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.grey,
+                    )),
+                decoration: BoxDecoration(
+                    color: Colors.amber.withOpacity(0.3),
+                    borderRadius: BorderRadius.circular(500)),
               ),
             ],
           ),

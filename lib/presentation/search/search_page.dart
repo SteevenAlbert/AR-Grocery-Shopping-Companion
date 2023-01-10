@@ -1,3 +1,4 @@
+import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
 import 'package:flutter/material.dart';
 import '../../domain/models/product/product.dart';
 import 'package:go_router/go_router.dart';
@@ -12,7 +13,7 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   final controller = TextEditingController();
-  List<Product> products = Product.all;
+  List<Product> products = ProductsRepository.queryAllDummyData();
   List<Product> queriedProducts = [];
   @override
   Widget build(BuildContext context) {
