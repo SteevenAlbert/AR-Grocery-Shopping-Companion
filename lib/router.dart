@@ -13,6 +13,7 @@ import 'package:ar_grocery_companion/screens/scan/arview.dart';
 import 'package:ar_grocery_companion/screens/profile/profile_page.dart';
 import 'package:ar_grocery_companion/screens/scan/scan_intro_page.dart';
 import 'package:ar_grocery_companion/screens/search/search_page.dart';
+import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:go_router/go_router.dart';
 
 import 'models/product.dart';
@@ -24,29 +25,21 @@ class MyRouter {
     routes: [
       GoRoute(path: '/', builder: (context, state) => const SplashScreen()),
       //Add Routes Here
-      //if session loggedIn as customer
       GoRoute(
           path: '/authenticate',
           builder: (context, state) => const AuthenticationPage()),
-      //else if session loggedIn as admin
-      // GoRoute(
-      //   path: '/authenticate',
-      //   builder: (context, state) => const AdminHomePage()),
-      //else if session not loggedIn
-      // GoRoute(
-      //     path: '/authenticate',
-      //     builder: (context, state) => const AuthenticationPage()),
       GoRoute(
-          path: '/customer_home_page',
+          path: '/customer_homepage',
           builder: (context, state) => const MainPage()),
+      GoRoute(
+          path: '/admin_homepage',
+          builder: (context, state) => const AdminHomePage()),
       GoRoute(
           name: 'ProductPage',
           path: '/product_page',
           builder: (context, state) =>
               ProductPage(product: state.extra as Product)),
-      GoRoute(
-          path: '/admin_home_page',
-          builder: (context, state) => const AdminHomePage()),
+
       GoRoute(
           path: '/profile_page',
           builder: (context, state) => const ProfilePage()),

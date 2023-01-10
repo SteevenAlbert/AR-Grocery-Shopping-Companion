@@ -42,6 +42,7 @@ dependencies:
   flutter_native_splash: ^2.2.11
   flutter_rating_bar: ^4.0.1
   flutter_riverpod: ^2.1.3
+  flutter_session_manager: ^1.0.1
   flutter_svg: ^1.1.6
   go_router: ^6.0.1
   http: null
@@ -62,10 +63,11 @@ dependencies:
   firebase_core: any
   cloud_firestore: any
  
-flutter_native_splash:
-  color: "#ffffff"
-  #   image: assets/icon/app_logo.png
-  # animated_native_splash:
+# flutter_native_splash:
+  # color: "#ffffff"
+  # image: assets/icon/app_logo.png
+
+# animated_native_splash:
   # jsonFile: assets/splash/splash1.json
   # jsonFile: assets/splash/splash2.json
 

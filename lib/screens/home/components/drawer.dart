@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-// import 'package:flutter_session_manager/flutter_session_manager.dart';
+import 'package:flutter_session_manager/flutter_session_manager.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({super.key});
@@ -28,9 +28,9 @@ class AccountState extends State<CustomDrawer> {
             child: ListTile(
                 leading: Icon(Icons.logout),
                 title: Text("Sign Out"),
-                onTap: () {
-                  //...destroy session...//
-                  context.go('/');
+                onTap: () async {
+                  await SessionManager().destroy();
+                  context.go('/authenticate');
                 }),
           ),
         ),

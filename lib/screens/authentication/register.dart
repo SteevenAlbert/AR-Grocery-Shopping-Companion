@@ -1,12 +1,9 @@
-// import 'package:ar_grocery_companion/components/authentication/background1.dart';
-// import 'package:ar_grocery_companion/components/authentication/background2.dart';
 import 'package:ar_grocery_companion/models/user/user.dart';
 import 'package:ar_grocery_companion/screens/authentication/custom_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-// import 'package:flutter_session_manager/flutter_session_manager.dart';
+import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:intl/intl.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -52,21 +49,23 @@ class RegisterScreenState extends State<RegisterScreen> {
   }
 
   void _register() async {
-    final docUser = FirebaseFirestore.instance.collection('users').doc();
-    final json = {
-      'name': "Steven!!!",
-      'age': 21,
-    };
-
-    await docUser.set(json);
     if (_formKey.currentState!.validate()) {
-      print(dateinput.text);
-
       //...create new user...//
-      //...set session...//
 
-      // await SessionManager().set("name", usernameController.text);
-      //context.go('/customer_home_page');
+      final docUser = FirebaseFirestore.instance.collection('users').doc();
+
+      //to json
+      final json = {
+        'name': "Steven!!!",
+        'age': 21,
+      };
+
+      await docUser.set(json);
+
+//set session
+      // ((await SessionManager().get("type") == 1)
+      //     ? context.go('/customer_homepage')
+      //     : context.go('/admin_homepage'));
     }
   }
 
@@ -82,7 +81,6 @@ class RegisterScreenState extends State<RegisterScreen> {
           ),
           customTextFormField(
             context: context,
-            // controller: usernameController,
             errorMessage: 'Please enter your email.',
             labelText: "Email",
             icon: Icons.mail,

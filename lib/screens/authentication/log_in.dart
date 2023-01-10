@@ -1,10 +1,8 @@
-// import 'package:ar_grocery_companion/components/authentication/background1.dart';
-// import 'package:ar_grocery_companion/components/authentication/background2.dart';
 import 'package:ar_grocery_companion/models/user/user.dart';
 import 'package:ar_grocery_companion/screens/authentication/custom_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-// import 'package:flutter_session_manager/flutter_session_manager.dart';
+import 'package:flutter_session_manager/flutter_session_manager.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({super.key});
@@ -16,6 +14,7 @@ class LogInScreen extends StatefulWidget {
 class LogInScreenState extends State<LogInScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   TextEditingController usernameController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
 
   bool _isHidden = true;
   void _togglePasswordView() {
@@ -26,17 +25,22 @@ class LogInScreenState extends State<LogInScreen> {
 
   void _logIn() async {
     if (_formKey.currentState!.validate()) {
-      User? user = User.retrieveAccount(usernameController.text);
+      User? user = User.retrieveAccount(
+          usernameController.text, passwordController.text);
+      // User? user = User.fromJson();
+
       if (user == null) {
-        //...validation error...//
-      } else if (user.type == 0 || user.type == 0) {
-        //...set session (admin)...//
-        // await SessionManager().set("name", user.username);
-        context.go('/admin_home_page');
-      } else if (user.type == 1 || user.type == 1) {
-        //...set session (customer)...//
-        // await SessionManager().set("name", user.username);
-        context.go('/customer_home_page');
+        //...validation error; wrong creds...//
+      } else {
+        var sessionManager = SessionManager();
+        print("ALO");
+
+        await sessionManager.set("type", user.type);
+        await sessionManager.set("isLoggedIn", true);
+
+        ((await SessionManager().get("type") == 1)
+            ? context.go('/customer_homepage')
+            : context.go('/admin_homepage'));
       }
     }
   }
@@ -57,6 +61,7 @@ class LogInScreenState extends State<LogInScreen> {
               errorMessage: 'Please enter your username.'),
           customTextFormField(
             context: context,
+            controller: passwordController,
             labelText: "Password",
             icon: (_isHidden ? Icons.visibility : Icons.visibility_off),
             errorMessage: 'Please enter your password.',
