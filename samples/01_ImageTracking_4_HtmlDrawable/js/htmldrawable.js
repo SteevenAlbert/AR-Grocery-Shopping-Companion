@@ -48,10 +48,10 @@ var World = {
             createWwwButton(url, options). The returned drawable is then added to the drawables.cam array on
             creation of the AR.ImageTrackable.
         */
-        var productButton = this.createProductButton(0.2, {
+        var productButton = this.createProductButton(0.1, {
             translate: {
-                x: -0.25,
-                y: -0.25
+                x: 0,
+                y: -0.1
             },
             zOrder: 1
         });
