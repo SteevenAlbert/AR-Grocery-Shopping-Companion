@@ -1,23 +1,20 @@
-import 'package:ar_grocery_companion/models/sample.dart';
-import 'package:ar_grocery_companion/screens/home/home_page.dart';
-import 'package:ar_grocery_companion/screens/settings/settings_page.dart';
-import 'package:ar_grocery_companion/splash_screen.dart';
-import 'package:ar_grocery_companion/screens/error_page.dart';
-import 'package:ar_grocery_companion/screens/authentication/authentication.dart';
-import 'package:ar_grocery_companion/screens/admin/products/edit_product_page.dart';
-import 'package:ar_grocery_companion/screens/admin/home/admin_home_page.dart';
-import 'package:ar_grocery_companion/screens/admin/products/add_product_page.dart';
-import 'package:ar_grocery_companion/screens/admin/products/products_dashboard.dart';
-import 'package:ar_grocery_companion/screens/main_page.dart';
-import 'package:ar_grocery_companion/screens/product_info/product_page.dart';
-import 'package:ar_grocery_companion/screens/scan/arview.dart';
-import 'package:ar_grocery_companion/screens/profile/profile_page.dart';
-import 'package:ar_grocery_companion/screens/scan/scan_intro_page.dart';
-import 'package:ar_grocery_companion/screens/search/search_page.dart';
-import 'package:flutter_session_manager/flutter_session_manager.dart';
+import 'package:ar_grocery_companion/domain/sample.dart';
+import 'package:ar_grocery_companion/presentation/settings/settings_page.dart';
+import 'package:ar_grocery_companion/presentation/splash_screen.dart';
+import 'package:ar_grocery_companion/presentation/error_page.dart';
+import 'package:ar_grocery_companion/presentation/admin/products/edit_product_page.dart';
+import 'package:ar_grocery_companion/presentation/admin/home/admin_home_page.dart';
+import 'package:ar_grocery_companion/presentation/admin/products/add_product_page.dart';
+import 'package:ar_grocery_companion/presentation/admin/products/products_dashboard.dart';
+import 'package:ar_grocery_companion/presentation/main_page.dart';
+import 'package:ar_grocery_companion/presentation/product_info/product_page.dart';
+import 'package:ar_grocery_companion/presentation/scan/arview.dart';
+import 'package:ar_grocery_companion/presentation/profile/profile_page.dart';
+import 'package:ar_grocery_companion/presentation/scan/scan_intro_page.dart';
+import 'package:ar_grocery_companion/presentation/search/search_page.dart';
 import 'package:go_router/go_router.dart';
-
-import 'models/product.dart';
+import 'package:flutter_session_manager/flutter_session_manager.dart';
+import 'domain/models/product/product.dart';
 
 class MyRouter {
   MyRouter();
