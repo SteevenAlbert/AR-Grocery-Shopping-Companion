@@ -14,7 +14,7 @@ class _Cat_TabsState extends State<Cat_Tabs>
 
   @override
   void initState() {
-    CustomCategory allvar = CustomCategory(id: 0, name: "All");
+    CustomCategory allvar = CustomCategory(id: "0", name: "All");
     CustomCategory.all.insert(0, allvar);
     _tabController =
         new TabController(length: CustomCategory.all.length, vsync: this);

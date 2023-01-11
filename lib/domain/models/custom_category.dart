@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 
 class CustomCategory {
 
-  int id;
+  String id;
   String name;
   String? imagePath;
 
@@ -16,7 +16,7 @@ class CustomCategory {
   });
 
   CustomCategory copyWith({
-    int? id,
+    String? id,
     String? name,
     String? imagePath,
   }) {
@@ -37,7 +37,7 @@ class CustomCategory {
 
   factory CustomCategory.fromMap(Map<String, dynamic> map) {
     return CustomCategory(
-      id: map['id'] as int,
+      id: map['id'] as String,
       name: map['name'] as String,
       imagePath: map['imagePath'] != null ? map['imagePath'] as String : null,
     );

@@ -17,11 +17,11 @@ class ProductsRepository {
     List<Product> list = [];
     for (int i = 0; i < 20; i++) {
       ProductBase productBase = ProductBase(
-          id: i,
+          id: "$i",
           name: "name $i",
           imagePath: "assets/images/milk-1.png",
-          manufacturer: Company(id: i, name: "company $i"),
-          customCategory: CustomCategory(id: i, name: "Cat $i"));
+          manufacturer: Company(id: "$i", name: "company $i"),
+          customCategory: CustomCategory(id: "$i", name: "Cat $i"));
       LiquidProduct liquidProduct =
           LiquidProduct(product: productBase, volume: 100.0, unit: "mL");
       FoodProduct foodProduct = FoodProduct(
@@ -45,7 +45,7 @@ class ProductsRepository {
     return list;
   }
 
-  static Product retrieveProduct(int id) {
+  static Product retrieveProduct(String id) {
     return queryAllDummyData()
         .firstWhere((Product element) => element.id == id);
   }
@@ -91,7 +91,7 @@ class ProductsRepository {
       return MachineProduct.fromMap(currMap);
     }
 
-    return ProductBase(id: -1, name: "Nan", imagePath: "", manufacturer: Company(id: -1, name: ""), customCategory: CustomCategory(id: -1, name: ""));
+    return ProductBase.empty();
      
   }
 }

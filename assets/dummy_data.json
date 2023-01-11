@@ -53,15 +53,15 @@
                     }
                 },
                 "product_base": {
-                    "id": 0,
+                    "id": "0",
                     "name": "Half-skimmed Milk",
                     "imagePath": "assets/images/milk-1.png",
                     "manufacturer": {
-                        "id": 0,
+                        "id": "0",
                         "name": "Juhayna"
                     },
                     "customCategory": {
-                        "id": 0,
+                        "id": "0",
                         "name": "Dairy"
                     },
                     "prices": {
@@ -90,15 +90,15 @@
                 "volume": 100.0,
                 "unit": "mL",
                 "product_base": {
-                    "id": 1,
+                    "id": "1",
                     "name": "Lemon pledge",
                     "imagePath": "assets/images/lemon_pledge.png",
                     "manufacturer": {
-                        "id": 1,
+                        "id": "1",
                         "name": "Pledge"
                     },
                     "customCategory": {
-                        "id": 1,
+                        "id": "1",
                         "name": "Home Care"
                     },
                     "prices": {
@@ -125,15 +125,15 @@
             "itemed_product": {
                 "noOfItems": 5,
                 "product_base": {
-                    "id": 2,
+                    "id": "2",
                     "name": "Fine tissue",
                     "imagePath": "assets/images/fine_pack.png",
                     "manufacturer": {
-                        "id": 2,
+                        "id": "2",
                         "name": "Fine"
                     },
                     "customCategory": {
-                        "id": 2,
+                        "id": "2",
                         "name": "Personal Care"
                     },
                     "prices": {
@@ -205,15 +205,15 @@
                     }
                 },
                 "product_base": {
-                    "id": 3,
+                    "id": "3",
                     "name": "Snickers box",
                     "imagePath": "assets/images/snickers_pack.png",
                     "manufacturer": {
-                        "id": 3,
+                        "id": "3",
                         "name": "Snickers"
                     },
                     "customCategory": {
-                        "id": 3,
+                        "id": "3",
                         "name": "Snakcs"
                     },
                     "prices": {

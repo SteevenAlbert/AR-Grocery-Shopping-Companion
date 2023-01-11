@@ -5,7 +5,7 @@ import 'country.dart';
 
 class Company {
 
-  int id;
+  String id;
   String name;
   Country? country;
   String? logoPath;
@@ -20,7 +20,7 @@ class Company {
   });
 
   Company copyWith({
-    int? id,
+    String? id,
     String? name,
     Country? country,
     String? logoPath,
@@ -47,7 +47,7 @@ class Company {
 
   factory Company.fromMap(Map<String, dynamic> map) {
     return Company(
-      id: map['id'] as int,
+      id: map['id'] as String,
       name: map['name'] as String,
       country: map['country'] != null ? Country.fromMap(map['country'] as Map<String,dynamic>) : null,
       logoPath: map['logoPath'] != null ? map['logoPath'] as String : null,

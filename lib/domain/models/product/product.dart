@@ -1,19 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:ar_grocery_companion/domain/models/product/concrete_products/cleaning_product.dart';
-import 'package:ar_grocery_companion/domain/models/product/concrete_products/food_product.dart';
-import 'package:ar_grocery_companion/domain/models/product/concrete_products/itemed_product.dart';
-import 'package:ar_grocery_companion/domain/models/product/concrete_products/machine_product.dart';
-import 'package:ar_grocery_companion/domain/models/product/product_base.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:ar_grocery_companion/domain/models/company.dart';
 import 'package:ar_grocery_companion/domain/models/custom_category.dart';
 
-import 'concrete_products/liquid_product.dart';
-
 abstract class Product {
 
-  int id;
+  String id;
 
   String name;
   String imagePath;

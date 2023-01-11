@@ -14,29 +14,29 @@ class Customer extends User {
 
 }
 
-class FavsNotifier extends StateNotifier<List<int>> {
+class FavsNotifier extends StateNotifier<List<String>> {
   FavsNotifier() : super([]);
 
-  void addItem(int productId) {
+  void addItem(String productId) {
     state = [...state, productId];
   }
 
-  void removeItem(int productId) {
+  void removeItem(String productId) {
     state = [
       for (final product in state)
         if (product != productId) product,
     ];
   }
 
-  bool isFav(int productId) {
-    var value = state.firstWhere((id) => id == productId, orElse: () => -1);
-    if (value == -1) {
+  bool isFav(String productId) {
+    var value = state.firstWhere((id) => id == productId, orElse: () => "-1");
+    if (value == "-1") {
       return false;
     }
     return true;
   }
 }
 
-final favsProvider = StateNotifierProvider<FavsNotifier, List<int>>((ref) {
+final favsProvider = StateNotifierProvider<FavsNotifier, List<String>>((ref) {
   return FavsNotifier();
 });

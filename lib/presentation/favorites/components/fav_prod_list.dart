@@ -20,7 +20,7 @@ class FavProductsList extends ConsumerStatefulWidget {
 class _FavProductsListState extends ConsumerState<FavProductsList> {
   @override
   Widget build(BuildContext context) {
-    List<int> favs = ref.watch(favsProvider);
+    List<String> favs = ref.watch(favsProvider);
     if (favs.isEmpty) {
       final String assetName = 'assets/images/heart/empty_wishlist.svg';
       return Center(
