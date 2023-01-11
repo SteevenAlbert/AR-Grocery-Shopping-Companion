@@ -39,18 +39,8 @@ var World = {
             The button is created similar to the overlay feature. An AR.ImageResource defines the look of the button
             and is reused for both buttons.
         */
-        this.imgButton = new AR.ImageResource("assets/wwwButton.jpg", {
+        this.imgButton = new AR.ImageResource("assets/viewProductButton.png", {
             onError: World.onError
-        });
-
-        /* Create overlay for page one of the magazine. */
-        var imgOne = new AR.ImageResource("assets/imageOne.png", {
-            onError: World.onError
-        });
-        var overlayOne = new AR.ImageDrawable(imgOne, 1, {
-            translate: {
-                x: -0.15
-            }
         });
 
         /*
@@ -58,7 +48,7 @@ var World = {
             createWwwButton(url, options). The returned drawable is then added to the drawables.cam array on
             creation of the AR.ImageTrackable.
         */
-        var pageOneButton = this.createWwwButton("https://www.blue-tomato.com/en-US/products/?q=sup", 0.1, {
+        var productButton = this.createProductButton(0.2, {
             translate: {
                 x: -0.25,
                 y: -0.25
@@ -106,12 +96,13 @@ var World = {
             react on clicked links by using the onDocumentLocationChanged trigger. The example uses this trigger to
             open clicked links fullscreen in a browser.
         */
-        var weatherWidget = new AR.HtmlDrawable({
-            uri: "assets/weather.html"
-        }, 1, {
-            viewportWidth: 320,
-            viewportHeight: 100,
-            backgroundColor: "#FFFFFF",
+        var productWidget = new AR.HtmlDrawable({
+            uri: "assets/product_card.html"
+        }, 0.7, {
+        
+            viewportWidth: 200,
+            viewportHeight: 160,
+            backgroundColor: "#0000004d",
             translate: {
                 x: 0.36,
                 y: 0.5
@@ -136,25 +127,18 @@ var World = {
         */
         this.pageOne = new AR.ImageTrackable(this.tracker, "*", {
             drawables: {
-                cam: [overlayOne, pageOneButton, weatherWidget]
+                cam: [productButton,productWidget]
             },
             onImageRecognized: World.hideInfoBar,
             onError: World.onError
         });
-    },
-    captureScreen: function captureScreenFn() {
-        if (World.initialized) {
-            AR.platform.sendJSONObject({
-                action: "capture_screen"
-            });
-        }
     },
 
     onError: function onErrorFn(error) {
         alert(error);
     },
 
-    createWwwButton: function createWwwButtonFn(url, size, options) {
+    createProductButton: function createProductButtonFn(size, options) {
         /*
             As the button should be clickable the onClick trigger is defined in the options passed to the
             AR.ImageDrawable. In general each drawable can be made clickable by defining its onClick trigger. The
@@ -164,7 +148,7 @@ var World = {
         */
         options.onClick = function() {
          
-            //captureScreen();
+            //-captureScreen();
             AR.platform.sendJSONObject({action:"product_details"});
         };
         return new AR.ImageDrawable(this.imgButton, size, options);
