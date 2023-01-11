@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'authentication/custom_widgets.dart';
+import 'package:flutter_session_manager/flutter_session_manager.dart';
 
 class SomethingWentWrongScreen extends StatelessWidget {
   @override
@@ -21,8 +22,13 @@ class SomethingWentWrongScreen extends StatelessWidget {
               child: customAnimatedButton(
                   context: context,
                   text: "Go To Homepage".toUpperCase(),
-                  func: () {
-                    context.go('/');
+                  func: () async {
+                    (await SessionManager().containsKey("isLoggedIn") != true ||
+                            await SessionManager().get("isLoggedIn") != true)
+                        ? context.go('/authenticate')
+                        : ((await SessionManager().get("type") == 1)
+                            ? context.go('/customer_homepage')
+                            : context.go('/admin_homepage'));
                   }))
         ],
       ),

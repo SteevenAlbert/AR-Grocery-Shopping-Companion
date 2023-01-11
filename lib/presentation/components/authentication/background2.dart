@@ -6,7 +6,10 @@ class Background2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ColorFiltered(
-      colorFilter: ColorFilter.mode(Colors.tealAccent, BlendMode.darken),
+      colorFilter: ColorFilter.mode(
+          // Theme.of(context).primaryColor, BlendMode.lighten),
+          Theme.of(context).primaryColor.withOpacity(0.6),
+          BlendMode.multiply),
       child: Image.asset(
         "assets/images/background/doodle.jpg",
         height: MediaQuery.of(context).size.height,

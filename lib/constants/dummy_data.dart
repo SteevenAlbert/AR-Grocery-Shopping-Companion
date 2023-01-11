@@ -9,7 +9,7 @@ Product dummyProduct(i) {
   ProductBase productBase = ProductBase(
       id: "$i",
       name: "name $i",
-      imagePath: "assets/images/milk-1.png",
+      images: ["assets/images/milk-1.png"],
       manufacturer: Company(id: "$i", name: "company $i"),
       customCategory: CustomCategory(id: "$i", name: "Cat $i"));
   LiquidProduct liquidProduct =

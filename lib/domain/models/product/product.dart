@@ -9,7 +9,7 @@ abstract class Product {
   String id;
 
   String name;
-  String imagePath;
+  List<String> images;
   Company manufacturer;
 
   CustomCategory customCategory;
@@ -22,7 +22,7 @@ abstract class Product {
   Product({
     required this.id,
     required this.name,
-    required this.imagePath,
+    required this.images,
     required this.manufacturer,
     required this.customCategory,
     this.prices,
@@ -34,7 +34,7 @@ abstract class Product {
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, imagePath: $imagePath, manufacturer: $manufacturer, customCategory: $customCategory, prices: $prices, storesURLs: $storesURLs, properties: $properties)';
+    return 'Product(id: $id, name: $name, imagePath: $images, manufacturer: $manufacturer, customCategory: $customCategory, prices: $prices, storesURLs: $storesURLs, properties: $properties)';
   }
 
   @override
@@ -44,7 +44,7 @@ abstract class Product {
     return 
       other.id == id &&
       other.name == name &&
-      other.imagePath == imagePath &&
+      other.images == images &&
       other.manufacturer == manufacturer &&
       other.customCategory == customCategory &&
       mapEquals(other.prices, prices) &&
@@ -56,7 +56,7 @@ abstract class Product {
   int get hashCode {
     return id.hashCode ^
       name.hashCode ^
-      imagePath.hashCode ^
+      images.hashCode ^
       manufacturer.hashCode ^
       customCategory.hashCode ^
       prices.hashCode ^

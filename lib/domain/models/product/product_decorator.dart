@@ -8,7 +8,7 @@ abstract class ProductDecorator extends Product {
   }) : super(
             id: product.id,
             name: product.name,
-            imagePath: product.imagePath,
+            images: product.images,
             manufacturer: product.manufacturer,
             customCategory: product.customCategory,
             prices: product.prices,

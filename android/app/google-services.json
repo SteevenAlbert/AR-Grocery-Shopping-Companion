@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "356788851461",
+    "project_id": "grocar-380e1",
+    "storage_bucket": "grocar-380e1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356788851461:android:45513306d54df51474dd6c",
+        "android_client_info": {
+          "package_name": "eg.edu.miuegypt.csc422.grocar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "356788851461-uo4nvksqit8s32ka4dgp7el168o3n3n7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "eg.edu.miuegypt.csc422.grocar",
+            "certificate_hash": "84f8a6a6a621edbe1ea03031afb74eee77779775"
+          }
+        },
+        {
+          "client_id": "356788851461-fmii7to9qrghp4ibikc9lsc71d17vr9d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLSYPykWw4ucWKxEox9h5a_OWTmpu9izI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "356788851461-fmii7to9qrghp4ibikc9lsc71d17vr9d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

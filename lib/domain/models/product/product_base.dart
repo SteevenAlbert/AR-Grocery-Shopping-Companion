@@ -6,7 +6,7 @@ class ProductBase extends Product {
   ProductBase(
       {required id,
       required name,
-      required imagePath,
+      required images,
       required manufacturer,
       required customCategory,
       prices,
@@ -14,7 +14,7 @@ class ProductBase extends Product {
       : super(
             id: id,
             name: name,
-            imagePath: imagePath,
+            images: images,
             manufacturer: manufacturer,
             customCategory: customCategory,
             prices: prices,
@@ -30,8 +30,22 @@ class ProductBase extends Product {
     return ProductBase(
         id: "-1",
         name: "Nan",
-        imagePath: "",
+        images: [""],
         manufacturer: Company(id: "-1", name: ""),
         customCategory: CustomCategory(id: "-1", name: ""));
+  }
+
+  factory ProductBase.fromMap(Map<String, dynamic> map) {
+    return ProductBase(
+      id: map["id"],
+      name: map["name"],
+      images: List<String>.from(map["images"] as List),
+      manufacturer: Company.fromMap(map["manufacturer"]),
+      customCategory: CustomCategory.fromMap(
+        map["customCategory"],
+      ),
+      prices: Map<String, String>.from((map['prices'] as Map)),
+      storesURLs: Map<String, String>.from((map['storesURLs'] as Map)),
+    );
   }
 }

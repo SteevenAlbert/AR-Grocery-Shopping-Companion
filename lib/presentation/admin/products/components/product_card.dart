@@ -40,7 +40,7 @@ class _ProductCardState extends State<ProductCard> {
                 child: AspectRatio(
                   aspectRatio: 16 / 10,
                   child: Image.asset(
-                    widget.product.imagePath,
+                    widget.product.images[0],
                   ),
                 ),
               ),

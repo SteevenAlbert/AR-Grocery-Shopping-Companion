@@ -1,6 +1,6 @@
 import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
+import 'package:ar_grocery_companion/domain/models/product/product.dart';
 import 'package:flutter/material.dart';
-import '../../domain/models/product/product.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simple_shadow/simple_shadow.dart';
 
@@ -13,7 +13,7 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   final controller = TextEditingController();
-  List<Product> products = ProductsRepository.generateDummyData();
+  List<Product> products = ProductsRepository.instance.getProducts();
   List<Product> queriedProducts = [];
   @override
   Widget build(BuildContext context) {
@@ -91,7 +91,7 @@ class _SearchPageState extends State<SearchPage> {
                                   const EdgeInsets.symmetric(vertical: 4.0),
                               alignment: Alignment.center,
                               child: SimpleShadow(
-                                  child: Image.asset(product.imagePath)),
+                                  child: Image.asset(product.images[0])),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
                                 color: Color(0xFFe5e5e5).withOpacity(0.5),

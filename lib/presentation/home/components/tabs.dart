@@ -1,3 +1,4 @@
+import 'package:ar_grocery_companion/presentation/home/components/featured_products.dart';
 import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/domain/models/custom_category.dart';
 
@@ -11,13 +12,12 @@ class Cat_Tabs extends StatefulWidget {
 class _Cat_TabsState extends State<Cat_Tabs>
     with SingleTickerProviderStateMixin {
   TabController? _tabController;
-
+  List<CustomCategory>? allcats;
   @override
   void initState() {
-    CustomCategory allvar = CustomCategory(id: "0", name: "All");
-    CustomCategory.all.insert(0, allvar);
-    _tabController =
-        new TabController(length: CustomCategory.all.length, vsync: this);
+    allcats = CustomCategory.all;
+    allcats!.insert(0, CustomCategory(id: "0",name: "All"));
+    _tabController = new TabController(length: allcats!.length, vsync: this);
     super.initState();
   }
 
@@ -32,14 +32,31 @@ class _Cat_TabsState extends State<Cat_Tabs>
             unselectedLabelColor: Theme.of(context).disabledColor,
             labelColor: Theme.of(context).primaryColor,
             tabs: List.generate(
-              CustomCategory.all.length,
-              (index) => Tab(text: CustomCategory.all[index].name),
+              allcats!.length,
+              (index) => Tab(text: allcats![index].name),
             ),
             controller: _tabController,
             indicatorSize: TabBarIndicatorSize.tab,
           ),
-
-          // FeaturedProducts(size: widget.size)
+          Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Expanded(
+                child: Container(
+                  width: widget.size.width,
+                  height: widget.size.height * 1.3,
+                  child: TabBarView(
+                    physics: NeverScrollableScrollPhysics(),
+                    controller: _tabController,
+                    children: [
+                      for (var i = 0; i < allcats!.length; i++)
+                        FeaturedProducts(
+                          size: widget.size,
+                          cat_index: i,
+                        )
+                    ],
+                  ),
+                ),
+              )),
         ],
       ),
     );
@@ -51,8 +68,3 @@ class _Cat_TabsState extends State<Cat_Tabs>
     super.dispose();
   }
 }
-// List.generate(Product.all.length, (index) {
-//           return Center(
-//             child: ProductCard(size: widget.size, product: Product.all[index]),
-//           );
-//         })

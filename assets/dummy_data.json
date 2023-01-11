@@ -55,7 +55,7 @@
                 "product_base": {
                     "id": "0",
                     "name": "Half-skimmed Milk",
-                    "imagePath": "assets/images/milk-1.png",
+                    "images":[ "assets/images/milk-1.png"],
                     "manufacturer": {
                         "id": "0",
                         "name": "Juhayna"
@@ -92,7 +92,7 @@
                 "product_base": {
                     "id": "1",
                     "name": "Lemon pledge",
-                    "imagePath": "assets/images/lemon_pledge.png",
+                    "images":[ "assets/images/lemon_pledge.png"],
                     "manufacturer": {
                         "id": "1",
                         "name": "Pledge"
@@ -127,7 +127,7 @@
                 "product_base": {
                     "id": "2",
                     "name": "Fine tissue",
-                    "imagePath": "assets/images/fine_pack.png",
+                    "images":[ "assets/images/fine_pack.png"],
                     "manufacturer": {
                         "id": "2",
                         "name": "Fine"
@@ -207,7 +207,7 @@
                 "product_base": {
                     "id": "3",
                     "name": "Snickers box",
-                    "imagePath": "assets/images/snickers_pack.png",
+                    "images": ["assets/images/snickers_pack.png"],
                     "manufacturer": {
                         "id": "3",
                         "name": "Snickers"

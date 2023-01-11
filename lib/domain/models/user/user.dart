@@ -3,6 +3,9 @@ class User {
   String? email;
   String? username;
   String? password;
+  //date_of_birth
+  //gender
+  //image
   int? type;
 
   User(this.id, this.email, this.username, this.password, this.type);
@@ -18,7 +21,8 @@ class User {
 
   //deleteAccount
 
-  static User? retrieveAccount(username) {
-    return users.firstWhere((element) => element.username == username);
+  static User? retrieveAccount(username, password) {
+    return users.firstWhere((element) =>
+        element.username == username && element.password == password);
   }
 }

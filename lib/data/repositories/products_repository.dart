@@ -90,7 +90,6 @@ class ProductsRepository {
     List<Product> products = [];
 
     for (int i = 0; i < list.length; i++) {
-      print(list[i]);
       var product = ProductsRepository.selectProductFromMap(list[i]);
       products.add(product);
     }
@@ -101,13 +100,7 @@ class ProductsRepository {
   // Create product depending on its concrete class name
   static Product selectProductFromMap(Map map) {
     if (map.containsKey("product_base")) {
-      var currMap = map["product_base"];
-      return ProductBase(
-          id: currMap["id"],
-          name: currMap["name"],
-          imagePath: currMap["imagePath"],
-          manufacturer: Company.fromMap(currMap["manufacturer"]),
-          customCategory: CustomCategory.fromMap(currMap["customCategory"]));
+      return ProductBase.fromMap(map["product_base"]);
     } else if (map.containsKey("food_product")) {
       return FoodProduct.fromMap(map["food_product"]);
     } else if (map.containsKey("liquid_product")) {

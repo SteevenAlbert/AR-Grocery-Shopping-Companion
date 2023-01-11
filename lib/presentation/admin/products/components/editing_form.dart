@@ -49,7 +49,7 @@ class EditingFormState extends State<EditingForm> {
           
             Container(
               height: 400,
-              child: Image.asset(this.widget.product.imagePath, fit: BoxFit.fitWidth),
+              child: Image.asset(this.widget.product.images[0], fit: BoxFit.fitWidth),
             ),
           Padding(
             padding: const EdgeInsets.all(20.0),
