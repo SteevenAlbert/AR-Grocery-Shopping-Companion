@@ -2,7 +2,7 @@
 import 'package:flutter/foundation.dart';
 
 import 'package:ar_grocery_companion/domain/models/company.dart';
-import 'package:ar_grocery_companion/domain/models/product/product_category.dart';
+import 'package:ar_grocery_companion/domain/models/custom_category.dart';
 
 abstract class Product {
 
@@ -12,23 +12,29 @@ abstract class Product {
   String imagePath;
   Company manufacturer;
 
+  CustomCategory customCategory;
+
   Map<String, String>? prices;
   Map<String, String>? storesURLs;
+
+  Map<String, dynamic> properties = {};
+
   Product({
     required this.id,
     required this.name,
     required this.imagePath,
     required this.manufacturer,
+    required this.customCategory,
     this.prices,
     this.storesURLs,
+    required this.properties,
   });
-
-  ProductCategory? category;
   
+  Map<String, dynamic> getProperties();
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, imagePath: $imagePath, manufacturer: $manufacturer, prices: $prices, storesURLs: $storesURLs)';
+    return 'Product(id: $id, name: $name, imagePath: $imagePath, manufacturer: $manufacturer, customCategory: $customCategory, prices: $prices, storesURLs: $storesURLs, properties: $properties)';
   }
 
   @override
@@ -40,8 +46,10 @@ abstract class Product {
       other.name == name &&
       other.imagePath == imagePath &&
       other.manufacturer == manufacturer &&
+      other.customCategory == customCategory &&
       mapEquals(other.prices, prices) &&
-      mapEquals(other.storesURLs, storesURLs);
+      mapEquals(other.storesURLs, storesURLs) &&
+      mapEquals(other.properties, properties);
   }
 
   @override
@@ -50,7 +58,9 @@ abstract class Product {
       name.hashCode ^
       imagePath.hashCode ^
       manufacturer.hashCode ^
+      customCategory.hashCode ^
       prices.hashCode ^
-      storesURLs.hashCode;
+      storesURLs.hashCode ^
+      properties.hashCode;
   }
 }

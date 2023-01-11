@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:ar_grocery_companion/domain/models/product/product.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:ar_grocery_companion/domain/models/product/product_decorator.dart';
@@ -10,7 +11,7 @@ class CleaningProduct extends ProductDecorator {
   List<String> materialCleaned;
 
   CleaningProduct({
-    product,
+    required product,
     required this.materialCleaned,
   }): super(product: product);
   
@@ -18,6 +19,7 @@ class CleaningProduct extends ProductDecorator {
     List<String>? materialCleaned,
   }) {
     return CleaningProduct(
+      product: product,
       materialCleaned: materialCleaned ?? this.materialCleaned,
     );
   }
@@ -30,7 +32,9 @@ class CleaningProduct extends ProductDecorator {
 
   factory CleaningProduct.fromMap(Map<String, dynamic> map) {
     return CleaningProduct(
-      materialCleaned: List<String>.from((map['materialCleaned'] as List<String>)),
+      // TODO: implement product mapping
+      product: Product,
+      materialCleaned: List<String>.from((map['materialCleaned'] as List)),
     );
   }
 
@@ -51,4 +55,11 @@ class CleaningProduct extends ProductDecorator {
 
   @override
   int get hashCode => materialCleaned.hashCode;
+  
+  @override
+  Map<String, dynamic> getProperties() {
+    Map<String, dynamic> updatedProperties = this.product.properties;
+    updatedProperties.addAll({"Target material": materialCleaned.join(", ")});
+    return updatedProperties;
+  }
 }

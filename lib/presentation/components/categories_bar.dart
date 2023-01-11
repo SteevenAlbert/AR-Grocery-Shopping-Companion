@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:chip_list/chip_list.dart';
-import 'package:ar_grocery_companion/domain/models/product/product_category.dart';
+import 'package:ar_grocery_companion/domain/models/custom_category.dart';
 
 class CategoriesBar extends StatelessWidget {
   const CategoriesBar({Key? key}) : super(key: key);
@@ -14,7 +14,7 @@ class CategoriesBar extends StatelessWidget {
         child: Row(
           children: [
             ChipList(
-              listOfChipNames: ProductCategory.all.map((e) => e.name).toList(),
+              listOfChipNames: CustomCategory.all.map((e) => e.name).toList(),
               activeBgColorList: [Theme.of(context).canvasColor],
               activeTextColorList: [Theme.of(context).primaryColor],
               activeBorderColorList: [Theme.of(context).primaryColor],

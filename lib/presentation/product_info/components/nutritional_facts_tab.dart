@@ -25,7 +25,7 @@ class NutritionalFacts extends StatelessWidget {
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                     Text(
-                      product.ingredients?.join(' - ') ?? "",
+                      product.ingredients.join(' - '),
                       style: Theme.of(context).textTheme.bodyMedium,
                       textAlign: TextAlign.center,
                     ),

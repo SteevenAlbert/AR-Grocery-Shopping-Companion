@@ -1,40 +1,50 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:ar_grocery_companion/domain/models/product/product.dart';
 import 'package:ar_grocery_companion/domain/models/product/product_decorator.dart';
 
 class MachineProduct extends ProductDecorator {
   
-  double watts;
-  double weight;
+  String energyType;
+  double energy;
+  String unit;
 
   MachineProduct({
-    product,
-    required this.watts,
-    required this.weight,
+    required product,
+    required this.energyType,
+    required this.energy,
+    required this.unit,
   }): super(product: product);
 
   MachineProduct copyWith({
-    double? watts,
-    double? weight,
+    String? energyType,
+    double? energy,
+    String? unit,
   }) {
     return MachineProduct(
-      watts: watts ?? this.watts,
-      weight: weight ?? this.weight,
+      product: product,
+      energyType: energyType ?? this.energyType,
+      energy: energy ?? this.energy,
+      unit: unit ?? this.unit,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'watts': watts,
-      'weight': weight,
+      'energyType': energyType,
+      'energy': energy,
+      'unit': unit,
     };
   }
 
   factory MachineProduct.fromMap(Map<String, dynamic> map) {
     return MachineProduct(
-      watts: map['watts'] as double,
-      weight: map['weight'] as double,
+      // TODO: implement product mapping
+      product: Product,
+      energyType: map['energyType'] as String,
+      energy: map['energy'] as double,
+      unit: map['unit'] as String,
     );
   }
 
@@ -43,17 +53,25 @@ class MachineProduct extends ProductDecorator {
   factory MachineProduct.fromJson(String source) => MachineProduct.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'MachineProduct(watts: $watts, weight: $weight)';
+  String toString() => 'MachineProduct(energyType: $energyType, energy: $energy, unit: $unit)';
 
   @override
   bool operator ==(covariant MachineProduct other) {
     if (identical(this, other)) return true;
   
     return 
-      other.watts == watts &&
-      other.weight == weight;
+      other.energyType == energyType &&
+      other.energy == energy &&
+      other.unit == unit;
   }
 
   @override
-  int get hashCode => watts.hashCode ^ weight.hashCode;
+  int get hashCode => energyType.hashCode ^ energy.hashCode ^ unit.hashCode;
+
+  @override
+  Map<String, dynamic> getProperties() {
+    Map<String, dynamic> updatedProperties = this.product.properties;
+    updatedProperties.addAll({"Energy type": energyType, "Energy": "$energy $unit"});
+    return updatedProperties;
+  }
 }

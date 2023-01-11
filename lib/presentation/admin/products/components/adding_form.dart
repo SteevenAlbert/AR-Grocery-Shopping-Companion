@@ -3,7 +3,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../../../domain/models/product/product_category.dart';
+import '../../../../domain/models/custom_category.dart';
 
 // Create a Form widget.
 class AddingForm extends StatefulWidget {
@@ -125,7 +125,7 @@ class AddingFormState extends State<AddingForm> {
                 },
               ),
               DropdownButtonFormField(
-                items: ProductCategory.all
+                items: CustomCategory.all
                     .map((e) => e.name)
                     .toList()
                     .map((String items) {

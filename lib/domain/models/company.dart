@@ -5,20 +5,20 @@ import 'country.dart';
 
 class Company {
 
-  int? id;
+  int id;
   String name;
   Country? country;
   String? logoPath;
   String? url;
 
   Company({
-    this.id,
+    required this.id,
     required this.name,
     this.country,
     this.logoPath,
     this.url,
   });
-  
+
   Company copyWith({
     int? id,
     String? name,
@@ -47,7 +47,7 @@ class Company {
 
   factory Company.fromMap(Map<String, dynamic> map) {
     return Company(
-      id: map['id'] != null ? map['id'] as int : null,
+      id: map['id'] as int,
       name: map['name'] as String,
       country: map['country'] != null ? Country.fromMap(map['country'] as Map<String,dynamic>) : null,
       logoPath: map['logoPath'] != null ? map['logoPath'] as String : null,

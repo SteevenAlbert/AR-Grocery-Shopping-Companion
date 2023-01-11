@@ -19,7 +19,7 @@ class FavProduct extends StatelessWidget {
               Container(
                 margin: EdgeInsets.all(4.0),
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4.0),
-                child: Text(item.category?.name ?? "Dairy",
+                child: Text(item.customCategory.name,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     softWrap: false,

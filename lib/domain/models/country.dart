@@ -2,11 +2,11 @@
 import 'dart:convert';
 
 class Country {
-  int? id;
+  int id;
   String name;
-  
+
   Country({
-    this.id,
+    required this.id,
     required this.name,
   });
   
@@ -29,7 +29,7 @@ class Country {
 
   factory Country.fromMap(Map<String, dynamic> map) {
     return Country(
-      id: map['id'] != null ? map['id'] as int : null,
+      id: map['id'] as int,
       name: map['name'] as String,
     );
   }

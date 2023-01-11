@@ -6,6 +6,7 @@ import '../../domain/models/product/concrete_products/food_product.dart';
 import 'components/alternative_products_tab.dart';
 import 'components/nutritional_facts_tab.dart';
 import 'components/online_stores_tab.dart';
+import 'components/product_details.dart';
 import 'components/tab_bar.dart';
 
 class ProductPage extends StatelessWidget {
@@ -104,6 +105,7 @@ class ProductPage extends StatelessWidget {
           body: Expanded(
             child: TabBarView(children: [
               OnlineStores(product: product),
+              ProductDetails(product: product),
               //NutritionalFacts(product: product),
               alternativeProducts(context),
             ]),

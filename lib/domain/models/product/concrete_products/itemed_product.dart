@@ -1,12 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:ar_grocery_companion/domain/models/product/product.dart';
 import 'package:ar_grocery_companion/domain/models/product/product_decorator.dart';
 
 class ItemedProduct extends ProductDecorator {
   int noOfItems;
   ItemedProduct({
-    product,
+    required product,
     required this.noOfItems,
   }) : super(product: product);
 
@@ -14,6 +15,7 @@ class ItemedProduct extends ProductDecorator {
     int? noOfItems,
   }) {
     return ItemedProduct(
+      product: product,
       noOfItems: noOfItems ?? this.noOfItems,
     );
   }
@@ -26,6 +28,8 @@ class ItemedProduct extends ProductDecorator {
 
   factory ItemedProduct.fromMap(Map<String, dynamic> map) {
     return ItemedProduct(
+      // TODO: implement product mapping
+      product: Product,
       noOfItems: map['noOfItems'] as int,
     );
   }
@@ -47,4 +51,11 @@ class ItemedProduct extends ProductDecorator {
 
   @override
   int get hashCode => noOfItems.hashCode;
+
+  @override
+  Map<String, dynamic> getProperties() {
+    Map<String, dynamic> updatedProperties = this.product.properties;
+    updatedProperties.addAll({"Number of items": noOfItems.toString()});
+    return updatedProperties;
+  }
 }

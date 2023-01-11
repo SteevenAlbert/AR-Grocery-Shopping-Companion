@@ -2,7 +2,7 @@ import 'package:ar_grocery_companion/domain/models/product/product.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../../../domain/models/product/product_category.dart';
+import '../../../../domain/models/custom_category.dart';
 
 // Create a Form widget.
 class EditingForm extends StatefulWidget {
@@ -90,7 +90,7 @@ class EditingFormState extends State<EditingForm> {
                 },
               ),
               DropdownButtonFormField(
-                items: ProductCategory.all
+                items: CustomCategory.all
                     .map((e) => e.name)
                     .toList()
                     .map((String items) {
