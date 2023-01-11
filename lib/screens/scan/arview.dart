@@ -114,10 +114,13 @@ class _ARViewState extends State<ARView> with WidgetsBindingObserver {
           captureScreen();
           break;
         case "product_details":
-          // GoRouter.of(context).go("/product/${jsonObject["product_id"]}");
-          // break;
+          print("IN ARVIEW");
+          int ProductID = int.parse(jsonObject["product_id"]);
+          print(Product.retrieveProduct(ProductID)!.name);
+          architectWidget.pause();
           GoRouter.of(context)
-              .go("/product_page", extra: Product.retrieveProduct(9));
+              .push("/product_page", extra: Product.retrieveProduct(ProductID));
+
           break;
       }
     }

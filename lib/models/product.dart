@@ -365,5 +365,37 @@ class Product {
         producer: "Cadbury",
         images: ["assets/images/cadbury.png"],
         category: Category.all[5]),
+    Product(
+        id: 11,
+        name: "Bimbo Hazelnut",
+        servingSize: '100gm',
+        calories: 220,
+        ingredients: ["Non-fat Milk", "Vitamin A Palmitate", "VVitamin D3"],
+        prices: {
+          'Noon': "45",
+          'Amazon': "30",
+          'Jumia': "38",
+          'Carrefour': "40"
+        },
+        nutrients: {
+          "FAT": {"amount": 12.51, "unit": "g"},
+          "SATFAT": {"amount": 4.51, "unit": "g"},
+          "TRANSFAT": {"amount": 0, "unit": "g"},
+          "CHOLE": {"amount": 6.51, "unit": "mg"},
+          "NA": {"amount": 67.51, "unit": "g"},
+          "CHOCDF": {"amount": 67.51, "unit": "g"},
+          "FIBTG": {"amount": 67.51, "unit": "g"},
+          "SUGAR": {"amount": 67.51, "unit": "g"},
+          "PROCNT": {"amount": 67.51, "unit": "g"},
+        },
+        URLs: {
+          'Amazon': "https://www.amazon.eg/",
+          'Noon': "https://www.noon.com/egypt-en/",
+          'Jumia': "https://www.jumia.com/",
+          'Carrefour': "https://www.carrefouregypt.com/",
+        },
+        producer: "Corona",
+        images: ["assets/images/bimbo_hazelnut.png"],
+        category: Category.all[5]),
   ];
 }
