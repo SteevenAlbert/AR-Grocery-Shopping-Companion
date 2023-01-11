@@ -13,7 +13,7 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   final controller = TextEditingController();
-  List<Product> products = ProductsRepository.queryAllDummyData();
+  List<Product> products = ProductsRepository.generateDummyData();
   List<Product> queriedProducts = [];
   @override
   Widget build(BuildContext context) {

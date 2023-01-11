@@ -14,7 +14,7 @@ class ProductsDashboard extends StatefulWidget {
 }
 
 class _ProductsDashboardState extends State<ProductsDashboard> {
-  List products = ProductsRepository.queryAllDummyData();
+  List products = ProductsRepository.generateDummyData();
 
   @override
   Widget build(BuildContext context) {

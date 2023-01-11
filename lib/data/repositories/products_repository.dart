@@ -1,6 +1,5 @@
 import 'dart:convert';
-import 'dart:io';
-
+import 'package:ar_grocery_companion/constants/dummy_data.dart';
 import 'package:ar_grocery_companion/domain/models/company.dart';
 import 'package:ar_grocery_companion/domain/models/custom_category.dart';
 import 'package:ar_grocery_companion/domain/models/product/concrete_products/cleaning_product.dart';
@@ -11,87 +10,115 @@ import 'package:ar_grocery_companion/domain/models/product/concrete_products/mac
 import 'package:ar_grocery_companion/domain/models/product/product.dart';
 import 'package:ar_grocery_companion/domain/models/product/product_base.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ProductsRepository {
-  static List<Product> queryAllDummyData() {
+
+  // Singleton pattern
+  static final ProductsRepository instance = ProductsRepository._();
+
+  List<Product> _products = [];
+  late final productsRepoProvider;
+  late final productsListFutureProvider;
+
+  ProductsRepository._() {
+    productsRepoProvider = Provider<ProductsRepository>((ref) {
+      return ProductsRepository.instance;
+    });
+
+    productsListFutureProvider = Provider<Future<List<Product>>>((ref) {
+      final productsRepo = ref.watch(productsRepoProvider);
+      return productsRepo.fetchProductsList();
+    });
+  }
+
+  Future<int> insert(Product product) async{
+    // TODO: implement insert product
+    throw UnimplementedError();
+  }
+
+  Future<List<Product>> fetchProductsList() async{
+    // TODO: use the db_helper instead
+    _products = await queryDummyJson();
+    return _products;
+  }
+
+  Future<List<Product>> fetchProductsListByName() async{
+    // TODO: implement this
+    throw UnimplementedError();
+  }
+
+  Future<int> delete() async{
+    // TODO: implement delete product
+    throw UnimplementedError();
+  }
+
+  Future<int> deleteByName(name) async {
+    // TODO: implement delete product by name
+    throw UnimplementedError();
+  }
+
+  void reset() {
+    // TODO: implement reset products
+    throw UnimplementedError();
+  }
+
+  List<Product> getProducts() {
+    return _products;
+  }
+
+  Product getProduct(String id) {
+    return _products
+        .firstWhere((Product element) => element.id == id, orElse: () => ProductBase.empty(),);
+  }
+
+  // DUMMY DATA --------------------------------------------------------------------------------------
+  // Generate and return dummy data
+  static List<Product> generateDummyData() {
     List<Product> list = [];
     for (int i = 0; i < 20; i++) {
-      ProductBase productBase = ProductBase(
-          id: "$i",
-          name: "name $i",
-          imagePath: "assets/images/milk-1.png",
-          manufacturer: Company(id: "$i", name: "company $i"),
-          customCategory: CustomCategory(id: "$i", name: "Cat $i"));
-      LiquidProduct liquidProduct =
-          LiquidProduct(product: productBase, volume: 100.0, unit: "mL");
-      FoodProduct foodProduct = FoodProduct(
-          product: liquidProduct,
-          calories: 200,
-          servingSize: "$i 00",
-          ingredients: [
-            "Milk, other ingredient, other too"
-          ],
-          allergyInfo: [
-            "Lactose",
-            "Glucose"
-          ],
-          nutrients: {
-            "FAT": {"amount": 200, "unit": "g"}
-          });
-
-      list.add(foodProduct);
+      Product product = dummyProduct(i);
+      list.add(product);
     }
-
     return list;
   }
 
-  static Product retrieveProduct(String id) {
-    return queryAllDummyData()
-        .firstWhere((Product element) => element.id == id);
-  }
-
+  // Generate and return a list of products from a .json file
   static Future<List<Product>> queryDummyJson() async {
     var input = await rootBundle.loadString("assets/dummy_data.json");
     var list = jsonDecode(input);
-
     List<Product> products = [];
 
-    for(int i = 0; i<list.length; i++){
+    for (int i = 0; i < list.length; i++) {
       print(list[i]);
       var product = ProductsRepository.selectProductFromMap(list[i]);
       products.add(product);
     }
-
     return products;
   }
 
-  static Product selectProductFromMap(Map map){
-    if (map.containsKey("product_base")){
+   // DECORATOR PATTERN MAPPING -----------------------------------------------------------------------
+  // Create product depending on its concrete class name
+  static Product selectProductFromMap(Map map) {
+    if (map.containsKey("product_base")) {
       var currMap = map["product_base"];
-      return ProductBase(id: currMap["id"], name: currMap["name"], imagePath: currMap["imagePath"], manufacturer: Company.fromMap(currMap["manufacturer"]), customCategory: CustomCategory.fromMap(currMap["customCategory"]));
+      return ProductBase(
+          id: currMap["id"],
+          name: currMap["name"],
+          imagePath: currMap["imagePath"],
+          manufacturer: Company.fromMap(currMap["manufacturer"]),
+          customCategory: CustomCategory.fromMap(currMap["customCategory"]));
+    } else if (map.containsKey("food_product")) {
+      return FoodProduct.fromMap(map["food_product"]);
+    } else if (map.containsKey("liquid_product")) {
+      return LiquidProduct.fromMap(map["liquid_product"]);
+    } else if (map.containsKey("cleaning_product")) {
+      return CleaningProduct.fromMap(map["cleaning_product"]);
+    } else if (map.containsKey("itemed_product")) {
+      return ItemedProduct.fromMap(map["itemed_product"]);
+    } else if (map.containsKey("machine_product")) {
+      return MachineProduct.fromMap(map["machine_product"]);
     }
-    else if (map.containsKey("food_product")){
-      var currMap = map["food_product"];
-      return FoodProduct.fromMap(currMap);
-    }
-    else if (map.containsKey("liquid_product")){
-      var currMap = map["liquid_product"];
-      return LiquidProduct.fromMap(currMap);
-    }
-    else if (map.containsKey("cleaning_product")){
-      var currMap = map["cleaning_product"];
-      return CleaningProduct.fromMap(currMap);
-    }
-    else if (map.containsKey("itemed_product")){
-      var currMap = map["itemed_product"];
-      return ItemedProduct.fromMap(currMap);
-    }
-    else if (map.containsKey("machine_product")){
-      var currMap = map["machine_product"];
-      return MachineProduct.fromMap(currMap);
-    }
-
     return ProductBase.empty();
-     
   }
 }

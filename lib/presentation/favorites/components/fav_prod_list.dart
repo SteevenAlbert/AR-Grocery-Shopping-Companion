@@ -53,7 +53,7 @@ class _FavProductsListState extends ConsumerState<FavProductsList> {
           itemCount: favs.length,
           itemBuilder: (context, index) {
             final Product item =
-                ProductsRepository.retrieveProduct(favs[index]);
+                ProductsRepository.instance.getProduct(favs[index]);
             return Dismissible(
               // Each Dismissible must contain a Key. Keys allow Flutter to
               // uniquely identify widgets.

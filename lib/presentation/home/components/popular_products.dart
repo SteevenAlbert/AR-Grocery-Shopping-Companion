@@ -2,7 +2,6 @@ import 'package:ar_grocery_companion/data/repositories/products_repository.dart'
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ar_grocery_companion/presentation/home/components/product_card.dart';
-import 'package:ar_grocery_companion/domain/models/product/product.dart';
 
 class ProductCarousel extends StatelessWidget {
   final Size size;
@@ -37,7 +36,7 @@ class ProductCarousel extends StatelessWidget {
                   constraints: BoxConstraints(maxWidth: 300),
                   margin: EdgeInsets.symmetric(horizontal: 0.5),
                   child: ProductCard(
-                      sectionID: 0, product: ProductsRepository.queryAllDummyData()[i]),
+                      sectionID: 0, product: ProductsRepository.generateDummyData()[i]),
                 );
               },
             );

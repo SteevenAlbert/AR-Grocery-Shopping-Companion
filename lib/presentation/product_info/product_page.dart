@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:like_button/like_button.dart';
-import '../../domain/models/product/concrete_products/food_product.dart';
 import '../../domain/models/product/product.dart';
 import 'components/alternative_products_tab.dart';
-import 'components/nutritional_facts_tab.dart';
 import 'components/online_stores_tab.dart';
 import 'components/product_details.dart';
 import 'components/tab_bar.dart';
@@ -16,7 +14,6 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> tabs = <String>['Tab 1', 'Tab 2', 'Tab 3'];
     return DefaultTabController(
       length: 3,
       initialIndex: 1,
