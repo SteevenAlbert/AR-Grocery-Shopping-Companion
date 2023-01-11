@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:animated_button/animated_button.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 Widget customTitle({
   required BuildContext context,
   required String text,
 }) {
   return Padding(
-      padding: const EdgeInsets.only(top: 0, bottom: 20, left: 15, right: 15),
+      padding: const EdgeInsets.only(top: 0, bottom: 13, left: 0, right: 0),
       child: Text(
         text,
         style: TextStyle(
@@ -21,19 +22,23 @@ Widget customTextFormField({
   required BuildContext context,
   required String labelText,
   required IconData icon,
+  TextEditingController? controller,
   required String errorMessage,
   String? regex = "(.*?)",
   String? errorMessage2 = "",
-  TextEditingController? controller,
+  String? confirm,
+  String? errorMessage3 = "",
+  bool unique_username = false,
+  String? errorMessage4 = "",
   bool? obscureText = false,
   void Function()? toggle,
   bool? readOnly = false,
   void Function()? onTap,
 }) {
   return Padding(
-    padding:
-        const EdgeInsets.only(top: 10, bottom: 10, left: 15.0, right: 15.0),
+    padding: const EdgeInsets.only(top: 9, bottom: 9, left: 15.0, right: 15.0),
     child: TextFormField(
+      // autovalidateMode: AutovalidateMode.always,
       controller: controller,
       validator: (value) {
         if (value == null || value.isEmpty) {
@@ -41,6 +46,27 @@ Widget customTextFormField({
         } else if (!value.contains(new RegExp(regex!))) {
           return errorMessage2;
         }
+
+        if (confirm != null) {
+          if (value != confirm) {
+            return errorMessage3;
+          }
+        }
+        bool unique = false;
+        if (unique_username) {
+          () async {
+            Future<bool> IsUserUnique() async {
+              return await FirebaseFirestore.instance
+                  .collection('users')
+                  .where('name', isEqualTo: value)
+                  .get()
+                  .then((list) => list.size > 0 ? false : true);
+            }
+
+            (await IsUserUnique()) ? unique = false : unique = true;
+          };
+        }
+        if (!unique) return "Username already taken.";
         return null;
       },
       obscureText: obscureText!,
@@ -69,6 +95,25 @@ Widget customTextFormField({
       onTap: onTap,
       readOnly: readOnly!,
     ),
+  );
+}
+
+//--------------------------------------------------------------------------------------------//
+
+Widget customRadioButton(
+    {required String title,
+    required int value,
+    required int groupValue,
+    void Function(int?)? onChanged}) {
+  return Row(
+    children: [
+      Radio(
+        value: value,
+        groupValue: groupValue,
+        onChanged: onChanged,
+      ),
+      Text(title)
+    ],
   );
 }
 
