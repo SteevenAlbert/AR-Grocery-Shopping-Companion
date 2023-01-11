@@ -40,8 +40,7 @@ class MachineProduct extends ProductDecorator {
 
   factory MachineProduct.fromMap(Map<String, dynamic> map) {
     return MachineProduct(
-      // TODO: implement product mapping
-      product: Product,
+      product: Product.whichProduct(map),
       energyType: map['energyType'] as String,
       energy: map['energy'] as double,
       unit: map['unit'] as String,

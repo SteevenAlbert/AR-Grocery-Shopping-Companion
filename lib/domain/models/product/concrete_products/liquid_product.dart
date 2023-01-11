@@ -34,8 +34,7 @@ class LiquidProduct extends ProductDecorator {
 
   factory LiquidProduct.fromMap(Map<String, dynamic> map) {
     return LiquidProduct(
-      // TODO: implement product mapping
-      product: Product,
+      product: Product.whichProduct(map),
       volume: map['volume'] as double,
       unit: map['unit'] as String,
     );

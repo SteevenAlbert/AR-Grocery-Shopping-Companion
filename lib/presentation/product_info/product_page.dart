@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:like_button/like_button.dart';
 import '../../domain/models/product/concrete_products/food_product.dart';
+import '../../domain/models/product/product.dart';
 import 'components/alternative_products_tab.dart';
 import 'components/nutritional_facts_tab.dart';
 import 'components/online_stores_tab.dart';
@@ -10,7 +11,7 @@ import 'components/product_details.dart';
 import 'components/tab_bar.dart';
 
 class ProductPage extends StatelessWidget {
-  final FoodProduct product;
+  final Product product;
   const ProductPage({required this.product, super.key});
 
   @override
@@ -119,7 +120,7 @@ class ProductPage extends StatelessWidget {
 class MySliverHeaderDelegate extends SliverPersistentHeaderDelegate {
   final double _maxExtent = 450;
   final VoidCallback onActionTap;
-  final FoodProduct product;
+  final Product product;
 
   final Widget blobSVG =
       SvgPicture.asset('assets/images/blob.svg', semanticsLabel: 'Blob');

@@ -28,8 +28,7 @@ class ItemedProduct extends ProductDecorator {
 
   factory ItemedProduct.fromMap(Map<String, dynamic> map) {
     return ItemedProduct(
-      // TODO: implement product mapping
-      product: Product,
+      product: Product.whichProduct(map),
       noOfItems: map['noOfItems'] as int,
     );
   }

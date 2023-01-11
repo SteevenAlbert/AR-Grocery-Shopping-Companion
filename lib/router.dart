@@ -14,7 +14,6 @@ import 'package:ar_grocery_companion/presentation/scan/scan_intro_page.dart';
 import 'package:ar_grocery_companion/presentation/search/search_page.dart';
 import 'package:go_router/go_router.dart';
 
-import 'domain/models/product/concrete_products/food_product.dart';
 import 'domain/models/product/product.dart';
 
 class MyRouter {
@@ -42,7 +41,7 @@ class MyRouter {
           name: 'ProductPage',
           path: '/product_page',
           builder: (context, state) =>
-              ProductPage(product: state.extra as FoodProduct)),
+              ProductPage(product: state.extra as Product)),
       GoRoute(
           path: '/admin_home_page',
           builder: (context, state) => const AdminHomePage()),

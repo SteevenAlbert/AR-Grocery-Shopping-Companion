@@ -11,7 +11,7 @@ class FoodProduct extends ProductDecorator {
   List<String> ingredients;
   List<String> allergyInfo;
 
-  Map<String, Map<String, Object>> nutrients;
+  Map<String, Map<String, dynamic>> nutrients;
 
   FoodProduct({
     required product,
@@ -27,7 +27,7 @@ class FoodProduct extends ProductDecorator {
     String? servingSize,
     List<String>? ingredients,
     List<String>? allergyInfo,
-    Map<String, Map<String, Object>>? nutrients,
+    Map<String, Map<String, dynamic>>? nutrients,
   }) {
     return FoodProduct(
       product: product,
@@ -51,13 +51,12 @@ class FoodProduct extends ProductDecorator {
 
   factory FoodProduct.fromMap(Map<String, dynamic> map) {
     return FoodProduct(
-      // TODO: implement product mapping
-      product: Product,
+      product: Product.whichProduct(map),
       calories: map['calories'] as int,
       servingSize: map['servingSize'] as String,
       ingredients: List<String>.from((map['ingredients'] as List)),
       allergyInfo: List<String>.from((map['allergyInfo'] as List)),
-      nutrients: Map<String, Map<String, Object>>.from((map['nutrients'] as Map)),
+      nutrients: Map<String, Map<String, dynamic>>.from((map['nutrients'] as Map)),
     );
   }
 
