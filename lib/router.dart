@@ -1,4 +1,5 @@
 import 'package:ar_grocery_companion/models/sample.dart';
+import 'package:ar_grocery_companion/screens/home/home_page.dart';
 import 'package:ar_grocery_companion/screens/settings/settings_page.dart';
 import 'package:ar_grocery_companion/splash_screen.dart';
 import 'package:ar_grocery_companion/screens/error_page.dart';
@@ -26,8 +27,15 @@ class MyRouter {
       GoRoute(path: '/', builder: (context, state) => const SplashScreen()),
       //Add Routes Here
       GoRoute(
-          path: '/authenticate',
-          builder: (context, state) => const AuthenticationPage()),
+          path: '/authenticate', builder: (context, state) => const MainPage()),
+      //else if session loggedIn as admin
+      // GoRoute(
+      //   path: '/authenticate',
+      //   builder: (context, state) => const AdminHomePage()),
+      //else if session not loggedIn
+      // GoRoute(
+      //     path: '/authenticate',
+      //     builder: (context, state) => const AuthenticationPage()),
       GoRoute(
           path: '/customer_homepage',
           builder: (context, state) => const MainPage()),

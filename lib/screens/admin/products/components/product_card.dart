@@ -40,21 +40,19 @@ class _ProductCardState extends State<ProductCard> {
                 child: AspectRatio(
                   aspectRatio: 16 / 10,
                   child: Image.asset(
-                    widget.product.image,
+                    widget.product.images[0],
                   ),
                 ),
               ),
-
               Container(
                 child: Row(
                   children: [
                     Expanded(
                       child: ListTile(
                         trailing: IconButton(
-                          onPressed: () =>
-                            buildIconButton(),
+                          onPressed: () => buildIconButton(),
                           icon: Icon(Icons.delete_outline_outlined,
-                          color: Theme.of(context).primaryColor),
+                              color: Theme.of(context).primaryColor),
                         ),
                         title: Text(
                           widget.product.name,

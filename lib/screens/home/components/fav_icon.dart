@@ -16,8 +16,6 @@ class _FavIconState extends ConsumerState<FavIcon> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 50,
-      height: 50,
       child: Center(
         child: Consumer(
           builder: (_, WidgetRef ref, __) {
@@ -28,11 +26,6 @@ class _FavIconState extends ConsumerState<FavIcon> {
             return Column(
               children: [
                 Container(
-                  decoration: BoxDecoration(
-                      color: darkMode == ThemeMode.light
-                          ? Colors.amber.withOpacity(0.1)
-                          : Theme.of(context).primaryColor.withOpacity(0.1),
-                      shape: BoxShape.circle),
                   child: IconButton(
                       onPressed: () {
                         if (isFavo) {
@@ -58,7 +51,7 @@ class _FavIconState extends ConsumerState<FavIcon> {
                           shape: RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20))),
-                          duration: const Duration(seconds: 1),
+                          duration: const Duration(seconds: 2),
                           content: isFavo
                               ? Row(
                                   children: [
@@ -95,10 +88,11 @@ class _FavIconState extends ConsumerState<FavIcon> {
                       //         : (darkMode == ThemeMode.light
                       //             ? Colors.amber.withOpacity(0.4)
                       //             : Theme.of(context).primaryColor)))
+
                       icon: isFavo
-                          ? Icon(Icons.favorite, size: 25, color: Colors.red)
+                          ? Icon(Icons.favorite, size: 35, color: Colors.red)
                           : Icon(Icons.favorite_border,
-                              size: 25,
+                              size: 30,
                               color: darkMode == ThemeMode.light
                                   ? Colors.amber.withOpacity(0.4)
                                   : Theme.of(context).primaryColor)),

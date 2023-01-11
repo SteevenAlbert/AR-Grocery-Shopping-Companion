@@ -117,7 +117,7 @@ class _FavProductsListState extends ConsumerState<FavProductsList> {
                         height: 79,
                         padding: const EdgeInsets.symmetric(vertical: 4.0),
                         alignment: Alignment.center,
-                        child: SimpleShadow(child: Image.asset(item.image)),
+                        child: SimpleShadow(child: Image.asset(item.images[0])),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           color: Color(0xFFe5e5e5).withOpacity(0.5),

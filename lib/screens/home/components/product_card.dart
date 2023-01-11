@@ -52,9 +52,9 @@ class ProductCard extends ConsumerWidget {
                               ? AspectRatio(
                                   aspectRatio: 16 / 10,
                                   child: Image.asset(
-                                    product.image,
+                                    product.images[0],
                                   ))
-                              : Image.asset(product.image,
+                              : Image.asset(product.images[0],
                                   width: 100, height: 100)),
                     ),
                   ),

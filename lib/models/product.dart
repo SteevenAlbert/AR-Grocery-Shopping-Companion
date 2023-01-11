@@ -1,9 +1,10 @@
 import 'package:ar_grocery_companion/models/category.dart';
 
 class Product {
-  String image, name, producer;
+  String name, producer;
   final int? id, calories;
   final String servingSize;
+  final List<String> images;
   final List<String> ingredients;
   final List<String>? allergyInfo;
   final Map<String, String> prices;
@@ -15,7 +16,7 @@ class Product {
     required this.name,
     this.calories,
     required this.servingSize,
-    required this.image,
+    required this.images,
     required this.prices,
     required this.producer,
     required this.ingredients,
@@ -68,7 +69,7 @@ class Product {
           "PROCNT": {"amount": 67.51, "unit": "g"},
         },
         producer: "Juhayna",
-        image: "assets/images/greek.png",
+        images: ["assets/images/greek.png"],
         category: Category.all[1]),
     Product(
         id: 2,
@@ -100,7 +101,7 @@ class Product {
           'Carrefour': "https://www.carrefouregypt.com/",
         },
         producer: "Juhayna",
-        image: "assets/images/milk-1.png",
+        images: ["assets/images/milk-1.png"],
         category: Category.all[1]),
     Product(
         id: 3,
@@ -134,7 +135,7 @@ class Product {
           'Carrefour': "https://www.carrefouregypt.com/",
         },
         producer: "Gardino",
-        image: "assets/images/gardino.jpg",
+        images: ["assets/images/gardino.jpg"],
         category: Category.all[2]),
     Product(
         id: 4,
@@ -172,7 +173,7 @@ class Product {
           'Carrefour': "https://www.carrefouregypt.com/",
         },
         producer: "President",
-        image: "assets/images/president.png",
+        images: ["assets/images/president.png"],
         category: Category.all[2]),
     Product(
         id: 5,
@@ -203,7 +204,7 @@ class Product {
           'Carrefour': "https://www.carrefouregypt.com/",
         },
         producer: "Lurpak",
-        image: "assets/images/lurpak.png",
+        images: ["assets/images/lurpak.png"],
         category: Category.all[3]),
     Product(
         id: 6,
@@ -234,7 +235,7 @@ class Product {
           "PROCNT": {"amount": 67.51, "unit": "g"},
         },
         servingSize: '100ml',
-        image: "assets/images/lactose.png",
+        images: ["assets/images/lactose.png"],
         category: Category.all[3]),
     Product(
         id: 7,
@@ -266,7 +267,7 @@ class Product {
           'Carrefour': "https://www.carrefouregypt.com/",
         },
         producer: "Juhayna",
-        image: "assets/images/strawberry.png",
+        images: ["assets/images/strawberry.png"],
         category: Category.all[5]),
     Product(
         id: 8,
@@ -298,7 +299,7 @@ class Product {
           'Carrefour': "https://www.carrefouregypt.com/",
         },
         producer: "Juhayna",
-        image: "assets/images/kinder_bueno_6sticks.png",
+        images: ["assets/images/kinder_bueno_6sticks.png"],
         category: Category.all[5]),
     Product(
         id: 9,
@@ -330,7 +331,7 @@ class Product {
           'Carrefour': "https://www.carrefouregypt.com/",
         },
         producer: "Juhayna",
-        image: "assets/images/milk-1.png",
+        images: ["assets/images/milk-1.png"],
         category: Category.all[5]),
     Product(
         id: 10,
@@ -362,7 +363,7 @@ class Product {
           'Carrefour': "https://www.carrefouregypt.com/",
         },
         producer: "Juhayna",
-        image: "assets/images/cadbury.png",
+        images: ["assets/images/cadbury.png"],
         category: Category.all[5]),
     Product(
         id: 11,
@@ -394,7 +395,7 @@ class Product {
           'Carrefour': "https://www.carrefouregypt.com/",
         },
         producer: "Juhayna",
-        image: "assets/images/milk-1.png",
+        images: ["assets/images/milk-1.png"],
         category: Category.all[6]),
     Product(
         id: 12,
@@ -426,7 +427,7 @@ class Product {
           'Carrefour': "https://www.carrefouregypt.com/",
         },
         producer: "Juhayna",
-        image: "assets/images/milk-1.png",
+        images: ["assets/images/milk-1.png"],
         category: Category.all[6]),
   ];
 }

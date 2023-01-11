@@ -38,19 +38,17 @@ class EditingFormState extends State<EditingForm> {
 
   @override
   Widget build(BuildContext context) {
-
-
     // Build a Form widget using the _formKey created above.
     return Form(
       key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          
-            Container(
-              height: 400,
-              child: Image.asset(this.widget.product.image, fit: BoxFit.fitWidth),
-            ),
+          Container(
+            height: 400,
+            child: Image.asset(this.widget.product.images[0],
+                fit: BoxFit.fitWidth),
+          ),
           Padding(
             padding: const EdgeInsets.all(20.0),
             child:

@@ -1,11 +1,15 @@
+import 'package:carousel_slider/carousel_options.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:like_button/like_button.dart';
 import '../../models/product.dart';
+import '../home/components/fav_icon.dart';
 import 'components/alternative_products_tab.dart';
 import 'components/nutritional_facts_tab.dart';
 import 'components/online_stores_tab.dart';
+import 'components/product_image_carousel.dart';
 import 'components/tab_bar.dart';
 
 class ProductPage extends StatelessWidget {
@@ -28,60 +32,51 @@ class ProductPage extends StatelessWidget {
                   sliver: SliverPadding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                     sliver: SliverAppBar(
-                        elevation: 0,
+                        backgroundColor: Theme.of(context).canvasColor,
+                        stretch: true,
                         pinned: true,
+                        elevation: 0,
                         automaticallyImplyLeading: false,
+                        stretchTriggerOffset: 100,
                         expandedHeight: 600.0,
-                        collapsedHeight: 150,
-                        flexibleSpace: Container(
-                            color: Theme.of(context).canvasColor,
-                            child: Stack(children: [
-                              Positioned(
-                                top: 0,
-                                right: 0,
-                                left: 0,
-                                child: Column(children: <Widget>[
-                                  // Transform.scale(
-                                  //   scaleX: 2.8,
-                                  //   scaleY: 1.8,
-                                  //   child: SizedBox(
-                                  //     height: 370,
-                                  //     width: 500,
-                                  //     child: blobSVG,
-                                  //   ),
-                                  // ),
-                                  Center(
-                                      child: Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          20, 0, 20, 0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          IconButton(
-                                              onPressed: () => context.go('/'),
-                                              icon: Image.asset(
-                                                  'assets/images/backbtn.png')),
-                                          LikeButton()
-                                        ],
-                                      ),
+                        collapsedHeight: 100,
+                        leading: IconButton(
+                            onPressed: () => context.pop(),
+                            icon: Image.asset('assets/images/backbtn.png')),
+                        actions: [FavIcon(product: product)],
+                        flexibleSpace: FlexibleSpaceBar(
+                          centerTitle: true,
+                          collapseMode: CollapseMode.parallax,
+                          expandedTitleScale: 2,
+                          titlePadding: EdgeInsets.fromLTRB(0, 0, 0, 80),
+                          title: Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      product.name,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge,
+                                      textScaleFactor: 0.7,
                                     ),
-                                  ))
-                                ]),
-                              ),
-                              Align(
-                                alignment: Alignment(
-                                    //little padding
-                                    0,
-                                    0),
-                                child: Container(
-                                  height:
-                                      MediaQuery.of(context).size.height / 3,
-                                  child: Image.asset(product.image),
+                                  ],
                                 ),
-                              ),
-                            ])),
+                                Text(
+                                  product.servingSize,
+                                  style: Theme.of(context).textTheme.bodySmall,
+                                ),
+                              ]),
+                          background: Container(
+                            child: ProductCarouselSlider(product),
+                          ),
+                          stretchModes: [
+                            StretchMode.zoomBackground,
+                            StretchMode.blurBackground
+                          ],
+                        ),
                         bottom: ProductTabBar(product: product)),
                   ))
             ];
@@ -103,98 +98,6 @@ class ProductPage extends StatelessWidget {
   }
 }
 
-class MySliverHeaderDelegate extends SliverPersistentHeaderDelegate {
-  final double _maxExtent = 450;
-  final VoidCallback onActionTap;
-  final Product product;
-
-  final Widget blobSVG =
-      SvgPicture.asset('assets/images/blob.svg', semanticsLabel: 'Blob');
-  MySliverHeaderDelegate({
-    required this.onActionTap,
-    required this.product,
-  });
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    debugPrint(shrinkOffset.toString());
-    return Container(
-        child: Stack(children: [
-      Positioned(
-        top: 0,
-        right: 0,
-        left: 0,
-        child: Column(children: <Widget>[
-          // Transform.scale(
-          //   scaleX: 2.8,
-          //   scaleY: 1.8,
-          //   child: SizedBox(
-          //     height: 370,
-          //     width: 500,
-          //     child: blobSVG,
-          //   ),
-          // ),
-          Center(
-              child: Expanded(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                            onPressed: () => context.go('/'),
-                            icon: Image.asset('assets/images/backbtn.png')),
-                        LikeButton()
-                      ],
-                    ),
-                  ),
-                ]),
-          ))
-        ]),
-      ),
-      Align(
-        alignment: Alignment(
-            //little padding
-            0,
-            0),
-        child: Container(
-          height: MediaQuery.of(context).size.height / 3,
-          child: Image.asset(product.image),
-        ),
-      ),
-      Align(
-        alignment: Alignment(
-            //little padding
-            0,
-            0.5 - shrinkOffset / 2000),
-        child: Text(
-          product.name,
-          style: TextStyle(
-              fontFamily: "Ubuntu",
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Color.fromARGB(
-                  (shrinkOffset.toInt() - 255).abs(), 32, 69, 83)),
-        ),
-      ),
-      // here provide actions
-    ]));
-  }
-
-  @override
-  double get maxExtent => _maxExtent;
-
-  @override
-  double get minExtent => 200;
-
-  @override
-  bool shouldRebuild(covariant MySliverHeaderDelegate oldDelegate) {
-    return oldDelegate != this;
-  }
-}
     /*Align(
         alignment: Alignment.topCenter,
         child: Container(

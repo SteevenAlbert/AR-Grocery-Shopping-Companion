@@ -185,7 +185,7 @@ class AddingFormState extends State<AddingForm> {
                               "PROCNT": {"amount": 67.51, "unit": "g"},
                             },
                             producer: producer,
-                            image: "assets/images/cadbury.png"));
+                            images: ["assets/images/cadbury.png"]));
 
                         GoRouter.of(context).pop();
                         GoRouter.of(context).push('/products_dashboard');
