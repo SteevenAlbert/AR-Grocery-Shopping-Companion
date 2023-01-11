@@ -108,7 +108,7 @@ class ProductPage extends StatelessWidget {
               OnlineStores(product: product),
               ProductDetails(product: product),
               //NutritionalFacts(product: product),
-              alternativeProducts(context),
+              AlternativeProducts(),
             ]),
           ),
         ),
