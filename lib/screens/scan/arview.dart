@@ -1,8 +1,12 @@
 import 'package:ar_grocery_companion/constants/keys.dart';
 import 'package:ar_grocery_companion/models/sample.dart';
+import 'package:augmented_reality_plugin_wikitude/wikitude_response.dart';
 import 'package:flutter/material.dart';
 
 import 'package:augmented_reality_plugin_wikitude/architect_widget.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../models/product.dart';
 
 class ARView extends StatefulWidget {
   final Sample sample;
@@ -73,6 +77,8 @@ class _ARViewState extends State<ARView> with WidgetsBindingObserver {
   Future<void> onArchitectWidgetCreated() async {
     architectWidget.load(loadPath, onLoadSuccess, onLoadFailed);
     architectWidget.resume();
+
+    this.architectWidget.setJSONObjectReceivedCallback(onJSONObjectReceived);
   }
 
   Future<void> onLoadSuccess() async {
@@ -82,5 +88,38 @@ class _ARViewState extends State<ARView> with WidgetsBindingObserver {
   Future<void> onLoadFailed(String error) async {
     loadFailed = true;
     architectWidget.showAlert("Failed to load Architect World", error);
+  }
+
+  Future<void> captureScreen() async {
+    WikitudeResponse captureScreenResponse =
+        await this.architectWidget.captureScreen(true, "");
+    if (captureScreenResponse.success) {
+      this.architectWidget.showAlert(
+          "Success", "Image saved in: " + captureScreenResponse.message);
+    } else {
+      if (captureScreenResponse.message.contains("permission")) {
+        this
+            .architectWidget
+            .showAlert("Error", captureScreenResponse.message, true);
+      } else {
+        this.architectWidget.showAlert("Error", captureScreenResponse.message);
+      }
+    }
+  }
+
+  Future<void> onJSONObjectReceived(Map<String, dynamic> jsonObject) async {
+    if (jsonObject["action"] != null) {
+      switch (jsonObject["action"]) {
+        case "capture_screen":
+          captureScreen();
+          break;
+        case "product_details":
+          // GoRouter.of(context).go("/product/${jsonObject["product_id"]}");
+          // break;
+          GoRouter.of(context)
+              .go("/product_page", extra: Product.retrieveProduct(9));
+          break;
+      }
+    }
   }
 }

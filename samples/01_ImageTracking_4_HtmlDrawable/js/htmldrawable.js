@@ -12,7 +12,7 @@ var World = {
             Each target in the target collection is identified by its target name. By using this
             target name, it is possible to create an AR.ImageTrackable for every target in the target collection.
          */
-        this.targetCollectionResource = new AR.TargetCollectionResource("assets/magazine.wtc", {
+        this.targetCollectionResource = new AR.TargetCollectionResource("assets/tracker.wtc", {
             onError: World.onError
         });
 
@@ -108,7 +108,7 @@ var World = {
         */
         var weatherWidget = new AR.HtmlDrawable({
             uri: "assets/weather.html"
-        }, 0.25, {
+        }, 1, {
             viewportWidth: 320,
             viewportHeight: 100,
             backgroundColor: "#FFFFFF",
@@ -134,13 +134,20 @@ var World = {
             Use a specific target name to respond only to a certain target or use a wildcard to respond to any or a
             certain group of targets.
         */
-        this.pageOne = new AR.ImageTrackable(this.tracker, "pageOne", {
+        this.pageOne = new AR.ImageTrackable(this.tracker, "*", {
             drawables: {
                 cam: [overlayOne, pageOneButton, weatherWidget]
             },
             onImageRecognized: World.hideInfoBar,
             onError: World.onError
         });
+    },
+    captureScreen: function captureScreenFn() {
+        if (World.initialized) {
+            AR.platform.sendJSONObject({
+                action: "capture_screen"
+            });
+        }
     },
 
     onError: function onErrorFn(error) {
@@ -156,7 +163,9 @@ var World = {
 
         */
         options.onClick = function() {
-            AR.context.openInBrowser(url);
+         
+            //captureScreen();
+            AR.platform.sendJSONObject({action:"product_details"});
         };
         return new AR.ImageDrawable(this.imgButton, size, options);
     },
