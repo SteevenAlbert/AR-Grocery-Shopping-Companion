@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:ar_grocery_companion/domain/models/product/product.dart';
+import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
 import 'package:ar_grocery_companion/domain/models/product/product_decorator.dart';
 
 class MachineProduct extends ProductDecorator {
@@ -40,7 +40,7 @@ class MachineProduct extends ProductDecorator {
 
   factory MachineProduct.fromMap(Map<String, dynamic> map) {
     return MachineProduct(
-      product: Product.whichProduct(map),
+      product: ProductsRepository.selectProductFromMap(map),
       energyType: map['energyType'] as String,
       energy: map['energy'] as double,
       unit: map['unit'] as String,

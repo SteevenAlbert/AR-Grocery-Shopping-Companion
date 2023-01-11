@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:ar_grocery_companion/domain/models/product/product.dart';
+import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:ar_grocery_companion/domain/models/product/product_decorator.dart';
 
@@ -51,7 +51,7 @@ class FoodProduct extends ProductDecorator {
 
   factory FoodProduct.fromMap(Map<String, dynamic> map) {
     return FoodProduct(
-      product: Product.whichProduct(map),
+      product: ProductsRepository.selectProductFromMap(map),
       calories: map['calories'] as int,
       servingSize: map['servingSize'] as String,
       ingredients: List<String>.from((map['ingredients'] as List)),

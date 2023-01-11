@@ -70,34 +70,4 @@ abstract class Product {
       storesURLs.hashCode ^
       properties.hashCode;
   }
-
-  static Product whichProduct(Map map){
-    if (map.containsKey("product_base")){
-      var currMap = map["product_base"];
-      return ProductBase(id: currMap["id"], name: currMap["name"], imagePath: currMap["imagePath"], manufacturer: Company.fromMap(currMap["manufacturer"]), customCategory: CustomCategory.fromMap(currMap["customCategory"]));
-    }
-    else if (map.containsKey("food_product")){
-      var currMap = map["food_product"];
-      return FoodProduct.fromMap(currMap);
-    }
-    else if (map.containsKey("liquid_product")){
-      var currMap = map["liquid_product"];
-      return LiquidProduct.fromMap(currMap);
-    }
-    else if (map.containsKey("cleaning_product")){
-      var currMap = map["cleaning_product"];
-      return CleaningProduct.fromMap(currMap);
-    }
-    else if (map.containsKey("itemed_product")){
-      var currMap = map["itemed_product"];
-      return ItemedProduct.fromMap(currMap);
-    }
-    else if (map.containsKey("machine_product")){
-      var currMap = map["machine_product"];
-      return MachineProduct.fromMap(currMap);
-    }
-
-    return ProductBase(id: -1, name: "Nan", imagePath: "", manufacturer: Company(id: -1, name: ""), customCategory: CustomCategory(id: -1, name: ""));
-     
-  }
 }
