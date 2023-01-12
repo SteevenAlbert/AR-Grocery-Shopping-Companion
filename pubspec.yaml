@@ -37,9 +37,10 @@ dependencies:
   chip_list: ^2.2.3+7
   cloud_firestore: any
   cupertino_icons: ^1.0.2
-  favorite_button: ^0.0.4  
-  firebase_core: any
+  easy_sidemenu: ^0.4.1
+  favorite_button: ^0.0.4
   firebase_auth: ^4.2.2
+  firebase_core: any
   fl_chart: ^0.55.2
   flutter:
     sdk: flutter
@@ -64,14 +65,6 @@ dependencies:
   toast: ^0.3.0
   url_launcher: ^6.1.6
   wakelock: ^0.6.2
- 
-# flutter_native_splash:
-  # color: "#ffffff"
-  # image: assets/icon/app_logo.png
-
-# animated_native_splash:
-  # jsonFile: assets/splash/splash1.json
-  # jsonFile: assets/splash/splash2.json
 
 dev_dependencies:
   flutter_launcher_icons: ^0.11.0
@@ -102,6 +95,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/splash/
+    - assets/icon/
     - assets/images/
     - assets/images/background/
     - assets/images/heart/
