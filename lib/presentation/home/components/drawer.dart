@@ -34,6 +34,12 @@ class AccountState extends State<CustomDrawer> {
             onTap: () {
               context.push('/settings_page');
             }),
+        ListTile(
+            leading: Icon(Icons.admin_panel_settings),
+            title: Text("Admin"),
+            onTap: () {
+              context.push('/admin_homepage');
+            }),
         Expanded(
           child: Align(
             alignment: Alignment.bottomCenter,

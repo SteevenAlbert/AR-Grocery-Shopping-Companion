@@ -25,7 +25,6 @@ class _NavbarState extends State<Navbar> {
         HomePage(),
         ScanPage(),
         FavProductsPage(),
-        AdminHomePage(),
       ],
       items: _navBarsItems(),
       navBarStyle: NavBarStyle.style1,
@@ -50,12 +49,6 @@ class _NavbarState extends State<Navbar> {
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.favorite),
         title: ("Favorites"),
-        activeColorPrimary: Theme.of(context).primaryColor,
-        inactiveColorPrimary: Theme.of(context).disabledColor,
-      ),
-      PersistentBottomNavBarItem(
-        icon: const Icon(Icons.admin_panel_settings),
-        title: ("Admin"),
         activeColorPrimary: Theme.of(context).primaryColor,
         inactiveColorPrimary: Theme.of(context).disabledColor,
       ),

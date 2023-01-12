@@ -21,7 +21,7 @@ MaterialColor createMaterialColor(Color color) {
   return MaterialColor(color.value, swatch);
 }
 
-AppBar buildAppBar({context, title = ""}) {
+AppBar buildAppBar({required context, title = ""}) {
   return AppBar(
     title: Text(title),
     backgroundColor: Theme.of(context).canvasColor,

@@ -1,3 +1,4 @@
+import 'package:ar_grocery_companion/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -10,7 +11,7 @@ class SettingsPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     var themeMode = ref.watch(themeModeProvider);
     return Scaffold(
-      appBar: AppBar(title: const Text("Preferences")),
+      appBar: buildAppBar(context: context, title: "Settings"),
       body: ListView(
         children: [
           ListTile(
