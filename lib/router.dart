@@ -9,6 +9,7 @@ import 'package:ar_grocery_companion/presentation/admin/products/edit_product_pa
 import 'package:ar_grocery_companion/presentation/admin/home/admin_home_page.dart';
 import 'package:ar_grocery_companion/presentation/admin/products/add_product_page.dart';
 import 'package:ar_grocery_companion/presentation/admin/products/products_dashboard.dart';
+import 'package:ar_grocery_companion/presentation/authentication/authentication.dart';
 import 'package:ar_grocery_companion/presentation/main_page.dart';
 import 'package:ar_grocery_companion/presentation/product_info/product_page.dart';
 import 'package:ar_grocery_companion/presentation/scan/arview.dart';
@@ -27,15 +28,8 @@ class MyRouter {
       GoRoute(path: '/', builder: (context, state) => const SplashScreen()),
       //Add Routes Here
       GoRoute(
-          path: '/authenticate', builder: (context, state) => const MainPage()),
-      //else if session loggedIn as admin
-      // GoRoute(
-      //   path: '/authenticate',
-      //   builder: (context, state) => const AdminHomePage()),
-      //else if session not loggedIn
-      // GoRoute(
-      //     path: '/authenticate',
-      //     builder: (context, state) => const AuthenticationPage()),
+          path: '/authenticate',
+          builder: (context, state) => const AuthenticationPage()),
       GoRoute(
           path: '/customer_homepage',
           builder: (context, state) => const MainPage()),
@@ -47,7 +41,6 @@ class MyRouter {
           path: '/product_page',
           builder: (context, state) =>
               ProductPage(product: state.extra as Product)),
-
       GoRoute(
           path: '/profile_page',
           builder: (context, state) => const ProfilePage()),

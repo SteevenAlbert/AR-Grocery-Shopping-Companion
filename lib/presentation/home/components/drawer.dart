@@ -17,16 +17,22 @@ class AccountState extends State<CustomDrawer> {
       margin: EdgeInsets.only(left: 5, top: 35, right: 5, bottom: 35),
       child: Column(mainAxisSize: MainAxisSize.max, children: [
         ListTile(
-            leading: Icon(Icons.settings),
-            title: Text("Settings"),
+            leading: Icon(Icons.account_circle),
+            title: Text("Personal Details"),
             onTap: () {
-              context.push('/settings_page');
+              context.push('/profile_page');
             }),
         ListTile(
             leading: Icon(Icons.apartment),
             title: Text("Manufacturers"),
             onTap: () {
               context.push('/companies_list_page');
+            }),
+        ListTile(
+            leading: Icon(Icons.settings),
+            title: Text("Settings"),
+            onTap: () {
+              context.push('/settings_page');
             }),
         Expanded(
           child: Align(

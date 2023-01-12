@@ -29,7 +29,7 @@ class LogInPageState extends State<AuthenticationPage> {
             boxShadow: [
               BoxShadow(
                 // color: Colors.grey.withOpacity(0.25),
-                color: Colors.white.withOpacity(0.25),
+                color: Theme.of(context).canvasColor.withOpacity(0.25),
                 spreadRadius: 200,
                 blurRadius: 0,
                 offset: Offset(-30, -100),
@@ -39,7 +39,7 @@ class LogInPageState extends State<AuthenticationPage> {
           child: Container(
               padding: EdgeInsets.only(top: 20, bottom: 0, left: 20, right: 20),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).canvasColor,
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(60),
                     topRight: Radius.circular(60),
@@ -50,9 +50,9 @@ class LogInPageState extends State<AuthenticationPage> {
                   //----- Nav Bar -----//
                   Container(
                 margin: EdgeInsets.only(left: 3, right: 3, top: 3),
-                color: Colors.white,
+                color: Theme.of(context).canvasColor,
                 child: PersistentTabView(
-                  backgroundColor: Colors.white,
+                  backgroundColor: Theme.of(context).canvasColor,
                   context,
                   controller: _controller,
                   screens: _buildScreens(),
@@ -84,13 +84,13 @@ List<PersistentBottomNavBarItem> _navBarsItems(context) {
       icon: const Icon(Icons.login),
       title: ('Log In'),
       activeColorPrimary: Theme.of(context).primaryColor,
-      inactiveColorPrimary: Colors.black,
+      inactiveColorPrimary: Theme.of(context).disabledColor,
     ),
     PersistentBottomNavBarItem(
       icon: const Icon(Icons.account_box_rounded),
       title: ('Register'),
       activeColorPrimary: Theme.of(context).primaryColor,
-      inactiveColorPrimary: Colors.black,
+      inactiveColorPrimary: Theme.of(context).disabledColor,
     ),
   ];
 }

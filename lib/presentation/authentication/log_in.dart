@@ -50,7 +50,7 @@ class LogInScreenState extends State<LogInScreen> {
     return Form(
       key: _formKey,
       child: Container(
-        color: Colors.white,
+        color: Theme.of(context).canvasColor,
         child: ListView(shrinkWrap: false, children: [
           Center(child: customTitle(context: context, text: "Log In")),
           customTextFormField(

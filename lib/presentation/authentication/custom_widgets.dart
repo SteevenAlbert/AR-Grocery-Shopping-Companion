@@ -14,7 +14,7 @@ Widget customTitle({
             fontFamily: "Ubuntu",
             fontSize: 33,
             fontWeight: FontWeight.bold,
-            color: Colors.black),
+            color: Theme.of(context).secondaryHeaderColor),
       ));
 }
 
@@ -52,31 +52,13 @@ Widget customTextFormField({
             return errorMessage3;
           }
         }
-        bool unique = false;
-        if (unique_username) {
-          () async {
-            Future<bool> IsUserUnique() async {
-              return await FirebaseFirestore.instance
-                  .collection('users')
-                  .where('name', isEqualTo: value)
-                  .get()
-                  .then((list) => list.size > 0 ? false : true);
-            }
 
-            (await IsUserUnique()) ? unique = false : unique = true;
-          };
-        }
-        if (!unique) return "Username already taken.";
         return null;
       },
       obscureText: obscureText!,
       decoration: InputDecoration(
         labelText: labelText,
         border: OutlineInputBorder(
-          borderSide: BorderSide(
-            width: 1.0,
-            color: Theme.of(context).primaryColorDark,
-          ),
           borderRadius: BorderRadius.circular(12),
         ),
         suffixIcon: InkWell(
@@ -134,7 +116,7 @@ Widget customAnimatedButton({
           text,
           style: TextStyle(
             fontSize: 23,
-            color: Colors.white,
+            color: Theme.of(context).canvasColor,
             fontWeight: FontWeight.w500,
           ),
         ),

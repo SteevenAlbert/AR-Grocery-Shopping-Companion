@@ -23,6 +23,8 @@ class RegisterScreenState extends State<RegisterScreen> {
 
   bool _isHidden = true;
   int groupValue = -1;
+  bool isLoading = false;
+  bool isUnique = true;
 
   @override
   void initState() {
@@ -52,13 +54,40 @@ class RegisterScreenState extends State<RegisterScreen> {
   }
 
   void _register() async {
-    print(groupValue);
+    // await Future.delayed(const Duration(seconds: 5));
+    setState(() {
+      isLoading = true;
+    });
+    (() async {
+      Future<bool> IsUserUnique() async {
+        return await FirebaseFirestore.instance
+            .collection('users')
+            .where('name', isEqualTo: usernameController.text)
+            .get()
+            .then((list) => list.size > 0 ? false : true);
+      }
+
+      if (await IsUserUnique()) {
+        setState(() {
+          isUnique = true;
+        });
+      }
+      ;
+      print(await IsUserUnique());
+    })()
+        .then((value) {
+      setState(() {
+        isUnique = isUnique;
+        isLoading = false;
+      });
+    });
 
     if (_formKey.currentState!.validate()) {
       //...create new user...//
+// DateTime.now().year-dateController.year
+//if groupValue == 0 other, == 1 female, == 2 male
 
       final docUser = FirebaseFirestore.instance.collection('users').doc();
-
       final json = {
         'name': "Steven!!!",
         'age': 21,
@@ -78,7 +107,7 @@ class RegisterScreenState extends State<RegisterScreen> {
     return Form(
       key: _formKey,
       child: Container(
-        color: Colors.white,
+        color: Theme.of(context).canvasColor,
         child: ListView(children: [
           Center(
             child: customTitle(context: context, text: "Register"),
@@ -101,6 +130,24 @@ class RegisterScreenState extends State<RegisterScreen> {
             icon: Icons.person,
             unique_username: true,
           ),
+          Container(
+              child: (!isLoading)
+                  ? ((isUnique)
+                      ? const SizedBox(
+                          width: 0,
+                          height: 0,
+                        )
+                      : const SizedBox(
+                          width: 5,
+                          height: 5,
+                          child: Text(
+                            "Username is already taken.",
+                            style: TextStyle(color: Colors.red, fontSize: 15),
+                          )))
+                  : SizedBox(
+                      width: 0,
+                      height: 0,
+                    )),
           customTextFormField(
             context: context,
             controller: passwordController,
