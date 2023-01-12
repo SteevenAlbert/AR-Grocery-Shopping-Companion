@@ -1,0 +1,475 @@
+{
+    "products": [
+        {
+            "liquid_product": {
+                "volume": 100.0,
+                "unit": "mL",
+                "food_product": {
+                    "calories": 20,
+                    "servingSize": "200ml",
+                    "ingredients": [
+                        "Non-fat Milk",
+                        "Vitamin A Palmitate",
+                        "VVitamin D3"
+                    ],
+                    "allergyInfo": [
+                        "Lactose"
+                    ],
+                    "nutrients": {
+                        "FAT": {
+                            "amount": 12.51,
+                            "unit": "g"
+                        },
+                        "SATFAT": {
+                            "amount": 4.51,
+                            "unit": "g"
+                        },
+                        "TRANSFAT": {
+                            "amount": 0,
+                            "unit": "g"
+                        },
+                        "CHOLE": {
+                            "amount": 6.51,
+                            "unit": "mg"
+                        },
+                        "NA": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        },
+                        "CHOCDF": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        },
+                        "FIBTG": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        },
+                        "SUGAR": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        },
+                        "PROCNT": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        }
+                    },
+                    "product_base": {
+                        "id": "0",
+                        "name": "Skimmed Milk",
+                        "images": [
+                            "assets/images/milk-1.png"
+                        ],
+                        "manufacturer": {
+                            "id": "0",
+                            "name": "Juhayna"
+                        },
+                        "customCategory": {
+                            "id": "1",
+                            "name": "Dairy"
+                        },
+                        "prices": {
+                            "Noon": "45",
+                            "Amazon": "30",
+                            "Jumia": "38",
+                            "Carrefour": "40"
+                        },
+                        "storesURLs": {
+                            "Amazon": "https://www.amazon.eg/",
+                            "Noon": "https://www.noon.com/egypt-en/",
+                            "Jumia": "https://www.jumia.com/",
+                            "Carrefour": "https://www.carrefouregypt.com/"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "cleaning_product": {
+                "materialCleaned": [
+                    "wood",
+                    "glass"
+                ],
+                "liquid_product": {
+                    "volume": 100.0,
+                    "unit": "mL",
+                    "product_base": {
+                        "id": "1",
+                        "name": "Lemon pledge",
+                        "images": [
+                            "assets/images/lemon_pledge.png"
+                        ],
+                        "manufacturer": {
+                            "id": "1",
+                            "name": "Pledge"
+                        },
+                        "customCategory": {
+                            "id": "2",
+                            "name": "Home Care"
+                        },
+                        "prices": {
+                            "Noon": "45",
+                            "Amazon": "30",
+                            "Jumia": "38",
+                            "Carrefour": "40"
+                        },
+                        "storesURLs": {
+                            "Amazon": "https://www.amazon.eg/",
+                            "Noon": "https://www.noon.com/egypt-en/",
+                            "Jumia": "https://www.jumia.com/",
+                            "Carrefour": "https://www.carrefouregypt.com/"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "cleaning_product": {
+                "materialCleaned": [
+                    "hands",
+                    "surfaces"
+                ],
+                "itemed_product": {
+                    "noOfItems": 5,
+                    "product_base": {
+                        "id": "2",
+                        "name": "Fine tissue",
+                        "images": [
+                            "assets/images/fine_pack.png"
+                        ],
+                        "manufacturer": {
+                            "id": "2",
+                            "name": "Fine"
+                        },
+                        "customCategory": {
+                            "id": "3",
+                            "name": "Personal Care"
+                        },
+                        "prices": {
+                            "Noon": "45",
+                            "Amazon": "30",
+                            "Jumia": "38",
+                            "Carrefour": "40"
+                        },
+                        "storesURLs": {
+                            "Amazon": "https://www.amazon.eg/",
+                            "Noon": "https://www.noon.com/egypt-en/",
+                            "Jumia": "https://www.jumia.com/",
+                            "Carrefour": "https://www.carrefouregypt.com/"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "itemed_product": {
+                "noOfItems": 24,
+                "food_product": {
+                    "calories": 20,
+                    "servingSize": "200ml",
+                    "ingredients": [
+                        "Non-fat Milk",
+                        "Vitamin A Palmitate",
+                        "VVitamin D3"
+                    ],
+                    "allergyInfo": [
+                        "Lactose",
+                        "Peanuts",
+                        "Gluten"
+                    ],
+                    "nutrients": {
+                        "FAT": {
+                            "amount": 12.51,
+                            "unit": "g"
+                        },
+                        "SATFAT": {
+                            "amount": 4.51,
+                            "unit": "g"
+                        },
+                        "TRANSFAT": {
+                            "amount": 0,
+                            "unit": "g"
+                        },
+                        "CHOLE": {
+                            "amount": 6.51,
+                            "unit": "mg"
+                        },
+                        "NA": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        },
+                        "CHOCDF": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        },
+                        "FIBTG": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        },
+                        "SUGAR": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        },
+                        "PROCNT": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        }
+                    },
+                    "product_base": {
+                        "id": "3",
+                        "name": "Snickers box",
+                        "images": [
+                            "assets/images/snickers_pack.png"
+                        ],
+                        "manufacturer": {
+                            "id": "3",
+                            "name": "Mars, Incorporated"
+                        },
+                        "customCategory": {
+                            "id": "4",
+                            "name": "Snakcs"
+                        },
+                        "prices": {
+                            "Noon": "45",
+                            "Amazon": "30",
+                            "Jumia": "38",
+                            "Carrefour": "40"
+                        },
+                        "storesURLs": {
+                            "Amazon": "https://www.amazon.eg/",
+                            "Noon": "https://www.noon.com/egypt-en/",
+                            "Jumia": "https://www.jumia.com/",
+                            "Carrefour": "https://www.carrefouregypt.com/"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "liquid_product": {
+                "volume": 100.0,
+                "unit": "mL",
+                "food_product": {
+                    "calories": 20,
+                    "servingSize": "200ml",
+                    "ingredients": [
+                        "Non-fat Milk",
+                        "Vitamin A Palmitate",
+                        "VVitamin D3"
+                    ],
+                    "allergyInfo": [
+                        "Lactose"
+                    ],
+                    "nutrients": {
+                        "FAT": {
+                            "amount": 12.51,
+                            "unit": "g"
+                        },
+                        "SATFAT": {
+                            "amount": 4.51,
+                            "unit": "g"
+                        },
+                        "TRANSFAT": {
+                            "amount": 0,
+                            "unit": "g"
+                        },
+                        "CHOLE": {
+                            "amount": 6.51,
+                            "unit": "mg"
+                        },
+                        "NA": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        },
+                        "CHOCDF": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        },
+                        "FIBTG": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        },
+                        "SUGAR": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        },
+                        "PROCNT": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        }
+                    },
+                    "product_base": {
+                        "id": "4",
+                        "name": "Full-cream Milk",
+                        "images": [
+                            "assets/images/milk-2.png"
+                        ],
+                        "manufacturer": {
+                            "id": "0",
+                            "name": "Juhayna"
+                        },
+                        "customCategory": {
+                            "id": "1",
+                            "name": "Dairy"
+                        },
+                        "prices": {
+                            "Noon": "45",
+                            "Amazon": "30",
+                            "Jumia": "38",
+                            "Carrefour": "40"
+                        },
+                        "storesURLs": {
+                            "Amazon": "https://www.amazon.eg/",
+                            "Noon": "https://www.noon.com/egypt-en/",
+                            "Jumia": "https://www.jumia.com/",
+                            "Carrefour": "https://www.carrefouregypt.com/"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "liquid_product": {
+                "volume": 100.0,
+                "unit": "mL",
+                "food_product": {
+                    "calories": 20,
+                    "servingSize": "200ml",
+                    "ingredients": [
+                        "Non-fat Milk",
+                        "Vitamin A Palmitate",
+                        "VVitamin D3"
+                    ],
+                    "allergyInfo": [
+                        "Lactose"
+                    ],
+                    "nutrients": {
+                        "FAT": {
+                            "amount": 12.51,
+                            "unit": "g"
+                        },
+                        "SATFAT": {
+                            "amount": 4.51,
+                            "unit": "g"
+                        },
+                        "TRANSFAT": {
+                            "amount": 0,
+                            "unit": "g"
+                        },
+                        "CHOLE": {
+                            "amount": 6.51,
+                            "unit": "mg"
+                        },
+                        "NA": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        },
+                        "CHOCDF": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        },
+                        "FIBTG": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        },
+                        "SUGAR": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        },
+                        "PROCNT": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        }
+                    },
+                    "product_base": {
+                        "id": "5",
+                        "name": "Greek Youghurt",
+                        "images": [
+                            "assets/images/greek.png"
+                        ],
+                        "manufacturer": {
+                            "id": "0",
+                            "name": "Juhayna"
+                        },
+                        "customCategory": {
+                            "id": "1",
+                            "name": "Dairy"
+                        },
+                        "prices": {
+                            "Noon": "45",
+                            "Amazon": "30",
+                            "Jumia": "38",
+                            "Carrefour": "40"
+                        },
+                        "storesURLs": {
+                            "Amazon": "https://www.amazon.eg/",
+                            "Noon": "https://www.noon.com/egypt-en/",
+                            "Jumia": "https://www.jumia.com/",
+                            "Carrefour": "https://www.carrefouregypt.com/"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "categories":[
+        {
+            "id": "1",
+            "name": "Dairy"
+        },
+        {
+            "id": "2",
+            "name": "Home Care"
+        },
+        {
+            "id": "3",
+            "name": "Personal Care"
+        },
+        {
+            "id": "4",
+            "name": "Snakcs"
+        }
+    ],
+    "companies":[
+        {
+            "id": "0",
+            "name": "Juhayna",
+            "country": {
+                "id":"0",
+                "name":"Egypt"
+            },
+            "logoPath": "assets/images/juhayna-logo.png",
+            "url": "https://www.juhayna.com/"
+        },
+        {
+            "id": "1",
+            "name": "Pledge",
+            "country": {
+                "id":"1",
+                "name":"United States"
+            },
+            "logoPath": "assets/images/pledge-logo.png",
+            "url": "https://www.pledge.com/"
+        },
+        {
+            "id": "2",
+            "name": "Fine",
+            "country": {
+                "id":"1",
+                "name":"United States"
+            },
+            "logoPath": "assets/images/fine-logo.png",
+            "url": "https://www.finetissues.com/"
+        },
+        {
+            "id": "3",
+            "name": "Mars, Incorporated",
+            "country": {
+                "id":"1",
+                "name":"United States"
+            },
+            "logoPath": "assets/images/mars-logo.png",
+            "url": "https://www.mars.com/"
+        }
+    ],
+    "users":[]
+}
