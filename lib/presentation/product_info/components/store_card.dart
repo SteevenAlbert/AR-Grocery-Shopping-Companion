@@ -10,7 +10,7 @@ Widget storeCard(
   }
 
   return InkWell(
-    onTap: () => _launchUrl(_url),
+    onTap: () => _launchUrl(Uri.parse(_url)),
     child: Column(
       children: [
         Row(

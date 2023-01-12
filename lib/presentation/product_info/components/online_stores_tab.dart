@@ -47,10 +47,10 @@ class OnlineStores extends StatelessWidget {
               print(snapshot.error);
               return Text('${snapshot.error}');
             }
-            return Container(
-                height: 100,
-                width: 100,
-                child: const CircularProgressIndicator());
+            return Center(
+              child: Container(
+                  width: 100, height: 100, child: CircularProgressIndicator()),
+            );
           }),
     );
   }
