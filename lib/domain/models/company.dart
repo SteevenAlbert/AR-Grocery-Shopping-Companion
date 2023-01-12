@@ -84,4 +84,8 @@ class Company {
       logoPath.hashCode ^
       url.hashCode;
   }
+
+  factory Company.empty() {
+    return Company(id: "-1", name: "Nan");
+  }
 }

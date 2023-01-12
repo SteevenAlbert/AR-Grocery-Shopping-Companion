@@ -22,6 +22,12 @@ class AccountState extends State<CustomDrawer> {
             onTap: () {
               context.push('/settings_page');
             }),
+        ListTile(
+            leading: Icon(Icons.apartment),
+            title: Text("Manufacturers"),
+            onTap: () {
+              context.push('/companies_list_page');
+            }),
         Expanded(
           child: Align(
             alignment: Alignment.bottomCenter,
