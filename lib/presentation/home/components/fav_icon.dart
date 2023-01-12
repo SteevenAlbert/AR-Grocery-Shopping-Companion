@@ -1,6 +1,6 @@
 import 'package:ar_grocery_companion/data/providers/theme_mode_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:ar_grocery_companion/domain/models/user/customer.dart';
+import 'package:ar_grocery_companion/data/providers/favs_provider.dart';
 import 'package:ar_grocery_companion/domain/models/product/product.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -26,6 +26,11 @@ class _FavIconState extends ConsumerState<FavIcon> {
             return Column(
               children: [
                 Container(
+                  decoration: BoxDecoration(
+                      color: darkMode == ThemeMode.light
+                          ? Colors.amber.withOpacity(0.1)
+                          : Theme.of(context).primaryColor.withOpacity(0.1),
+                      shape: BoxShape.circle),
                   child: IconButton(
                       onPressed: () {
                         if (isFavo) {
@@ -81,18 +86,10 @@ class _FavIconState extends ConsumerState<FavIcon> {
                                 ),
                         ));
                       },
-                      // icon: Icon(Icons.favorite,
-                      //     size: 25,
-                      //     color: isFavo
-                      //         ? Colors.red
-                      //         : (darkMode == ThemeMode.light
-                      //             ? Colors.amber.withOpacity(0.4)
-                      //             : Theme.of(context).primaryColor)))
-
                       icon: isFavo
-                          ? Icon(Icons.favorite, size: 35, color: Colors.red)
+                          ? Icon(Icons.favorite, size: 25, color: Colors.red)
                           : Icon(Icons.favorite_border,
-                              size: 30,
+                              size: 25,
                               color: darkMode == ThemeMode.light
                                   ? Colors.amber.withOpacity(0.4)
                                   : Theme.of(context).primaryColor)),

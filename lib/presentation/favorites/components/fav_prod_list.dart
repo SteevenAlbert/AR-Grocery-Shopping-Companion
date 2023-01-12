@@ -1,6 +1,6 @@
 import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:ar_grocery_companion/domain/models/user/customer.dart';
+import 'package:ar_grocery_companion/data/providers/favs_provider.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'fav_prod_tile.dart';
