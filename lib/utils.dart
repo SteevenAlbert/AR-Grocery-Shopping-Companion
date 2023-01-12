@@ -20,3 +20,12 @@ MaterialColor createMaterialColor(Color color) {
   ;
   return MaterialColor(color.value, swatch);
 }
+
+AppBar buildAppBar({context, title = ""}) {
+  return AppBar(
+    title: Text(title),
+    backgroundColor: Theme.of(context).canvasColor,
+    foregroundColor: Theme.of(context).primaryColor,
+    elevation: 0,
+  );
+}

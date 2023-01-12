@@ -1,3 +1,4 @@
+import 'package:ar_grocery_companion/data/repositories/categories_repository.dart';
 import 'package:ar_grocery_companion/presentation/home/components/featured_products.dart';
 import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/domain/models/custom_category.dart';
@@ -15,7 +16,7 @@ class _Cat_TabsState extends State<Cat_Tabs>
   List<CustomCategory>? allcats;
   @override
   void initState() {
-    allcats = CustomCategory.all;
+    allcats = CategoriesRepository.instance.getCategories();
     allcats!.insert(0, CustomCategory(id: "0",name: "All"));
     _tabController = new TabController(length: allcats!.length, vsync: this);
     super.initState();
@@ -51,7 +52,7 @@ class _Cat_TabsState extends State<Cat_Tabs>
                       for (var i = 0; i < allcats!.length; i++)
                         FeaturedProducts(
                           size: widget.size,
-                          cat_index: i,
+                          cat_id: allcats?[i].id??"-1",
                         )
                     ],
                   ),

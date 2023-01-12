@@ -1,7 +1,5 @@
 import 'dart:convert';
 import 'package:ar_grocery_companion/constants/dummy_data.dart';
-import 'package:ar_grocery_companion/domain/models/company.dart';
-import 'package:ar_grocery_companion/domain/models/custom_category.dart';
 import 'package:ar_grocery_companion/domain/models/product/concrete_products/cleaning_product.dart';
 import 'package:ar_grocery_companion/domain/models/product/concrete_products/food_product.dart';
 import 'package:ar_grocery_companion/domain/models/product/concrete_products/itemed_product.dart';
@@ -48,6 +46,12 @@ class ProductsRepository {
     throw UnimplementedError();
   }
 
+  List<Product> getProductsListByManufacturer(String id) {
+    List<Product> tempList = [];
+    _products.forEach((Product element) { element.manufacturer.id == id? tempList.add(element):"";});
+    return tempList;
+  }
+
   Future<int> delete() async{
     // TODO: implement delete product
     throw UnimplementedError();
@@ -86,7 +90,7 @@ class ProductsRepository {
   // Generate and return a list of products from a .json file
   static Future<List<Product>> queryDummyJson() async {
     var input = await rootBundle.loadString("assets/dummy_data.json");
-    var list = jsonDecode(input);
+    var list = jsonDecode(input)["products"];
     List<Product> products = [];
 
     for (int i = 0; i < list.length; i++) {

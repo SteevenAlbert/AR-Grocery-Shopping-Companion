@@ -1,4 +1,7 @@
+import 'package:ar_grocery_companion/domain/models/company.dart';
 import 'package:ar_grocery_companion/domain/sample.dart';
+import 'package:ar_grocery_companion/presentation/companies/companies_list_page.dart';
+import 'package:ar_grocery_companion/presentation/companies/company_details.dart';
 import 'package:ar_grocery_companion/presentation/settings/settings_page.dart';
 import 'package:ar_grocery_companion/presentation/splash_screen.dart';
 import 'package:ar_grocery_companion/presentation/error_page.dart';
@@ -69,6 +72,15 @@ class MyRouter {
           path: '/edit_product_page',
           builder: (context, state) =>
               EditProductPage(product: state.extra as Product)),
+
+      GoRoute(
+          path: '/companies_list_page',
+          builder: (context, state) => const CompaniesListPage()),
+      GoRoute(
+          path: '/company_details',
+          builder: (context, state) =>
+              CompanyDetails(company: state.extra as Company)),
+
       GoRoute(
           name: 'ARView',
           path: '/arview',

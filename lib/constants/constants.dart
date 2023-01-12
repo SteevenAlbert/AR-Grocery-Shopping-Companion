@@ -23,3 +23,6 @@ Sample imageTrackingSample = Sample(
       cameraPosition: CameraPosition.BACK,
       cameraResolution: CameraResolution.AUTO),
 );
+
+// Error images
+String kNoLogoImg = "assets/no_logo.jpg";
