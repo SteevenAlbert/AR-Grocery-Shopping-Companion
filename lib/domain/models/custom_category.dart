@@ -63,4 +63,8 @@ class CustomCategory {
 
   // TODO: remove all list
   static List<CustomCategory> all = [];
+
+  factory CustomCategory.empty() {
+    return CustomCategory(id: "-1", name: "Nan");
+  }
 }

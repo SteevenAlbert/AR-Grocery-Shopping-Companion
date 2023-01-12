@@ -64,7 +64,7 @@
                             "name": "Juhayna"
                         },
                         "customCategory": {
-                            "id": "0",
+                            "id": "1",
                             "name": "Dairy"
                         },
                         "prices": {
@@ -103,7 +103,7 @@
                             "name": "Pledge"
                         },
                         "customCategory": {
-                            "id": "1",
+                            "id": "2",
                             "name": "Home Care"
                         },
                         "prices": {
@@ -141,7 +141,7 @@
                             "name": "Fine"
                         },
                         "customCategory": {
-                            "id": "2",
+                            "id": "3",
                             "name": "Personal Care"
                         },
                         "prices": {
@@ -225,7 +225,7 @@
                             "name": "Mars, Incorporated"
                         },
                         "customCategory": {
-                            "id": "3",
+                            "id": "4",
                             "name": "Snakcs"
                         },
                         "prices": {
@@ -308,7 +308,7 @@
                             "name": "Juhayna"
                         },
                         "customCategory": {
-                            "id": "0",
+                            "id": "1",
                             "name": "Dairy"
                         },
                         "prices": {
@@ -391,7 +391,7 @@
                             "name": "Juhayna"
                         },
                         "customCategory": {
-                            "id": "0",
+                            "id": "1",
                             "name": "Dairy"
                         },
                         "prices": {
@@ -413,19 +413,19 @@
     ],
     "categories":[
         {
-            "id": "0",
+            "id": "1",
             "name": "Dairy"
         },
         {
-            "id": "1",
+            "id": "2",
             "name": "Home Care"
         },
         {
-            "id": "2",
+            "id": "3",
             "name": "Personal Care"
         },
         {
-            "id": "3",
+            "id": "4",
             "name": "Snakcs"
         }
     ],
