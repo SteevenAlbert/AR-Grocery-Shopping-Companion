@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 import 'package:augmented_reality_plugin_wikitude/architect_widget.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../domain/models/product/product.dart';
 
 class ARView extends StatefulWidget {
