@@ -21,8 +21,7 @@ class User {
 
   //deleteAccount
 
-  static User? retrieveAccount(username, password) {
-    return users.firstWhere((element) =>
-        element.username == username && element.password == password);
+  static User? findEmailMatch(email) {
+    return users.firstWhere((element) => element.email == email);
   }
 }

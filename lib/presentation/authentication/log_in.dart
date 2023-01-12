@@ -13,7 +13,7 @@ class LogInScreen extends StatefulWidget {
 
 class LogInScreenState extends State<LogInScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey();
-  TextEditingController usernameController = new TextEditingController();
+  TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
 
   bool _isHidden = true;
@@ -25,15 +25,15 @@ class LogInScreenState extends State<LogInScreen> {
 
   void _logIn() async {
     if (_formKey.currentState!.validate()) {
-      User? user = User.retrieveAccount(
-          usernameController.text, passwordController.text);
+      User? user = User.findEmailMatch(emailController.text);
       // User? user = User.fromJson();
 
       if (user == null) {
-        //...validation error; wrong creds...//
+        //... email creds doesn't exist...//
+      } else if (user.password != passwordController.text) {
+        //... password wrong ...//
       } else {
         var sessionManager = SessionManager();
-        print("ALO");
 
         await sessionManager.set("type", user.type);
         await sessionManager.set("isLoggedIn", true);
@@ -54,11 +54,15 @@ class LogInScreenState extends State<LogInScreen> {
         child: ListView(shrinkWrap: false, children: [
           Center(child: customTitle(context: context, text: "Log In")),
           customTextFormField(
-              context: context,
-              controller: usernameController,
-              labelText: "Username",
-              icon: Icons.person,
-              errorMessage: 'Please enter your username.'),
+            context: context,
+            controller: emailController,
+            labelText: "Email",
+            icon: Icons.mail,
+            errorMessage: 'Please enter your email.',
+            regex:
+                r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$',
+            errorMessage2: "Email format is incorrect.",
+          ),
           customTextFormField(
             context: context,
             controller: passwordController,

@@ -15,7 +15,7 @@ class RegisterScreen extends StatefulWidget {
 class RegisterScreenState extends State<RegisterScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   TextEditingController emailController = new TextEditingController();
-  TextEditingController usernameController = new TextEditingController();
+  TextEditingController nameController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
@@ -54,34 +54,6 @@ class RegisterScreenState extends State<RegisterScreen> {
   }
 
   void _register() async {
-    // await Future.delayed(const Duration(seconds: 5));
-    setState(() {
-      isLoading = true;
-    });
-    (() async {
-      Future<bool> IsUserUnique() async {
-        return await FirebaseFirestore.instance
-            .collection('users')
-            .where('name', isEqualTo: usernameController.text)
-            .get()
-            .then((list) => list.size > 0 ? false : true);
-      }
-
-      if (await IsUserUnique()) {
-        setState(() {
-          isUnique = true;
-        });
-      }
-      ;
-      print(await IsUserUnique());
-    })()
-        .then((value) {
-      setState(() {
-        isUnique = isUnique;
-        isLoading = false;
-      });
-    });
-
     if (_formKey.currentState!.validate()) {
       //...create new user...//
 // DateTime.now().year-dateController.year
@@ -95,7 +67,7 @@ class RegisterScreenState extends State<RegisterScreen> {
 
       await docUser.set(json);
 
-//set session
+      //set session
       // ((await SessionManager().get("type") == 1)
       //     ? context.go('/customer_homepage')
       //     : context.go('/admin_homepage'));
@@ -114,6 +86,13 @@ class RegisterScreenState extends State<RegisterScreen> {
           ),
           customTextFormField(
             context: context,
+            controller: nameController,
+            errorMessage: 'Please enter your name.',
+            labelText: "Name",
+            icon: Icons.person,
+          ),
+          customTextFormField(
+            context: context,
             controller: emailController,
             errorMessage: 'Please enter your email.',
             regex:
@@ -122,32 +101,6 @@ class RegisterScreenState extends State<RegisterScreen> {
             labelText: "Email",
             icon: Icons.mail,
           ),
-          customTextFormField(
-            context: context,
-            controller: usernameController,
-            errorMessage: 'Please enter your username.',
-            labelText: "Username",
-            icon: Icons.person,
-            unique_username: true,
-          ),
-          Container(
-              child: (!isLoading)
-                  ? ((isUnique)
-                      ? const SizedBox(
-                          width: 0,
-                          height: 0,
-                        )
-                      : const SizedBox(
-                          width: 5,
-                          height: 5,
-                          child: Text(
-                            "Username is already taken.",
-                            style: TextStyle(color: Colors.red, fontSize: 15),
-                          )))
-                  : SizedBox(
-                      width: 0,
-                      height: 0,
-                    )),
           customTextFormField(
             context: context,
             controller: passwordController,
