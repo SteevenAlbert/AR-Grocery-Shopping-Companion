@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:animated_button/animated_button.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 Widget customTitle({
   required BuildContext context,
