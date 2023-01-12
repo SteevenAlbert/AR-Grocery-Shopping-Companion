@@ -1,4 +1,6 @@
+import 'package:ar_grocery_companion/data/helpers/db_helper.dart';
 import 'package:ar_grocery_companion/domain/models/product/product.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetails extends StatelessWidget {
