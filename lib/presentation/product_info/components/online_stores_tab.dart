@@ -15,7 +15,7 @@ class OnlineStores extends StatelessWidget {
       child: FutureBuilder(
           future: Future.wait([
             fetchAmazonPrice(product),
-            fetchJumiaPrice(product),
+            fetchSpinneysPrice(product),
           ]),
           builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
             if (snapshot.hasData) {
@@ -26,12 +26,15 @@ class OnlineStores extends StatelessWidget {
                       "assets/images/store_logos/amazon.png",
                       snapshot.data![0].prices['Amazon'],
                       product.storesURLs!["Amazon"]!),
-                  storeCard(context, "assets/images/store_logos/noon.png",
-                      product.prices!['Noon']!, product.storesURLs!["Noon"]!),
+                  storeCard(
+                      context,
+                      "assets/images/store_logos/spinneys.png",
+                      snapshot.data![1]?.prices['Spinneys']!,
+                      product.storesURLs!["Spinneys"]!),
                   storeCard(
                       context,
                       "assets/images/store_logos/jumia.png",
-                      snapshot.data![1].prices['Jumia'],
+                      product.prices!['Carrefour']!,
                       product.storesURLs!["Jumia"]!),
                   storeCard(
                       context,
@@ -44,7 +47,10 @@ class OnlineStores extends StatelessWidget {
               print(snapshot.error);
               return Text('${snapshot.error}');
             }
-            return const CircularProgressIndicator();
+            return Container(
+                height: 100,
+                width: 100,
+                child: const CircularProgressIndicator());
           }),
     );
   }

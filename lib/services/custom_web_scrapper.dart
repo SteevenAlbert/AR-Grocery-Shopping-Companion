@@ -3,20 +3,27 @@ import 'dart:typed_data';
 import '../constants/constants.dart';
 import '/domain/models/product/product.dart';
 
-Future<Product> fetchJumiaPrice(Product product) async {
+Future<Product?> fetchSpinneysPrice(Product product) async {
   String serverResponse = "";
+  var socket;
 
-  // Establish connection with the server.
-  final socket = await Socket.connect(webscraperVPSAddress, webscraperVPSPort);
-
-  // Send the URL to the server.
-  socket.write(product.storesURLs!["Jumia"]);
+  try {
+    // Establish connection with the server.
+    socket = (await Socket.connect(webscraperVPSAddress, webscraperVPSPort));
+    // Send the URL to the server.
+    socket.write(product.storesURLs!["Spinneys"]);
+  } on SocketException catch (e) {
+    return null;
+  }
 
   // Listen for the server response.
   await socket.listen(
     (Uint8List data) async {
       serverResponse = await String.fromCharCodes(data);
       print('Server: $serverResponse');
+      if (serverResponse == "404") {
+        return product;
+      }
     },
     onError: (error) {
       print(error);
@@ -30,13 +37,6 @@ Future<Product> fetchJumiaPrice(Product product) async {
 
   // Return the result
   await Future.delayed(const Duration(seconds: 2));
-  product.prices?["Jumia"] = serverResponse;
+  product.prices?["Spinneys"] = serverResponse;
   return product;
 }
-
-
-
-// Future<void> sendMessage(Socket socket, String message) async {
-//   print('Client: $message');
-//   socket.write(message);
-// }

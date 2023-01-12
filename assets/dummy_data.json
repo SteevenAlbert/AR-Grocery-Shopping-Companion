@@ -68,14 +68,14 @@
                             "name": "Dairy"
                         },
                         "prices": {
-                            "Noon": "45",
+                            "Spinneys": "45",
                             "Amazon": "30",
                             "Jumia": "38",
                             "Carrefour": "40"
                         },
                         "storesURLs": {
                             "Amazon": "https://www.amazon.eg/",
-                            "Noon": "https://www.noon.com/egypt-en/",
+                            "Spinneys": "https://spinneys-egypt.com/en/products/207639#/",
                             "Jumia": "https://www.jumia.com/",
                             "Carrefour": "https://www.carrefouregypt.com/"
                         }
@@ -107,15 +107,15 @@
                             "name": "Home Care"
                         },
                         "prices": {
-                            "Noon": "45",
+                            "Spinneys": "45",
                             "Amazon": "30",
                             "Jumia": "38",
                             "Carrefour": "40"
                         },
                         "storesURLs": {
-                            "Amazon": "https://www.amazon.eg/",
-                            "Noon": "https://www.noon.com/egypt-en/",
-                            "Jumia": "https://www.jumia.com/",
+                            "Amazon": "https://www.carrefouregypt.com/mafegy/en/furniture-polish/-ledge-furniture-polish-orange-300m/p/130222?list_name=search%7Cpledge",
+                            "Spinneys": "https://spinneys-egypt.com/en/products/106017#/",
+                            "Jumia": "https://spinneys-egypt.com/en/products/268972#/",
                             "Carrefour": "https://www.carrefouregypt.com/"
                         }
                     }
@@ -145,14 +145,14 @@
                             "name": "Personal Care"
                         },
                         "prices": {
-                            "Noon": "45",
+                            "Spinneys": "45",
                             "Amazon": "30",
                             "Jumia": "38",
                             "Carrefour": "40"
                         },
                         "storesURLs": {
                             "Amazon": "https://www.amazon.eg/",
-                            "Noon": "https://www.noon.com/egypt-en/",
+                            "Spinneys": "https://www.Spinneys.com/egypt-en/",
                             "Jumia": "https://www.jumia.com/",
                             "Carrefour": "https://www.carrefouregypt.com/"
                         }
@@ -229,14 +229,14 @@
                             "name": "Snakcs"
                         },
                         "prices": {
-                            "Noon": "45",
+                            "Spinneys": "45",
                             "Amazon": "30",
                             "Jumia": "38",
                             "Carrefour": "40"
                         },
                         "storesURLs": {
                             "Amazon": "https://www.amazon.eg/",
-                            "Noon": "https://www.noon.com/egypt-en/",
+                            "Spinneys": "https://spinneys-egypt.com/en/products/300793#/",
                             "Jumia": "https://www.jumia.com/",
                             "Carrefour": "https://www.carrefouregypt.com/"
                         }
@@ -312,14 +312,14 @@
                             "name": "Dairy"
                         },
                         "prices": {
-                            "Noon": "45",
+                            "Spinneys": "45",
                             "Amazon": "30",
                             "Jumia": "38",
                             "Carrefour": "40"
                         },
                         "storesURLs": {
                             "Amazon": "https://www.amazon.eg/",
-                            "Noon": "https://www.noon.com/egypt-en/",
+                            "Spinneys": "https://www.Spinneys.com/egypt-en/",
                             "Jumia": "https://www.jumia.com/",
                             "Carrefour": "https://www.carrefouregypt.com/"
                         }
@@ -395,14 +395,14 @@
                             "name": "Dairy"
                         },
                         "prices": {
-                            "Noon": "45",
+                            "Spinneys": "45",
                             "Amazon": "30",
                             "Jumia": "38",
                             "Carrefour": "40"
                         },
                         "storesURLs": {
                             "Amazon": "https://www.amazon.eg/",
-                            "Noon": "https://www.noon.com/egypt-en/",
+                            "Spinneys": "https://spinneys-egypt.com/en/products/388570#/",
                             "Jumia": "https://www.jumia.com/",
                             "Carrefour": "https://www.carrefouregypt.com/"
                         }

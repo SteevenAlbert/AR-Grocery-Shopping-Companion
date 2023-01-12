@@ -14,7 +14,7 @@ def get_price(URL):
   soup = BeautifulSoup(page.content, 'html.parser')
   
   # Find the element containing the price
-  price_element = soup.find(class_='css-168eikn')
+  price_element = soup.find(class_='product-price d-flex')
   
   # Extract the price from the element
   try:
@@ -23,10 +23,10 @@ def get_price(URL):
     print("Error Caught: AttributeError")
   
   price = price.partition("EGP ")[2]
-  price = price.partition("E")[0]
+  price = price.partition(" ")[0]
+  
   return price
 
 # Test the function
-
-price = get_price("https://www.carrefouregypt.com/mafegy/en/flavoured-yoghurt/almarai-yoghurt-strawberry-tart100g/p/468518?list_name=search%7C%25u0627%25u0644%25u0645%25u0631%25u0627%25u0639%25u064A")
+price = get_price("https://spinneys-egypt.com/en/products/106017#/")
 print(price)
