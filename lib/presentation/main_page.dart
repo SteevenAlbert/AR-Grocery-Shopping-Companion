@@ -4,7 +4,7 @@ import 'package:ar_grocery_companion/presentation/components/nav_bar.dart';
 import 'package:ar_grocery_companion/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/presentation/home/components/drawer.dart';
-
+import 'package:flutter/foundation.dart' show kIsWeb;
 import '../services/connection_checker.dart';
 import 'noInternetPage.dart';
 
@@ -38,7 +38,7 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (connectionStatus.hasConnection == false) {
+    if (connectionStatus.hasConnection == false && kIsWeb != true) {
       return noInternetScreen();
     } else {
       return Scaffold(
