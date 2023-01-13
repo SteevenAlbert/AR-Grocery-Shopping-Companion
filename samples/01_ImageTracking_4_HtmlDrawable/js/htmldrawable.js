@@ -2,9 +2,12 @@ var World = {
 
     init: function initFn() {
         var productID= "";
+        var productName= "";
         this.createOverlays();
     },
-    
+    loadProduct: function loadProductFn(data) {
+        World.productName = data["name"];
+    },
     createOverlays: function createOverlaysFn() {
         //Load the Targets Tracker (.WTC File)
         this.targetCollectionResource = new AR.TargetCollectionResource("assets/tracker.wtc", {
@@ -22,14 +25,7 @@ var World = {
             onError: World.onError
         });
 
-        //Create ViewProduct Button
-        var productButton = this.createProductButton(0.1, {
-            translate: {
-                x: 0,
-                y: -0.1
-            },
-            zOrder: 1
-        });
+
         
         //Product Card to be shown on recognition of an Object
         var productWidget = new AR.HtmlDrawable({
@@ -52,7 +48,14 @@ var World = {
             },
             onError: World.onError
         });
-
+        //Create ViewProduct Button
+        var productButton = this.createProductButton(0.1, {
+            translate: {
+                x: 0,
+                y: -0.1
+            },
+            zOrder: 1
+        }, productWidget);
 
         this.product = new AR.ImageTrackable(this.tracker, "*", {
             
@@ -61,9 +64,11 @@ var World = {
             },
             onImageRecognized: function onImageRecognizedFn(target) {
                 World.hideInfoBar;
+                AR.platform.sendJSONObject({action:"product_details", product_id: World.productID});
                 World.productID = target.name;
-                console.log(target.name);  
-
+                
+                //get a div called
+                
             },
             onError: World.onError
         });
@@ -73,9 +78,15 @@ var World = {
         alert(error);
     },
 
-    createProductButton: function createProductButtonFn(size, options) {
+
+ 
+    createProductButton: function createProductButtonFn(size, options, productWidget) {
         options.onClick = function() {
             AR.platform.sendJSONObject({action:"product_details", product_id: World.productID});
+            console.log(World.productName);
+            alert(World.productName);
+            productWidget.evalJavaScript("document.getElementById('Title').innerText = '"+ World.productName +"';");
+
         };
         return new AR.ImageDrawable(this.imgButton, size, options);
     },

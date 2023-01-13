@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:ar_grocery_companion/constants/keys.dart';
 import 'package:ar_grocery_companion/domain/sample.dart';
 import 'package:augmented_reality_plugin_wikitude/wikitude_response.dart';
@@ -76,7 +78,7 @@ class _ARViewState extends State<ARView> with WidgetsBindingObserver {
   Future<void> onArchitectWidgetCreated() async {
     architectWidget.load(loadPath, onLoadSuccess, onLoadFailed);
     architectWidget.resume();
-
+    //sample json data
     this.architectWidget.setJSONObjectReceivedCallback(onJSONObjectReceived);
   }
 
@@ -89,32 +91,23 @@ class _ARViewState extends State<ARView> with WidgetsBindingObserver {
     architectWidget.showAlert("Failed to load Architect World", error);
   }
 
-  Future<void> captureScreen() async {
-    WikitudeResponse captureScreenResponse =
-        await this.architectWidget.captureScreen(true, "");
-    if (captureScreenResponse.success) {
-      this.architectWidget.showAlert(
-          "Success", "Image saved in: " + captureScreenResponse.message);
-    } else {
-      if (captureScreenResponse.message.contains("permission")) {
-        this
-            .architectWidget
-            .showAlert("Error", captureScreenResponse.message, true);
-      } else {
-        this.architectWidget.showAlert("Error", captureScreenResponse.message);
-      }
-    }
-  }
-
   Future<void> onJSONObjectReceived(Map<String, dynamic> jsonObject) async {
     if (jsonObject["action"] != null) {
       switch (jsonObject["action"]) {
-        case "capture_screen":
-          captureScreen();
-          break;
         case "product_details":
           print("IN ARVIEW");
-          int ProductID = int.parse(jsonObject["product_id"]);
+
+          //create a sample json string
+          Map<String, dynamic> data = {
+            "name": "Bimbo!!",
+            "product_id": "11",
+          };
+          //call the javascript function
+          this
+              .architectWidget
+              .callJavascript("World.loadProduct(" + jsonEncode(data) + ");");
+
+          //int ProductID = int.parse(jsonObject["product_id"]);
           //print(Product.retrieveProduct(ProductID)!.name);
           //architectWidget.pause();
           // GoRouter.of(context)
