@@ -1,7 +1,9 @@
+import 'package:ar_grocery_companion/data/helpers/db_helper.dart';
 import 'package:ar_grocery_companion/presentation/authentication/custom_widgets.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ar_grocery_companion/constants/constants.dart';
 import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:intl/intl.dart';
 
@@ -58,14 +60,7 @@ class RegisterScreenState extends State<RegisterScreen> {
       //...create new user...//
 // DateTime.now().year-dateController.year
 //if groupValue == 0 other, == 1 female, == 2 male
-
-      final docUser = FirebaseFirestore.instance.collection('users').doc();
-      final json = {
-        'name': "Steven!!!",
-        'age': 21,
-      };
-
-      await docUser.set(json);
+      //write json data to firebase
 
       //set session
       // ((await SessionManager().get("type") == 1)

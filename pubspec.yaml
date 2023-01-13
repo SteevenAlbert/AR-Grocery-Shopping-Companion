@@ -35,7 +35,6 @@ dependencies:
     path: ./plugin/augmented_reality_plugin_wikitude/
   carousel_slider: ^4.0.0
   chip_list: ^2.2.3+7
-  cloud_firestore: any
   firebase_database: ^10.0.7
   cupertino_icons: ^1.0.2
   easy_sidemenu: ^0.4.1

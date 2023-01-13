@@ -1,7 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
-
+import 'package:flutter/services.dart';
 import '../../firebase_options.dart';
+
+//Struct to store database collection names as strings
+class DBCollections {
+  static String users = "users";
+  static String products = "products";
+}
 
 class FirebaseHelper {
   static late DatabaseReference _dbRef;
@@ -14,7 +20,6 @@ class FirebaseHelper {
 
   DatabaseReference get dbRef => _dbRef;
 
-  //read from firebase
   static Future<DataSnapshot?> read(String path) async {
     DataSnapshot snapshot = await _dbRef.child(path).get();
     if (snapshot.exists) {
@@ -22,5 +27,43 @@ class FirebaseHelper {
     } else {
       return null;
     }
+  }
+
+  //Not recommended, use writeUnique instead
+  static Future<bool> write(String path, dynamic data) async {
+    return await _dbRef.set(data).then((_) {
+      return true;
+    }).catchError((error) {
+      print(error);
+      return false;
+    });
+  }
+
+  static Future<bool> writeUnique(String path, dynamic data) async {
+    DatabaseReference newEntryRef = _dbRef.child(path).push();
+    return await newEntryRef.set(data).then((_) {
+      return true;
+    }).catchError((error) {
+      print(error);
+      return false;
+    });
+  }
+
+  static Future<bool> update(String path, dynamic data) async {
+    return await _dbRef.child(path).update(data).then((_) {
+      return true;
+    }).catchError((error) {
+      print(error);
+      return false;
+    });
+  }
+
+  static Future<bool> delete(String path) async {
+    return await _dbRef.child(path).remove().then((_) {
+      return true;
+    }).catchError((error) {
+      print(error);
+      return false;
+    });
   }
 }
