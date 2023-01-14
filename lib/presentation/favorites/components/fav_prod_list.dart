@@ -8,10 +8,13 @@ import 'package:simple_shadow/simple_shadow.dart';
 import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ar_grocery_companion/domain/models/product/product.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class FavProductsList extends ConsumerStatefulWidget {
   final height;
-  const FavProductsList({super.key, required this.height});
+  final PersistentTabController controller;
+  const FavProductsList(
+      {super.key, required this.height, required this.controller});
 
   @override
   ConsumerState<FavProductsList> createState() => _FavProductsListState();
@@ -36,7 +39,7 @@ class _FavProductsListState extends ConsumerState<FavProductsList> {
                 style: TextStyle(fontSize: 16)),
             SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () => GoRouter.of(context).push('/'),
+              onPressed: () => widget.controller.jumpToTab(0),
               child: Text("Browse Products", style: TextStyle(fontSize: 16)),
               style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(

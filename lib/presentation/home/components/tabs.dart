@@ -17,7 +17,9 @@ class _Cat_TabsState extends State<Cat_Tabs>
   @override
   void initState() {
     allcats = CategoriesRepository.instance.getCategories();
-    allcats!.insert(0, CustomCategory(id: "0",name: "All"));
+    if (allcats![0].name != "All") {
+      allcats!.insert(0, CustomCategory(id: "0", name: "All"));
+    }
     _tabController = new TabController(length: allcats!.length, vsync: this);
     super.initState();
   }
@@ -52,7 +54,7 @@ class _Cat_TabsState extends State<Cat_Tabs>
                       for (var i = 0; i < allcats!.length; i++)
                         FeaturedProducts(
                           size: widget.size,
-                          cat_id: allcats?[i].id??"-1",
+                          cat_id: allcats?[i].id ?? "-1",
                         )
                     ],
                   ),
