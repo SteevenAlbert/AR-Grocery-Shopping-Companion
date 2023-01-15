@@ -19,6 +19,7 @@ class _NavbarState extends State<Navbar> {
   @override
   Widget build(BuildContext context) {
     return PersistentTabView(
+      stateManagement: false,
       context,
       controller: _controller,
       screens: const [
@@ -27,8 +28,10 @@ class _NavbarState extends State<Navbar> {
         FavProductsPage(),
       ],
       items: _navBarsItems(),
-      navBarStyle: NavBarStyle.style1,
+      navBarStyle: NavBarStyle.style5,
       backgroundColor: Theme.of(context).canvasColor,
+      popAllScreensOnTapOfSelectedTab: true,
+      popActionScreens: PopActionScreensType.all,
     );
   }
 
