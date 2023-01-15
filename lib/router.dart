@@ -56,9 +56,9 @@ class MyRouter {
       GoRoute(
           path: '/add_product_page',
           builder: (context, state) => const AddProductPage()),
-      GoRoute(
-          path: '/scan_intro_page',
-          builder: (context, state) => const ScanPage()),
+      // GoRoute(
+      //     path: '/scan_intro_page',
+      //     builder: (context, state) => const ScanPage()),
       GoRoute(
           name: 'EditProductPage',
           path: '/edit_product_page',

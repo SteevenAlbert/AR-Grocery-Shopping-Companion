@@ -67,6 +67,7 @@ dependencies:
   wakelock: ^0.6.2
   connectivity: ^3.0.6
   restart_app: ^1.1.1
+  camera: ^0.10.1
   firebase_messaging: ^14.2.1
   
 dev_dependencies:
