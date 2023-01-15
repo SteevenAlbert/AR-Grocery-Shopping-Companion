@@ -77,6 +77,11 @@ class MyRouter {
           name: 'ARView',
           path: '/arview',
           builder: (context, state) => ARView(sample: state.extra as Sample)),
+
+      GoRoute(
+          name: 'noInternet',
+          path: '/noInternet',
+          builder: (context, state) => SomethingWentWrongScreen()),
     ],
     errorBuilder: (context, state) => SomethingWentWrongScreen(),
   );

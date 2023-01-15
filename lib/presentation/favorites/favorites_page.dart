@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'components/fav_prod_list.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class FavProductsPage extends StatelessWidget {
-  const FavProductsPage({super.key});
+  final PersistentTabController controller;
+  FavProductsPage({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,9 @@ class FavProductsPage extends StatelessWidget {
                         color: Theme.of(context).primaryColor,
                         fontWeight: FontWeight.w600))),
           ),
-          FavProductsList(height: MediaQuery.of(context).size.height),
+          FavProductsList(
+              height: MediaQuery.of(context).size.height,
+              controller: controller),
         ],
       ),
     ));
