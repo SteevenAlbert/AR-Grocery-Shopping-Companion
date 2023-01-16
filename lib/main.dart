@@ -34,18 +34,6 @@ void main() async {
 
   FirebaseHelper db = FirebaseHelper();
   await db.init();
-  CategoriesRepository cat = CategoriesRepository.instance;
-  CompaniesRepository com = CompaniesRepository.instance;
-  // cat.update(CustomCategory(id: "4", name: "box"));
-  // com.insert(Company(id: "1", name: "company1"));
-  // cat.delete();
-  // com.delete();
-  List<CustomCategory> val = await cat.fetchCategoriesList();
-  List<Company> val2 = await com.fetchCompaniesList();
-  print(val2);
-  print(val);
-  // print(cat.fetchCategoriesList());
-  // cat.deleteByName("nae");
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   runApp(
     ProviderScope(child: const MyApp()),

@@ -42,30 +42,25 @@ class CategoriesRepository {
     DataSnapshot? snapshot = await FirebaseHelper.read('categories');
 
     snapshot!.children.forEach((childSnapshot) {
-      var props = childSnapshot.value as Map<String, dynamic>;
-      _categories.add(CustomCategory.fromMap(props));
+      var category = childSnapshot.value as Map<String, dynamic>;
+      category["id"] = childSnapshot.key;
+      _categories.add(CustomCategory.fromMap(category));
     });
     return _categories;
   }
 
-  Future<List<CustomCategory>> fetchCategoriesListByName() async {
-    // TODO: implement this
-    throw UnimplementedError();
-  }
-
-  Future<int> delete() async {
+  Future<void> deleteAll() async {
     FirebaseHelper.delete('categories');
-    return 1;
   }
 
-  Future<int> deleteByName(name) async {
-    // FirebaseHelper.delete('categories');
-    return 1;
+  Future<String> deleteById(id) async {
+    FirebaseHelper.delete('companies/$id');
+    return id;
   }
 
   void reset() {
-    // TODO: implement reset copmanies
-    throw UnimplementedError();
+    deleteAll();
+    // insert();
   }
 
   List<CustomCategory> getCategories() {

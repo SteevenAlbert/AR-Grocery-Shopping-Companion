@@ -26,7 +26,7 @@ class CompaniesRepository {
   }
 
   Future<String> insert(Company company) async {
-    FirebaseHelper.writeUnique('companies', company.toMap());
+    await FirebaseHelper.writeUnique('companies', company.toMap());
     return company.id;
   }
 
@@ -34,30 +34,25 @@ class CompaniesRepository {
     DataSnapshot? snapshot = await FirebaseHelper.read('companies');
 
     snapshot!.children.forEach((childSnapshot) {
-      var props = childSnapshot.value as Map<String, dynamic>;
-      _companies.add(Company.fromMap(props));
+      var company = childSnapshot.value as Map<String, dynamic>;
+      company["id"] = childSnapshot.key;
+      _companies.add(Company.fromMap(company));
     });
     return _companies;
   }
 
-  Future<List<Company>> fetchCompaniesListByName() async {
-    // TODO: implement this
-    throw UnimplementedError();
-  }
-
-  Future<int> delete() async {
+  Future<void> deleteAll() async {
     FirebaseHelper.delete('companies');
-    return 1;
   }
 
-  Future<int> deleteByName(name) async {
-    // TODO: implement delete copmay by name
-    throw UnimplementedError();
+  Future<String> deleteByID(id) async {
+    FirebaseHelper.delete('companies/$id');
+    return id;
   }
 
   void reset() {
-    // TODO: implement reset copmanies
-    throw UnimplementedError();
+    deleteAll();
+    // insert();
   }
 
   List<Company> getCompanies() {
