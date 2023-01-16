@@ -1,6 +1,7 @@
 import 'package:ar_grocery_companion/domain/models/user/app_user.dart';
-import 'package:ar_grocery_companion/presentation/authentication/custom_widgets/custom_snackbar.dart';
-import 'package:ar_grocery_companion/presentation/authentication/custom_widgets.dart';
+import 'package:ar_grocery_companion/presentation/authentication/custom_widgets/custom_animated_button.dart';
+import 'package:ar_grocery_companion/presentation/authentication/custom_widgets/custom_title.dart';
+import 'package:ar_grocery_companion/presentation/authentication/custom_widgets/custom_text_form_field.dart';
 import 'package:ar_grocery_companion/fire_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -78,9 +79,8 @@ class LogInScreenState extends State<LogInScreen> {
       child: Container(
         color: Theme.of(context).canvasColor,
         child: ListView(shrinkWrap: false, children: [
-          Center(child: customTitle(context: context, text: "Log In")),
-          customTextFormField(
-            context: context,
+          Center(child: CustomTitle(text: "Log In")),
+          CustomTextFormField(
             controller: emailController,
             labelText: "Email",
             icon: Icons.mail,
@@ -89,8 +89,7 @@ class LogInScreenState extends State<LogInScreen> {
                 r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$',
             errorMessage2: "Email format is incorrect.",
           ),
-          customTextFormField(
-            context: context,
+          CustomTextFormField(
             controller: passwordController,
             labelText: "Password",
             icon: (_isHidden ? Icons.visibility : Icons.visibility_off),
@@ -98,9 +97,7 @@ class LogInScreenState extends State<LogInScreen> {
             obscureText: _isHidden,
             toggle: _togglePasswordView,
           ),
-          Center(
-              child: customAnimatedButton(
-                  context: context, text: "Log In", func: _logIn)),
+          Center(child: CustomAnimatedButton(text: "Log In", func: _logIn)),
         ]),
       ),
     );

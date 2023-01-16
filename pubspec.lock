@@ -49,7 +49,14 @@ packages:
       path: "plugin/augmented_reality_plugin_wikitude"
       relative: true
     source: path
-    version: "9.12.0"
+    version: "9.10.0"
+  awesome_snackbar_content:
+    dependency: "direct main"
+    description:
+      name: awesome_snackbar_content
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0"
   badges:
     dependency: transitive
     description:

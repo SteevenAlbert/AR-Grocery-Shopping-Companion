@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ar_grocery_companion/router.dart';
 import 'package:restart_app/restart_app.dart';
-import 'authentication/custom_widgets.dart';
+import 'authentication/custom_widgets/custom_animated_button.dart';
 import 'package:flutter_session_manager/flutter_session_manager.dart';
 
 class noInternetScreen extends StatelessWidget {
@@ -28,8 +28,7 @@ class noInternetScreen extends StatelessWidget {
               bottom: MediaQuery.of(context).size.height * 0.10,
               left: MediaQuery.of(context).size.width * 0.25,
               right: MediaQuery.of(context).size.width * 0.25,
-              child: customAnimatedButton(
-                  context: context,
+              child: CustomAnimatedButton(
                   text: "Try Again".toUpperCase(),
                   func: () async {
                     Restart.restartApp();

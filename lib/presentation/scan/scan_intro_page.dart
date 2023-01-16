@@ -1,5 +1,5 @@
 import 'package:ar_grocery_companion/constants/constants.dart';
-import 'package:ar_grocery_companion/presentation/authentication/custom_widgets.dart';
+import 'package:ar_grocery_companion/presentation/authentication/custom_widgets/custom_animated_button.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
@@ -124,8 +124,7 @@ class _ScanPageState extends State<ScanPage>
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               !_isLoading
-                  ? customAnimatedButton(
-                      context: context,
+                  ? CustomAnimatedButton(
                       text: "Start Scanning",
                       func: () async {
                         setState(() {

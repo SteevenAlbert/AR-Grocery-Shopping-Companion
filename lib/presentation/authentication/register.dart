@@ -1,5 +1,8 @@
 import 'package:ar_grocery_companion/data/helpers/db_helper.dart';
-import 'package:ar_grocery_companion/presentation/authentication/custom_widgets.dart';
+import 'package:ar_grocery_companion/presentation/authentication/custom_widgets/custom_animated_button.dart';
+import 'package:ar_grocery_companion/presentation/authentication/custom_widgets/custom_radio_button.dart';
+import 'package:ar_grocery_companion/presentation/authentication/custom_widgets/custom_text_form_field.dart';
+import 'package:ar_grocery_companion/presentation/authentication/custom_widgets/custom_title.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -77,17 +80,15 @@ class RegisterScreenState extends State<RegisterScreen> {
         color: Theme.of(context).canvasColor,
         child: ListView(children: [
           Center(
-            child: customTitle(context: context, text: "Register"),
+            child: CustomTitle(text: "Register"),
           ),
-          customTextFormField(
-            context: context,
+          CustomTextFormField(
             controller: nameController,
             errorMessage: 'Please enter your name.',
             labelText: "Name",
             icon: Icons.person,
           ),
-          customTextFormField(
-            context: context,
+          CustomTextFormField(
             controller: emailController,
             errorMessage: 'Please enter your email.',
             regex:
@@ -96,8 +97,7 @@ class RegisterScreenState extends State<RegisterScreen> {
             labelText: "Email",
             icon: Icons.mail,
           ),
-          customTextFormField(
-            context: context,
+          CustomTextFormField(
             controller: passwordController,
             errorMessage: 'Please enter your password.',
             regex: "r'[!@#\$%^&*(),.?\":{}|<>]'",
@@ -107,8 +107,7 @@ class RegisterScreenState extends State<RegisterScreen> {
             toggle: _togglePasswordView,
             icon: (_isHidden ? Icons.visibility : Icons.visibility_off),
           ),
-          customTextFormField(
-              context: context,
+          CustomTextFormField(
               controller: confirmPasswordController,
               errorMessage: 'Please enter your password confirmation.',
               obscureText: _isHidden,
@@ -117,8 +116,7 @@ class RegisterScreenState extends State<RegisterScreen> {
               icon: (_isHidden ? Icons.visibility : Icons.visibility_off),
               confirm: passwordController.text,
               errorMessage3: "Confirmation doesn't match password"),
-          customTextFormField(
-              context: context,
+          CustomTextFormField(
               controller: dateController,
               labelText: "Date of Birth",
               icon: Icons.calendar_today,
@@ -137,19 +135,19 @@ class RegisterScreenState extends State<RegisterScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              customRadioButton(
+              CustomRadioButton(
                 title: "Male",
                 value: 2,
                 groupValue: groupValue,
                 onChanged: (newValue) => setState(() => groupValue = newValue!),
               ),
-              customRadioButton(
+              CustomRadioButton(
                 title: "Female",
                 value: 1,
                 groupValue: groupValue,
                 onChanged: (newValue) => setState(() => groupValue = newValue!),
               ),
-              customRadioButton(
+              CustomRadioButton(
                 title: "Other",
                 value: 0,
                 groupValue: groupValue,
@@ -158,8 +156,7 @@ class RegisterScreenState extends State<RegisterScreen> {
             ],
           ),
           Center(
-            child: customAnimatedButton(
-              context: context,
+            child: CustomAnimatedButton(
               text: 'Register',
               func: _register,
             ),
