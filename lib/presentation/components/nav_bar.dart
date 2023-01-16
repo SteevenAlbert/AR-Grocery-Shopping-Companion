@@ -1,4 +1,3 @@
-import 'package:ar_grocery_companion/presentation/admin/home/admin_home_page.dart';
 import 'package:ar_grocery_companion/presentation/scan/scan_intro_page.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -21,10 +20,10 @@ class _NavbarState extends State<Navbar> {
     return PersistentTabView(
       context,
       controller: _controller,
-      screens: const [
+      screens: [
         HomePage(),
         ScanPage(),
-        FavProductsPage(),
+        FavProductsPage(controller: _controller),
       ],
       items: _navBarsItems(),
       navBarStyle: NavBarStyle.style1,

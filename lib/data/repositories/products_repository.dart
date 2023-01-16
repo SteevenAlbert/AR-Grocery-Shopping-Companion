@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:ar_grocery_companion/constants/dummy_data.dart';
+import 'package:ar_grocery_companion/data/helpers/db_helper.dart';
 import 'package:ar_grocery_companion/domain/models/product/concrete_products/cleaning_product.dart';
 import 'package:ar_grocery_companion/domain/models/product/concrete_products/food_product.dart';
 import 'package:ar_grocery_companion/domain/models/product/concrete_products/itemed_product.dart';
@@ -11,7 +12,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ProductsRepository {
-
   // Singleton pattern
   static final ProductsRepository instance = ProductsRepository._();
 
@@ -30,29 +30,35 @@ class ProductsRepository {
     });
   }
 
-  Future<int> insert(Product product) async{
+  Future<int> insert(Product product) async {
     // TODO: implement insert product
+    // User FirebaseHelper class here
+    // Provide the path root using DBCollections class
+    // eg. FirebaseHelper.writeUnique(DBCollections.products + "/" + CompanyName, data)
+
     throw UnimplementedError();
   }
 
-  Future<List<Product>> fetchProductsList() async{
+  Future<List<Product>> fetchProductsList() async {
     // TODO: use the db_helper instead
     _products = await queryDummyJson();
     return _products;
   }
 
-  Future<List<Product>> fetchProductsListByName() async{
+  Future<List<Product>> fetchProductsListByName() async {
     // TODO: implement this
     throw UnimplementedError();
   }
 
   List<Product> getProductsListByManufacturer(String id) {
     List<Product> tempList = [];
-    _products.forEach((Product element) { element.manufacturer.id == id? tempList.add(element):"";});
+    _products.forEach((Product element) {
+      element.manufacturer.id == id ? tempList.add(element) : "";
+    });
     return tempList;
   }
 
-  Future<int> delete() async{
+  Future<int> delete() async {
     // TODO: implement delete product
     throw UnimplementedError();
   }
@@ -72,8 +78,10 @@ class ProductsRepository {
   }
 
   Product getProduct(String id) {
-    return _products
-        .firstWhere((Product element) => element.id == id, orElse: () => ProductBase.empty(),);
+    return _products.firstWhere(
+      (Product element) => element.id == id,
+      orElse: () => ProductBase.empty(),
+    );
   }
 
   int getCount() {
@@ -104,7 +112,7 @@ class ProductsRepository {
     return products;
   }
 
-   // DECORATOR PATTERN MAPPING -----------------------------------------------------------------------
+  // DECORATOR PATTERN MAPPING -----------------------------------------------------------------------
   // Create product depending on its concrete class name
   static Product selectProductFromMap(Map map) {
     if (map.containsKey("product_base")) {
