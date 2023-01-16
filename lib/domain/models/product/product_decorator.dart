@@ -7,6 +7,7 @@ abstract class ProductDecorator extends Product {
     required this.product,
   }) : super(
             id: product.id,
+            createdAt: product.createdAt,
             name: product.name,
             images: product.images,
             manufacturer: product.manufacturer,

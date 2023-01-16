@@ -76,6 +76,10 @@ class ProductsRepository {
         .firstWhere((Product element) => element.id == id, orElse: () => ProductBase.empty(),);
   }
 
+  int getCount() {
+    return _products.length;
+  }
+
   // DUMMY DATA --------------------------------------------------------------------------------------
   // Generate and return dummy data
   static List<Product> generateDummyData() {

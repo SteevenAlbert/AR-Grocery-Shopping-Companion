@@ -438,7 +438,8 @@
                 "name":"Egypt"
             },
             "logoPath": "assets/images/juhayna-logo.png",
-            "url": "https://www.juhayna.com/"
+            "url": "https://www.juhayna.com/",
+            "products" : ["0", "3", "5", "0", "3", "5", "0", "3", "5"]
         },
         {
             "id": "1",
@@ -448,7 +449,8 @@
                 "name":"United States"
             },
             "logoPath": "assets/images/pledge-logo.png",
-            "url": "https://www.pledge.com/"
+            "url": "https://www.pledge.com/",
+            "products" : ["1", "1", "1", "1"]
         },
         {
             "id": "2",
@@ -458,7 +460,8 @@
                 "name":"United States"
             },
             "logoPath": "assets/images/fine-logo.png",
-            "url": "https://www.finetissues.com/"
+            "url": "https://www.finetissues.com/",
+            "products" : ["2", "2"]
         },
         {
             "id": "3",
@@ -468,7 +471,8 @@
                 "name":"United States"
             },
             "logoPath": "assets/images/mars-logo.png",
-            "url": "https://www.mars.com/"
+            "url": "https://www.mars.com/",
+            "products" : ["4", "4", "4", "4","4"]
         }
     ],
     "users":[]
