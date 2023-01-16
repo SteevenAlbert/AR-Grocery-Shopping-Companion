@@ -1,3 +1,4 @@
+import 'package:ar_grocery_companion/domain/models/custom_category.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/services.dart';
@@ -40,7 +41,12 @@ class FirebaseHelper {
   }
 
   static Future<bool> writeUnique(String path, dynamic data) async {
-    DatabaseReference newEntryRef = _dbRef.child(path).push();
+    String? generatedKey = _dbRef.push().key;
+    //assign generated key to the object's id
+    data["id"] = generatedKey;
+    // data.remove("id");
+    path += "/$generatedKey";
+    DatabaseReference newEntryRef = _dbRef.child(path);
     return await newEntryRef.set(data).then((_) {
       return true;
     }).catchError((error) {

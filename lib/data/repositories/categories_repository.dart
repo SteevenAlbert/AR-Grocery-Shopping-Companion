@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:ar_grocery_companion/domain/models/custom_category.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ar_grocery_companion/data/helpers/db_helper.dart';
 
 class CategoriesRepository {
   // Singleton pattern
@@ -24,14 +26,25 @@ class CategoriesRepository {
     });
   }
 
-  Future<int> insert(CustomCategory customCategory) async {
-    // TODO: implement insert customCategory
-    throw UnimplementedError();
+  Future<String> insert(CustomCategory category) async {
+    FirebaseHelper.writeUnique('categories', category.toMap());
+    return category.id;
+  }
+
+  Future<String> update(CustomCategory category) async {
+    Map<String, dynamic> cat = category.toMap();
+    // FirebaseHelper.update('categories/${cat['id']}', cat);
+    FirebaseHelper.update('categories/-NLuxyLGrXJybp8-kH5V', cat);
+    return category.id;
   }
 
   Future<List<CustomCategory>> fetchCategoriesList() async {
-    // TODO: use the db_helper instead
-    _categories = await queryDummyJson();
+    DataSnapshot? snapshot = await FirebaseHelper.read('categories');
+
+    snapshot!.children.forEach((childSnapshot) {
+      var props = childSnapshot.value as Map<String, dynamic>;
+      _categories.add(CustomCategory.fromMap(props));
+    });
     return _categories;
   }
 
@@ -41,13 +54,13 @@ class CategoriesRepository {
   }
 
   Future<int> delete() async {
-    // TODO: implement delete copmay
-    throw UnimplementedError();
+    FirebaseHelper.delete('categories');
+    return 1;
   }
 
   Future<int> deleteByName(name) async {
-    // TODO: implement delete copmay by name
-    throw UnimplementedError();
+    // FirebaseHelper.delete('categories');
+    return 1;
   }
 
   void reset() {

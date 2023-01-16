@@ -3,9 +3,10 @@ import 'dart:convert';
 import 'package:ar_grocery_companion/domain/models/company.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ar_grocery_companion/data/helpers/db_helper.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class CompaniesRepository {
-
   // Singleton pattern
   static final CompaniesRepository instance = CompaniesRepository._();
 
@@ -24,25 +25,29 @@ class CompaniesRepository {
     });
   }
 
-  Future<int> insert(Company company) async{
-    // TODO: implement insert company
-    throw UnimplementedError();
+  Future<String> insert(Company company) async {
+    FirebaseHelper.writeUnique('companies', company.toMap());
+    return company.id;
   }
 
-  Future<List<Company>> fetchCompaniesList() async{
-    // TODO: use the db_helper instead
-    _companies = await queryDummyJson();
+  Future<List<Company>> fetchCompaniesList() async {
+    DataSnapshot? snapshot = await FirebaseHelper.read('companies');
+
+    snapshot!.children.forEach((childSnapshot) {
+      var props = childSnapshot.value as Map<String, dynamic>;
+      _companies.add(Company.fromMap(props));
+    });
     return _companies;
   }
 
-  Future<List<Company>> fetchCompaniesListByName() async{
+  Future<List<Company>> fetchCompaniesListByName() async {
     // TODO: implement this
     throw UnimplementedError();
   }
 
-  Future<int> delete() async{
-    // TODO: implement delete copmay
-    throw UnimplementedError();
+  Future<int> delete() async {
+    FirebaseHelper.delete('companies');
+    return 1;
   }
 
   Future<int> deleteByName(name) async {
@@ -60,8 +65,10 @@ class CompaniesRepository {
   }
 
   Company getCompany(String id) {
-    return _companies
-        .firstWhere((Company element) => element.id == id, orElse: () => Company.empty(),);
+    return _companies.firstWhere(
+      (Company element) => element.id == id,
+      orElse: () => Company.empty(),
+    );
   }
 
   // DUMMY DATA --------------------------------------------------------------------------------------

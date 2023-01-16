@@ -10,6 +10,10 @@ import 'utils.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:ar_grocery_companion/data/repositories/categories_repository.dart';
+import 'package:ar_grocery_companion/domain/models/custom_category.dart';
+import 'package:ar_grocery_companion/data/repositories/companies_repository.dart';
+import 'package:ar_grocery_companion/domain/models/company.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,8 +33,19 @@ void main() async {
   connectionStatus.initialize();
 
   FirebaseHelper db = FirebaseHelper();
-  db.init();
-
+  await db.init();
+  CategoriesRepository cat = CategoriesRepository.instance;
+  CompaniesRepository com = CompaniesRepository.instance;
+  // cat.update(CustomCategory(id: "4", name: "box"));
+  // com.insert(Company(id: "1", name: "company1"));
+  // cat.delete();
+  // com.delete();
+  List<CustomCategory> val = await cat.fetchCategoriesList();
+  List<Company> val2 = await com.fetchCompaniesList();
+  print(val2);
+  print(val);
+  // print(cat.fetchCategoriesList());
+  // cat.deleteByName("nae");
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   runApp(
     ProviderScope(child: const MyApp()),
