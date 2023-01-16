@@ -2,6 +2,7 @@ import 'package:ar_grocery_companion/domain/models/company.dart';
 import 'package:ar_grocery_companion/domain/sample.dart';
 import 'package:ar_grocery_companion/presentation/companies/companies_list_page.dart';
 import 'package:ar_grocery_companion/presentation/companies/company_details.dart';
+import 'package:ar_grocery_companion/presentation/no_internet_page.dart';
 import 'package:ar_grocery_companion/presentation/settings/settings_page.dart';
 import 'package:ar_grocery_companion/presentation/splash_screen.dart';
 import 'package:ar_grocery_companion/presentation/error_page.dart';
@@ -82,7 +83,7 @@ class MyRouter {
       GoRoute(
           name: 'noInternet',
           path: '/noInternet',
-          builder: (context, state) => SomethingWentWrongScreen()),
+          builder: (context, state) => noInternetScreen()),
     ],
     errorBuilder: (context, state) => SomethingWentWrongScreen(),
   );

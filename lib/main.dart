@@ -5,7 +5,6 @@ import 'package:ar_grocery_companion/services/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'router.dart';
-import 'services/connection_checker.dart';
 import 'utils.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,6 +13,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   //Background
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   //Foreground
@@ -24,9 +24,8 @@ void main() async {
       print("Message also contained a notification: ${message.notification}");
     }
   });
-  ConnectionStatusSingleton connectionStatus =
-      ConnectionStatusSingleton.getInstance();
-  connectionStatus.initialize();
+
+  initConnectionStatus();
 
   FirebaseHelper db = FirebaseHelper();
   db.init();

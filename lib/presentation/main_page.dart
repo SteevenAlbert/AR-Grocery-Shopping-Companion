@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/presentation/home/components/drawer.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import '../services/connection_checker.dart';
-import 'noInternetPage.dart';
+import 'no_internet_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class _MainPageState extends State<MainPage> {
   ConnectionStatusSingleton connectionStatus =
       ConnectionStatusSingleton.getInstance();
   late StreamSubscription _connectionChangeStream;
-  bool _hasConnection = false;
+  bool _hasConnection = true;
 
   @override
   initState() {

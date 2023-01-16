@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:ar_grocery_companion/constants/keys.dart';
+import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
 import 'package:ar_grocery_companion/domain/sample.dart';
 import 'package:augmented_reality_plugin_wikitude/wikitude_response.dart';
 import 'package:flutter/material.dart';
@@ -94,22 +95,19 @@ class _ARViewState extends State<ARView> with WidgetsBindingObserver {
   Future<void> onJSONObjectReceived(Map<String, dynamic> jsonObject) async {
     if (jsonObject["action"] != null) {
       switch (jsonObject["action"]) {
-        case "product_details":
-          print("IN ARVIEW");
-
-          //create a sample json string
+        case "product_card":
+          String productName = ProductsRepository.instance
+              .getProduct(jsonObject["product_id"].toString())
+              .name;
+          print(jsonObject["product_id"]);
           Map<String, dynamic> data = {
-            "name": "Bimbo!!",
-            "product_id": "11",
+            "name": productName,
           };
-          //call the javascript function
           this
               .architectWidget
               .callJavascript("World.loadProduct(" + jsonEncode(data) + ");");
-
-          //int ProductID = int.parse(jsonObject["product_id"]);
-          //print(Product.retrieveProduct(ProductID)!.name);
-          //architectWidget.pause();
+          break;
+        case "product_page":
           // GoRouter.of(context)
           //     .push("/product_page", extra: Product.retrieveProduct(ProductID));
 

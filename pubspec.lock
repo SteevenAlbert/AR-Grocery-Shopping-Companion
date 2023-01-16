@@ -49,7 +49,7 @@ packages:
       path: "plugin/augmented_reality_plugin_wikitude"
       relative: true
     source: path
-    version: "9.10.0"
+    version: "9.12.0"
   awesome_snackbar_content:
     dependency: "direct main"
     description:
