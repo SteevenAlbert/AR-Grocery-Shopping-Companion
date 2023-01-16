@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:animated_button/animated_button.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 Widget customTitle({
   required BuildContext context,
@@ -27,7 +28,6 @@ Widget customTextFormField({
   String? errorMessage2 = "",
   String? confirm,
   String? errorMessage3 = "",
-  bool unique_username = false,
   String? errorMessage4 = "",
   bool? obscureText = false,
   void Function()? toggle,

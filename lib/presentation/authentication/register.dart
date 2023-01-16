@@ -57,12 +57,12 @@ class RegisterScreenState extends State<RegisterScreen> {
 
   void _register() async {
     if (_formKey.currentState!.validate()) {
-      //...create new user...//
+      //TODO: create new user
 // DateTime.now().year-dateController.year
 //if groupValue == 0 other, == 1 female, == 2 male
       //write json data to firebase
 
-      //set session
+      //TODO: set session
       // ((await SessionManager().get("type") == 1)
       //     ? context.go('/customer_homepage')
       //     : context.go('/admin_homepage'));

@@ -25,10 +25,11 @@ class MyRouter {
   static late final router = GoRouter(
     debugLogDiagnostics: true, //set to false in Production
     routes: [
-      GoRoute(path: '/', builder: (context, state) => const SplashScreen()),
       //Add Routes Here
+      GoRoute(path: '/', builder: (context, state) => const SplashScreen()),
       GoRoute(
-          path: '/authenticate', builder: (context, state) => const MainPage()),
+          path: '/authenticate',
+          builder: (context, state) => const AuthenticationPage()),
       GoRoute(
           path: '/customer_homepage',
           builder: (context, state) => const MainPage()),

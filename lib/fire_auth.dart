@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
-//
 class FireAuth {
   static Future<User?> registerUsingEmailPassword({
     required String name,
@@ -28,5 +28,33 @@ class FireAuth {
       print(e);
     }
     return user;
+  }
+
+  static Future<String?> signInUsingEmailPassword({
+    required String email,
+    required String password,
+    required BuildContext context,
+  }) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user;
+
+    try {
+      UserCredential userCredential = await auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      user = userCredential.user;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        return 'user-not-found';
+      } else if (e.code == 'wrong-password') {
+        return 'wrong-password';
+      } else {
+        print(e);
+        return "e";
+      }
+    }
+
+    return null;
   }
 }

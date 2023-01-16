@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ar_grocery_companion/router.dart';
 import 'package:restart_app/restart_app.dart';
 import 'authentication/custom_widgets.dart';
 import 'package:flutter_session_manager/flutter_session_manager.dart';
@@ -15,7 +16,6 @@ class noInternetScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                // "assets/images/3_Something_Went_Wrong.png",
                 "assets/images/nointernet.png",
               ),
               Text(

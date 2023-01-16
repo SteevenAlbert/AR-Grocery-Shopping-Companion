@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ar_grocery_companion/router.dart';
 import 'authentication/custom_widgets.dart';
 import 'package:flutter_session_manager/flutter_session_manager.dart';
 
