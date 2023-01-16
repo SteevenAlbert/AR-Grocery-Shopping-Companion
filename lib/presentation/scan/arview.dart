@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:ar_grocery_companion/constants/keys.dart';
+import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
 import 'package:ar_grocery_companion/domain/sample.dart';
 import 'package:augmented_reality_plugin_wikitude/wikitude_response.dart';
 import 'package:flutter/material.dart';
@@ -76,7 +79,7 @@ class _ARViewState extends State<ARView> with WidgetsBindingObserver {
   Future<void> onArchitectWidgetCreated() async {
     architectWidget.load(loadPath, onLoadSuccess, onLoadFailed);
     architectWidget.resume();
-
+    //sample json data
     this.architectWidget.setJSONObjectReceivedCallback(onJSONObjectReceived);
   }
 
@@ -89,34 +92,22 @@ class _ARViewState extends State<ARView> with WidgetsBindingObserver {
     architectWidget.showAlert("Failed to load Architect World", error);
   }
 
-  Future<void> captureScreen() async {
-    WikitudeResponse captureScreenResponse =
-        await this.architectWidget.captureScreen(true, "");
-    if (captureScreenResponse.success) {
-      this.architectWidget.showAlert(
-          "Success", "Image saved in: " + captureScreenResponse.message);
-    } else {
-      if (captureScreenResponse.message.contains("permission")) {
-        this
-            .architectWidget
-            .showAlert("Error", captureScreenResponse.message, true);
-      } else {
-        this.architectWidget.showAlert("Error", captureScreenResponse.message);
-      }
-    }
-  }
-
   Future<void> onJSONObjectReceived(Map<String, dynamic> jsonObject) async {
     if (jsonObject["action"] != null) {
       switch (jsonObject["action"]) {
-        case "capture_screen":
-          captureScreen();
+        case "product_card":
+          String productName = ProductsRepository.instance
+              .getProduct(jsonObject["product_id"].toString())
+              .name;
+          print(jsonObject["product_id"]);
+          Map<String, dynamic> data = {
+            "name": productName,
+          };
+          this
+              .architectWidget
+              .callJavascript("World.loadProduct(" + jsonEncode(data) + ");");
           break;
-        case "product_details":
-          print("IN ARVIEW");
-          int ProductID = int.parse(jsonObject["product_id"]);
-          //print(Product.retrieveProduct(ProductID)!.name);
-          //architectWidget.pause();
+        case "product_page":
           // GoRouter.of(context)
           //     .push("/product_page", extra: Product.retrieveProduct(ProductID));
 

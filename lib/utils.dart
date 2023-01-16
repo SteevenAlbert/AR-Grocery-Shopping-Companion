@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'services/connection_checker.dart';
 
 MaterialColor createMaterialColor(Color color) {
   List strengths = <double>[.05];
@@ -28,4 +29,10 @@ AppBar buildAppBar({required context, title = ""}) {
     foregroundColor: Theme.of(context).primaryColor,
     elevation: 0,
   );
+}
+
+void initConnectionStatus() {
+  ConnectionStatusSingleton connectionStatus =
+      ConnectionStatusSingleton.getInstance();
+  connectionStatus.initialize();
 }

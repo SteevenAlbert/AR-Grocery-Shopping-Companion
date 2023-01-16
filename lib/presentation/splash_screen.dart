@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ar_grocery_companion/router.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -20,8 +22,14 @@ class _SplashScreenState extends State<SplashScreen>
     _splashController.addListener(() {
       if (_splashController.value > 0.7) {
         _splashController.stop();
-        Future.delayed(const Duration(seconds: 1))
-            .then((value) => context.go('/authenticate'));
+        Future.delayed(const Duration(seconds: 1)).then((value) async {
+          (await SessionManager().containsKey("isLoggedIn") != true ||
+                  await SessionManager().get("isLoggedIn") != true)
+              ? context.go('/authenticate')
+              : ((await SessionManager().get("type") == 1)
+                  ? context.go('/customer_homepage')
+                  : context.go('/admin_homepage'));
+        });
       }
     });
   }

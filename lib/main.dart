@@ -1,19 +1,31 @@
 import 'package:ar_grocery_companion/constants/constants.dart';
 import 'package:ar_grocery_companion/data/helpers/db_helper.dart';
 import 'package:ar_grocery_companion/data/providers/theme_mode_provider.dart';
+import 'package:ar_grocery_companion/services/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'router.dart';
-import 'services/connection_checker.dart';
 import 'utils.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  ConnectionStatusSingleton connectionStatus =
-      ConnectionStatusSingleton.getInstance();
-  connectionStatus.initialize();
+  //Background
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  //Foreground
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    print("Got a message whilst in the foreground");
+    print("Message data ${message.data}");
+    if (message.notification != null) {
+      print("Message also contained a notification: ${message.notification}");
+    }
+  });
+
+  initConnectionStatus();
 
   FirebaseHelper db = FirebaseHelper();
   db.init();
@@ -44,4 +56,8 @@ class MyApp extends ConsumerWidget {
       ),
     );
   }
+}
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
 }

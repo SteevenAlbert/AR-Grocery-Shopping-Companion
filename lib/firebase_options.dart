@@ -49,8 +49,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '356788851461',
     projectId: 'grocar-380e1',
     authDomain: 'grocar-380e1.firebaseapp.com',
-    databaseURL:
-        'https://grocar-380e1-default-rtdb.europe-west1.firebasedatabase.app',
+    databaseURL: 'https://grocar-380e1-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'grocar-380e1.appspot.com',
     measurementId: 'G-Q71TTR4F0W',
   );
@@ -60,8 +59,7 @@ class DefaultFirebaseOptions {
     appId: '1:356788851461:android:45513306d54df51474dd6c',
     messagingSenderId: '356788851461',
     projectId: 'grocar-380e1',
-    databaseURL:
-        'https://grocar-380e1-default-rtdb.europe-west1.firebasedatabase.app',
+    databaseURL: 'https://grocar-380e1-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'grocar-380e1.appspot.com',
   );
 
@@ -70,13 +68,10 @@ class DefaultFirebaseOptions {
     appId: '1:356788851461:ios:ae815eeb48e5ea7674dd6c',
     messagingSenderId: '356788851461',
     projectId: 'grocar-380e1',
-    databaseURL:
-        'https://grocar-380e1-default-rtdb.europe-west1.firebasedatabase.app',
+    databaseURL: 'https://grocar-380e1-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'grocar-380e1.appspot.com',
-    androidClientId:
-        '356788851461-uo4nvksqit8s32ka4dgp7el168o3n3n7.apps.googleusercontent.com',
-    iosClientId:
-        '356788851461-ck3kic4f42cqv804tgl2q7irgvj7q1il.apps.googleusercontent.com',
+    androidClientId: '356788851461-uo4nvksqit8s32ka4dgp7el168o3n3n7.apps.googleusercontent.com',
+    iosClientId: '356788851461-ck3kic4f42cqv804tgl2q7irgvj7q1il.apps.googleusercontent.com',
     iosBundleId: 'eg.edu.miuegypt.csc422.grocar',
   );
 
@@ -85,13 +80,10 @@ class DefaultFirebaseOptions {
     appId: '1:356788851461:ios:ae815eeb48e5ea7674dd6c',
     messagingSenderId: '356788851461',
     projectId: 'grocar-380e1',
-    databaseURL:
-        'https://grocar-380e1-default-rtdb.europe-west1.firebasedatabase.app',
+    databaseURL: 'https://grocar-380e1-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'grocar-380e1.appspot.com',
-    androidClientId:
-        '356788851461-uo4nvksqit8s32ka4dgp7el168o3n3n7.apps.googleusercontent.com',
-    iosClientId:
-        '356788851461-ck3kic4f42cqv804tgl2q7irgvj7q1il.apps.googleusercontent.com',
+    androidClientId: '356788851461-uo4nvksqit8s32ka4dgp7el168o3n3n7.apps.googleusercontent.com',
+    iosClientId: '356788851461-ck3kic4f42cqv804tgl2q7irgvj7q1il.apps.googleusercontent.com',
     iosBundleId: 'eg.edu.miuegypt.csc422.grocar',
   );
 }

@@ -49,6 +49,9 @@ macos/Podfile
 /android/.
 key.properties
 
+.vscode/settings.json
+
+
 # Plugins
 /plugin
 
