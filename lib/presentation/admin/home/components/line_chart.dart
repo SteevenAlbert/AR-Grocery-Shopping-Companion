@@ -83,7 +83,6 @@ class CustomLineChartState extends State<CustomLineChart> {
               borderRadius: BorderRadius.all(
                 Radius.circular(18),
               ),
-              color: Color(0xff232d37),
             ),
             child: Padding(
               padding: const EdgeInsets.only(
@@ -108,7 +107,7 @@ class CustomLineChartState extends State<CustomLineChart> {
     // final DateTime date =
     //         DateTime.fromMillisecondsSinceEpoch(value.toInt());
     // text = DateFormat.MMM().format(date);
-    text = value.toString();
+    text =  value.toInt() %4 == 0? value.toString(): "";
     
     return SideTitleWidget(
       axisSide: meta.axisSide,
@@ -122,7 +121,7 @@ class CustomLineChartState extends State<CustomLineChart> {
       fontWeight: FontWeight.bold,
       fontSize: 15,
     );
-    String text = NumberFormat.compactCurrency(symbol: '\$').format(value);
+    String text = value.toString();
 
     return Text(text, style: style, textAlign: TextAlign.left);
   }
@@ -132,17 +131,17 @@ class CustomLineChartState extends State<CustomLineChart> {
       gridData: FlGridData(
         show: true,
         drawVerticalLine: true,
-        horizontalInterval: 1,
-        verticalInterval: 1,
+        horizontalInterval: 4,
+        verticalInterval: 4,
         getDrawingHorizontalLine: (value) {
           return FlLine(
-            color: const Color(0xff37434d),
+            color: Theme.of(context).hintColor.withOpacity(0.1),
             strokeWidth: 1,
           );
         },
         getDrawingVerticalLine: (value) {
           return FlLine(
-            color: const Color(0xff37434d),
+            color: Theme.of(context).hintColor.withOpacity(0.1),
             strokeWidth: 1,
           );
         },
@@ -172,7 +171,7 @@ class CustomLineChartState extends State<CustomLineChart> {
       ),
       borderData: FlBorderData(
         show: true,
-        border: Border.all(color: const Color(0xff37434d)),
+        border: Border.all(color: Theme.of(context).hintColor.withOpacity(0.1)),
       ),
       minX: _minX,
       maxX: _maxX,

@@ -2,6 +2,7 @@ import 'package:ar_grocery_companion/presentation/admin/home/components/dashboar
 import 'package:ar_grocery_companion/presentation/admin/home/wide_admin_module.dart';
 import 'package:ar_grocery_companion/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class AdminHomePage extends StatelessWidget {
   const AdminHomePage({super.key});
@@ -15,7 +16,18 @@ class AdminHomePage extends StatelessWidget {
       } else {
         return Scaffold(
           appBar: buildAppBar(context: context),
-          drawer: Drawer(),
+          drawer: Drawer(
+            child: ListView(
+              children: [
+                ListTile(
+                    leading: Icon(Icons.settings),
+                    title: Text("Settings"),
+                    onTap: () {
+                      context.push('/settings_page');
+                    }),
+              ],
+            ),
+          ),
           body: Dashboard(),
         );
       }

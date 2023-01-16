@@ -1,14 +1,30 @@
-import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
-import 'package:ar_grocery_companion/domain/models/product/product.dart';
-import 'package:ar_grocery_companion/presentation/admin/home/components/line_chart.dart';
 import 'package:flutter/material.dart';
 
 class ChartCard extends StatelessWidget {
-  const ChartCard({super.key});
+  ChartCard({super.key, required this.chart});
+
+  Widget chart;
 
   @override
   Widget build(BuildContext context) {
-    List<Product> products = ProductsRepository.instance.getProducts();
-    return CustomLineChart();
+    return Card(
+      
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10))),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+                child: Text(
+              "Products",
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)
+            )),
+            chart,
+          ],
+        ),
+      ),
+    );
   }
 }

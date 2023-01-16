@@ -32,7 +32,7 @@ class Dashboard extends ConsumerWidget {
               SizedBox(
                 height: 8.0,
               ),
-              Header(size: size),
+              //Header(size: size),
               InfoCardGrid(),
               ChartCardsGrid(),
             ],
