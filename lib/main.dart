@@ -9,6 +9,10 @@ import 'utils.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:ar_grocery_companion/data/repositories/categories_repository.dart';
+import 'package:ar_grocery_companion/domain/models/custom_category.dart';
+import 'package:ar_grocery_companion/data/repositories/companies_repository.dart';
+import 'package:ar_grocery_companion/domain/models/company.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,8 +32,7 @@ void main() async {
   initConnectionStatus();
 
   FirebaseHelper db = FirebaseHelper();
-  db.init();
-
+  await db.init();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   runApp(
     ProviderScope(child: const MyApp()),

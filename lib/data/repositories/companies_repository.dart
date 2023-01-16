@@ -3,9 +3,10 @@ import 'dart:convert';
 import 'package:ar_grocery_companion/domain/models/company.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ar_grocery_companion/data/helpers/db_helper.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class CompaniesRepository {
-
   // Singleton pattern
   static final CompaniesRepository instance = CompaniesRepository._();
 
@@ -24,35 +25,34 @@ class CompaniesRepository {
     });
   }
 
-  Future<int> insert(Company company) async{
-    // TODO: implement insert company
-    throw UnimplementedError();
+  Future<String> insert(Company company) async {
+    await FirebaseHelper.writeUnique('companies', company.toMap());
+    return company.id;
   }
 
-  Future<List<Company>> fetchCompaniesList() async{
-    // TODO: use the db_helper instead
-    _companies = await queryDummyJson();
+  Future<List<Company>> fetchCompaniesList() async {
+    DataSnapshot? snapshot = await FirebaseHelper.read('companies');
+
+    snapshot!.children.forEach((childSnapshot) {
+      var company = childSnapshot.value as Map<String, dynamic>;
+      company["id"] = childSnapshot.key;
+      _companies.add(Company.fromMap(company));
+    });
     return _companies;
   }
 
-  Future<List<Company>> fetchCompaniesListByName() async{
-    // TODO: implement this
-    throw UnimplementedError();
+  Future<void> deleteAll() async {
+    FirebaseHelper.delete('companies');
   }
 
-  Future<int> delete() async{
-    // TODO: implement delete copmay
-    throw UnimplementedError();
-  }
-
-  Future<int> deleteByName(name) async {
-    // TODO: implement delete copmay by name
-    throw UnimplementedError();
+  Future<String> deleteByID(id) async {
+    FirebaseHelper.delete('companies/$id');
+    return id;
   }
 
   void reset() {
-    // TODO: implement reset copmanies
-    throw UnimplementedError();
+    deleteAll();
+    // insert();
   }
 
   List<Company> getCompanies() {
@@ -60,8 +60,10 @@ class CompaniesRepository {
   }
 
   Company getCompany(String id) {
-    return _companies
-        .firstWhere((Company element) => element.id == id, orElse: () => Company.empty(),);
+    return _companies.firstWhere(
+      (Company element) => element.id == id,
+      orElse: () => Company.empty(),
+    );
   }
 
   // DUMMY DATA --------------------------------------------------------------------------------------

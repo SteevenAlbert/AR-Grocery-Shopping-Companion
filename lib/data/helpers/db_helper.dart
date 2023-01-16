@@ -40,7 +40,12 @@ class FirebaseHelper {
   }
 
   static Future<bool> writeUnique(String path, dynamic data) async {
-    DatabaseReference newEntryRef = _dbRef.child(path).push();
+    String? generatedKey = _dbRef.push().key;
+    //assign generated key to the object's id
+    // data["id"] = generatedKey;
+    data.remove("id");
+    path += "/$generatedKey";
+    DatabaseReference newEntryRef = _dbRef.child(path);
     return await newEntryRef.set(data).then((_) {
       return true;
     }).catchError((error) {

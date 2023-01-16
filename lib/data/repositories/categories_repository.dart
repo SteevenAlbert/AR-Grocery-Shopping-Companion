@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:ar_grocery_companion/domain/models/custom_category.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ar_grocery_companion/data/helpers/db_helper.dart';
 
 class CategoriesRepository {
   // Singleton pattern
@@ -24,35 +26,41 @@ class CategoriesRepository {
     });
   }
 
-  Future<int> insert(CustomCategory customCategory) async {
-    // TODO: implement insert customCategory
-    throw UnimplementedError();
+  Future<String> insert(CustomCategory category) async {
+    FirebaseHelper.writeUnique('categories', category.toMap());
+    return category.id;
+  }
+
+  Future<String> update(CustomCategory category) async {
+    Map<String, dynamic> cat = category.toMap();
+    // FirebaseHelper.update('categories/${cat['id']}', cat);
+    FirebaseHelper.update('categories/-NLuxyLGrXJybp8-kH5V', cat);
+    return category.id;
   }
 
   Future<List<CustomCategory>> fetchCategoriesList() async {
-    // TODO: use the db_helper instead
-    _categories = await queryDummyJson();
+    DataSnapshot? snapshot = await FirebaseHelper.read('categories');
+
+    snapshot!.children.forEach((childSnapshot) {
+      var category = childSnapshot.value as Map<String, dynamic>;
+      category["id"] = childSnapshot.key;
+      _categories.add(CustomCategory.fromMap(category));
+    });
     return _categories;
   }
 
-  Future<List<CustomCategory>> fetchCategoriesListByName() async {
-    // TODO: implement this
-    throw UnimplementedError();
+  Future<void> deleteAll() async {
+    FirebaseHelper.delete('categories');
   }
 
-  Future<int> delete() async {
-    // TODO: implement delete copmay
-    throw UnimplementedError();
-  }
-
-  Future<int> deleteByName(name) async {
-    // TODO: implement delete copmay by name
-    throw UnimplementedError();
+  Future<String> deleteById(id) async {
+    FirebaseHelper.delete('companies/$id');
+    return id;
   }
 
   void reset() {
-    // TODO: implement reset copmanies
-    throw UnimplementedError();
+    deleteAll();
+    // insert();
   }
 
   List<CustomCategory> getCategories() {
