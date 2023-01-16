@@ -45,7 +45,7 @@ class HomePage extends ConsumerWidget {
                         future: categories,
                         builder: ((context, snapshot) {
                           if (snapshot.hasData) {
-                            return Cat_Tabs(size: size);
+                            return CatTabs(size: size);
                           } else if (snapshot.hasError) {
                             return Center(child: Text("${snapshot.error}"));
                           }
