@@ -126,6 +126,8 @@ class _ScanPageState extends State<ScanPage>
               !_isLoading
                   ? CustomAnimatedButton(
                       text: "Start Scanning",
+                      color: Theme.of(context).primaryColor,
+                      textColor: Theme.of(context).canvasColor,
                       func: () async {
                         setState(() {
                           _isLoading = true;

@@ -158,6 +158,8 @@ class RegisterScreenState extends State<RegisterScreen> {
           Center(
             child: CustomAnimatedButton(
               text: 'Register',
+              textColor: Theme.of(context).canvasColor,
+              color: Theme.of(context).primaryColor,
               func: _register,
             ),
           ),

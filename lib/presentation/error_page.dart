@@ -8,6 +8,7 @@ class SomethingWentWrongScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(
         fit: StackFit.expand,
         children: [
@@ -18,10 +19,12 @@ class SomethingWentWrongScreen extends StatelessWidget {
           ),
           Positioned(
               bottom: MediaQuery.of(context).size.height * 0.10,
-              left: MediaQuery.of(context).size.width * 0.25,
-              right: MediaQuery.of(context).size.width * 0.25,
+              left: MediaQuery.of(context).size.width * 0.215,
+              right: MediaQuery.of(context).size.width * 0.215,
               child: CustomAnimatedButton(
                   text: "Go To Homepage".toUpperCase(),
+                  textColor: Theme.of(context).canvasColor,
+                  color: Theme.of(context).primaryColor,
                   func: () async {
                     (await SessionManager().containsKey("isLoggedIn") != true ||
                             await SessionManager().get("isLoggedIn") != true)

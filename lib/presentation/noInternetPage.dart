@@ -30,6 +30,8 @@ class noInternetScreen extends StatelessWidget {
               right: MediaQuery.of(context).size.width * 0.25,
               child: CustomAnimatedButton(
                   text: "Try Again".toUpperCase(),
+                  textColor: Theme.of(context).canvasColor,
+                  color: Theme.of(context).primaryColor,
                   func: () async {
                     Restart.restartApp();
                   }))
