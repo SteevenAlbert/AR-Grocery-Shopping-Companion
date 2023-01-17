@@ -37,6 +37,7 @@ class LogInScreenState extends State<LogInScreen> {
         password: passwordController.text,
         context: context,
       ).then((user) async {
+        print(user);
         if (user != null) {
           usersRepo
               .fetchAppUser((FirebaseAuth.instance.currentUser?.uid)!)
@@ -46,6 +47,7 @@ class LogInScreenState extends State<LogInScreen> {
               var sessionManager = SessionManager();
               await sessionManager.set("UID", appUser.UID);
               await sessionManager.set("name", appUser.name);
+              await sessionManager.set("pfpPath", appUser.pfpPath);
               await sessionManager.set("type", appUser.type);
               await sessionManager.set("isLoggedIn", true);
               ((await SessionManager().get("type") == 'customer')

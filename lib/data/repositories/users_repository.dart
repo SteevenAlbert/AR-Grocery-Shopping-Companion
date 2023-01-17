@@ -56,7 +56,7 @@ class AppUsersRepository {
   Future<AppUser?> fetchAppUser(String UID) async {
     return await ref.child(AppUser.path(UID)).get().then((snapshot) {
       Map<dynamic, dynamic> userMap = snapshot.value as Map<dynamic, dynamic>;
-      userMap['UID'] = UID.substring(1);
+      userMap['UID'] = UID;
       return AppUser.fromMap(userMap as Map<String, dynamic>);
     }).then((user) => user);
   }

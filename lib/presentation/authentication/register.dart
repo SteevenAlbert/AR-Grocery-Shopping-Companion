@@ -8,13 +8,11 @@ import 'package:ar_grocery_companion/presentation/authentication/custom_widgets/
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:ar_grocery_companion/constants/constants.dart';
 import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:intl/intl.dart';
 import 'package:ar_grocery_companion/data/repositories/users_repository.dart';
 
-AppUsersRepository usersRepo =
-    AppUsersRepository.instance as AppUsersRepository;
+AppUsersRepository usersRepo = AppUsersRepository.instance;
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -77,35 +75,33 @@ class RegisterScreenState extends State<RegisterScreen> {
               context: context,
               email: emailController.text,
               password: passwordController.text)
-          .then((user) => {
-                if (user != null)
-                  {
-                    usersRepo
-                        .insertAppUser(
-                            appUser: AppUser(
-                                UID: user.uid,
-                                email: emailController.text,
-                                name: nameController.text,
-                                type: "customer",
-                                DOB: dateController.text,
-                                gender: groupValue == 0
-                                    ? "other"
-                                    : (groupValue == 1 ? "female" : "male")))
-                        .then((success) async {
-                      if (success == true) {
-                        var sessionManager = SessionManager();
-                        await sessionManager.set("UID", user.uid);
-                        await sessionManager.set("name", nameController.text);
-                        await sessionManager.set("type", "customer");
-                        await sessionManager.set("isLoggedIn", true);
+          .then((user) {
+        if (user != null) {
+          AppUser appUser = AppUser(
+              UID: user.uid,
+              email: emailController.text,
+              name: nameController.text,
+              type: "customer",
+              DOB: dateController.text,
+              gender: groupValue == 0
+                  ? "other"
+                  : (groupValue == 1 ? "female" : "male"));
+          usersRepo.insertAppUser(appUser: appUser).then((success) async {
+            if (success == true) {
+              var sessionManager = SessionManager();
+              await sessionManager.set("UID", appUser.UID);
+              await sessionManager.set("name", appUser.name);
+              await sessionManager.set("pfpPath", appUser.pfpPath);
+              await sessionManager.set("type", appUser.type);
+              await sessionManager.set("isLoggedIn", true);
 
-                        context.go('/customer_homepage');
-                      } else {
-                        user.delete();
-                      }
-                    })
-                  }
-              });
+              context.go('/customer_homepage');
+            } else {
+              user.delete();
+            }
+          });
+        }
+      });
     }
   }
 

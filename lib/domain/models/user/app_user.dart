@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:ar_grocery_companion/constants/constants.dart';
+
 class AppUser {
   String UID;
   String email;
@@ -8,7 +10,7 @@ class AppUser {
   String name;
   String DOB;
   String gender;
-  String? pfpPath = "assets/images/profilepic.jpeg";
+  String? pfpPath;
 
   AppUser(
       {required this.UID,
@@ -17,7 +19,7 @@ class AppUser {
       required this.name,
       required this.DOB,
       required this.gender,
-      this.pfpPath});
+      this.pfpPath = kNoPfpImg});
 
   AppUser copyWith({
     required String UID,
