@@ -22,8 +22,6 @@ class Company {
     this.products,
   });
 
-  
-
   factory Company.empty() {
     return Company(id: "-1", name: "Nan");
   }

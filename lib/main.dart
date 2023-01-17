@@ -12,6 +12,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   //Background

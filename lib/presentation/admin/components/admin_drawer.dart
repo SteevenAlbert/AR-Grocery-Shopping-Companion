@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class AdminDrawer extends StatefulWidget {
-  const AdminDrawer({super.key});
+  const AdminDrawer({super.key, required this.page});
+
+  final PageController page;
 
   @override
   State<AdminDrawer> createState() => _AdminDrawerState();
@@ -15,10 +17,40 @@ class _AdminDrawerState extends State<AdminDrawer> {
       child: ListView(
         children: [
           ListTile(
+              leading: Icon(Icons.dashboard),
+              title: Text("Dashboard"),
+              onTap: () {
+                widget.page.jumpToPage(0);
+              }),
+          ListTile(
+              leading: Icon(Icons.supervised_user_circle),
+              title: Text("Users"),
+              onTap: () {
+                widget.page.jumpToPage(0);
+              }),
+          ListTile(
+              leading: Icon(Icons.bakery_dining),
+              title: Text("Products"),
+              onTap: () {
+                widget.page.jumpToPage(0);
+              }),
+          ListTile(
+              leading: Icon(Icons.discount),
+              title: Text("Categories"),
+              onTap: () {
+                widget.page.jumpToPage(0);
+              }),
+          ListTile(
+              leading: Icon(Icons.bakery_dining),
+              title: Text("Manufacturers"),
+              onTap: () {
+                widget.page.jumpToPage(1);
+              }),
+          ListTile(
               leading: Icon(Icons.settings),
               title: Text("Settings"),
               onTap: () {
-                context.push('/settings_page');
+                widget.page.jumpToPage(2);
               }),
         ],
       ),
