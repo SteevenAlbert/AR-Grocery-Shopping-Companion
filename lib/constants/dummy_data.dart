@@ -4,6 +4,7 @@ import 'package:ar_grocery_companion/domain/models/product/concrete_products/foo
 import 'package:ar_grocery_companion/domain/models/product/concrete_products/liquid_product.dart';
 import 'package:ar_grocery_companion/domain/models/product/product.dart';
 import 'package:ar_grocery_companion/domain/models/product/product_base.dart';
+import 'package:ar_grocery_companion/domain/models/user/app_user.dart';
 
 Product dummyProduct(i) {
   ProductBase productBase = ProductBase(

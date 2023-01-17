@@ -29,7 +29,7 @@ void main() async {
   initConnectionStatus();
 
   FirebaseHelper db = FirebaseHelper();
-  db.init();
+  await db.init();
 
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   runApp(

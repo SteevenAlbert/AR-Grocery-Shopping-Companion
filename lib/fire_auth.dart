@@ -6,7 +6,7 @@ import 'presentation/authentication/custom_widgets/custom_snackbar.dart';
 
 class FireAuthentication {
   static Future<User?> registerUsingEmailPassword({
-    required String name,
+    required BuildContext context,
     required String email,
     required String password,
   }) async {
@@ -18,22 +18,21 @@ class FireAuthentication {
         password: password,
       );
       user = userCredential.user;
-      await user!.updateProfile(displayName: name);
-      await user.reload();
       user = auth.currentUser;
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
-      }
-    } catch (e) {
-      print(e);
+      if (e.code == 'email-already-in-use') {
+        CustomSnackbar(
+            context: context,
+            title: "Email Taken",
+            message:
+                "An account already exists for that email. Please try an another email.");
+      } else
+        print(e);
     }
     return user;
   }
 
-  static Future<String?> signInUsingEmailPassword({
+  static Future<User?> signInUsingEmailPassword({
     required String email,
     required String password,
     required BuildContext context,
@@ -49,16 +48,24 @@ class FireAuthentication {
       user = userCredential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        return 'user-not-found';
+        CustomSnackbar(
+            context: context,
+            title: 'Wrong Email',
+            message:
+                'It appears there are no users found for that email. Please try again.');
       } else if (e.code == 'wrong-password') {
-        return 'wrong-password';
+        CustomSnackbar(
+          context: context,
+          title: 'Wrong Password',
+          message:
+              'It appears you have entered the wrong password. Please try again.',
+        );
       } else {
         print(e);
-        return "e";
       }
     }
 
-    return null;
+    return user;
   }
 
   static Future<User?> signInWithGoogle({required BuildContext context}) async {
@@ -126,5 +133,9 @@ class FireAuthentication {
           message:
               'It appears there was an error during sign out. Please try again.');
     }
+  }
+
+  String getCurrentUserId() {
+    return FirebaseAuth.instance.currentUser?.uid ?? '';
   }
 }

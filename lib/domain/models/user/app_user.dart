@@ -1,25 +1,103 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
+import 'package:ar_grocery_companion/constants/constants.dart';
+
 class AppUser {
-  String? email;
-  int? type;
-  String? name;
-  //TODO: date_of_birth
-  //TODO: gender
-  //TODO: image
+  String UID;
+  String email;
+  String type;
+  String name;
+  String DOB;
+  String gender;
+  String? pfpPath;
 
-  AppUser({this.email, this.name, this.type});
+  AppUser(
+      {required this.UID,
+      required this.email,
+      required this.type,
+      required this.name,
+      required this.DOB,
+      required this.gender,
+      this.pfpPath = kNoPfpImg});
 
-  static List<AppUser> appUsers = [
-    AppUser(email: "customer@gmail.com", name: "customer", type: 1),
-    AppUser(email: "admin@gmail.com", name: "admin", type: 0)
-  ];
+  AppUser copyWith({
+    required String UID,
+    required String email,
+    required String type,
+    required String name,
+    required String DOB,
+    required String gender,
+    String? pfpPath,
+  }) {
+    return AppUser(
+      UID: this.UID,
+      email: this.email,
+      type: this.type,
+      name: this.name,
+      DOB: this.DOB,
+      gender: this.gender,
+      pfpPath: pfpPath ?? this.pfpPath,
+    );
+  }
 
-  //addAccount
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'email': email,
+      'type': type,
+      'name': name,
+      'DOB': DOB,
+      'gender': gender,
+      'pfpPath': pfpPath,
+    };
+  }
 
-  //editAccount
+  static String path(UID) {
+    return '/-' + UID;
+  }
 
-  //deleteAccount
+  String toJson() => json.encode(toMap());
 
-  static AppUser findEmailMatch(email) {
-    return appUsers.firstWhere((element) => element.email == email);
+  factory AppUser.fromMap(Map<String, dynamic> map) {
+    return AppUser(
+      UID: map['UID'] as String,
+      email: map['email'] as String,
+      type: map['type'] as String,
+      name: map['name'] as String,
+      DOB: map['DOB'] as String,
+      gender: map['gender'] as String,
+      pfpPath: map['pfpPath'],
+    );
+  }
+
+  factory AppUser.fromJson(String source, value) =>
+      AppUser.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  @override
+  String toString() {
+    return 'AppUser(UID: $UID,email: $email, type: $type, name: $name, DOB: $DOB, gender: $gender, pfpPath: $pfpPath)';
+  }
+
+  @override
+  bool operator ==(covariant AppUser other) {
+    if (identical(this, other)) return true;
+
+    return other.UID == UID &&
+        other.email == email &&
+        other.type == type &&
+        other.name == name &&
+        other.DOB == DOB &&
+        other.gender == gender &&
+        other.pfpPath == pfpPath;
+  }
+
+  @override
+  int get hashCode {
+    return email.hashCode ^
+        type.hashCode ^
+        name.hashCode ^
+        DOB.hashCode ^
+        gender.hashCode ^
+        pfpPath.hashCode;
   }
 }

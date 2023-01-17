@@ -41,7 +41,17 @@ class HomePage extends ConsumerWidget {
                 future: Future.wait([products, categories]),
                 builder: ((context, snapshot) {
                   if (snapshot.hasData) {
-                    return Cat_Tabs(size: size);
+                    return FutureBuilder(
+                        future: categories,
+                        builder: ((context, snapshot) {
+                          if (snapshot.hasData) {
+                            return CatTabs(size: size);
+                          } else if (snapshot.hasError) {
+                            return Center(child: Text("${snapshot.error}"));
+                          }
+                          return Center(
+                              child: const CircularProgressIndicator());
+                        }));
                   } else if (snapshot.hasError) {
                     return Center(child: Text("${snapshot.error}"));
                   }
