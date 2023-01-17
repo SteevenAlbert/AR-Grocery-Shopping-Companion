@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ChartCard extends StatelessWidget {
-  ChartCard({super.key, required this.chart});
+  ChartCard({super.key, required this.chart, required this.title});
 
   final Widget chart;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class ChartCard extends StatelessWidget {
               Align(
                 alignment: Alignment.topLeft,
                   child: Text(
-                "Products",
+                title,
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)
               )),
               chart,

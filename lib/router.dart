@@ -1,6 +1,6 @@
 import 'package:ar_grocery_companion/domain/models/company.dart';
 import 'package:ar_grocery_companion/domain/sample.dart';
-import 'package:ar_grocery_companion/presentation/admin/companies/add_company_page.dart';
+import 'package:ar_grocery_companion/presentation/admin/companies/crud/add_company_page.dart';
 import 'package:ar_grocery_companion/presentation/companies/companies_list_page.dart';
 import 'package:ar_grocery_companion/presentation/companies/company_details.dart';
 import 'package:ar_grocery_companion/presentation/no_internet_page.dart';

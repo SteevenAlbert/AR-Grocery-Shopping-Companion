@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class AdminDrawer extends StatefulWidget {
   const AdminDrawer({super.key, required this.page});
@@ -16,6 +15,13 @@ class _AdminDrawerState extends State<AdminDrawer> {
     return Drawer(
       child: ListView(
         children: [
+          DrawerHeader(child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset("assets/icon/app_logo.png", width: 100,),
+              Text("Grocar", style: Theme.of(context).textTheme.titleSmall)
+            ],
+          )),
           ListTile(
               leading: Icon(Icons.dashboard),
               title: Text("Dashboard"),

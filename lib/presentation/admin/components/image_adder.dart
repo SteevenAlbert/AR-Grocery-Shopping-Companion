@@ -23,37 +23,43 @@ class _ImageAdderState extends State<ImageAdder> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => sourceChoice(),
-      child: Container(
-        height: 300,
-        width: 300,
-        child: image != null
-            ? Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Container(
-                    color: Colors.grey[800]!.withOpacity(0.1),
-                    child: Image.network(
-                      image!.path,
-                      fit: BoxFit.contain,
-                      width: MediaQuery.of(context).size.width,
-                      height: 300,
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: () => sourceChoice(),
+          child: Container(
+            height: 300,
+            width: 300,
+            child: image != null
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Container(
+                        color: Colors.grey[800]!.withOpacity(0.1),
+                        child: Image.network(
+                          image!.path,
+                          fit: BoxFit.contain,
+                          width: MediaQuery.of(context).size.width,
+                          height: 300,
+                        ),
+                      ),
+                    ),
+                  )
+                : Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(40)),
+                        color: Theme.of(context).highlightColor),
+                    child: Icon(
+                      Icons.camera_alt,
+                      color: Colors.grey[800],
                     ),
                   ),
-                ),
-              )
-            : Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(40)),
-                    color: Theme.of(context).highlightColor),
-                child: Icon(
-                  Icons.camera_alt,
-                  color: Colors.grey[800],
-                ),
-              ),
-      ),
+          ),
+        ),
+        SizedBox(height: 8.0,),
+        Text("Company logo", style: Theme.of(context).textTheme.labelMedium)
+      ],
     );
   }
 
