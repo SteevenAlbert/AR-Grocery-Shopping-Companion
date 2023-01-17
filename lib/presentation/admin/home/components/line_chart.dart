@@ -46,14 +46,14 @@ class CustomLineChartState extends State<CustomLineChart> {
     double maxY = double.minPositive;
 
     _values = data.map((datum) {
-      var rand = Random().nextInt(20).toDouble();
-      if (minY > rand) minY = rand;
-      if (maxY < rand) maxY = rand;
+      var rand = Random().nextInt(20);
+      // if (minY > rand) minY = rand;
+      // if (maxY < rand) maxY = rand;
       
       return FlSpot(
         // datum.createdAt.millisecondsSinceEpoch.toDouble(),
-        rand,
-        rand
+        rand.toDouble(),
+        (rand % 20)
       );
     }).toList();
 

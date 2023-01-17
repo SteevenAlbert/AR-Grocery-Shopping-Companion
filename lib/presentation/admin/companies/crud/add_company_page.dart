@@ -11,7 +11,7 @@ class AddCompanyPage extends StatelessWidget {
       appBar: buildAppBar(context: context),
       body:ListView(
       children: [
-        Padding(padding: EdgeInsets.all(16.0), child: Text("Add Manufacturer", style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),)),
+        Padding(padding: EdgeInsets.all(16.0), child: Text("Add Company", style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),)),
         AddCompanyForm(),
       ],
     ));
