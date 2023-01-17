@@ -5,7 +5,7 @@ import '../../services/firebase_options.dart';
 
 //Struct to store database collection names as strings
 class DBCollections {
-  static String users = "users";
+  static String users = "appUsers";
   static String products = "products";
 }
 

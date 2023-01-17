@@ -20,7 +20,9 @@ class CustomAnimatedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+        padding: const EdgeInsets.only(
+          top: 15.0,
+        ),
         child: AnimatedButton(
           shadowDegree: ShadowDegree.dark,
           width: MediaQuery.of(context).size.width / 1.75,

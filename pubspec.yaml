@@ -52,7 +52,7 @@ dependencies:
   go_router: ^6.0.1
   http: null
   image_picker: ^0.8.6
-  intl: ^0.18.0
+  intl: ^0.17.0
   like_button: ^2.0.5
   lottie: ^2.1.0
   passwordfield: ^0.1.0
@@ -72,6 +72,10 @@ dependencies:
   firebase_messaging: ^14.2.1
   awesome_snackbar_content: ^0.1.0
   google_sign_in: ^5.0.0
+  flutter_form_builder: ^7.7.0
+  flutter_localizations:
+    sdk: flutter
+  form_builder_validators: ^8.4.0
 
   
 dev_dependencies:

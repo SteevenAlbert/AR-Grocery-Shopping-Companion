@@ -6,8 +6,11 @@ class Header extends StatelessWidget {
   Header({super.key, required this.size});
 
   final Size size;
-  Future<String> sessionName() async {
-    return await SessionManager().get("name");
+  Future<String>? sessionName() async {
+    return (await SessionManager().containsKey("isLoggedIn") != true ||
+            await SessionManager().get("isLoggedIn") != true)
+        ? null
+        : await SessionManager().get("name");
   }
 // Future<String> sessionImg() async {
 //     return await SessionManager().get("pfp");
@@ -27,7 +30,7 @@ class Header extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Good Morning " + text.data!,
+                        "Good Morning " + (text.data == null ? "" : text.data!),
                         style: Theme.of(context).textTheme.titleSmall,
                       ),
                       Text(

@@ -8,10 +8,9 @@ class CustomTextFormField extends StatelessWidget {
     this.controller,
     required this.errorMessage,
     this.regex = "(.*?)",
-    this.errorMessage2 = "",
+    this.regexErrorMessage = "",
     this.confirm,
-    this.errorMessage3 = "",
-    this.errorMessage4 = "",
+    this.confirmErrorMessage = "",
     this.obscureText = false,
     this.toggle,
     this.readOnly = false,
@@ -22,10 +21,9 @@ class CustomTextFormField extends StatelessWidget {
   final TextEditingController? controller;
   final String errorMessage;
   final String? regex;
-  final String? errorMessage2;
-  final String? confirm;
-  final String? errorMessage3;
-  final String? errorMessage4;
+  final String? regexErrorMessage;
+  final TextEditingController? confirm;
+  final String? confirmErrorMessage;
   final bool? obscureText;
   final Function()? toggle;
   final bool? readOnly;
@@ -41,15 +39,10 @@ class CustomTextFormField extends StatelessWidget {
           if (value == null || value.isEmpty) {
             return errorMessage;
           } else if (!value.contains(new RegExp(regex!))) {
-            return errorMessage2;
+            return regexErrorMessage;
+          } else if (confirm != null && value != confirm!.text) {
+            return confirmErrorMessage;
           }
-
-          if (confirm != null) {
-            if (value != confirm) {
-              return errorMessage3;
-            }
-          }
-
           return null;
         },
         obscureText: obscureText!,

@@ -1,4 +1,6 @@
 import 'package:ar_grocery_companion/data/helpers/db_helper.dart';
+import 'package:ar_grocery_companion/domain/models/user/app_user.dart';
+import 'package:ar_grocery_companion/fire_auth.dart';
 import 'package:ar_grocery_companion/presentation/authentication/custom_widgets/custom_animated_button.dart';
 import 'package:ar_grocery_companion/presentation/authentication/custom_widgets/custom_radio_button.dart';
 import 'package:ar_grocery_companion/presentation/authentication/custom_widgets/custom_text_form_field.dart';
@@ -9,6 +11,10 @@ import 'package:go_router/go_router.dart';
 import 'package:ar_grocery_companion/constants/constants.dart';
 import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:intl/intl.dart';
+import 'package:ar_grocery_companion/data/repositories/users_repository.dart';
+
+AppUsersRepository usersRepo =
+    AppUsersRepository.instance as AppUsersRepository;
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -27,7 +33,8 @@ class RegisterScreenState extends State<RegisterScreen> {
   TextEditingController dateController = TextEditingController();
 
   bool _isHidden = true;
-  int groupValue = -1;
+  bool _isConfirmHidden = true;
+  int groupValue = 0;
   bool isLoading = false;
   bool isUnique = true;
 
@@ -37,9 +44,15 @@ class RegisterScreenState extends State<RegisterScreen> {
     super.initState();
   }
 
-  void _togglePasswordView() {
+  void _togglePasswordView1() {
     setState(() {
       _isHidden = !_isHidden;
+    });
+  }
+
+  void _toggleConfirmPasswordView() {
+    setState(() {
+      _isConfirmHidden = !_isConfirmHidden;
     });
   }
 
@@ -60,15 +73,39 @@ class RegisterScreenState extends State<RegisterScreen> {
 
   void _register() async {
     if (_formKey.currentState!.validate()) {
-      //TODO: create new user
-// DateTime.now().year-dateController.year
-//if groupValue == 0 other, == 1 female, == 2 male
-      //write json data to firebase
+      FireAuthentication.registerUsingEmailPassword(
+              context: context,
+              email: emailController.text,
+              password: passwordController.text)
+          .then((user) => {
+                if (user != null)
+                  {
+                    usersRepo
+                        .insertAppUser(
+                            appUser: AppUser(
+                                UID: user.uid,
+                                email: emailController.text,
+                                name: nameController.text,
+                                type: "customer",
+                                DOB: dateController.text,
+                                gender: groupValue == 0
+                                    ? "other"
+                                    : (groupValue == 1 ? "female" : "male")))
+                        .then((success) async {
+                      if (success == true) {
+                        var sessionManager = SessionManager();
+                        await sessionManager.set("UID", user.uid);
+                        await sessionManager.set("name", nameController.text);
+                        await sessionManager.set("type", "customer");
+                        await sessionManager.set("isLoggedIn", true);
 
-      //TODO: set session
-      // ((await SessionManager().get("type") == 1)
-      //     ? context.go('/customer_homepage')
-      //     : context.go('/admin_homepage'));
+                        context.go('/customer_homepage');
+                      } else {
+                        user.delete();
+                      }
+                    })
+                  }
+              });
     }
   }
 
@@ -93,29 +130,30 @@ class RegisterScreenState extends State<RegisterScreen> {
             errorMessage: 'Please enter your email.',
             regex:
                 r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$',
-            errorMessage2: "Email format is incorrect.",
+            regexErrorMessage: "Email format is incorrect.",
             labelText: "Email",
             icon: Icons.mail,
           ),
           CustomTextFormField(
             controller: passwordController,
             errorMessage: 'Please enter your password.',
-            regex: "r'[!@#\$%^&*(),.?\":{}|<>]'",
-            errorMessage2: 'Password must have a Special Character.',
+            regex: r'[!@#$%^&*(),.?":{}|<>]',
+            regexErrorMessage: 'Password must have a Special Character.',
             obscureText: _isHidden,
             labelText: "Password",
-            toggle: _togglePasswordView,
+            toggle: _togglePasswordView1,
             icon: (_isHidden ? Icons.visibility : Icons.visibility_off),
           ),
           CustomTextFormField(
               controller: confirmPasswordController,
               errorMessage: 'Please enter your password confirmation.',
-              obscureText: _isHidden,
+              obscureText: _isConfirmHidden,
               labelText: "Password Confirmation",
-              toggle: _togglePasswordView,
-              icon: (_isHidden ? Icons.visibility : Icons.visibility_off),
-              confirm: passwordController.text,
-              errorMessage3: "Confirmation doesn't match password"),
+              toggle: _toggleConfirmPasswordView,
+              icon:
+                  (_isConfirmHidden ? Icons.visibility : Icons.visibility_off),
+              confirm: passwordController,
+              confirmErrorMessage: "Confirmation doesn't match password"),
           CustomTextFormField(
               controller: dateController,
               labelText: "Date of Birth",

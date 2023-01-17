@@ -29,7 +29,7 @@ class SomethingWentWrongScreen extends StatelessWidget {
                     (await SessionManager().containsKey("isLoggedIn") != true ||
                             await SessionManager().get("isLoggedIn") != true)
                         ? context.go('/authenticate')
-                        : ((await SessionManager().get("type") == 1)
+                        : ((await SessionManager().get("type") == 'customer')
                             ? context.go('/customer_homepage')
                             : context.go('/admin_homepage'));
                   }))
