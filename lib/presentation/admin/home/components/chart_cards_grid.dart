@@ -18,7 +18,7 @@ class ChartCardsGrid extends StatelessWidget {
       crossAxisCount: size.width ~/ 350,
       childAspectRatio: 1/1.1,
       children: [
-        ChartCard(title: "Manufacturers", chart: CustomPieChart()), 
+        //ChartCard(title: "Manufacturers", chart: CustomPieChart()), 
         ChartCard(title: "Engagement", chart: CustomLineChart()), 
         ],
     );

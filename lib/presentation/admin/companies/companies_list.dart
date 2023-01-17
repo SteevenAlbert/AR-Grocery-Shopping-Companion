@@ -13,11 +13,11 @@ class CompaniesList extends StatelessWidget {
       itemCount: companies.length,
       itemBuilder: ((context, index) {
         return ListTile(
-          leading: CircleAvatar(
-              backgroundColor: Theme.of(context).canvasColor.withOpacity(0.1),
-              child: Image.asset(
-                companies[index].logoPath ?? kNoLogoImg,
-              )),
+          // leading: CircleAvatar(
+          //     backgroundColor: Theme.of(context).canvasColor.withOpacity(0.1),
+          //     child: Image.asset(
+          //       companies[index].logoPath ?? kNoLogoImg,
+          //     )),
           title: Text(companies[index].name),
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
