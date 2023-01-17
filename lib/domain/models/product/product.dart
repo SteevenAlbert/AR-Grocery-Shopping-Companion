@@ -8,6 +8,9 @@ abstract class Product {
 
   String id;
 
+  DateTime createdAt;
+  DateTime? updatedAt;
+
   String name;
   List<String> images;
   Company manufacturer;
@@ -21,6 +24,8 @@ abstract class Product {
 
   Product({
     required this.id,
+    required this.createdAt,
+    this.updatedAt,
     required this.name,
     required this.images,
     required this.manufacturer,
@@ -29,12 +34,12 @@ abstract class Product {
     this.storesURLs,
     required this.properties,
   });
-  
-  Map<String, dynamic> getProperties();
 
+  Map<String, dynamic> getProperties();
+  
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, imagePath: $images, manufacturer: $manufacturer, customCategory: $customCategory, prices: $prices, storesURLs: $storesURLs, properties: $properties)';
+    return 'Product(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, name: $name, images: $images, manufacturer: $manufacturer, customCategory: $customCategory, prices: $prices, storesURLs: $storesURLs, properties: $properties)';
   }
 
   @override
@@ -43,8 +48,10 @@ abstract class Product {
   
     return 
       other.id == id &&
+      other.createdAt == createdAt &&
+      other.updatedAt == updatedAt &&
       other.name == name &&
-      other.images == images &&
+      listEquals(other.images, images) &&
       other.manufacturer == manufacturer &&
       other.customCategory == customCategory &&
       mapEquals(other.prices, prices) &&
@@ -55,6 +62,8 @@ abstract class Product {
   @override
   int get hashCode {
     return id.hashCode ^
+      createdAt.hashCode ^
+      updatedAt.hashCode ^
       name.hashCode ^
       images.hashCode ^
       manufacturer.hashCode ^

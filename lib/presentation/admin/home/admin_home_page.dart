@@ -1,5 +1,5 @@
-import 'package:ar_grocery_companion/presentation/admin/home/components/dashboard.dart';
-import 'package:ar_grocery_companion/presentation/admin/home/wide_admin_module.dart';
+import 'package:ar_grocery_companion/presentation/admin/components/admin_drawer.dart';
+import 'package:ar_grocery_companion/presentation/admin/home/page_view_list.dart';
 import 'package:ar_grocery_companion/utils.dart';
 import 'package:flutter/material.dart';
 
@@ -8,15 +8,23 @@ class AdminHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final PageController page = PageController();
     return LayoutBuilder(
         builder: ((BuildContext context, BoxConstraints constraints) {
       if (constraints.maxWidth > 600) {
-        return WideAdminModule();
+        return Scaffold(
+          body: Row(children: [
+            AdminDrawer(page: page),
+            Expanded(
+              child: PageViewList(page: page),
+            ),
+          ]),
+        );
       } else {
         return Scaffold(
           appBar: buildAppBar(context: context),
-          drawer: Drawer(),
-          body: Dashboard(),
+          drawer: AdminDrawer(page: page),
+          body: PageViewList(page: page),
         );
       }
     }));

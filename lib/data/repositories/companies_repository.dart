@@ -66,6 +66,10 @@ class CompaniesRepository {
     );
   }
 
+  int getCount() {
+    return _companies.length;
+  }
+
   // DUMMY DATA --------------------------------------------------------------------------------------
   // Generate and return a list of companies from a .json file
   static Future<List<Company>> queryDummyJson() async {
@@ -79,4 +83,5 @@ class CompaniesRepository {
     }
     return companies;
   }
+
 }

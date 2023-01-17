@@ -5,6 +5,8 @@ import 'package:ar_grocery_companion/domain/models/product/product.dart';
 class ProductBase extends Product {
   ProductBase(
       {required id,
+      required createdAt,
+      updatedAt,
       required name,
       required images,
       required manufacturer,
@@ -13,6 +15,8 @@ class ProductBase extends Product {
       storesURLs})
       : super(
             id: id,
+            createdAt: createdAt,
+            updatedAt: updatedAt,
             name: name,
             images: images,
             manufacturer: manufacturer,
@@ -29,6 +33,7 @@ class ProductBase extends Product {
   factory ProductBase.empty() {
     return ProductBase(
         id: "-1",
+        createdAt: DateTime.now(),
         name: "Nan",
         images: [""],
         manufacturer: Company(id: "-1", name: ""),
@@ -38,6 +43,7 @@ class ProductBase extends Product {
   factory ProductBase.fromMap(Map<String, dynamic> map) {
     return ProductBase(
       id: map["id"],
+      createdAt: DateTime.now(),
       name: map["name"],
       images: List<String>.from(map["images"] as List),
       manufacturer: Company.fromMap(map["manufacturer"]),

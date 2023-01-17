@@ -9,6 +9,7 @@ import 'package:ar_grocery_companion/domain/models/user/app_user.dart';
 Product dummyProduct(i) {
   ProductBase productBase = ProductBase(
       id: "$i",
+      createdAt: DateTime.now(),
       name: "name $i",
       images: ["assets/images/milk-1.png"],
       manufacturer: Company(id: "$i", name: "company $i"),

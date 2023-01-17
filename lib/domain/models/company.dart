@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
 import 'country.dart';
 
 class Company {
@@ -10,14 +12,19 @@ class Company {
   Country? country;
   String? logoPath;
   String? url;
-
+  List<String>? products;
   Company({
     required this.id,
     required this.name,
     this.country,
     this.logoPath,
     this.url,
+    this.products,
   });
+
+  factory Company.empty() {
+    return Company(id: "-1", name: "Nan");
+  }
 
   Company copyWith({
     String? id,
@@ -25,6 +32,7 @@ class Company {
     Country? country,
     String? logoPath,
     String? url,
+    List<String>? products,
   }) {
     return Company(
       id: id ?? this.id,
@@ -32,6 +40,7 @@ class Company {
       country: country ?? this.country,
       logoPath: logoPath ?? this.logoPath,
       url: url ?? this.url,
+      products: products ?? this.products,
     );
   }
 
@@ -42,6 +51,7 @@ class Company {
       'country': country?.toMap(),
       'logoPath': logoPath,
       'url': url,
+      'products': products,
     };
   }
 
@@ -52,6 +62,7 @@ class Company {
       country: map['country'] != null ? Country.fromMap(map['country'] as Map<String,dynamic>) : null,
       logoPath: map['logoPath'] != null ? map['logoPath'] as String : null,
       url: map['url'] != null ? map['url'] as String : null,
+      products: map['products'] != null ? List<String>.from((map['products'] as List)) : [],
     );
   }
 
@@ -61,7 +72,7 @@ class Company {
 
   @override
   String toString() {
-    return 'Company(id: $id, name: $name, country: $country, logoPath: $logoPath, url: $url)';
+    return 'Company(id: $id, name: $name, country: $country, logoPath: $logoPath, url: $url, products: $products)';
   }
 
   @override
@@ -73,7 +84,8 @@ class Company {
       other.name == name &&
       other.country == country &&
       other.logoPath == logoPath &&
-      other.url == url;
+      other.url == url &&
+      listEquals(other.products, products);
   }
 
   @override
@@ -82,10 +94,7 @@ class Company {
       name.hashCode ^
       country.hashCode ^
       logoPath.hashCode ^
-      url.hashCode;
-  }
-
-  factory Company.empty() {
-    return Company(id: "-1", name: "Nan");
+      url.hashCode ^
+      products.hashCode;
   }
 }
