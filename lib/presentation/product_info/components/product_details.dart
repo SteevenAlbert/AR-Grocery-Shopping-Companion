@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:ar_grocery_companion/domain/models/product/product.dart';
 import 'package:ar_grocery_companion/presentation/product_info/components/nutrition_table.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/material.dart';
 
 class ProductDetails extends StatelessWidget {
   final Product product;
@@ -16,7 +14,6 @@ class ProductDetails extends StatelessWidget {
     return ListView.builder(
       itemCount: (props.length + 1),
       itemBuilder: ((context, index) {
-        
         if (index < props.length) {
           String key = props.keys.elementAt(index);
           return ListTile(

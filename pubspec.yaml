@@ -112,6 +112,7 @@ flutter:
     - assets/icon/
     - assets/images/
     - assets/images/background/
+    - assets/images/profile_pictures/    
     - assets/images/heart/
     - assets/images/store_logos/
     - samples/

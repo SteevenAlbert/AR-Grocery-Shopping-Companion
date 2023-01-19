@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import '../constants/keys.dart';
 import '/domain/models/product/product.dart';
-import 'package:http/http.dart' as http;
 
 String baseURL =
     "https://api.rainforestapi.com/request?api_key=$RainForestAPILicenseKey&type=product&url=";

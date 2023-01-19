@@ -1,5 +1,4 @@
 import 'package:ar_grocery_companion/data/repositories/categories_repository.dart';
-import 'package:ar_grocery_companion/domain/models/company.dart';
 import 'package:ar_grocery_companion/domain/models/custom_category.dart';
 import 'package:ar_grocery_companion/presentation/admin/components/element_datagrid.dart';
 import 'package:flutter/material.dart';
@@ -20,17 +19,20 @@ class _CategoriesListState extends State<CategoriesList> {
   void initState() {
     super.initState();
     categories = CategoriesRepository.instance.getCategories();
-    companyDataSource = CustomCategoryDataSource(companyData: categories, context: context);
+    companyDataSource =
+        CustomCategoryDataSource(companyData: categories, context: context);
   }
 
   @override
   Widget build(BuildContext context) {
-    return ElementsDataGrid(dataSource: companyDataSource, columnNames: ['name']);
+    return ElementsDataGrid(
+        dataSource: companyDataSource, columnNames: ['name']);
   }
 }
 
 class CustomCategoryDataSource extends DataGridSource {
-  CustomCategoryDataSource({required List<CustomCategory> companyData, required  this.context}) {
+  CustomCategoryDataSource(
+      {required List<CustomCategory> companyData, required this.context}) {
     _companyData = companyData
         .map<DataGridRow>((company) => DataGridRow(cells: [
               DataGridCell<String>(columnName: 'name', value: company.name),
@@ -51,7 +53,8 @@ class CustomCategoryDataSource extends DataGridSource {
       return Container(
         alignment: Alignment.centerLeft,
         padding: EdgeInsets.all(16.0),
-        child: Text(e.value.toString(), style: Theme.of(context).textTheme.labelLarge),
+        child: Text(e.value.toString(),
+            style: Theme.of(context).textTheme.labelLarge),
       );
     }).toList());
   }
