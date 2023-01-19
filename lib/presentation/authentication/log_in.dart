@@ -97,8 +97,10 @@ class LogInScreenState extends State<LogInScreen> {
               child: Text(
                 'Forgot Password?',
                 style: TextStyle(
-                    // decoration: TextDecoration.underline,
-                    color: Theme.of(context).primaryColor),
+                  // decoration: TextDecoration.underline,
+                  color: Theme.of(context).primaryColor,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
@@ -120,12 +122,14 @@ class LogInScreenState extends State<LogInScreen> {
               Padding(
                 padding: const EdgeInsets.only(top: 30.0),
                 child: InkWell(
-                  onTap: () => {},
+                  onTap: () => {context.go('/customer_homepage')},
                   child: Text(
-                    'Continue as a Guest...',
+                    'Continue as a Guest',
                     style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Theme.of(context).primaryColor),
+                      decoration: TextDecoration.underline,
+                      color: Theme.of(context).primaryColor,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               )

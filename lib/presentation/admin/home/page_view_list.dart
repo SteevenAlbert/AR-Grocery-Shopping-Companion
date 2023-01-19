@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:ar_grocery_companion/presentation/admin/add_admin_page.dart';
 import 'package:ar_grocery_companion/presentation/admin/companies/companies_page.dart';
 import 'package:ar_grocery_companion/presentation/settings/settings_page.dart';
 
@@ -13,7 +14,11 @@ class PageViewList extends StatelessWidget {
   Widget build(BuildContext context) {
     return PageView(
       controller: page,
-      children: [Dashboard(), CompaniesPage(), SettingsPage()],
+      children: [
+        Dashboard(),
+        CompaniesPage(),
+        SettingsPage(),
+      ],
     );
   }
 }

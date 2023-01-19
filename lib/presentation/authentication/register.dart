@@ -13,7 +13,8 @@ import 'package:ar_grocery_companion/data/repositories/users_repository.dart';
 AppUsersRepository usersRepo = AppUsersRepository.instance;
 
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+  const RegisterScreen({super.key, required this.type});
+  final String type;
 
   @override
   RegisterScreenState createState() => RegisterScreenState();
@@ -79,7 +80,7 @@ class RegisterScreenState extends State<RegisterScreen> {
               UID: user.uid,
               email: emailController.text,
               name: nameController.text,
-              type: "customer",
+              type: widget.type,
               DOB: dateController.text,
               gender: groupValue == 0
                   ? "other"
@@ -111,7 +112,8 @@ class RegisterScreenState extends State<RegisterScreen> {
         color: Theme.of(context).canvasColor,
         child: ListView(children: [
           Center(
-            child: CustomTitle(text: "Register"),
+            child: CustomTitle(
+                text: widget.type == 'customer' ? "Register" : "Add New Admin"),
           ),
           CustomTextFormField(
             controller: nameController,
