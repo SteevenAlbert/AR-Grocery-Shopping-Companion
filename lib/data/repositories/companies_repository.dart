@@ -25,8 +25,16 @@ class CompaniesRepository {
     });
   }
 
-  Future<String> insert(Company company) async {
-    await FirebaseHelper.writeUnique('companies', company.toMap());
+  Future<bool> insert(Company company) async {
+    bool inserted =
+        await FirebaseHelper.writeUnique('companies', company.toMap());
+    return inserted;
+  }
+
+  Future<String> update(Company company) async {
+    Map<String, dynamic> com = company.toMap();
+    FirebaseHelper.update('companies/${com['id']}', com);
+    // FirebaseHelper.update('companies/-NLvOZI7U5judTjQBOI4', com);
     return company.id;
   }
 
@@ -83,5 +91,4 @@ class CompaniesRepository {
     }
     return companies;
   }
-
 }

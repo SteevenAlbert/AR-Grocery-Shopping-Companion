@@ -79,7 +79,7 @@ class ProductPage extends StatelessWidget {
                 child: TabBarView(children: [
                   OnlineStores(product: product),
                   ProductDetails(product: product),
-                  AlternativeProducts(),
+                  AlternativeProducts(product: product),
                 ]),
               ),
             ],
