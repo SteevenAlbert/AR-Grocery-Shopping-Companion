@@ -35,15 +35,21 @@ class HomePage extends ConsumerWidget {
             // TODO: seperate this logic
             // TODO: think if there is a better practice to load data gradually or with each category?
             // Read the products and categories before displaying the widget
+
             FutureBuilder(
-                future: Future.wait([products, categories]),
+                future: Future.wait([categories]),
                 builder: ((context, snapshot) {
                   if (snapshot.hasData) {
                     return FutureBuilder(
                         future: categories,
                         builder: ((context, snapshot) {
                           if (snapshot.hasData) {
-                            return CatTabs(size: size);
+                            List<CustomCategory> category = snapshot.data!;
+                            if (category[0].name != "All") {
+                              category.insert(
+                                  0, CustomCategory(id: "0", name: "All"));
+                            }
+                            return CatTabs(size: size, categories: category);
                           } else if (snapshot.hasError) {
                             return Center(child: Text("${snapshot.error}"));
                           }
