@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:ar_grocery_companion/domain/models/user/app_user.dart';
 import 'package:firebase_database/firebase_database.dart';
 
@@ -45,7 +47,8 @@ class AppUsersRepository {
   Future<List<AppUser>> fetchAppUsersList() async {
     List<AppUser> _appUsers = [];
     return await ref.get().then((snapshot) {
-      Map<dynamic, dynamic> userMap = snapshot.value as Map<dynamic, dynamic>;
+      Map<dynamic, dynamic> userMap =
+          jsonDecode(jsonEncode(snapshot.value)) as Map<dynamic, dynamic>;
       userMap.forEach((key, value) {
         value['UID'] = key.substring(1);
         _appUsers.add(AppUser.fromMap(value));
@@ -55,9 +58,11 @@ class AppUsersRepository {
 
   Future<AppUser?> fetchAppUser(String UID) async {
     return await ref.child(AppUser.path(UID)).get().then((snapshot) {
-      Map<dynamic, dynamic> userMap = snapshot.value as Map<dynamic, dynamic>;
+      Map<String, dynamic> userMap =
+          jsonDecode(jsonEncode(snapshot.value)) as Map<String, dynamic>;
       userMap['UID'] = UID;
-      return AppUser.fromMap(userMap as Map<String, dynamic>);
+      print(userMap.runtimeType);
+      return AppUser.fromMap(userMap);
     }).then((user) => user);
   }
 

@@ -34,7 +34,8 @@ class CompaniesRepository {
     DataSnapshot? snapshot = await FirebaseHelper.read('companies');
 
     snapshot!.children.forEach((childSnapshot) {
-      var company = childSnapshot.value as Map<String, dynamic>;
+      var company =
+          jsonDecode(jsonEncode(childSnapshot.value)) as Map<String, dynamic>;
       company["id"] = childSnapshot.key;
       _companies.add(Company.fromMap(company));
     });
@@ -83,5 +84,4 @@ class CompaniesRepository {
     }
     return companies;
   }
-
 }

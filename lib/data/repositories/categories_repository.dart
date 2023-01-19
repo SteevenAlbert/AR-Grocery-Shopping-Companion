@@ -42,7 +42,8 @@ class CategoriesRepository {
     DataSnapshot? snapshot = await FirebaseHelper.read('categories');
 
     snapshot!.children.forEach((childSnapshot) {
-      var category = childSnapshot.value as Map<String, dynamic>;
+      var category =
+          jsonDecode(jsonEncode(childSnapshot.value)) as Map<String, dynamic>;
       category["id"] = childSnapshot.key;
       _categories.add(CustomCategory.fromMap(category));
     });
