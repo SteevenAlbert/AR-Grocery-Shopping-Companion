@@ -27,6 +27,7 @@ class CompaniesRepository {
   }
 
   Future<bool> insert(Company company) async {
+    Map<String, dynamic> com = company.toMap();
     bool inserted =
         await FirebaseHelper.writeUnique('companies', company.toMap());
     return inserted;

@@ -3,19 +3,19 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'country.dart';
+import 'origin.dart';
 
 class Company {
   String id;
   String name;
-  Country? country;
+  Origin? origin;
   String? logoPath;
   String? url;
   List<String>? products;
   Company({
     required this.id,
     required this.name,
-    this.country,
+    this.origin,
     this.logoPath,
     this.url,
     this.products,
@@ -28,7 +28,7 @@ class Company {
   Company copyWith({
     String? id,
     String? name,
-    Country? country,
+    Origin? origin,
     String? logoPath,
     String? url,
     List<String>? products,
@@ -36,7 +36,7 @@ class Company {
     return Company(
       id: id ?? this.id,
       name: name ?? this.name,
-      country: country ?? this.country,
+      origin: origin ?? this.origin,
       logoPath: logoPath ?? this.logoPath,
       url: url ?? this.url,
       products: products ?? this.products,
@@ -47,7 +47,7 @@ class Company {
     return <String, dynamic>{
       'id': id,
       'name': name,
-      'country': country?.toMap(),
+      'origin': origin?.toMap(),
       'logoPath': logoPath,
       'url': url,
       'products': products,
@@ -58,7 +58,7 @@ class Company {
     return <String, dynamic>{
       'id': id,
       'name': name,
-      'country': country?.toMap(),
+      'origin': origin?.toMap(),
       'logoPath': logoPath,
       'url': url,
     };
@@ -68,8 +68,8 @@ class Company {
     return Company(
       id: map['id'] as String,
       name: map['name'] as String,
-      country: map['country'] != null
-          ? Country.fromMap(map['country'] as Map<String, dynamic>)
+      origin: map['origin'] != null
+          ? Origin.fromMap(map['origin'] as Map<String, dynamic>)
           : null,
       logoPath: map['logoPath'] != null ? map['logoPath'] as String : null,
       url: map['url'] != null ? map['url'] as String : null,
@@ -86,7 +86,7 @@ class Company {
 
   @override
   String toString() {
-    return 'Company(id: $id, name: $name, country: $country, logoPath: $logoPath, url: $url, products: $products)';
+    return 'Company(id: $id, name: $name, origin: $origin, logoPath: $logoPath, url: $url, products: $products)';
   }
 
   @override
@@ -95,7 +95,7 @@ class Company {
 
     return other.id == id &&
         other.name == name &&
-        other.country == country &&
+        other.origin == origin &&
         other.logoPath == logoPath &&
         other.url == url &&
         listEquals(other.products, products);
@@ -105,7 +105,7 @@ class Company {
   int get hashCode {
     return id.hashCode ^
         name.hashCode ^
-        country.hashCode ^
+        origin.hashCode ^
         logoPath.hashCode ^
         url.hashCode ^
         products.hashCode;

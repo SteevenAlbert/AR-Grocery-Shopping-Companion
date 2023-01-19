@@ -31,10 +31,13 @@ class _CompaniesListState extends State<CompaniesList> {
     return ListCard(
       title: "Companies",
       // TODO: add delete function
-      trailing: DataGridDeleteButton(dataGridController: dataGridController, deleteFunction: (){},),
+      trailing: DataGridDeleteButton(
+        dataGridController: dataGridController,
+        deleteFunction: () {},
+      ),
       list: ElementsDataGrid(
         dataSource: companyDataSource,
-        columnNames: ['name', 'country'],
+        columnNames: ['name', 'origin'],
         dataGridController: dataGridController,
       ),
     );
@@ -48,8 +51,7 @@ class CompanyDataSource extends DataGridSource {
         .map<DataGridRow>((company) => DataGridRow(cells: [
               DataGridCell<String>(columnName: 'name', value: company.name),
               DataGridCell<String>(
-                  columnName: 'country',
-                  value: company.country?.name ?? "None"),
+                  columnName: 'origin', value: company.origin?.name ?? "None"),
             ]))
         .toList();
   }

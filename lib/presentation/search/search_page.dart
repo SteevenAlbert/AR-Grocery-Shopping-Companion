@@ -123,8 +123,8 @@ class _SearchPageState extends State<SearchPage> {
                           ),
                         ],
                       ),
-                      onTap: () => GoRouter.of(context)
-                          .push("/product_page", extra: product));
+                      onTap: () => GoRouter.of(context).pushNamed("ProductPage",
+                          extra: product, params: {'fromAR': "false"}));
                 }),
               ))
             ],

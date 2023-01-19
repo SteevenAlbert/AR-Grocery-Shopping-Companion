@@ -20,7 +20,7 @@ class CompanyDetails extends StatelessWidget {
           ListTile(
             leading: Image.asset(company.logoPath ?? kNoLogoImg),
             title: Text(company.name),
-            subtitle: Text(company.country?.name ?? "Country not available"),
+            subtitle: Text(company.origin?.name ?? "Country not available"),
           ),
           Expanded(
               child: Padding(

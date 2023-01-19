@@ -1,6 +1,12 @@
+import 'package:ar_grocery_companion/domain/models/origin.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:validators/validators.dart';
+import 'package:ar_grocery_companion/data/repositories/companies_repository.dart';
+import 'package:ar_grocery_companion/domain/models/company.dart';
+import 'package:go_router/go_router.dart';
+
+CompaniesRepository companies = CompaniesRepository.instance;
 
 class AddCompanyFields extends StatefulWidget {
   AddCompanyFields({super.key, required this.formKey});
@@ -16,7 +22,6 @@ class _AddCompanyFieldsState extends State<AddCompanyFields> {
   String url = 'Nan';
   String countryText = Country.worldWide.flagEmoji + " Choose Country";
   String countryCode = Country.worldWide.countryCode;
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -67,9 +72,9 @@ class _AddCompanyFieldsState extends State<AddCompanyFields> {
           ),
           FormField(
             builder: ((field) => Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ListTile(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ListTile(
                       title: Text(countryText),
                       trailing: Icon(Icons.arrow_drop_down),
                       onTap: () {
@@ -87,9 +92,15 @@ class _AddCompanyFieldsState extends State<AddCompanyFields> {
                         );
                       },
                     ),
-                Text(field.errorText??"", style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.red[700]),),
-              ],
-            )),
+                    Text(
+                      field.errorText ?? "",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall
+                          ?.copyWith(color: Colors.red[700]),
+                    ),
+                  ],
+                )),
             validator: (value) {
               if (value == null) {
                 return 'Please choose a country';
@@ -105,7 +116,13 @@ class _AddCompanyFieldsState extends State<AddCompanyFields> {
                   onPressed: () {
                     // Validate returns true if the form is valid, or false otherwise.
                     if (widget.formKey.currentState!.validate()) {
-                      // TODO: add product
+                      Company company = Company(
+                          id: "id",
+                          name: name,
+                          url: url,
+                          origin: Origin(name: countryCode));
+                      companies.insert(company);
+                      context.go('/admin_homepage');
                     }
                   },
                   child: const Text('Submit'),
