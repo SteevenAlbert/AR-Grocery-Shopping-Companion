@@ -1,7 +1,8 @@
 import 'dart:convert';
 
-import 'package:ar_grocery_companion/domain/models/user/app_user.dart';
 import 'package:firebase_database/firebase_database.dart';
+
+import 'package:ar_grocery_companion/domain/models/user/app_user.dart';
 
 class AppUsersRepository {
   static final AppUsersRepository instance = AppUsersRepository._();

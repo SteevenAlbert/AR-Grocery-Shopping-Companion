@@ -1,10 +1,11 @@
 import 'dart:convert';
 
-import 'package:ar_grocery_companion/domain/models/custom_category.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:ar_grocery_companion/data/helpers/db_helper.dart';
+import 'package:ar_grocery_companion/domain/models/custom_category.dart';
 
 class CategoriesRepository {
   // Singleton pattern

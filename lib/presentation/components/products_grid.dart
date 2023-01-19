@@ -1,5 +1,6 @@
-import 'package:ar_grocery_companion/domain/models/product/product.dart';
 import 'package:flutter/material.dart';
+
+import 'package:ar_grocery_companion/domain/models/product/product.dart';
 
 import '../home/components/product_card.dart';
 

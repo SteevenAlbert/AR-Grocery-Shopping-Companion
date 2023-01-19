@@ -13,6 +13,7 @@ Future<Product?> fetchSpinneysPrice(Product product) async {
     // Send the URL to the server.
     socket.write(product.storesURLs!["Spinneys"]);
   } on SocketException catch (e) {
+    print(e);
     return null;
   }
 

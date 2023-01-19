@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
+
 import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
 import 'package:ar_grocery_companion/domain/models/product/product.dart';
 import 'package:ar_grocery_companion/presentation/home/components/product_card.dart';
-import 'package:flutter/material.dart';
 
 class AlternativeProducts extends StatelessWidget {
   AlternativeProducts({super.key});
@@ -21,8 +22,7 @@ class AlternativeProducts extends StatelessWidget {
                   (MediaQuery.of(context).size.width ~/ 200).toInt(),
               crossAxisSpacing: 8.0,
               mainAxisSpacing: 8.0,
-              children: List.generate(
-                  snapshot.data!.length, (index) {
+              children: List.generate(snapshot.data!.length, (index) {
                 return Center(
                   child: ProductCard(
                     sectionID: 1,

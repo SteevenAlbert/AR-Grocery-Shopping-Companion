@@ -1,14 +1,11 @@
 import 'dart:convert';
 
+import 'package:augmented_reality_plugin_wikitude/architect_widget.dart';
+import 'package:flutter/material.dart';
+
 import 'package:ar_grocery_companion/constants/keys.dart';
 import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
 import 'package:ar_grocery_companion/domain/sample.dart';
-import 'package:augmented_reality_plugin_wikitude/wikitude_response.dart';
-import 'package:flutter/material.dart';
-
-import 'package:augmented_reality_plugin_wikitude/architect_widget.dart';
-import 'package:go_router/go_router.dart';
-import '../../domain/models/product/product.dart';
 
 class ARView extends StatefulWidget {
   final Sample sample;

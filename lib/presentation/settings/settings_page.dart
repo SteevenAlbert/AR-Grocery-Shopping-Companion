@@ -1,6 +1,7 @@
-import 'package:ar_grocery_companion/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'package:ar_grocery_companion/utils.dart';
 
 import '../../data/providers/theme_mode_provider.dart';
 

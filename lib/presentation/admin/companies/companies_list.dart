@@ -1,7 +1,7 @@
-import 'package:ar_grocery_companion/constants/constants.dart';
+import 'package:flutter/material.dart';
+
 import 'package:ar_grocery_companion/data/repositories/companies_repository.dart';
 import 'package:ar_grocery_companion/domain/models/company.dart';
-import 'package:flutter/material.dart';
 
 class CompaniesList extends StatelessWidget {
   const CompaniesList({super.key});

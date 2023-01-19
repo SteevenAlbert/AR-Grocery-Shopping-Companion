@@ -1,11 +1,9 @@
-import 'package:ar_grocery_companion/data/helpers/db_helper.dart';
 import 'package:ar_grocery_companion/domain/models/user/app_user.dart';
 import 'package:ar_grocery_companion/fire_auth.dart';
 import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_animated_button.dart';
 import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_radio_button.dart';
 import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_text_form_field.dart';
 import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_title.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_session_manager/flutter_session_manager.dart';

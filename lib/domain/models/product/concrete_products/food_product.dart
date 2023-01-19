@@ -1,8 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
 import 'package:flutter/foundation.dart';
+
+import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
 import 'package:ar_grocery_companion/domain/models/product/product_decorator.dart';
 
 class FoodProduct extends ProductDecorator {
@@ -20,8 +21,8 @@ class FoodProduct extends ProductDecorator {
     required this.ingredients,
     required this.allergyInfo,
     required this.nutrients,
-  }):super(product: product);
-  
+  }) : super(product: product);
+
   FoodProduct copyWith({
     int? calories,
     String? servingSize,
@@ -56,13 +57,15 @@ class FoodProduct extends ProductDecorator {
       servingSize: map['servingSize'] as String,
       ingredients: List<String>.from((map['ingredients'] as List)),
       allergyInfo: List<String>.from((map['allergyInfo'] as List)),
-      nutrients: Map<String, Map<String, dynamic>>.from((map['nutrients'] as Map)),
+      nutrients:
+          Map<String, Map<String, dynamic>>.from((map['nutrients'] as Map)),
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory FoodProduct.fromJson(String source) => FoodProduct.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory FoodProduct.fromJson(String source) =>
+      FoodProduct.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -72,28 +75,30 @@ class FoodProduct extends ProductDecorator {
   @override
   bool operator ==(covariant FoodProduct other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.calories == calories &&
-      other.servingSize == servingSize &&
-      listEquals(other.ingredients, ingredients) &&
-      listEquals(other.allergyInfo, allergyInfo) &&
-      mapEquals(other.nutrients, nutrients);
+
+    return other.calories == calories &&
+        other.servingSize == servingSize &&
+        listEquals(other.ingredients, ingredients) &&
+        listEquals(other.allergyInfo, allergyInfo) &&
+        mapEquals(other.nutrients, nutrients);
   }
 
   @override
   int get hashCode {
     return calories.hashCode ^
-      servingSize.hashCode ^
-      ingredients.hashCode ^
-      allergyInfo.hashCode ^
-      nutrients.hashCode;
+        servingSize.hashCode ^
+        ingredients.hashCode ^
+        allergyInfo.hashCode ^
+        nutrients.hashCode;
   }
 
   @override
   Map<String, dynamic> getProperties() {
     Map<String, dynamic> updatedProperties = this.product.properties;
-    updatedProperties.addAll({"Ingredients": ingredients.join(", "), "Allergy Information": allergyInfo.join(", ")});
+    updatedProperties.addAll({
+      "Ingredients": ingredients.join(", "),
+      "Allergy Information": allergyInfo.join(", ")
+    });
     return updatedProperties;
   }
 }

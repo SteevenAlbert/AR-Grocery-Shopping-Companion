@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'package:ar_grocery_companion/domain/models/product/concrete_products/food_product.dart';
 import 'package:ar_grocery_companion/presentation/product_info/components/nutrition_table.dart';
-import 'package:flutter/material.dart';
 
 class NutritionalFacts extends StatelessWidget {
   final FoodProduct product;

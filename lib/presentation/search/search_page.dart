@@ -1,8 +1,9 @@
-import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
-import 'package:ar_grocery_companion/domain/models/product/product.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simple_shadow/simple_shadow.dart';
+
+import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
+import 'package:ar_grocery_companion/domain/models/product/product.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});

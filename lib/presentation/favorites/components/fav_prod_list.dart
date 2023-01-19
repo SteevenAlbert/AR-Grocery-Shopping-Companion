@@ -1,14 +1,16 @@
-import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
+import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter/material.dart';
-import 'package:ar_grocery_companion/data/providers/favs_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'fav_prod_tile.dart';
-import 'package:simple_shadow/simple_shadow.dart';
-import 'package:favorite_button/favorite_button.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ar_grocery_companion/domain/models/product/product.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:simple_shadow/simple_shadow.dart';
+
+import 'package:ar_grocery_companion/data/providers/favs_provider.dart';
+import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
+import 'package:ar_grocery_companion/domain/models/product/product.dart';
+
+import 'fav_prod_tile.dart';
 
 class FavProductsList extends ConsumerStatefulWidget {
   final height;

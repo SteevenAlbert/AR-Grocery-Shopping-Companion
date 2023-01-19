@@ -1,7 +1,9 @@
-import 'package:ar_grocery_companion/domain/models/product/product.dart';
-import 'package:ar_grocery_companion/presentation/product_info/components/product_details.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+import 'package:ar_grocery_companion/domain/models/product/product.dart';
+import 'package:ar_grocery_companion/presentation/product_info/components/product_details.dart';
+
 import '../home/components/fav_icon.dart';
 import 'components/alternative_products_tab.dart';
 import 'components/online_stores_tab.dart';

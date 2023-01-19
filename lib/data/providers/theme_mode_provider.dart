@@ -9,7 +9,9 @@ class ThemeModeNotifier extends StateNotifier<ThemeMode> {
   Future _init() async {
     prefs = await SharedPreferences.getInstance();
     var isDarkMode = prefs.getBool("isDarkMode");
-    isDarkMode = isDarkMode ?? SchedulerBinding.instance.platformDispatcher.platformBrightness == Brightness.dark;
+    isDarkMode = isDarkMode ??
+        SchedulerBinding.instance.platformDispatcher.platformBrightness ==
+            Brightness.dark;
     state = isDarkMode == true ? ThemeMode.dark : ThemeMode.light;
   }
 

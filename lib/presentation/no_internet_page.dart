@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:restart_app/restart_app.dart';
-import 'package:ar_grocery_companion/presentation/authentication/custom_widgets/custom_animated_button.dart';
-import 'package:flutter_session_manager/flutter_session_manager.dart';
+import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_animated_button.dart';
 
 class noInternetScreen extends StatefulWidget {
   @override

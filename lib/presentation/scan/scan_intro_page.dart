@@ -1,14 +1,13 @@
-import 'package:ar_grocery_companion/constants/constants.dart';
-import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_animated_button.dart';
-import 'package:camera/camera.dart';
-import 'package:flutter/material.dart';
-
 import 'package:augmented_reality_plugin_wikitude/wikitude_plugin.dart';
 import 'package:augmented_reality_plugin_wikitude/wikitude_response.dart';
-
-import 'package:ar_grocery_companion/domain/sample.dart';
+import 'package:camera/camera.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
+
+import 'package:ar_grocery_companion/constants/constants.dart';
+import 'package:ar_grocery_companion/domain/sample.dart';
+import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_animated_button.dart';
 
 class ScanPage extends StatefulWidget {
   const ScanPage({super.key});
