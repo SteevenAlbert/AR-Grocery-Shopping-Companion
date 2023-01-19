@@ -6,7 +6,6 @@ import 'package:flutter/foundation.dart';
 import 'country.dart';
 
 class Company {
-
   String id;
   String name;
   Country? country;
@@ -55,20 +54,35 @@ class Company {
     };
   }
 
+  Map<String, dynamic> toMap2() {
+    return <String, dynamic>{
+      'id': id,
+      'name': name,
+      'country': country?.toMap(),
+      'logoPath': logoPath,
+      'url': url,
+    };
+  }
+
   factory Company.fromMap(Map<String, dynamic> map) {
     return Company(
       id: map['id'] as String,
       name: map['name'] as String,
-      country: map['country'] != null ? Country.fromMap(map['country'] as Map<String,dynamic>) : null,
+      country: map['country'] != null
+          ? Country.fromMap(map['country'] as Map<String, dynamic>)
+          : null,
       logoPath: map['logoPath'] != null ? map['logoPath'] as String : null,
       url: map['url'] != null ? map['url'] as String : null,
-      products: map['products'] != null ? List<String>.from((map['products'] as List)) : [],
+      products: map['products'] != null
+          ? List<String>.from((map['products'] as List))
+          : [],
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Company.fromJson(String source) => Company.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Company.fromJson(String source) =>
+      Company.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -78,23 +92,22 @@ class Company {
   @override
   bool operator ==(covariant Company other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.id == id &&
-      other.name == name &&
-      other.country == country &&
-      other.logoPath == logoPath &&
-      other.url == url &&
-      listEquals(other.products, products);
+
+    return other.id == id &&
+        other.name == name &&
+        other.country == country &&
+        other.logoPath == logoPath &&
+        other.url == url &&
+        listEquals(other.products, products);
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-      name.hashCode ^
-      country.hashCode ^
-      logoPath.hashCode ^
-      url.hashCode ^
-      products.hashCode;
+        name.hashCode ^
+        country.hashCode ^
+        logoPath.hashCode ^
+        url.hashCode ^
+        products.hashCode;
   }
 }
