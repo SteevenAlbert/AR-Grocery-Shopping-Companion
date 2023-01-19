@@ -24,6 +24,7 @@ class InfoCardGrid extends StatelessWidget {
                       ?.copyWith(fontWeight: FontWeight.bold))),
         ),
         GridView.count(
+          physics: NeverScrollableScrollPhysics(),
           padding: EdgeInsets.all(16.0),
           mainAxisSpacing: 8.0,
           crossAxisSpacing: 8.0,

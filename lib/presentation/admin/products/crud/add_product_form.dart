@@ -1,16 +1,16 @@
+import 'package:ar_grocery_companion/presentation/admin/components/image_adder.dart';
+import 'package:ar_grocery_companion/presentation/admin/products/crud/add_product_fields.dart';
 import 'package:flutter/material.dart';
 
-import 'package:ar_grocery_companion/presentation/admin/companies/crud/add_company_fields.dart';
-import 'package:ar_grocery_companion/presentation/admin/components/image_adder.dart';
-
-class AddCompanyForm extends StatefulWidget {
-  const AddCompanyForm({super.key});
+class AddProductForm extends StatefulWidget {
+  const AddProductForm({super.key});
 
   @override
-  State<AddCompanyForm> createState() => _AddCompanyFormState();
+  State<AddProductForm> createState() => _AddProductFormState();
 }
 
-class _AddCompanyFormState extends State<AddCompanyForm> {
+class _AddProductFormState extends State<AddProductForm> {
+  
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
@@ -26,9 +26,9 @@ class _AddCompanyFormState extends State<AddCompanyForm> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   ImageAdder(
-                    label: "Company logo",
+                    label: "Product logo",
                   ),
-                  Expanded(child: AddCompanyFields(formKey: formKey,)),
+                  Expanded(child: AddProductFields(formKey: formKey,)),
                 ],
               );
             } else {
@@ -36,9 +36,9 @@ class _AddCompanyFormState extends State<AddCompanyForm> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ImageAdder(
-                    label: "Company logo",
+                    label: "Product logo",
                   ),
-                  AddCompanyFields(formKey: formKey,)
+                  AddProductFields(formKey: formKey,)
                 ],
               );
             }
@@ -47,4 +47,5 @@ class _AddCompanyFormState extends State<AddCompanyForm> {
       ),
     );
   }
+  
 }

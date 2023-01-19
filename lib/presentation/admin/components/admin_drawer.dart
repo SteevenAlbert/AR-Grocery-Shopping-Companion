@@ -17,7 +17,7 @@ class _AdminDrawerState extends State<AdminDrawer> {
     return Drawer(
       child: Padding(
         padding: const EdgeInsets.only(left: 5, top: 0, right: 5, bottom: 25),
-        child: Column(
+        child: ListView(
           children: [
             DrawerHeader(
                 child: Column(

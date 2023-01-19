@@ -12,6 +12,7 @@ class ChartCardsGrid extends StatelessWidget {
 
     return GridView.count(
       padding: EdgeInsets.all(8.0),
+      physics: ScrollPhysics(),
       mainAxisSpacing: 8.0,
       crossAxisSpacing: 8.0,
       shrinkWrap: true,

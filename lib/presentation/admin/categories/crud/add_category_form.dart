@@ -1,16 +1,15 @@
+import 'package:ar_grocery_companion/presentation/admin/categories/crud/add_category_fields.dart';
+import 'package:ar_grocery_companion/presentation/admin/components/image_adder.dart';
 import 'package:flutter/material.dart';
 
-import 'package:ar_grocery_companion/presentation/admin/companies/crud/add_company_fields.dart';
-import 'package:ar_grocery_companion/presentation/admin/components/image_adder.dart';
-
-class AddCompanyForm extends StatefulWidget {
-  const AddCompanyForm({super.key});
+class AddCategoryForm extends StatefulWidget {
+  const AddCategoryForm({super.key});
 
   @override
-  State<AddCompanyForm> createState() => _AddCompanyFormState();
+  State<AddCategoryForm> createState() => _AddCategoryFormState();
 }
 
-class _AddCompanyFormState extends State<AddCompanyForm> {
+class _AddCategoryFormState extends State<AddCategoryForm> {
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
@@ -25,21 +24,14 @@ class _AddCompanyFormState extends State<AddCompanyForm> {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  ImageAdder(
-                    label: "Company logo",
-                  ),
-                  Expanded(child: AddCompanyFields(formKey: formKey,)),
+                  ImageAdder(label: "Category Image",),
+                  Expanded(child: AddCategoryFields(formKey: formKey)),
                 ],
               );
             } else {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ImageAdder(
-                    label: "Company logo",
-                  ),
-                  AddCompanyFields(formKey: formKey,)
-                ],
+                children: [ImageAdder(label: "Category Image",), AddCategoryFields(formKey: formKey)],
               );
             }
           },

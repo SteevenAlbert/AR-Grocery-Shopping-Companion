@@ -12,7 +12,7 @@ class AdminHomePage extends StatelessWidget {
     final PageController page = PageController();
     return LayoutBuilder(
         builder: ((BuildContext context, BoxConstraints constraints) {
-      if (constraints.maxWidth > 600) {
+      if (constraints.maxWidth > 600 && constraints.maxHeight > 600) {
         return Scaffold(
           body: Row(children: [
             AdminDrawer(page: page),

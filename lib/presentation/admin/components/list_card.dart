@@ -15,7 +15,7 @@ class ListCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(4.0),
         child: Card(
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(10))),

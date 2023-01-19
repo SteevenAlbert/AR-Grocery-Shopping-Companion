@@ -9,20 +9,21 @@ class AddCompanyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: buildAppBar(context: context),
-        body: ListView(
-          children: [
-            Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Text(
-                  "Add Company",
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleLarge
-                      ?.copyWith(fontWeight: FontWeight.bold),
-                )),
-            AddCompanyForm(),
-          ],
-        ));
+      appBar: buildAppBar(context: context),
+      body: ListView(
+        children: [
+          Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text(
+                "Add Company",
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge
+                    ?.copyWith(fontWeight: FontWeight.bold),
+              )),
+          AddCompanyForm(),
+        ],
+      ),
+    );
   }
 }

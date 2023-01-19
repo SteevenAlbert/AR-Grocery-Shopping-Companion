@@ -1,3 +1,4 @@
+import 'package:ar_grocery_companion/presentation/components/header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -31,7 +32,7 @@ class Dashboard extends ConsumerWidget {
               SizedBox(
                 height: 8.0,
               ),
-              //Header(size: size),
+              Header(size: MediaQuery.of(context).size),
               InfoCardGrid(),
               ChartCardsGrid(),
             ],
