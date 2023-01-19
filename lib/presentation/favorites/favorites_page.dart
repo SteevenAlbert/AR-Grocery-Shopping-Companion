@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'components/fav_prod_list.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+
+import 'components/fav_prod_list.dart';
 
 class FavProductsPage extends StatelessWidget {
   final PersistentTabController controller;

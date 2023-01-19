@@ -1,22 +1,18 @@
 import 'dart:convert';
-
+import 'package:augmented_reality_plugin_wikitude/architect_widget.dart';
+import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/constants/keys.dart';
 import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
 import 'package:ar_grocery_companion/domain/sample.dart';
-import 'package:augmented_reality_plugin_wikitude/wikitude_response.dart';
-import 'package:flutter/material.dart';
-
-import 'package:augmented_reality_plugin_wikitude/architect_widget.dart';
 import 'package:go_router/go_router.dart';
+import '../../constants/constants.dart';
 import '../../domain/models/product/product.dart';
 
 class ARView extends StatefulWidget {
-  final Sample sample;
-
-  const ARView({super.key, required this.sample});
+  const ARView({super.key});
 
   @override
-  State<ARView> createState() => _ARViewState(sample: sample);
+  State<ARView> createState() => _ARViewState();
 }
 
 class _ARViewState extends State<ARView> with WidgetsBindingObserver {
@@ -25,19 +21,20 @@ class _ARViewState extends State<ARView> with WidgetsBindingObserver {
   String loadPath = "";
   bool loadFailed = false;
 
-  Sample sample;
+  Sample sample = imageTrackingSample;
 
-  _ARViewState({required this.sample}) {
-    if (sample.path.contains("http://") || sample.path.contains("https://")) {
-      loadPath = sample.path;
-    } else {
-      loadPath = "samples/${sample.path}";
-    }
+  _ARViewState() {
+    loadPath = "samples/${sample.path}";
   }
 
   @override
   Widget build(BuildContext context) {
-    return architectWidget;
+    return WillPopScope(
+        onWillPop: () {
+          GoRouter.of(context).go("/customer_homepage");
+          return Future.value(false);
+        },
+        child: architectWidget);
   }
 
   @override
@@ -94,22 +91,31 @@ class _ARViewState extends State<ARView> with WidgetsBindingObserver {
 
   Future<void> onJSONObjectReceived(Map<String, dynamic> jsonObject) async {
     if (jsonObject["action"] != null) {
+      //Return product info
       switch (jsonObject["action"]) {
         case "product_card":
-          String productName = ProductsRepository.instance
-              .getProduct(jsonObject["product_id"].toString())
-              .name;
-          print(jsonObject["product_id"]);
+          Product product = ProductsRepository.instance
+              .getProduct(jsonObject["product_id"].toString());
+          print(product.properties["Allergy Information"]);
           Map<String, dynamic> data = {
-            "name": productName,
+            "name": product.name,
+            "Manfacturer": product.manufacturer,
+            'Ingredients': product.properties['Ingredients'],
+            "Allergy Information": product.properties['Allergy Information'],
           };
           this
               .architectWidget
               .callJavascript("World.loadProduct(" + jsonEncode(data) + ");");
           break;
+
+        //Navigate to product page
         case "product_page":
-          // GoRouter.of(context)
-          //     .push("/product_page", extra: Product.retrieveProduct(ProductID));
+          print("Navigating to product page");
+
+          GoRouter.of(context).goNamed("ProductPage",
+              extra: ProductsRepository.instance
+                  .getProduct(jsonObject["product_id"]),
+              params: {'fromAR': "true"});
 
           break;
       }

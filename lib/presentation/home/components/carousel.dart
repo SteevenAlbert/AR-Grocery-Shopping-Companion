@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/material.dart';
 
 class CarouselSliderExample extends StatelessWidget {
   @override
@@ -18,11 +18,10 @@ class CarouselSliderExample extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   image: DecorationImage(
-                  image: new AssetImage("assets/images/healthy_green.png"),
-                  fit: BoxFit.cover,
+                    image: new AssetImage("assets/images/healthy_green.png"),
+                    fit: BoxFit.cover,
+                  ),
                 ),
-                ),
-                
               ),
             ),
             Align(

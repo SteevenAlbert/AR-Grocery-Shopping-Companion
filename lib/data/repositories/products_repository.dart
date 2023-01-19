@@ -1,6 +1,9 @@
 import 'dart:convert';
+
+import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:ar_grocery_companion/constants/dummy_data.dart';
-import 'package:ar_grocery_companion/data/helpers/db_helper.dart';
 import 'package:ar_grocery_companion/domain/models/product/concrete_products/cleaning_product.dart';
 import 'package:ar_grocery_companion/domain/models/product/concrete_products/food_product.dart';
 import 'package:ar_grocery_companion/domain/models/product/concrete_products/itemed_product.dart';
@@ -8,8 +11,6 @@ import 'package:ar_grocery_companion/domain/models/product/concrete_products/liq
 import 'package:ar_grocery_companion/domain/models/product/concrete_products/machine_product.dart';
 import 'package:ar_grocery_companion/domain/models/product/product.dart';
 import 'package:ar_grocery_companion/domain/models/product/product_base.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ProductsRepository {
   // Singleton pattern

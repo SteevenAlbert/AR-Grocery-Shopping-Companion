@@ -1,11 +1,9 @@
-import 'package:ar_grocery_companion/data/helpers/db_helper.dart';
 import 'package:ar_grocery_companion/domain/models/user/app_user.dart';
 import 'package:ar_grocery_companion/fire_auth.dart';
-import 'package:ar_grocery_companion/presentation/authentication/custom_widgets/custom_animated_button.dart';
-import 'package:ar_grocery_companion/presentation/authentication/custom_widgets/custom_radio_button.dart';
-import 'package:ar_grocery_companion/presentation/authentication/custom_widgets/custom_text_form_field.dart';
-import 'package:ar_grocery_companion/presentation/authentication/custom_widgets/custom_title.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_animated_button.dart';
+import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_radio_button.dart';
+import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_text_form_field.dart';
+import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_title.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_session_manager/flutter_session_manager.dart';
@@ -15,7 +13,8 @@ import 'package:ar_grocery_companion/data/repositories/users_repository.dart';
 AppUsersRepository usersRepo = AppUsersRepository.instance;
 
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+  const RegisterScreen({super.key, required this.type});
+  final String type;
 
   @override
   RegisterScreenState createState() => RegisterScreenState();
@@ -81,7 +80,7 @@ class RegisterScreenState extends State<RegisterScreen> {
               UID: user.uid,
               email: emailController.text,
               name: nameController.text,
-              type: "customer",
+              type: widget.type,
               DOB: dateController.text,
               gender: groupValue == 0
                   ? "other"
@@ -113,7 +112,8 @@ class RegisterScreenState extends State<RegisterScreen> {
         color: Theme.of(context).canvasColor,
         child: ListView(children: [
           Center(
-            child: CustomTitle(text: "Register"),
+            child: CustomTitle(
+                text: widget.type == 'customer' ? "Register" : "Add New Admin"),
           ),
           CustomTextFormField(
             controller: nameController,

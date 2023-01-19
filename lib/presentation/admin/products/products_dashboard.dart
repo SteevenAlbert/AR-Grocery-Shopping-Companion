@@ -1,10 +1,10 @@
-import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'components/product_card.dart';
-
+import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
 import 'package:ar_grocery_companion/presentation/home/components/drawer.dart';
+
+import 'components/product_card.dart';
 
 class ProductsDashboard extends StatefulWidget {
   const ProductsDashboard({super.key});
@@ -38,7 +38,8 @@ class _ProductsDashboardState extends State<ProductsDashboard> {
           children: [
             Expanded(
               child: GridView.count(
-                crossAxisCount: (MediaQuery.of(context).size.width ~/ 200).toInt(),
+                crossAxisCount:
+                    (MediaQuery.of(context).size.width ~/ 200).toInt(),
                 crossAxisSpacing: 8.0,
                 mainAxisSpacing: 8.0,
                 children: List.generate(products.length, (index) {

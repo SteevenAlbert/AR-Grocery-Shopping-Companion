@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ar_grocery_companion/domain/models/product/product.dart';
 import 'package:go_router/go_router.dart';
+
+import 'package:ar_grocery_companion/domain/models/product/product.dart';
 
 class ProductCard extends StatefulWidget {
   final VoidCallback voidCallback;
@@ -44,17 +45,15 @@ class _ProductCardState extends State<ProductCard> {
                   ),
                 ),
               ),
-
               Container(
                 child: Row(
                   children: [
                     Expanded(
                       child: ListTile(
                         trailing: IconButton(
-                          onPressed: () =>
-                            buildIconButton(),
+                          onPressed: () => buildIconButton(),
                           icon: Icon(Icons.delete_outline_outlined,
-                          color: Theme.of(context).primaryColor),
+                              color: Theme.of(context).primaryColor),
                         ),
                         title: Text(
                           widget.product.name,

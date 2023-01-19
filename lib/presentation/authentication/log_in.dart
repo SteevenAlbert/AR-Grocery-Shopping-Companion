@@ -1,13 +1,13 @@
-import 'package:ar_grocery_companion/domain/models/user/app_user.dart';
-import 'package:ar_grocery_companion/data/repositories/users_repository.dart';
-import 'package:ar_grocery_companion/presentation/authentication/custom_widgets/custom_animated_button.dart';
-import 'package:ar_grocery_companion/presentation/authentication/custom_widgets/custom_title.dart';
-import 'package:ar_grocery_companion/presentation/authentication/custom_widgets/custom_text_form_field.dart';
-import 'package:ar_grocery_companion/fire_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter_session_manager/flutter_session_manager.dart';
+import 'package:go_router/go_router.dart';
+
+import 'package:ar_grocery_companion/data/repositories/users_repository.dart';
+import 'package:ar_grocery_companion/fire_auth.dart';
+import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_animated_button.dart';
+import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_text_form_field.dart';
+import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_title.dart';
 
 AppUsersRepository usersRepo = AppUsersRepository.instance;
 
@@ -97,8 +97,10 @@ class LogInScreenState extends State<LogInScreen> {
               child: Text(
                 'Forgot Password?',
                 style: TextStyle(
-                    // decoration: TextDecoration.underline,
-                    color: Theme.of(context).primaryColor),
+                  // decoration: TextDecoration.underline,
+                  color: Theme.of(context).primaryColor,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
@@ -120,12 +122,14 @@ class LogInScreenState extends State<LogInScreen> {
               Padding(
                 padding: const EdgeInsets.only(top: 30.0),
                 child: InkWell(
-                  onTap: () => {},
+                  onTap: () => {context.go('/customer_homepage')},
                   child: Text(
-                    'Continue as a Guest...',
+                    'Continue as a Guest',
                     style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Theme.of(context).primaryColor),
+                      decoration: TextDecoration.underline,
+                      color: Theme.of(context).primaryColor,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               )

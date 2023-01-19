@@ -1,14 +1,16 @@
-import 'package:ar_grocery_companion/domain/models/product/product.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
+
+import 'package:ar_grocery_companion/domain/models/product/product.dart';
+
 import '../../../../domain/models/custom_category.dart';
 
 // Create a Form widget.
 class EditingForm extends StatefulWidget {
   EditingForm({super.key, required this.product});
 
-  Product product;
+  final Product product;
 
   @override
   EditingFormState createState() {
@@ -38,19 +40,17 @@ class EditingFormState extends State<EditingForm> {
 
   @override
   Widget build(BuildContext context) {
-
-
     // Build a Form widget using the _formKey created above.
     return Form(
       key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          
-            Container(
-              height: 400,
-              child: Image.asset(this.widget.product.images[0], fit: BoxFit.fitWidth),
-            ),
+          Container(
+            height: 400,
+            child: Image.asset(this.widget.product.images[0],
+                fit: BoxFit.fitWidth),
+          ),
           Padding(
             padding: const EdgeInsets.all(20.0),
             child:

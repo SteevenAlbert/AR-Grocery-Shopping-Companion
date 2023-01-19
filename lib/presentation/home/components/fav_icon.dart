@@ -1,8 +1,9 @@
-import 'package:ar_grocery_companion/data/providers/theme_mode_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:ar_grocery_companion/data/providers/favs_provider.dart';
-import 'package:ar_grocery_companion/domain/models/product/product.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'package:ar_grocery_companion/data/providers/favs_provider.dart';
+import 'package:ar_grocery_companion/data/providers/theme_mode_provider.dart';
+import 'package:ar_grocery_companion/domain/models/product/product.dart';
 
 class FavIcon extends StatefulWidget {
   const FavIcon({super.key, required this.product});

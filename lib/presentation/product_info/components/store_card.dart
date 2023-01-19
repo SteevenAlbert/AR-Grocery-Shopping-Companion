@@ -19,7 +19,7 @@ Widget storeCard(
           children: [
             SizedBox(height: 40, width: 120, child: Image.asset(imagepath)),
             Text(
-              price ?? "Not Available",
+              price!,
               style: Theme.of(context).textTheme.bodyLarge,
             ),
             Image.asset("assets/images/fwdbtn.png"),

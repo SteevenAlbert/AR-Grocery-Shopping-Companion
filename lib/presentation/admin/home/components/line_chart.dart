@@ -1,10 +1,10 @@
 import 'dart:math';
 
-import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
-import 'package:ar_grocery_companion/domain/models/product/product.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+
+import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
+import 'package:ar_grocery_companion/domain/models/product/product.dart';
 
 class CustomLineChart extends StatefulWidget {
   const CustomLineChart({super.key});
@@ -22,7 +22,6 @@ class CustomLineChartState extends State<CustomLineChart> {
   bool showAvg = false;
 
   final int _divider = 25;
-  final int _leftLabelsCount = 6;
 
   List<FlSpot> _values = const [];
 
@@ -30,14 +29,12 @@ class CustomLineChartState extends State<CustomLineChart> {
   double _maxX = 0;
   double _minY = 0;
   double _maxY = 0;
-  double _leftTitlesInterval = 0;
 
   @override
   void initState() {
     super.initState();
     _prepareStockData();
   }
-
 
   void _prepareStockData() {
     final List<Product> data = ProductsRepository.instance.getProducts();
@@ -49,20 +46,17 @@ class CustomLineChartState extends State<CustomLineChart> {
       var rand = Random().nextInt(20);
       // if (minY > rand) minY = rand;
       // if (maxY < rand) maxY = rand;
-      
+
       return FlSpot(
-        // datum.createdAt.millisecondsSinceEpoch.toDouble(),
-        rand.toDouble(),
-        (rand % 20)
-      );
+          // datum.createdAt.millisecondsSinceEpoch.toDouble(),
+          rand.toDouble(),
+          (rand % 20));
     }).toList();
 
     _minX = _values.first.x;
     _maxX = _values.last.x;
     _minY = (minY / _divider).floorToDouble() * _divider;
     _maxY = (maxY / _divider).ceilToDouble() * _divider;
-    _leftTitlesInterval =
-        ((_maxY - _minY) / (_leftLabelsCount - 1)).floorToDouble();
 
     _maxY = 20;
     _maxX = 20;
@@ -103,12 +97,12 @@ class CustomLineChartState extends State<CustomLineChart> {
 
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
     String text;
-    
+
     // final DateTime date =
     //         DateTime.fromMillisecondsSinceEpoch(value.toInt());
     // text = DateFormat.MMM().format(date);
-    text =  value.toInt() %4 == 0? value.toString(): "";
-    
+    text = value.toInt() % 4 == 0 ? value.toString() : "";
+
     return SideTitleWidget(
       axisSide: meta.axisSide,
       child: Text(text),
@@ -201,5 +195,4 @@ class CustomLineChartState extends State<CustomLineChart> {
       ],
     );
   }
-
 }

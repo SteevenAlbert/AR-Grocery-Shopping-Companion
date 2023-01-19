@@ -1,20 +1,22 @@
-import 'package:ar_grocery_companion/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:go_router/go_router.dart';
+
+import 'package:ar_grocery_companion/constants/constants.dart';
 
 class Header extends StatelessWidget {
   Header({super.key, required this.size});
 
   final Size size;
-  Future<String> sessionName() async {
+
+  Future<String> getSessionName() async {
     return (await SessionManager().containsKey("isLoggedIn") != true ||
             await SessionManager().get("isLoggedIn") != true)
         ? ""
         : await SessionManager().get("name");
   }
 
-  Future<String> sessionPfpPath() async {
+  Future<String> getSessionPfpPath() async {
     return (await SessionManager().containsKey("isLoggedIn") != true ||
             await SessionManager().get("isLoggedIn") != true)
         ? kNoPfpImg
@@ -24,41 +26,48 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new FutureBuilder(
-        future: Future.wait([sessionName(), sessionPfpPath()]),
+        future: Future.wait([getSessionName(), getSessionPfpPath()]),
         builder: (BuildContext context, AsyncSnapshot<List<String>> snapshot) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Good Morning " + (snapshot.data![0]),
-                        style: Theme.of(context).textTheme.titleSmall,
-                      ),
-                      Text(
-                        "Wanna check some products?",
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                    ],
+          if (snapshot.hasData) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Good Morning " + (snapshot.data![0]),
+                          style: Theme.of(context).textTheme.titleSmall,
+                        ),
+                        Text(
+                          "Wanna check some products?",
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    InkWell(
-                        onTap: () => GoRouter.of(context).push("/profile_page"),
-                        child: CircleAvatar(
-                          backgroundImage: AssetImage(snapshot.data![1]),
-                          radius: 25,
-                        )),
-                  ],
-                )
-              ],
-            ),
-          );
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      InkWell(
+                          onTap: () =>
+                              GoRouter.of(context).push("/profile_page"),
+                          child: CircleAvatar(
+                            backgroundImage: AssetImage(snapshot.data![1]),
+                            radius: 25,
+                          )),
+                    ],
+                  )
+                ],
+              ),
+            );
+          } else if (snapshot.hasError) {
+            return Center(child: Text("${snapshot.error}"));
+          } else {
+            return Center(child: const CircularProgressIndicator());
+          }
         });
   }
 }

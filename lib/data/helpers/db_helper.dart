@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/services.dart';
+
 import '../../services/firebase_options.dart';
 
 //Struct to store database collection names as strings

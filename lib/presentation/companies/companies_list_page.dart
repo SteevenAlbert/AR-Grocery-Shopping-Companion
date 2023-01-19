@@ -1,10 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+
 import 'package:ar_grocery_companion/constants/constants.dart';
 import 'package:ar_grocery_companion/data/repositories/companies_repository.dart';
 import 'package:ar_grocery_companion/domain/models/company.dart';
 import 'package:ar_grocery_companion/utils.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 class CompaniesListPage extends ConsumerWidget {
   const CompaniesListPage({super.key});
@@ -25,7 +26,8 @@ class CompaniesListPage extends ConsumerWidget {
                   Company currCompany = snapshot.data![index];
                   return ListTile(
                     leading: CircleAvatar(
-                        backgroundColor: Theme.of(context).canvasColor.withOpacity(0.1),
+                        backgroundColor:
+                            Theme.of(context).canvasColor.withOpacity(0.1),
                         child: Image.asset(
                           currCompany.logoPath ?? kNoLogoImg,
                         )),

@@ -1,14 +1,13 @@
-import 'package:ar_grocery_companion/constants/constants.dart';
-import 'package:ar_grocery_companion/presentation/authentication/custom_widgets/custom_animated_button.dart';
-import 'package:camera/camera.dart';
-import 'package:flutter/material.dart';
-
 import 'package:augmented_reality_plugin_wikitude/wikitude_plugin.dart';
 import 'package:augmented_reality_plugin_wikitude/wikitude_response.dart';
-
-import 'package:ar_grocery_companion/domain/sample.dart';
+import 'package:camera/camera.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
+
+import 'package:ar_grocery_companion/constants/constants.dart';
+import 'package:ar_grocery_companion/domain/sample.dart';
+import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_animated_button.dart';
 
 class ScanPage extends StatefulWidget {
   const ScanPage({super.key});
@@ -105,20 +104,20 @@ class _ScanPageState extends State<ScanPage>
               },
             ),
           ),
-          AnimatedContainer(
-            duration: const Duration(seconds: 1),
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: Lottie.asset(
-              'assets/splash/splash1.json',
-              controller: _splashController,
-              onLoaded: (composition) {
-                _splashController
-                  ..duration = composition.duration
-                  ..repeat(reverse: true);
-              },
-            ),
-          ),
+          // AnimatedContainer(
+          //   duration: const Duration(seconds: 1),
+          //   height: MediaQuery.of(context).size.height,
+          //   width: MediaQuery.of(context).size.width,
+          //   child: Lottie.asset(
+          //     'assets/splash/splash1.json',
+          //     controller: _splashController,
+          //     onLoaded: (composition) {
+          //       _splashController
+          //         ..duration = composition.duration
+          //         ..repeat(reverse: true);
+          //     },
+          //   ),
+          // ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,

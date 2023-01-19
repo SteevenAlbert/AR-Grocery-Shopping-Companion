@@ -1,10 +1,11 @@
 import 'dart:convert';
 
-import 'package:ar_grocery_companion/domain/models/company.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:ar_grocery_companion/data/helpers/db_helper.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'package:ar_grocery_companion/domain/models/company.dart';
 
 class CompaniesRepository {
   // Singleton pattern
@@ -42,7 +43,8 @@ class CompaniesRepository {
     DataSnapshot? snapshot = await FirebaseHelper.read('companies');
 
     snapshot!.children.forEach((childSnapshot) {
-      var company = childSnapshot.value as Map<String, dynamic>;
+      var company =
+          jsonDecode(jsonEncode(childSnapshot.value)) as Map<String, dynamic>;
       company["id"] = childSnapshot.key;
       _companies.add(Company.fromMap(company));
     });

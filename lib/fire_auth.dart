@@ -1,8 +1,10 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'presentation/authentication/custom_widgets/custom_snackbar.dart';
+
+import 'presentation/components/custom_widgets/custom_awesome_snackbar.dart';
 
 class FireAuthentication {
   static Future<User?> registerUsingEmailPassword({
@@ -21,11 +23,12 @@ class FireAuthentication {
       user = auth.currentUser;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
-        CustomSnackbar(
+        CustomAwesomeSnackbar(
             context: context,
             title: "Email Taken",
             message:
-                "An account already exists for that email. Please try an another email.");
+                "An account already exists for that email. Please try an another email.",
+            contentType: ContentType.failure);
       } else
         print(e);
     }
@@ -48,18 +51,19 @@ class FireAuthentication {
       user = userCredential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        CustomSnackbar(
+        CustomAwesomeSnackbar(
             context: context,
             title: 'Wrong Email',
             message:
-                'It appears there are no users found for that email. Please try again.');
+                'It appears there are no users found for that email. Please try again.',
+            contentType: ContentType.failure);
       } else if (e.code == 'wrong-password') {
-        CustomSnackbar(
-          context: context,
-          title: 'Wrong Password',
-          message:
-              'It appears you have entered the wrong password. Please try again.',
-        );
+        CustomAwesomeSnackbar(
+            context: context,
+            title: 'Wrong Password',
+            message:
+                'It appears you have entered the wrong password. Please try again.',
+            contentType: ContentType.failure);
       } else {
         print(e);
       }
@@ -127,11 +131,12 @@ class FireAuthentication {
       }
       await FirebaseAuth.instance.signOut();
     } catch (e) {
-      CustomSnackbar(
+      CustomAwesomeSnackbar(
           context: context,
           title: 'Error Signing Out.',
           message:
-              'It appears there was an error during sign out. Please try again.');
+              'It appears there was an error during sign out. Please try again.',
+          contentType: ContentType.failure);
     }
   }
 

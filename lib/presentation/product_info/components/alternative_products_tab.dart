@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
+
 import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
 import 'package:ar_grocery_companion/domain/models/product/product.dart';
 import 'package:ar_grocery_companion/presentation/home/components/product_card.dart';
-import 'package:flutter/material.dart';
 
 class AlternativeProducts extends StatelessWidget {
   final Product product;
@@ -33,6 +34,7 @@ class AlternativeProducts extends StatelessWidget {
                     ),
                   )
               ],
+
             ),
           );
         } else if (snapshot.hasError) {

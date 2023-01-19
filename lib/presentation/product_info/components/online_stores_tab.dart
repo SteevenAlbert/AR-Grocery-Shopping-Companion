@@ -1,7 +1,9 @@
-import 'package:ar_grocery_companion/presentation/product_info/components/store_card.dart';
 import 'package:flutter/material.dart';
+
+import 'package:ar_grocery_companion/presentation/product_info/components/store_card.dart';
 import 'package:ar_grocery_companion/services/amazonapi.dart';
 import 'package:ar_grocery_companion/services/custom_web_scrapper.dart';
+
 import '../../../domain/models/product/product.dart';
 
 class OnlineStores extends StatelessWidget {
@@ -29,7 +31,7 @@ class OnlineStores extends StatelessWidget {
                   storeCard(
                       context,
                       "assets/images/store_logos/spinneys.png",
-                      snapshot.data![1]?.prices['Spinneys']!,
+                      snapshot.data![1].prices['Spinneys']!,
                       product.storesURLs!["Spinneys"]!),
                   storeCard(
                       context,

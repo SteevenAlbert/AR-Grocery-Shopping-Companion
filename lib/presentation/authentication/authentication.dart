@@ -1,9 +1,9 @@
-// import 'dart:js';
 import 'package:flutter/material.dart';
-import 'package:ar_grocery_companion/presentation/components/authentication/background2.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+
 import 'package:ar_grocery_companion/presentation/authentication/log_in.dart';
 import 'package:ar_grocery_companion/presentation/authentication/register.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:ar_grocery_companion/presentation/components/backgrounds/background2.dart';
 
 class AuthenticationPage extends StatefulWidget {
   const AuthenticationPage({super.key});
@@ -19,8 +19,8 @@ class LogInPageState extends State<AuthenticationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // resizeToAvoidBottomInset: false,
-      body: Stack(children: [
+      resizeToAvoidBottomInset: false,
+      body: Stack(fit: StackFit.expand, children: [
         Background2(),
         //----- Card Container -----//
         Container(
@@ -49,7 +49,7 @@ class LogInPageState extends State<AuthenticationPage> {
               child:
                   //----- Nav Bar -----//
                   Container(
-                margin: EdgeInsets.only(left: 3, right: 3, top: 3),
+                margin: EdgeInsets.only(left: 3, right: 3, top: 4),
                 color: Theme.of(context).canvasColor,
                 child: PersistentTabView(
                   backgroundColor: Theme.of(context).canvasColor,
@@ -73,7 +73,7 @@ class LogInPageState extends State<AuthenticationPage> {
 List<Widget> _buildScreens() {
   return [
     const LogInScreen(),
-    const RegisterScreen(),
+    const RegisterScreen(type: 'customer'),
   ];
 }
 

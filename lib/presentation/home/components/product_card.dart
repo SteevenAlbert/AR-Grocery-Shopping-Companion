@@ -1,10 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:simple_shadow/simple_shadow.dart';
+
 import 'package:ar_grocery_companion/domain/models/product/product.dart';
 import 'package:ar_grocery_companion/presentation/home/components/fav_icon.dart';
 import 'package:ar_grocery_companion/presentation/home/components/stars.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:simple_shadow/simple_shadow.dart';
-import 'package:go_router/go_router.dart';
 
 class ProductCard extends ConsumerWidget {
   final Product product;
@@ -20,7 +21,8 @@ class ProductCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return InkWell(
-        onTap: () => GoRouter.of(context).push("/product_page", extra: product),
+        onTap: () => GoRouter.of(context).pushNamed("ProductPage",
+            extra: product, params: {'fromAR': "false"}),
         child: Card(
             elevation: 0,
             shape: RoundedRectangleBorder(

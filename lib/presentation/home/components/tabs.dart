@@ -1,8 +1,9 @@
-import 'package:ar_grocery_companion/data/repositories/categories_repository.dart';
-import 'package:ar_grocery_companion/presentation/home/components/featured_products.dart';
 import 'package:flutter/material.dart';
-import 'package:ar_grocery_companion/domain/models/custom_category.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'package:ar_grocery_companion/data/repositories/categories_repository.dart';
+import 'package:ar_grocery_companion/domain/models/custom_category.dart';
+import 'package:ar_grocery_companion/presentation/home/components/featured_products.dart';
 
 class CatTabs extends ConsumerStatefulWidget {
   final Size size;

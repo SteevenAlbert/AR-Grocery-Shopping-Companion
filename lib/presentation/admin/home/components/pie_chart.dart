@@ -1,9 +1,8 @@
-import 'dart:math';
+import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/material.dart';
 
 import 'package:ar_grocery_companion/data/repositories/companies_repository.dart';
 import 'package:ar_grocery_companion/domain/models/company.dart';
-import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/material.dart';
 
 /// Icons by svgrepo.com (https://www.svgrepo.com/collection/job-and-professions-3/)
 class CustomPieChart extends StatefulWidget {
@@ -59,7 +58,7 @@ class CustomPieChartState extends State {
       final widgetSize = isTouched ? 55.0 : 40.0;
 
       var productsNum = companies[index].products?.length;
-      double opacity = productsNum != null ?productsNum*0.1:0.1;
+      double opacity = productsNum != null ? productsNum * 0.1 : 0.1;
       return PieChartSectionData(
         color: Theme.of(context).primaryColor.withOpacity(opacity),
         value: productsNum?.toDouble(),
@@ -72,7 +71,7 @@ class CustomPieChartState extends State {
         ),
         badgeWidget: _Badge(
           companies[index].logoPath!,
-          name:companies[index].name,
+          name: companies[index].name,
           size: widgetSize,
           borderColor: Theme.of(context).primaryColor.withOpacity(opacity),
         ),

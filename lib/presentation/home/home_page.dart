@@ -1,16 +1,14 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:ar_grocery_companion/data/repositories/categories_repository.dart';
 import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
 import 'package:ar_grocery_companion/domain/models/custom_category.dart';
 import 'package:ar_grocery_companion/domain/models/product/product.dart';
-import 'package:ar_grocery_companion/presentation/error_page.dart';
-import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/presentation/components/header.dart';
-import 'package:ar_grocery_companion/presentation/home/components/tabs.dart';
 import 'package:ar_grocery_companion/presentation/home/components/carousel.dart';
+import 'package:ar_grocery_companion/presentation/home/components/tabs.dart';
 import 'package:ar_grocery_companion/presentation/search/search_bar.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-import 'package:ar_grocery_companion/services/connection_checker.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});

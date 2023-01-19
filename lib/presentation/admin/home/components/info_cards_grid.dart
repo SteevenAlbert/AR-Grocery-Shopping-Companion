@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
+
 import 'package:ar_grocery_companion/data/repositories/companies_repository.dart';
 import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
 import 'package:ar_grocery_companion/presentation/admin/home/components/info_card.dart';
-import 'package:flutter/material.dart';
 
 class InfoCardGrid extends StatelessWidget {
   const InfoCardGrid({Key? key}) : super(key: key);
@@ -15,11 +16,12 @@ class InfoCardGrid extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(top: 16.0, left: 16.0),
           child: Align(
-                alignment: Alignment.topLeft,
-                  child: Text(
-                "Insights",
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)
-              )),
+              alignment: Alignment.topLeft,
+              child: Text("Insights",
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(fontWeight: FontWeight.bold))),
         ),
         GridView.count(
           padding: EdgeInsets.all(16.0),
@@ -29,10 +31,7 @@ class InfoCardGrid extends StatelessWidget {
           crossAxisCount: size.width ~/ 300,
           childAspectRatio: size.width < 600 ? 4 : 2,
           children: [
-            InfoCard(
-                title: "Users",
-                count: 0,
-                icon: Icons.supervisor_account),
+            InfoCard(title: "Users", count: 0, icon: Icons.supervisor_account),
             InfoCard(
                 title: "Products",
                 count: ProductsRepository.instance.getCount(),
@@ -41,7 +40,6 @@ class InfoCardGrid extends StatelessWidget {
                 title: "Manufacturers",
                 count: CompaniesRepository.instance.getCount(),
                 icon: Icons.apartment),
-            
           ],
         ),
       ],

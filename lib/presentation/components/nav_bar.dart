@@ -1,8 +1,9 @@
-import 'package:ar_grocery_companion/presentation/scan/scan_intro_page.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-import 'package:ar_grocery_companion/presentation/home/home_page.dart';
+
 import 'package:ar_grocery_companion/presentation/favorites/favorites_page.dart';
+import 'package:ar_grocery_companion/presentation/home/home_page.dart';
+import 'package:ar_grocery_companion/presentation/scan/scan_intro_page.dart';
 
 class Navbar extends StatefulWidget {
   const Navbar({super.key});
