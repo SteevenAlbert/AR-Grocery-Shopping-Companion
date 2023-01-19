@@ -1,8 +1,7 @@
-import 'package:ar_grocery_companion/domain/models/user/app_user.dart';
 import 'package:ar_grocery_companion/data/repositories/users_repository.dart';
-import 'package:ar_grocery_companion/presentation/authentication/custom_widgets/custom_animated_button.dart';
-import 'package:ar_grocery_companion/presentation/authentication/custom_widgets/custom_title.dart';
-import 'package:ar_grocery_companion/presentation/authentication/custom_widgets/custom_text_form_field.dart';
+import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_animated_button.dart';
+import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_title.dart';
+import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_text_form_field.dart';
 import 'package:ar_grocery_companion/fire_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

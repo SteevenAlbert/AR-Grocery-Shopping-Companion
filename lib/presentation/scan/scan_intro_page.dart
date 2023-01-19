@@ -1,5 +1,5 @@
 import 'package:ar_grocery_companion/constants/constants.dart';
-import 'package:ar_grocery_companion/presentation/authentication/custom_widgets/custom_animated_button.dart';
+import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_animated_button.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 

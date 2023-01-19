@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:ar_grocery_companion/router.dart';
-import 'authentication/custom_widgets/custom_animated_button.dart';
+import 'components/custom_widgets/custom_animated_button.dart';
 import 'package:flutter_session_manager/flutter_session_manager.dart';
 
 class SomethingWentWrongScreen extends StatelessWidget {

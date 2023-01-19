@@ -14,6 +14,7 @@ class Background2 extends StatelessWidget {
         "assets/images/background/doodle.jpg",
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
+        // fit: BoxFit.none,
         fit: BoxFit.cover,
       ),
     );
