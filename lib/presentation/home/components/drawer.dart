@@ -34,33 +34,29 @@ class AccountState extends State<CustomDrawer> {
               context.push('/profile_page');
             }),
         ListTile(
-            leading: Icon(Icons.apartment),
-            title: Text("Manufacturers"),
-            onTap: () {
-              context.push('/companies_list_page');
-            }),
-        ListTile(
             leading: Icon(Icons.settings),
             title: Text("Settings"),
             onTap: () {
               context.push('/settings_page');
             }),
-        ListTile(
-            leading: Icon(Icons.admin_panel_settings),
-            title: Text("Admin"),
-            onTap: () {
-              context.push('/admin_homepage');
-            }),
         Expanded(
           child: Align(
             alignment: Alignment.bottomCenter,
-            child: ListTile(
-                leading: Icon(Icons.logout),
-                title: Text("Sign Out"),
-                onTap: () async {
-                  await SessionManager().destroy();
-                  context.go('/authenticate');
-                }),
+            child: (SessionManager().containsKey("isLoggedIn") != true ||
+                    SessionManager().get("isLoggedIn") != true)
+                ? ListTile(
+                    leading: Icon(Icons.login),
+                    title: Text("Sign In"),
+                    onTap: () async {
+                      context.go('/authenticate');
+                    })
+                : ListTile(
+                    leading: Icon(Icons.logout),
+                    title: Text("Sign Out"),
+                    onTap: () async {
+                      await SessionManager().destroy();
+                      context.go('/authenticate');
+                    }),
           ),
         ),
       ]),
