@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ar_grocery_companion/constants/constants.dart';
 import 'package:ar_grocery_companion/data/helpers/db_helper.dart';
 import 'package:ar_grocery_companion/data/providers/theme_mode_provider.dart';
+import 'package:ar_grocery_companion/domain/models/product/product_base.dart';
 import 'package:ar_grocery_companion/services/firebase_options.dart';
 
 import 'router.dart';

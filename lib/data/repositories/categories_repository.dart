@@ -27,15 +27,16 @@ class CategoriesRepository {
     });
   }
 
-  Future<String> insert(CustomCategory category) async {
-    FirebaseHelper.writeUnique('categories', category.toMap());
-    return category.id;
+  Future<bool> insert(CustomCategory category) async {
+    bool inserted =
+        await FirebaseHelper.writeUnique('categories', category.toMap());
+    return inserted;
   }
 
   Future<String> update(CustomCategory category) async {
     Map<String, dynamic> cat = category.toMap();
-    // FirebaseHelper.update('categories/${cat['id']}', cat);
-    FirebaseHelper.update('categories/-NLuxyLGrXJybp8-kH5V', cat);
+    print(cat);
+    FirebaseHelper.update('categories/${cat['id']}', cat);
     return category.id;
   }
 
@@ -56,7 +57,7 @@ class CategoriesRepository {
   }
 
   Future<String> deleteById(id) async {
-    FirebaseHelper.delete('companies/$id');
+    FirebaseHelper.delete('categories/$id');
     return id;
   }
 

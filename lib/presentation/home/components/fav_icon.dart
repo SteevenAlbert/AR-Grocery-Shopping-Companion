@@ -5,15 +5,15 @@ import 'package:ar_grocery_companion/data/providers/favs_provider.dart';
 import 'package:ar_grocery_companion/data/providers/theme_mode_provider.dart';
 import 'package:ar_grocery_companion/domain/models/product/product.dart';
 
-class FavIcon extends ConsumerStatefulWidget {
+class FavIcon extends StatefulWidget {
   const FavIcon({super.key, required this.product});
   final Product product;
 
   @override
-  ConsumerState<FavIcon> createState() => _FavIconState();
+  State<FavIcon> createState() => _FavIconState();
 }
 
-class _FavIconState extends ConsumerState<FavIcon> {
+class _FavIconState extends State<FavIcon> {
   @override
   Widget build(BuildContext context) {
     return Container(

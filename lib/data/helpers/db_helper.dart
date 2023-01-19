@@ -55,6 +55,7 @@ class FirebaseHelper {
   }
 
   static Future<bool> update(String path, dynamic data) async {
+    data.remove("id");
     return await _dbRef.child(path).update(data).then((_) {
       return true;
     }).catchError((error) {
