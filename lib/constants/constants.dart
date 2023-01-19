@@ -27,4 +27,4 @@ Sample imageTrackingSample = Sample(
 // Error images
 String kNoLogoImg = "assets/images/no_logo.jpg";
 
-const String kNoPfpImg = "assets/images/profile_pictures/profilepicture.jpg";
+const String kNoPfpImg = "assets/images/profile_pictures/profilepicture.png";
