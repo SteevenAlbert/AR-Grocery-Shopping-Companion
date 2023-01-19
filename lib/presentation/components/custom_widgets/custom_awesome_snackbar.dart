@@ -5,6 +5,7 @@ CustomAwesomeSnackbar({
   required BuildContext context,
   required String title,
   required String message,
+  required ContentType contentType,
 }) {
   return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
     behavior: SnackBarBehavior.floating,
@@ -13,7 +14,7 @@ CustomAwesomeSnackbar({
     content: AwesomeSnackbarContent(
       title: title,
       message: message,
-      contentType: ContentType.failure,
+      contentType: contentType,
     ),
   ));
 }

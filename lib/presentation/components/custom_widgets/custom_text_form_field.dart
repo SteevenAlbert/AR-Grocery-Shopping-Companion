@@ -6,7 +6,7 @@ class CustomTextFormField extends StatelessWidget {
     required this.labelText,
     required this.icon,
     this.controller,
-    required this.errorMessage,
+    this.errorMessage,
     this.regex = "(.*?)",
     this.regexErrorMessage = "",
     this.confirm,
@@ -19,7 +19,7 @@ class CustomTextFormField extends StatelessWidget {
   final String labelText;
   final IconData icon;
   final TextEditingController? controller;
-  final String errorMessage;
+  final String? errorMessage;
   final String? regex;
   final String? regexErrorMessage;
   final TextEditingController? confirm;
