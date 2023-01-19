@@ -19,7 +19,7 @@ class LogInPageState extends State<AuthenticationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,
       body: Stack(fit: StackFit.expand, children: [
         Background2(),
         //----- Card Container -----//
@@ -49,7 +49,7 @@ class LogInPageState extends State<AuthenticationPage> {
               child:
                   //----- Nav Bar -----//
                   Container(
-                margin: EdgeInsets.only(left: 3, right: 3, top: 3),
+                margin: EdgeInsets.only(left: 3, right: 3, top: 4),
                 color: Theme.of(context).canvasColor,
                 child: PersistentTabView(
                   backgroundColor: Theme.of(context).canvasColor,
@@ -73,7 +73,7 @@ class LogInPageState extends State<AuthenticationPage> {
 List<Widget> _buildScreens() {
   return [
     const LogInScreen(),
-    const RegisterScreen(),
+    const RegisterScreen(type: 'customer'),
   ];
 }
 

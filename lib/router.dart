@@ -1,4 +1,5 @@
 import 'package:ar_grocery_companion/presentation/scan/scan_intro_page.dart';
+import 'package:ar_grocery_companion/presentation/admin/add_admin_page.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:ar_grocery_companion/domain/models/company.dart';
@@ -31,7 +32,8 @@ class MyRouter {
       //Add Routes Here
       GoRoute(path: '/', builder: (context, state) => const SplashScreen()),
       GoRoute(
-          path: '/authenticate', builder: (context, state) => const MainPage()),
+          path: '/authenticate',
+          builder: (context, state) => const AuthenticationPage()),
       GoRoute(
           path: '/customer_homepage',
           builder: (context, state) => const MainPage()),
@@ -48,6 +50,9 @@ class MyRouter {
       GoRoute(
           path: '/profile_page',
           builder: (context, state) => const ProfilePage()),
+      GoRoute(
+          path: '/add_admin',
+          builder: (context, state) => const AddAdminPage()),
       GoRoute(
           path: '/search_page',
           builder: (context, state) => const SearchPage()),

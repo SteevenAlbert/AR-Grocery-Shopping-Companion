@@ -33,7 +33,13 @@ void main() async {
   FirebaseHelper db = FirebaseHelper();
   await db.init();
 
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+      overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
+
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+  ));
+
   runApp(
     ProviderScope(child: const MyApp()),
   );
