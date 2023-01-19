@@ -1,6 +1,8 @@
 import 'package:ar_grocery_companion/data/repositories/categories_repository.dart';
 import 'package:ar_grocery_companion/domain/models/custom_category.dart';
+import 'package:ar_grocery_companion/presentation/admin/components/delete_button.dart';
 import 'package:ar_grocery_companion/presentation/admin/components/element_datagrid.dart';
+import 'package:ar_grocery_companion/presentation/admin/components/list_card.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
@@ -14,6 +16,7 @@ class CategoriesList extends StatefulWidget {
 class _CategoriesListState extends State<CategoriesList> {
   List<CustomCategory> categories = <CustomCategory>[];
   late CustomCategoryDataSource companyDataSource;
+  final DataGridController dataGridController = DataGridController();
 
   @override
   void initState() {
@@ -25,8 +28,15 @@ class _CategoriesListState extends State<CategoriesList> {
 
   @override
   Widget build(BuildContext context) {
-    return ElementsDataGrid(
-        dataSource: companyDataSource, columnNames: ['name']);
+    return ListCard(
+        title: "Categories",
+        // TODO: add delete function
+        trailing: DataGridDeleteButton(dataGridController: dataGridController, deleteFunction: (){},),
+        list: ElementsDataGrid(
+          dataSource: companyDataSource,
+          columnNames: ['name'],
+          dataGridController: dataGridController,
+        ));
   }
 }
 

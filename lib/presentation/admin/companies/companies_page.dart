@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:ar_grocery_companion/presentation/admin/companies/companies_list.dart';
-import 'package:ar_grocery_companion/presentation/admin/components/list_card.dart';
-
 class CompaniesPage extends StatelessWidget {
   const CompaniesPage({super.key});
 
@@ -21,7 +19,7 @@ class CompaniesPage extends StatelessWidget {
               },
               child: Text("Add Company")),
         ),
-        ListCard(title: "Companies", list: CompaniesList()),
+        CompaniesList(),
       ],
     );
   }

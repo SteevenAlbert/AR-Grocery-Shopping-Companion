@@ -1,4 +1,3 @@
-import 'package:ar_grocery_companion/presentation/admin/components/list_card.dart';
 import 'package:ar_grocery_companion/presentation/admin/products/products_list.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +10,7 @@ class ProductsPage extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ListCard(title: "Products", list:ProductsList()),
+        ProductsList()
       ],
     );
   }

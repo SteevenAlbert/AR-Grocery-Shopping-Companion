@@ -4,9 +4,10 @@ import 'package:syncfusion_flutter_core/theme.dart';
 
 class ElementsDataGrid extends StatefulWidget {
   ElementsDataGrid(
-      {super.key, required this.dataSource, required this.columnNames});
+      {super.key, required this.dataSource, required this.dataGridController, required this.columnNames});
 
   final DataGridSource dataSource;
+  final DataGridController dataGridController;
   final List<String> columnNames;
 
   @override
@@ -55,6 +56,9 @@ class _ElementsDataGridState extends State<ElementsDataGrid> {
           gridLinesVisibility: GridLinesVisibility.none,
           headerGridLinesVisibility: GridLinesVisibility.none,
           selectionMode: SelectionMode.multiple,
+          showCheckboxColumn: true,
+          checkboxShape: CircleBorder(),
+          controller: widget.dataGridController,
           columnWidthMode: MediaQuery.of(context).size.width > 800
               ? ColumnWidthMode.fill
               : ColumnWidthMode.auto,
