@@ -34,44 +34,8 @@ class CategoriesRepository {
 
   Future<String> update(CustomCategory category) async {
     Map<String, dynamic> cat = category.toMap();
-    // print("Hey");
-    // // print(cat);
-    // Map<String, dynamic> cat = {
-    //   'id': '-NM-IjdokQXGrc_vqnj_',
-    //   'name': 'Beverages',
-    //   'imagePath': null,
-    //   'products': {
-    //     '4': {
-    //       'id': '4',
-    //       'name': 'product1',
-    //       'createdAt': '2023-01-19 15:50:21.611',
-    //       'images': {'0': 'images'},
-    //       'manufacturer': {
-    //         'id': '2',
-    //         'name': 'manufacturer',
-    //         'country': null,
-    //         'logoPath': null,
-    //         'url': null
-    //       }
-    //     },
-    //     '5': {
-    //       'id': '5',
-    //       'name': 'product2',
-    //       'createdAt': '2023-01-19 15:50:21.611',
-    //       'images': {'0': 'images1'},
-    //       'manufacturer': {
-    //         'id': '3',
-    //         'name': 'manufacturer',
-    //         'country': null,
-    //         'logoPath': null,
-    //         'url': null
-    //       }
-    //     }
-    //   }
-    // };
-
+    print(cat);
     FirebaseHelper.update('categories/${cat['id']}', cat);
-    // FirebaseHelper.update('categories/-NLuxyLGrXJybp8-kH5V', cat);
     return category.id;
   }
 

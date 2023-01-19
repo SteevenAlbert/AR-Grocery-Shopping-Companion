@@ -54,13 +54,4 @@ class ProductBase extends Product {
       storesURLs: Map<String, String>.from((map['storesURLs'] as Map)),
     );
   }
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'id': id,
-      'name': name,
-      'createdAt': createdAt,
-      'images': images.asMap(),
-      'manufacturer': manufacturer.toMap2(),
-    };
-  }
 }

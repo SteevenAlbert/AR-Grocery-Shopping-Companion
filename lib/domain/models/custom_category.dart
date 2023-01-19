@@ -3,8 +3,6 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:ar_grocery_companion/domain/models/product/product_base.dart';
-
 class CustomCategory {
   String id;
   String name;
@@ -32,10 +30,6 @@ class CustomCategory {
   }
 
   Map<String, dynamic> toMap() {
-    // Map<String, dynamic> productMap = {};
-    // if (products != null)
-    //   products!
-    //       .forEach((product) => {productMap[product.id] = product.toMap()});
     return <String, dynamic>{
       'id': id,
       'name': name,
