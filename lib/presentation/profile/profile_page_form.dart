@@ -1,4 +1,5 @@
 import 'package:ar_grocery_companion/domain/models/user/app_user.dart';
+import 'package:ar_grocery_companion/presentation/admin/components/image_adder.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -10,7 +11,8 @@ import 'package:ar_grocery_companion/presentation/components/custom_widgets/cust
 AppUsersRepository usersRepo = AppUsersRepository.instance;
 
 class ProfilePageForm extends StatefulWidget {
-  const ProfilePageForm({super.key, required AppUser appUser});
+  const ProfilePageForm({super.key, required this.appUser});
+  final AppUser appUser;
 
   @override
   ProfilePageFormState createState() => ProfilePageFormState();
@@ -21,11 +23,16 @@ class ProfilePageFormState extends State<ProfilePageForm> {
   TextEditingController nameController = new TextEditingController();
   TextEditingController dateController = TextEditingController();
 
-  int groupValue = 0;
+  int groupValue = -1;
 
   @override
   void initState() {
-    dateController.text = "";
+    nameController.text = widget.appUser.name;
+    dateController.text = widget.appUser.DOB;
+    groupValue = widget.appUser.gender == 'other'
+        ? 0
+        : (widget.appUser.gender == 'female' ? 1 : 2);
+
     super.initState();
   }
 
@@ -71,29 +78,37 @@ class ProfilePageFormState extends State<ProfilePageForm> {
     return Form(
       key: _formKey,
       child: Container(
+        padding: EdgeInsets.only(top: 15),
         color: Theme.of(context).canvasColor,
         child: ListView(children: [
           Center(
-// circular image picker
-              ),
+            child: ImageAdder(
+              radius: 400.0,
+              // widget.appUser.pfpPath
+            ),
+          ),
           CustomTextFormField(
             controller: nameController,
             errorMessage: 'Name can\'t be empty.',
             labelText: "Name",
             icon: Icons.person,
+            // widget.appUser.name
           ),
           CustomTextFormField(
-            readOnly: true,
+            enabled: false,
             labelText: "Email",
             icon: Icons.mail,
+            // widget.appUser.email
           ),
           CustomTextFormField(
-              controller: dateController,
-              labelText: "Date of Birth",
-              icon: Icons.calendar_today,
-              errorMessage: "Date of Birth can't be empty",
-              readOnly: true,
-              onTap: datePicker),
+            controller: dateController,
+            labelText: "Date of Birth",
+            icon: Icons.calendar_today,
+            errorMessage: "Date of Birth can't be empty",
+            readOnly: true,
+            onTap: datePicker,
+            // widget.appUser.DOB
+          ),
           Padding(
             padding:
                 const EdgeInsets.only(top: 9, bottom: 0, left: 27.0, right: 0),

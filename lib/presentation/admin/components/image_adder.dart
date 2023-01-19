@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImageAdder extends StatefulWidget {
-  const ImageAdder({super.key});
+  ImageAdder({super.key, this.label = "", this.radius = 40.0});
+  final String label;
+  final double radius;
 
   @override
   State<ImageAdder> createState() => _ImageAdderState();
@@ -10,7 +12,6 @@ class ImageAdder extends StatefulWidget {
 
 class _ImageAdderState extends State<ImageAdder> {
   XFile? image;
-
   final ImagePicker picker = ImagePicker();
 
   Future getImage(ImageSource media) async {
@@ -48,7 +49,8 @@ class _ImageAdderState extends State<ImageAdder> {
                   )
                 : Container(
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(40)),
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(widget.radius)),
                         color: Theme.of(context).highlightColor),
                     child: Icon(
                       Icons.camera_alt,
@@ -57,8 +59,10 @@ class _ImageAdderState extends State<ImageAdder> {
                   ),
           ),
         ),
-        SizedBox(height: 8.0,),
-        Text("Company logo", style: Theme.of(context).textTheme.labelMedium)
+        SizedBox(
+          height: 8.0,
+        ),
+        Text(widget.label, style: Theme.of(context).textTheme.labelMedium)
       ],
     );
   }

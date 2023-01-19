@@ -25,14 +25,21 @@ class _AddCompanyFormState extends State<AddCompanyForm> {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  ImageAdder(),
+                  ImageAdder(
+                    label: "Company logo",
+                  ),
                   Expanded(child: AddCompanyFields()),
                 ],
               );
             } else {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [ImageAdder(), AddCompanyFields()],
+                children: [
+                  ImageAdder(
+                    label: "Company logo",
+                  ),
+                  AddCompanyFields()
+                ],
               );
             }
           },

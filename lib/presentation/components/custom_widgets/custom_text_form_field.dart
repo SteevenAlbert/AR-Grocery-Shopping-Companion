@@ -14,6 +14,7 @@ class CustomTextFormField extends StatelessWidget {
     this.obscureText = false,
     this.toggle,
     this.readOnly = false,
+    this.enabled = true,
     this.onTap,
   }) : super(key: key);
   final String labelText;
@@ -27,6 +28,7 @@ class CustomTextFormField extends StatelessWidget {
   final bool? obscureText;
   final Function()? toggle;
   final bool? readOnly;
+  final bool? enabled;
   final Function()? onTap;
   Widget build(BuildContext context) {
     return Padding(
@@ -66,6 +68,7 @@ class CustomTextFormField extends StatelessWidget {
         ),
         onTap: onTap,
         readOnly: readOnly!,
+        enabled: enabled,
       ),
     );
   }
