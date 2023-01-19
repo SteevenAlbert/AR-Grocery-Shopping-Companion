@@ -4,6 +4,7 @@ import 'package:ar_grocery_companion/presentation/admin/components/delete_button
 import 'package:ar_grocery_companion/presentation/admin/components/element_datagrid.dart';
 import 'package:ar_grocery_companion/presentation/admin/components/list_card.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class CategoriesList extends StatefulWidget {
@@ -15,15 +16,15 @@ class CategoriesList extends StatefulWidget {
 
 class _CategoriesListState extends State<CategoriesList> {
   List<CustomCategory> categories = <CustomCategory>[];
-  late CustomCategoryDataSource companyDataSource;
+  late CustomCategoryDataSource categoryDataSource;
   final DataGridController dataGridController = DataGridController();
 
   @override
   void initState() {
     super.initState();
     categories = CategoriesRepository.instance.getCategories();
-    companyDataSource =
-        CustomCategoryDataSource(companyData: categories, context: context);
+    categoryDataSource =
+        CustomCategoryDataSource(categoryData: categories, context: context);
   }
 
   @override
@@ -31,10 +32,13 @@ class _CategoriesListState extends State<CategoriesList> {
     return ListCard(
         title: "Categories",
         // TODO: add delete function
-        trailing: DataGridDeleteButton(dataGridController: dataGridController, deleteFunction: (){},),
+        trailing: DataGridDeleteButton(
+          dataGridController: dataGridController,
+          deleteFunction: () {},
+        ),
         list: ElementsDataGrid(
-          dataSource: companyDataSource,
-          columnNames: ['name'],
+          dataSource: categoryDataSource,
+          columnNames: ['name', 'edit'],
           dataGridController: dataGridController,
         ));
   }
@@ -42,30 +46,40 @@ class _CategoriesListState extends State<CategoriesList> {
 
 class CustomCategoryDataSource extends DataGridSource {
   CustomCategoryDataSource(
-      {required List<CustomCategory> companyData, required this.context}) {
-    _companyData = companyData
-        .map<DataGridRow>((company) => DataGridRow(cells: [
-              DataGridCell<String>(columnName: 'name', value: company.name),
-            ]))
+      {required List<CustomCategory> categoryData, required this.context}) {
+    _categoryData = categoryData
+        .map<DataGridRow>(
+          (category) => DataGridRow(cells: [
+            DataGridCell<String>(columnName: 'name', value: category.name),
+            DataGridCell<Function>(
+                  columnName: 'edit',
+                  value: () {
+                    context.push('/edit_category_page', extra: category);
+                  }),
+          ]),
+        )
         .toList();
   }
 
-  List<DataGridRow> _companyData = [];
+  List<DataGridRow> _categoryData = [];
   BuildContext context;
 
   @override
-  List<DataGridRow> get rows => _companyData;
+  List<DataGridRow> get rows => _categoryData;
 
   @override
   DataGridRowAdapter buildRow(DataGridRow row) {
     return DataGridRowAdapter(
         cells: row.getCells().map<Widget>((e) {
       return Container(
-        alignment: Alignment.centerLeft,
-        padding: EdgeInsets.all(16.0),
-        child: Text(e.value.toString(),
-            style: Theme.of(context).textTheme.labelLarge),
-      );
+          alignment: Alignment.centerLeft,
+          child: e.columnName == 'edit'
+              ? IconButton(
+                  icon: Icon(Icons.edit),
+                  onPressed: e.value,
+                )
+              : Text(e.value.toString(),
+                  style: Theme.of(context).textTheme.labelLarge));
     }).toList());
   }
 }

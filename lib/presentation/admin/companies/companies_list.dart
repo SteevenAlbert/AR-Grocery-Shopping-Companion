@@ -4,6 +4,7 @@ import 'package:ar_grocery_companion/presentation/admin/components/delete_button
 import 'package:ar_grocery_companion/presentation/admin/components/element_datagrid.dart';
 import 'package:ar_grocery_companion/presentation/admin/components/list_card.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class CompaniesList extends StatefulWidget {
@@ -37,7 +38,7 @@ class _CompaniesListState extends State<CompaniesList> {
       ),
       list: ElementsDataGrid(
         dataSource: companyDataSource,
-        columnNames: ['name', 'origin'],
+        columnNames: ['name', 'origin', 'edit'],
         dataGridController: dataGridController,
       ),
     );
@@ -51,7 +52,13 @@ class CompanyDataSource extends DataGridSource {
         .map<DataGridRow>((company) => DataGridRow(cells: [
               DataGridCell<String>(columnName: 'name', value: company.name),
               DataGridCell<String>(
-                  columnName: 'origin', value: company.origin?.name ?? "None"),
+                  columnName: 'origin',
+                  value: company.origin?.name ?? "None"),
+              DataGridCell<Function>(
+                  columnName: 'edit',
+                  value: () {
+                    context.push('/edit_company_page', extra: company);
+                  }),
             ]))
         .toList();
   }
@@ -67,11 +74,14 @@ class CompanyDataSource extends DataGridSource {
     return DataGridRowAdapter(
         cells: row.getCells().map<Widget>((e) {
       return Container(
-        alignment: Alignment.centerLeft,
-        padding: EdgeInsets.all(16.0),
-        child: Text(e.value.toString(),
-            style: Theme.of(context).textTheme.labelLarge),
-      );
+          alignment: Alignment.centerLeft,
+          child: e.columnName == 'edit'
+              ? IconButton(
+                  icon: Icon(Icons.edit),
+                  onPressed: e.value,
+                )
+              : Text(e.value.toString(),
+                  style: Theme.of(context).textTheme.labelLarge));
     }).toList());
   }
 }

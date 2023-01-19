@@ -25,6 +25,8 @@ class _ElementsDataGridState extends State<ElementsDataGrid> {
     List<GridColumn> gridColumns = [];
     widget.columnNames.forEach((element) {
       gridColumns.add(GridColumn(
+          allowSorting: element == 'edit'? false: true,
+          allowFiltering: element == 'edit'? false: true,
           columnName: element,
           label: Container(
             padding: EdgeInsets.symmetric(horizontal: 16.0),

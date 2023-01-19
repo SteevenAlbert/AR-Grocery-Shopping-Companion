@@ -4,6 +4,7 @@ import 'package:ar_grocery_companion/presentation/admin/components/delete_button
 import 'package:ar_grocery_companion/presentation/admin/components/element_datagrid.dart';
 import 'package:ar_grocery_companion/presentation/admin/components/list_card.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class ProductsList extends StatefulWidget {
@@ -31,10 +32,13 @@ class _ProductsListState extends State<ProductsList> {
     return ListCard(
         title: "Products",
         // TODO: add delete function
-        trailing: DataGridDeleteButton(dataGridController: dataGridController, deleteFunction: (){},),
+        trailing: DataGridDeleteButton(
+          dataGridController: dataGridController,
+          deleteFunction: () {},
+        ),
         list: ElementsDataGrid(
           dataSource: productDataSource,
-          columnNames: ['name', 'manufacturer', 'category'],
+          columnNames: ['name', 'manufacturer', 'category', 'edit'],
           dataGridController: dataGridController,
         ));
   }
@@ -50,6 +54,11 @@ class ProductDataSource extends DataGridSource {
                   columnName: 'manufacturer', value: product.manufacturer.name),
               DataGridCell<String>(
                   columnName: 'category', value: product.customCategory.name),
+              DataGridCell<Function>(
+                  columnName: 'edit',
+                  value: () {
+                    context.push('/edit_product_page', extra: product);
+                  }),
             ]))
         .toList();
   }
@@ -65,11 +74,14 @@ class ProductDataSource extends DataGridSource {
     return DataGridRowAdapter(
         cells: row.getCells().map<Widget>((e) {
       return Container(
-        alignment: Alignment.centerLeft,
-        padding: EdgeInsets.all(16.0),
-        child: Text(e.value.toString(),
-            style: Theme.of(context).textTheme.labelLarge),
-      );
+          alignment: Alignment.centerLeft,
+          child: e.columnName == 'edit'
+              ? IconButton(
+                  icon: Icon(Icons.edit),
+                  onPressed: e.value,
+                )
+              : Text(e.value.toString(),
+                  style: Theme.of(context).textTheme.labelLarge));
     }).toList());
   }
 }

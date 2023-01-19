@@ -67,7 +67,7 @@ class _AdminDrawerState extends State<AdminDrawer> {
                   widget.page.jumpToPage(2);
                 }),
             ListTile(
-                leading: Icon(Icons.bakery_dining),
+                leading: Icon(Icons.apartment),
                 title: Text("Manufacturers"),
                 onTap: () {
                   widget.page.jumpToPage(3);
