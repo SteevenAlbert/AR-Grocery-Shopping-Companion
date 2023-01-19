@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  CustomTextFormField({
-    Key? key,
-    required this.labelText,
-    required this.icon,
-    this.controller,
-    this.errorMessage,
-    this.regex = "(.*?)",
-    this.regexErrorMessage = "",
-    this.confirm,
-    this.confirmErrorMessage = "",
-    this.obscureText = false,
-    this.toggle,
-    this.readOnly = false,
-    this.enabled = true,
-    this.onTap,
-  }) : super(key: key);
+  CustomTextFormField(
+      {Key? key,
+      required this.labelText,
+      this.initialValue,
+      required this.icon,
+      this.controller,
+      this.errorMessage,
+      this.regex = "(.*?)",
+      this.regexErrorMessage = "",
+      this.confirm,
+      this.confirmErrorMessage = "",
+      this.obscureText = false,
+      this.toggle,
+      this.readOnly = false,
+      this.enabled = true,
+      this.onTap,
+      this.fillColor})
+      : super(key: key);
   final String labelText;
+  final String? initialValue;
   final IconData icon;
   final TextEditingController? controller;
   final String? errorMessage;
@@ -30,6 +33,7 @@ class CustomTextFormField extends StatelessWidget {
   final bool? readOnly;
   final bool? enabled;
   final Function()? onTap;
+  final Color? fillColor;
   Widget build(BuildContext context) {
     return Padding(
       padding:
@@ -48,7 +52,10 @@ class CustomTextFormField extends StatelessWidget {
           return null;
         },
         obscureText: obscureText!,
+        initialValue: initialValue,
         decoration: InputDecoration(
+          filled: fillColor == null ? false : true,
+          fillColor: fillColor,
           labelText: labelText,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),

@@ -88,17 +88,17 @@ class ProfilePageFormState extends State<ProfilePageForm> {
             ),
           ),
           CustomTextFormField(
+            enabled: false,
+            labelText: "Email",
+            icon: Icons.mail,
+            initialValue: widget.appUser.email,
+            fillColor: Theme.of(context).hoverColor,
+          ),
+          CustomTextFormField(
             controller: nameController,
             errorMessage: 'Name can\'t be empty.',
             labelText: "Name",
             icon: Icons.person,
-            // widget.appUser.name
-          ),
-          CustomTextFormField(
-            enabled: false,
-            labelText: "Email",
-            icon: Icons.mail,
-            // widget.appUser.email
           ),
           CustomTextFormField(
             controller: dateController,
@@ -107,7 +107,6 @@ class ProfilePageFormState extends State<ProfilePageForm> {
             errorMessage: "Date of Birth can't be empty",
             readOnly: true,
             onTap: datePicker,
-            // widget.appUser.DOB
           ),
           Padding(
             padding:

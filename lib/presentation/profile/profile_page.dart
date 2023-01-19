@@ -17,14 +17,19 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("Profile")),
+        appBar: AppBar(
+          title: const Text("Profile Details"),
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+          foregroundColor: Theme.of(context).primaryColor,
+        ),
         body: FutureBuilder(
             future: getSessionUser(),
             builder: (context, AsyncSnapshot<AppUser?> snapshot) {
               if (snapshot.hasData) {
                 return ProfilePageForm(appUser: snapshot.data!);
               } else {
-                return CircularProgressIndicator();
+                return Center(child: CircularProgressIndicator());
               }
             }));
   }
