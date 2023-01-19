@@ -30,8 +30,7 @@ class MyRouter {
       //Add Routes Here
       GoRoute(path: '/', builder: (context, state) => const SplashScreen()),
       GoRoute(
-          path: '/authenticate',
-          builder: (context, state) => const AuthenticationPage()),
+          path: '/authenticate', builder: (context, state) => const MainPage()),
       GoRoute(
           path: '/customer_homepage',
           builder: (context, state) => const MainPage()),

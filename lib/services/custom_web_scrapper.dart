@@ -14,7 +14,8 @@ Future<Product?> fetchSpinneysPrice(Product product) async {
     socket.write(product.storesURLs!["Spinneys"]);
   } on SocketException catch (e) {
     print(e);
-    return null;
+    product.prices!['Spinneys'] = "Not Available";
+    return product;
   }
 
   // Listen for the server response.
@@ -38,6 +39,10 @@ Future<Product?> fetchSpinneysPrice(Product product) async {
 
   // Return the result
   await Future.delayed(const Duration(seconds: 2));
-  product.prices?["Spinneys"] = serverResponse;
+  if (serverResponse == "") {
+    product.prices?["Spinneys"] = "Not Available";
+  } else {
+    product.prices?["Spinneys"] = serverResponse;
+  }
   return product;
 }

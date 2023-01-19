@@ -4,11 +4,19 @@ var World = {
         var productID= "";      //Fetched from Wikitude 
         var productName= "";    //Set from Flutter
         var productCard= "";
+        var productIngredients="";
+        var AllergyInfo = ""
         this.createOverlays();
     },
 
     loadProduct: function loadProductFn(data) {
-         World.productName = data["name"];      
+         World.productName = data["name"];
+         World.productIngredients = data["Ingredients"];
+        World.AllergyInfo = data["Allergy Information"]; 
+        //print allergy info
+        console.log(World.AllergyInfo);
+        World.updateCard(World.productName, World.productIngredients, World.AllergyInfo);
+         
     },
     
 
@@ -43,8 +51,8 @@ var World = {
         }, 0.7, {
         
             viewportWidth: 200,
-            viewportHeight: 160,
-            backgroundColor: "#0000004d",
+            viewportHeight: 220,
+            backgroundColor: "#00000000",
             translate: {
                 x: 0.36,
                 y: 0.5
@@ -62,9 +70,9 @@ var World = {
         var productButton = this.createProductButton(0.1, {
             translate: {
                 x: 0,
-                y: -0.1
+                y: -0.15
             },
-            zOrder: 1
+            zOrder: 3
         });
 
         //Set which image to track, and what to display on recognition
@@ -76,10 +84,8 @@ var World = {
             onImageRecognized: function onImageRecognizedFn(product) {
                 World.productID = product.name;
                 AR.platform.sendJSONObject({action:"product_card", product_id: World.productID});
-                
-                World.updateCard();
             },
-         
+
             onError: World.onError
         });
     },
@@ -91,31 +97,54 @@ var World = {
         alert(error);
     },
 
-    updateCard: function updateCardFn(){
-        return new Promise((resolve) => {
+    updateCard: function updateCardFn(productName, productIngredients, AllergyInfo) { 
             var htmlHeadString =                   
             '<head>' + 
             '<meta name="viewport" content="width = 200, user-scalable = 0">' +
                 '<style>' +
                         '.card {' +
-                          'box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);' +
+                            'background-color: #0000005d;' +
+                          'box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7);' +
+                          'max-width: 300px;' +
+                          'text-align: center;' +
+                          'font-family: arial;' +
+                          'opacity: 0.8;' +
+                          '-webkit-border-radius: 10px;' + 
+                        '}' +
+                        '.card2 {' +
+                          'background-color: #f44336;' +
+                          //border color
+                            'border: 0px solid #f44336;' +
+                          'box-shadow: 0 4px 8px 0 rgba(100, 0, 0, 0.7);' +
                           'max-width: 300px;' +
                           'text-align: center;' +
                           'font-family: arial;' +
                           'opacity: 0.7;' +
+                        '-webkit-border-radius: 10px;' + 
                         '}' +
                         'h1 {' +
                            'color: rgb(255, 255, 255);' +
                            'font-family: "Helvetica Neue", sans-serif;' +
                            'font-size: 24px;' +
                            'font-weight: bold;' +
-                           'letter-spacing: -1px;' +
-                           'line-height: 1;' +
+                           'letter-spacing: -1px;' + 
+                           'text-align: center;' +
+                        '}' +
+                        'h2 {' +
+                           'color: rgb(255, 255, 255);' +
+                           'font-family: "Helvetica Neue", sans-serif;' +
+                           'font-size: 16px;' +
+                           'font-weight: bold;' +
+                           'letter-spacing: -1px;' + 
                            'text-align: center;' +
                         '}' +
                         '.calories{' +
                           'color: rgb(255, 255, 255);' +
-                          'font-size: 18px;' +
+                          'font-size: 16px;' +
+                        '}' +
+                        '.small{' +
+                            'color: rgb(255, 255, 255);' +
+                            'font-size: 11px;' +
                         '}' +
                         '.card button {' +
                           'border: none;' +
@@ -134,87 +163,28 @@ var World = {
                 '</style>';
             '</head>' ;
             var htmlBodyString = 
-                    '<body>' + 
-                    '<div class="card" id="ca">' +
-                    '<h1 id="Title">'+World.productName+'</h1>' +
+                    '<body>' +     
+                    //card 2
+                    '<div class="card2" id="card2">' +
+                    '<h2>' +AllergyInfo+ '</h2>' +
+                    '</div>' +
+                     '<div class="card" id="card">' +
+                    '<h1 id="Title">'+productName+'</h1>' +
                     '<p class="calories">192 cal</p>' +
-                    '<p id="small">Ingredients and stuff</p>' +
+                    '<p class="small">'+ productIngredients +'</p>' +
                  '</div>' +
                  '</body>';
                  
-            World.productCard.evalJavaScript("document.documentElement.innerHTML = '"+htmlHeadString + htmlBodyString + "';");
-
-            resolve();
-        });
+            World.productCard.evalJavaScript("document.documentElement.innerHTML = '"+htmlHeadString + htmlBodyString + "';");   
     },
- 
-    clearCard: function clearCardFn(){
-        return new Promise((resolve) => {
-            var htmlHeadString =                   
-            '<head>' + 
-            '<meta name="viewport" content="width = 200, user-scalable = 0">' +
-                '<style>' +
-                        '.card {' +
-                          'box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);' +
-                          'max-width: 300px;' +
-                          'text-align: center;' +
-                          'font-family: arial;' +
-                          'opacity: 0.7;' +
-                        '}' +
-                        'h1 {' +
-                           'color: rgb(255, 255, 255);' +
-                           'font-family: "Helvetica Neue", sans-serif;' +
-                           'font-size: 24px;' +
-                           'font-weight: bold;' +
-                           'letter-spacing: -1px;' +
-                           'line-height: 1;' +
-                           'text-align: center;' +
-                        '}' +
-                        '.calories{' +
-                          'color: rgb(255, 255, 255);' +
-                          'font-size: 18px;' +
-                        '}' +
-                        '.card button {' +
-                          'border: none;' +
-                          'outline: 0;' +
-                          'padding: 12px;' +
-                          'color: white;' +
-                          'background-color: #549E83;' +
-                          'text-align: center;' +
-                          'cursor: pointer;' +
-                          'width: 100%;' +
-                          'font-size: 18px;' +
-                        '}' +
-                        '.card button:hover {' +
-                          'opacity: 1;'+
-                          '}' +
-                '</style>';
-            '</head>' ;
-            var htmlBodyString = 
-                    '<body>' + 
-                    
-                 '</body>';
-                 
-            World.productCard.evalJavaScript("document.documentElement.innerHTML = '"+htmlHeadString + htmlBodyString + "';");
 
-            resolve();
-        });
-    },
     createProductButton: function createProductButtonFn(size, options) {
         options.onClick = function() {
-            AR.platform.sendJSONObject({action:"product_card", product_id: World.productID});
+            console.log("Product button clicked");
+            AR.platform.sendJSONObject({action:"product_page", product_id: World.productID});
         };
         return new AR.ImageDrawable(this.imgButton, size, options);
     },
-
-    // hideInfoBar: function hideInfoBarFn() {
-    //     document.getElementById("infoBox").style.display = "none";
-    // },
-
-    // showInfoBar: function worldLoadedFn() {
-    //     document.getElementById("infoBox").style.display = "table";
-    //     document.getElementById("loadingMessage").style.display = "none";
-    // }
 };
 
 World.init();

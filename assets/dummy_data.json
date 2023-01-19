@@ -10,7 +10,7 @@
                     "ingredients": [
                         "Non-fat Milk",
                         "Vitamin A Palmitate",
-                        "VVitamin D3"
+                        "Vitamin D3"
                     ],
                     "allergyInfo": [
                         "Lactose"
@@ -169,7 +169,7 @@
                     "ingredients": [
                         "Non-fat Milk",
                         "Vitamin A Palmitate",
-                        "VVitamin D3"
+                        "Vitamin D3"
                     ],
                     "allergyInfo": [
                         "Lactose",
@@ -254,10 +254,10 @@
                     "ingredients": [
                         "Non-fat Milk",
                         "Vitamin A Palmitate",
-                        "VVitamin D3"
+                        "Vitamin D3"
                     ],
                     "allergyInfo": [
-                        "Lactose"
+                        "Contains Lactose"
                     ],
                     "nutrients": {
                         "FAT": {
@@ -337,7 +337,7 @@
                     "ingredients": [
                         "Non-fat Milk",
                         "Vitamin A Palmitate",
-                        "VVitamin D3"
+                        "Vitamin D3"
                     ],
                     "allergyInfo": [
                         "Lactose"
@@ -418,12 +418,17 @@
                     "calories": 20,
                     "servingSize": "200ml",
                     "ingredients": [
-                        "Non-fat Milk",
-                        "Vitamin A Palmitate",
-                        "VVitamin D3"
+                        "Wheat Flour",
+                        "Sugar",
+                        "Palm Oil",
+                        "Cocoa Cream",
+                        "Hazelnuts",
+                        "Glucose Syrup",
+                        "Cocoa Powder",
+                        "Soy Lecithin"
                     ],
                     "allergyInfo": [
-                        "Lactose"
+                        "High Sugar Content"
                     ],
                     "nutrients": {
                         "FAT": {
@@ -470,8 +475,178 @@
                             "assets/images/bimbo_hazelnut.png"
                         ],
                         "manufacturer": {
+                            "id": "0[",
+                            "name": "Corona"
+                        },
+                        "customCategory": {
+                            "id": "1",
+                            "name": "Dairy"
+                        },
+                        "prices": {
+                            "Spinneys": "45",
+                            "Amazon": "30",
+                            "Jumia": "38",
+                            "Carrefour": "40"
+                        },
+                        "storesURLs": {
+                            "Amazon": "https://www.amazon.eg/",
+                            "Spinneys": "https://spinneys-egypt.com/en/products/388570#/",
+                            "Jumia": "https://www.jumia.com/",
+                            "Carrefour": "https://www.carrefouregypt.com/"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "liquid_product": {
+                "volume": 100.0,
+                "unit": "mL",
+                "food_product": {
+                    "calories": 20,
+                    "servingSize": "200ml",
+                    "ingredients": [
+                        "Wheat Flour",
+                        "Sugar",
+                        "Palm Oil",
+                        "Cocoa Butter",
+                        "Corn Starch",
+                        "Glucose Syrup",
+                        "Cocoa Powder",
+                        "Emulsifiers"
+                    ],
+                    "allergyInfo": [
+                        "High Sugar Content"
+                    ],
+                    "nutrients": {
+                        "FAT": {
+                            "amount": 12.51,
+                            "unit": "g"
+                        },
+                        "SATFAT": {
+                            "amount": 4.51,
+                            "unit": "g"
+                        },
+                        "TRANSFAT": {
+                            "amount": 0,
+                            "unit": "g"
+                        },
+                        "CHOLE": {
+                            "amount": 6.51,
+                            "unit": "mg"
+                        },
+                        "NA": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        },
+                        "CHOCDF": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        },
+                        "FIBTG": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        },
+                        "SUGAR": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        },
+                        "PROCNT": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        }
+                    },
+                    "product_base": {
+                        "id": "7",
+                        "name": "Cadbury Choco Delight",
+                        "images": [
+                            "assets/images/cadbury_choco_delight.png"
+                        ],
+                        "manufacturer": {
                             "id": "0",
-                            "name": "Juhayna"
+                            "name": "Cadbury"
+                        },
+                        "customCategory": {
+                            "id": "1",
+                            "name": "Dairy"
+                        },
+                        "prices": {
+                            "Spinneys": "45",
+                            "Amazon": "30",
+                            "Jumia": "38",
+                            "Carrefour": "40"
+                        },
+                        "storesURLs": {
+                            "Amazon": "https://www.amazon.eg/",
+                            "Spinneys": "https://spinneys-egypt.com/en/products/388570#/",
+                            "Jumia": "https://www.jumia.com/",
+                            "Carrefour": "https://www.carrefouregypt.com/"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "liquid_product": {
+                "volume": 100.0,
+                "unit": "mL",
+                "food_product": {
+                    "calories": 20,
+                    "servingSize": "200ml",
+                    "ingredients": [
+                        "Coffee Beans",
+                        "Crushed Coffe 3%"
+                    ],
+                    "allergyInfo": [
+                        ""
+                    ],
+                    "nutrients": {
+                        "FAT": {
+                            "amount": 12.51,
+                            "unit": "g"
+                        },
+                        "SATFAT": {
+                            "amount": 4.51,
+                            "unit": "g"
+                        },
+                        "TRANSFAT": {
+                            "amount": 0,
+                            "unit": "g"
+                        },
+                        "CHOLE": {
+                            "amount": 6.51,
+                            "unit": "mg"
+                        },
+                        "NA": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        },
+                        "CHOCDF": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        },
+                        "FIBTG": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        },
+                        "SUGAR": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        },
+                        "PROCNT": {
+                            "amount": 67.51,
+                            "unit": "g"
+                        }
+                    },
+                    "product_base": {
+                        "id": "8",
+                        "name": "Nescafe Gold",
+                        "images": [
+                            "assets/images/nescafe_gold.png"
+                        ],
+                        "manufacturer": {
+                            "id": "0",
+                            "name": "Nestle"
                         },
                         "customCategory": {
                             "id": "1",

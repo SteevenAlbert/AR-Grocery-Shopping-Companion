@@ -31,7 +31,7 @@ class OnlineStores extends StatelessWidget {
                   storeCard(
                       context,
                       "assets/images/store_logos/spinneys.png",
-                      snapshot.data![1]?.prices['Spinneys']!,
+                      snapshot.data![1].prices['Spinneys']!,
                       product.storesURLs!["Spinneys"]!),
                   storeCard(
                       context,
