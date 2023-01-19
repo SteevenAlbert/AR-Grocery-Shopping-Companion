@@ -5,15 +5,14 @@ import 'package:ar_grocery_companion/constants/keys.dart';
 import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
 import 'package:ar_grocery_companion/domain/sample.dart';
 import 'package:go_router/go_router.dart';
+import '../../constants/constants.dart';
 import '../../domain/models/product/product.dart';
 
 class ARView extends StatefulWidget {
-  final Sample sample;
-
-  const ARView({super.key, required this.sample});
+  const ARView({super.key});
 
   @override
-  State<ARView> createState() => _ARViewState(sample: sample);
+  State<ARView> createState() => _ARViewState();
 }
 
 class _ARViewState extends State<ARView> with WidgetsBindingObserver {
@@ -22,19 +21,20 @@ class _ARViewState extends State<ARView> with WidgetsBindingObserver {
   String loadPath = "";
   bool loadFailed = false;
 
-  Sample sample;
+  Sample sample = imageTrackingSample;
 
-  _ARViewState({required this.sample}) {
-    if (sample.path.contains("http://") || sample.path.contains("https://")) {
-      loadPath = sample.path;
-    } else {
-      loadPath = "samples/${sample.path}";
-    }
+  _ARViewState() {
+    loadPath = "samples/${sample.path}";
   }
 
   @override
   Widget build(BuildContext context) {
-    return architectWidget;
+    return WillPopScope(
+        onWillPop: () {
+          GoRouter.of(context).go("/customer_homepage");
+          return Future.value(false);
+        },
+        child: architectWidget);
   }
 
   @override
@@ -111,9 +111,11 @@ class _ARViewState extends State<ARView> with WidgetsBindingObserver {
         //Navigate to product page
         case "product_page":
           print("Navigating to product page");
-          GoRouter.of(context).go("/product_page",
+
+          GoRouter.of(context).goNamed("ProductPage",
               extra: ProductsRepository.instance
-                  .getProduct(jsonObject["product_id"]));
+                  .getProduct(jsonObject["product_id"]),
+              params: {'fromAR': "true"});
 
           break;
       }

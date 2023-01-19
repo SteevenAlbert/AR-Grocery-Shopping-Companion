@@ -104,20 +104,20 @@ class _ScanPageState extends State<ScanPage>
               },
             ),
           ),
-          AnimatedContainer(
-            duration: const Duration(seconds: 1),
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: Lottie.asset(
-              'assets/splash/splash1.json',
-              controller: _splashController,
-              onLoaded: (composition) {
-                _splashController
-                  ..duration = composition.duration
-                  ..repeat(reverse: true);
-              },
-            ),
-          ),
+          // AnimatedContainer(
+          //   duration: const Duration(seconds: 1),
+          //   height: MediaQuery.of(context).size.height,
+          //   width: MediaQuery.of(context).size.width,
+          //   child: Lottie.asset(
+          //     'assets/splash/splash1.json',
+          //     controller: _splashController,
+          //     onLoaded: (composition) {
+          //       _splashController
+          //         ..duration = composition.duration
+          //         ..repeat(reverse: true);
+          //     },
+          //   ),
+          // ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,

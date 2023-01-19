@@ -11,7 +11,7 @@ import 'package:ar_grocery_companion/services/firebase_options.dart';
 
 import 'router.dart';
 import 'utils.dart';
-
+ 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 

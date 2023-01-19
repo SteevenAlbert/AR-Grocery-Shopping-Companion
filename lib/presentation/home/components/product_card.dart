@@ -21,7 +21,8 @@ class ProductCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return InkWell(
-        onTap: () => GoRouter.of(context).push("/product_page", extra: product),
+        onTap: () => GoRouter.of(context).pushNamed("ProductPage",
+            extra: product, params: {'fromAR': "false"}),
         child: Card(
             elevation: 0,
             shape: RoundedRectangleBorder(

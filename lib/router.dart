@@ -1,3 +1,4 @@
+import 'package:ar_grocery_companion/presentation/scan/scan_intro_page.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:ar_grocery_companion/domain/models/company.dart';
@@ -39,9 +40,11 @@ class MyRouter {
           builder: (context, state) => const AdminHomePage()),
       GoRoute(
           name: 'ProductPage',
-          path: '/product_page',
-          builder: (context, state) =>
-              ProductPage(product: state.extra as Product)),
+          path: '/product_page/:fromAR',
+          builder: (context, state) => ProductPage(
+                product: state.extra as Product,
+                fromAR: state.params['fromAR'],
+              )),
       GoRoute(
           path: '/profile_page',
           builder: (context, state) => const ProfilePage()),
@@ -61,9 +64,9 @@ class MyRouter {
       GoRoute(
           path: '/add_company_page',
           builder: (context, state) => const AddCompanyPage()),
-      // GoRoute(
-      //     path: '/scan_intro_page',
-      //     builder: (context, state) => const ScanPage()),
+      GoRoute(
+          path: '/scan_intro_page',
+          builder: (context, state) => const ScanPage()),
       GoRoute(
           name: 'EditProductPage',
           path: '/edit_product_page',
@@ -81,7 +84,7 @@ class MyRouter {
       GoRoute(
           name: 'ARView',
           path: '/arview',
-          builder: (context, state) => ARView(sample: state.extra as Sample)),
+          builder: (context, state) => ARView()),
 
       GoRoute(
           name: 'noInternet',
