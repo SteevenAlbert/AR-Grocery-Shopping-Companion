@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:ar_grocery_companion/presentation/admin/components/admin_drawer.dart';
-import 'package:ar_grocery_companion/presentation/admin/home/page_view_list.dart';
+import 'package:ar_grocery_companion/presentation/admin/components/page_view_list.dart';
 import 'package:ar_grocery_companion/utils.dart';
 
 class AdminHomePage extends StatelessWidget {

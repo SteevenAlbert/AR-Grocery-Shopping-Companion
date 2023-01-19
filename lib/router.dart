@@ -1,14 +1,9 @@
-import 'package:ar_grocery_companion/presentation/scan/scan_intro_page.dart';
 import 'package:ar_grocery_companion/presentation/admin/add_admin_page.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:ar_grocery_companion/domain/models/company.dart';
-import 'package:ar_grocery_companion/domain/sample.dart';
 import 'package:ar_grocery_companion/presentation/admin/companies/crud/add_company_page.dart';
 import 'package:ar_grocery_companion/presentation/admin/home/admin_home_page.dart';
-import 'package:ar_grocery_companion/presentation/admin/products/add_product_page.dart';
-import 'package:ar_grocery_companion/presentation/admin/products/edit_product_page.dart';
-import 'package:ar_grocery_companion/presentation/admin/products/products_dashboard.dart';
 import 'package:ar_grocery_companion/presentation/authentication/authentication.dart';
 import 'package:ar_grocery_companion/presentation/companies/companies_list_page.dart';
 import 'package:ar_grocery_companion/presentation/companies/company_details.dart';
@@ -61,22 +56,8 @@ class MyRouter {
           builder: (context, state) => const SettingsPage()),
 
       GoRoute(
-          path: '/products_dashboard',
-          builder: (context, state) => const ProductsDashboard()),
-      GoRoute(
-          path: '/add_product_page',
-          builder: (context, state) => const AddProductPage()),
-      GoRoute(
           path: '/add_company_page',
           builder: (context, state) => const AddCompanyPage()),
-      GoRoute(
-          path: '/scan_intro_page',
-          builder: (context, state) => const ScanPage()),
-      GoRoute(
-          name: 'EditProductPage',
-          path: '/edit_product_page',
-          builder: (context, state) =>
-              EditProductPage(product: state.extra as Product)),
 
       GoRoute(
           path: '/companies_list_page',

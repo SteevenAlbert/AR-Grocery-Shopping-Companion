@@ -1,40 +1,39 @@
-import 'package:ar_grocery_companion/data/repositories/companies_repository.dart';
+import 'package:ar_grocery_companion/data/repositories/categories_repository.dart';
 import 'package:ar_grocery_companion/domain/models/company.dart';
+import 'package:ar_grocery_companion/domain/models/custom_category.dart';
 import 'package:ar_grocery_companion/presentation/admin/components/element_datagrid.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
-class CompaniesList extends StatefulWidget {
-  const CompaniesList({super.key});
+class CategoriesList extends StatefulWidget {
+  const CategoriesList({super.key});
 
   @override
-  State<CompaniesList> createState() => _CompaniesListState();
+  State<CategoriesList> createState() => _CategoriesListState();
 }
 
-class _CompaniesListState extends State<CompaniesList> {
-  List<Company> companies = <Company>[];
-  late CompanyDataSource companyDataSource;
+class _CategoriesListState extends State<CategoriesList> {
+  List<CustomCategory> categories = <CustomCategory>[];
+  late CustomCategoryDataSource companyDataSource;
 
   @override
   void initState() {
     super.initState();
-    companies = CompaniesRepository.instance.getCompanies();
-    companyDataSource = CompanyDataSource(companyData: companies, context: context);
+    categories = CategoriesRepository.instance.getCategories();
+    companyDataSource = CustomCategoryDataSource(companyData: categories, context: context);
   }
 
   @override
   Widget build(BuildContext context) {
-    return ElementsDataGrid(dataSource: companyDataSource, columnNames: ['name', 'country']);
+    return ElementsDataGrid(dataSource: companyDataSource, columnNames: ['name']);
   }
 }
 
-class CompanyDataSource extends DataGridSource {
-  CompanyDataSource({required List<Company> companyData, required  this.context}) {
+class CustomCategoryDataSource extends DataGridSource {
+  CustomCategoryDataSource({required List<CustomCategory> companyData, required  this.context}) {
     _companyData = companyData
         .map<DataGridRow>((company) => DataGridRow(cells: [
               DataGridCell<String>(columnName: 'name', value: company.name),
-              DataGridCell<String>(
-                  columnName: 'country', value: company.country?.name??"None"),
             ]))
         .toList();
   }

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:ar_grocery_companion/presentation/admin/companies/companies_list.dart';
-import 'package:ar_grocery_companion/presentation/admin/companies/list_card.dart';
+import 'package:ar_grocery_companion/presentation/admin/components/list_card.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CompaniesPage extends StatelessWidget {
   const CompaniesPage({super.key});

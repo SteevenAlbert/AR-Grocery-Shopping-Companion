@@ -44,7 +44,7 @@ class CustomCategory {
       name: map['name'] as String,
       imagePath: map['imagePath'] != null ? map['imagePath'] as String : null,
       products: map['products'] != null
-          ? List<String>.from((map['products'] as List<String>))
+          ? List<String>.from((map['products'] as List))
           : null,
     );
   }

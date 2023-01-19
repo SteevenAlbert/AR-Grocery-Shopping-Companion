@@ -13,10 +13,10 @@ class AddCompanyForm extends StatefulWidget {
 class _AddCompanyFormState extends State<AddCompanyForm> {
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
 
     return Form(
-      key: _formKey,
+      key: formKey,
       child: Padding(
         padding: EdgeInsets.all(16.0),
         child: LayoutBuilder(
@@ -25,21 +25,14 @@ class _AddCompanyFormState extends State<AddCompanyForm> {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  ImageAdder(
-                    label: "Company logo",
-                  ),
-                  Expanded(child: AddCompanyFields()),
+                  ImageAdder(),
+                  Expanded(child: AddCompanyFields(formKey: formKey)),
                 ],
               );
             } else {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ImageAdder(
-                    label: "Company logo",
-                  ),
-                  AddCompanyFields()
-                ],
+                children: [ImageAdder(), AddCompanyFields(formKey: formKey)],
               );
             }
           },
