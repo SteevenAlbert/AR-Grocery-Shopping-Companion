@@ -174,7 +174,8 @@ class _FavProductsListState extends ConsumerState<FavProductsList> {
                     },
                   ),
                   onTap: () {
-                    GoRouter.of(context).push("/product_page", extra: item);
+                    GoRouter.of(context).pushNamed("ProductPage",
+                        extra: item, params: {'fromAR': "false"});
                   },
                   dense: false,
                 ),
