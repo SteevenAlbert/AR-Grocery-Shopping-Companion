@@ -1,6 +1,5 @@
 import 'package:ar_grocery_companion/presentation/admin/products/crud/form_fields_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class CleaningFormFields extends StatefulWidget {
   CleaningFormFields({super.key, required this.formKey});
@@ -14,8 +13,6 @@ class CleaningFormFields extends StatefulWidget {
 class _CleaningFormFieldsState extends State<CleaningFormFields> {
   @override
   Widget build(BuildContext context) {
-    return FormFieldsCard(title: "Cleaning Properties", fields: [
-      
-    ]);
+    return FormFieldsCard(title: "Cleaning Properties", fields: []);
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:ar_grocery_companion/presentation/admin/companies/crud/add_company_fields.dart';
 import 'package:ar_grocery_companion/presentation/admin/components/image_adder.dart';
 

@@ -5,7 +5,6 @@ import 'package:validators/validators.dart';
 import 'package:ar_grocery_companion/data/repositories/companies_repository.dart';
 import 'package:ar_grocery_companion/domain/models/company.dart';
 import 'package:go_router/go_router.dart';
-import 'package:ar_grocery_companion/presentation/admin/components/image_adder.dart';
 
 CompaniesRepository companies = CompaniesRepository.instance;
 

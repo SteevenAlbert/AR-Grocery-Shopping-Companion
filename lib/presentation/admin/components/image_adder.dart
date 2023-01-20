@@ -1,15 +1,12 @@
-import 'package:ar_grocery_companion/presentation/admin/companies/crud/add_company_form.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:io';
-import 'package:path_provider/path_provider.dart';
 
 class ImageAdder extends StatefulWidget {
   ImageAdder({super.key, this.label = "", this.radius = 3});
   final String label;
-  double radius;
+  final double radius;
 
   @override
   State<ImageAdder> createState() => _ImageAdderState();
@@ -24,7 +21,6 @@ class _ImageAdderState extends State<ImageAdder> {
 
     setState(() {
       image = img;
-      widget.radius = 3;
       // print("hiii");
       // widget.imageToUpload.insert(0, '1');
     });
@@ -45,35 +41,28 @@ class _ImageAdderState extends State<ImageAdder> {
         GestureDetector(
           onTap: () => sourceChoice(),
           child: Container(
-            height: 300,
-            width: 300,
-            child: image != null
-                ? Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Container(
-                        color: Colors.grey[800]!.withOpacity(0.1),
-                        child: Image.network(
-                          image!.path,
-                          fit: BoxFit.contain,
-                          width: MediaQuery.of(context).size.width,
-                          height: 300,
-                        ),
-                      ),
-                    ),
-                  )
-                : Container(
-                    decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(widget.radius)),
-                        color: Theme.of(context).highlightColor),
-                    child: Icon(
-                      Icons.camera_alt,
-                      color: Colors.grey[800],
-                    ),
+              height: 300,
+              width: 300,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(widget.radius),
+                  child: Container(
+                    color: Colors.grey[800]!.withOpacity(0.1),
+                    child: image != null
+                        ? Image.network(
+                            image!.path,
+                            fit: BoxFit.contain,
+                            width: MediaQuery.of(context).size.width,
+                            height: 300,
+                          )
+                        : Icon(
+                            Icons.camera_alt,
+                            color: Colors.grey[800],
+                          ),
                   ),
-          ),
+                ),
+              )),
         ),
         SizedBox(
           height: 8.0,
