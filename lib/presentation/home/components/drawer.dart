@@ -69,9 +69,7 @@ class AccountState extends State<CustomDrawer> {
                               leading: Icon(Icons.login),
                               title: Text("Sign In"),
                               onTap: () async {
-                                await SessionManager().destroy().then((_) {
-                                  context.go('/authenticate');
-                                });
+                                context.go('/authenticate');
                               })),
                 ),
               ]),

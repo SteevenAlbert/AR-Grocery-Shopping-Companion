@@ -72,26 +72,14 @@ class _AdminDrawerState extends State<AdminDrawer> {
                 onTap: () {
                   widget.page.jumpToPage(4);
                 }),
-            Expanded(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: (SessionManager().containsKey("isLoggedIn") != true ||
-                        SessionManager().get("isLoggedIn") != true)
-                    ? ListTile(
-                        leading: Icon(Icons.login),
-                        title: Text("Sign In"),
-                        onTap: () async {
-                          context.go('/authenticate');
-                        })
-                    : ListTile(
-                        leading: Icon(Icons.logout),
-                        title: Text("Sign Out"),
-                        onTap: () async {
-                          await SessionManager().destroy();
-                          context.go('/authenticate');
-                        }),
-              ),
-            )
+            ListTile(
+                leading: Icon(Icons.logout),
+                title: Text("Sign Out"),
+                onTap: () async {
+                  await SessionManager().destroy().then((_) {
+                    context.go('/authenticate');
+                  });
+                })
           ],
         ),
       ),
