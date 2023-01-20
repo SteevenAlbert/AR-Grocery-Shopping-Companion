@@ -84,7 +84,7 @@ class MyRouter {
       // Admin Module Pages
       GoRoute(
           path: '/add_company_page',
-          builder: (context, state) => const AddCompanyPage()),
+          builder: (context, state) => AddCompanyPage()),
       GoRoute(
           path: '/edit_company_page',
           builder: (context, state) => EditCompanyPage(

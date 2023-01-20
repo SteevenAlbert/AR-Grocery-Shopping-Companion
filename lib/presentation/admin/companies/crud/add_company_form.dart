@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/presentation/admin/companies/crud/add_company_fields.dart';
 import 'package:ar_grocery_companion/presentation/admin/components/image_adder.dart';
-
+import 'package:ar_grocery_companion/domain/models/company.dart';
 // class ImageToUpload with ChangeNotifier {
 //   String name;
 //   String path;
@@ -14,7 +14,9 @@ import 'package:ar_grocery_companion/presentation/admin/components/image_adder.d
 // }
 
 class AddCompanyForm extends StatefulWidget {
-  const AddCompanyForm({super.key});
+  const AddCompanyForm({super.key, required this.company, required this.add});
+  final Company company;
+  final bool add;
 
   @override
   State<AddCompanyForm> createState() => _AddCompanyFormState();
@@ -42,8 +44,9 @@ class _AddCompanyFormState extends State<AddCompanyForm> {
                   ),
                   Expanded(
                       child: AddCompanyFields(
-                    formKey: formKey,
-                  )),
+                          formKey: formKey,
+                          company: widget.company,
+                          add: widget.add)),
                 ],
               );
             } else {
@@ -54,8 +57,9 @@ class _AddCompanyFormState extends State<AddCompanyForm> {
                     label: "Company logo",
                   ),
                   AddCompanyFields(
-                    formKey: formKey,
-                  )
+                      formKey: formKey,
+                      company: widget.company,
+                      add: widget.add)
                 ],
               );
             }

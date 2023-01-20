@@ -9,7 +9,13 @@ import 'package:go_router/go_router.dart';
 CompaniesRepository companies = CompaniesRepository.instance;
 
 class AddCompanyFields extends StatefulWidget {
-  AddCompanyFields({super.key, required this.formKey});
+  AddCompanyFields(
+      {super.key,
+      required this.formKey,
+      required this.add,
+      required this.company});
+  final bool add;
+  final Company company;
   // {super.key, required this.formKey, required this.imageAdder});
 
   final GlobalKey<FormState> formKey;
@@ -19,12 +25,18 @@ class AddCompanyFields extends StatefulWidget {
 }
 
 class _AddCompanyFieldsState extends State<AddCompanyFields> {
-  String name = 'Nan';
-  String url = 'Nan';
+  List<TextEditingController> textControllers =
+      List.generate(4, (i) => TextEditingController());
   String countryText = Country.worldWide.flagEmoji + " Choose Country";
   String countryCode = Country.worldWide.countryCode;
   @override
   Widget build(BuildContext context) {
+    textControllers[0] = widget.add
+        ? TextEditingController(text: "")
+        : TextEditingController(text: widget.company.name);
+    textControllers[1] = widget.add
+        ? TextEditingController(text: "")
+        : TextEditingController(text: widget.company.url);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -34,11 +46,7 @@ class _AddCompanyFieldsState extends State<AddCompanyFields> {
             decoration: const InputDecoration(
               labelText: 'Name',
             ),
-            onChanged: (String? newValue) {
-              setState(() {
-                name = newValue!;
-              });
-            },
+            controller: textControllers[0],
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter the company name';
@@ -53,11 +61,7 @@ class _AddCompanyFieldsState extends State<AddCompanyFields> {
             decoration: const InputDecoration(
               labelText: 'URL',
             ),
-            onChanged: (String? newValue) {
-              setState(() {
-                url = newValue!;
-              });
-            },
+            controller: textControllers[1],
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter the company url';
@@ -117,13 +121,13 @@ class _AddCompanyFieldsState extends State<AddCompanyFields> {
                   onPressed: () {
                     // Validate returns true if the form is valid, or false otherwise.
                     if (widget.formKey.currentState!.validate()) {
-                      Company company = Company(
-                          id: "id",
-                          name: name,
-                          url: url,
-                          origin: Origin(name: countryCode));
-                      companies.insert(company);
-                      context.go('/admin_homepage');
+                      // Company company = Company(
+                      //     id: "id",
+                      //     name: name,
+                      //     url: url,
+                      //     origin: Origin(name: countryCode));
+                      // companies.insert(company);
+                      // context.go('/admin_homepage');
                     }
                   },
                   child: const Text('Submit'),

@@ -2,9 +2,10 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import '/domain/models/product/product.dart';
+import 'package:ar_grocery_companion/constants/keys.dart';
 
-// String baseURL =
-//     "https://api.rainforestapi.com/request?api_key=$RainForestAPILicenseKey&type=product&url=";
+String baseURL =
+    "https://api.rainforestapi.com/request?api_key=$RainForestAPILicenseKey&type=product&url=";
 
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^///
 //The Function below is commented to perserve our API Calls Quota

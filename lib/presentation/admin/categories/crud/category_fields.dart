@@ -20,11 +20,10 @@ class CategoryFields extends StatefulWidget {
 }
 
 class _CategoryFieldsState extends State<CategoryFields> {
-  var myController;
-
+  var textController;
   @override
   Widget build(BuildContext context) {
-    final myController = widget.add
+    textController = widget.add
         ? TextEditingController(text: "")
         : TextEditingController(text: widget.customCategory.name);
     return Padding(
@@ -36,7 +35,7 @@ class _CategoryFieldsState extends State<CategoryFields> {
             decoration: const InputDecoration(
               labelText: 'Name',
             ),
-            controller: myController,
+            controller: textController,
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter the category name';
@@ -58,7 +57,7 @@ class _CategoryFieldsState extends State<CategoryFields> {
                   onPressed: () {
                     if (widget.formKey.currentState!.validate()) {
                       CustomCategory category = widget.customCategory
-                          .copyWith(name: myController.text);
+                          .copyWith(name: textController.text);
                       print(category);
                       widget.add
                           ? categories.insert(category)
@@ -74,5 +73,12 @@ class _CategoryFieldsState extends State<CategoryFields> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    textController.dispose();
+    super.dispose();
   }
 }
