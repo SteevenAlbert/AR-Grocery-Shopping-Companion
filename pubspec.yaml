@@ -46,6 +46,7 @@ dependencies:
   firebase_core: any
   firebase_database: ^10.0.7
   firebase_messaging: ^14.2.1
+  firebase_storage: ^11.0.10
   fl_chart: ^0.55.2
   flutter:
     sdk: flutter

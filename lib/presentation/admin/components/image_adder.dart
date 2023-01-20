@@ -1,10 +1,15 @@
+import 'package:ar_grocery_companion/presentation/admin/companies/crud/add_company_form.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
 
 class ImageAdder extends StatefulWidget {
-  ImageAdder({super.key, this.label = "", this.radius = 40.0});
+  ImageAdder({super.key, this.label = "", this.radius = 3});
   final String label;
-  final double radius;
+  double radius;
 
   @override
   State<ImageAdder> createState() => _ImageAdderState();
@@ -19,7 +24,18 @@ class _ImageAdderState extends State<ImageAdder> {
 
     setState(() {
       image = img;
+      widget.radius = 3;
+      // print("hiii");
+      // widget.imageToUpload.insert(0, '1');
     });
+  }
+
+  Future uploadImage() async {
+    final filePath = "${image!.path}";
+    print(filePath);
+    final file = File(filePath);
+    final storageRef = FirebaseStorage.instance.ref();
+    storageRef.child("images/${image!.name}").putFile(file);
   }
 
   @override
@@ -62,7 +78,8 @@ class _ImageAdderState extends State<ImageAdder> {
         SizedBox(
           height: 8.0,
         ),
-        Text(widget.label, style: Theme.of(context).textTheme.labelMedium)
+        Text(widget.label, style: Theme.of(context).textTheme.labelMedium),
+        ElevatedButton(onPressed: uploadImage, child: Text("Upload Image"))
       ],
     );
   }

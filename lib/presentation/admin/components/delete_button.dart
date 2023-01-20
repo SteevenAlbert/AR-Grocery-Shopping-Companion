@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
+import 'package:ar_grocery_companion/data/repositories/companies_repository.dart';
+import 'package:go_router/go_router.dart';
+
+CompaniesRepository companies = CompaniesRepository.instance;
 
 class DataGridDeleteButton extends StatelessWidget {
-  DataGridDeleteButton({super.key, required this.dataGridController, required this.deleteFunction});
-
+  DataGridDeleteButton(
+      {super.key,
+      required this.dataGridController,
+      required this.deleteFunction});
   final DataGridController dataGridController;
   final Function deleteFunction;
   @override
@@ -49,6 +55,7 @@ class DataGridDeleteButton extends StatelessWidget {
                                 child: const Text('Yes'),
                                 onPressed: () {
                                   deleteFunction();
+                                  Navigator.of(context).pop();
                                 },
                               ),
                             ],

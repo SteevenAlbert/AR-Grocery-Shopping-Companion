@@ -9,7 +9,6 @@ import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class CompaniesList extends StatefulWidget {
   const CompaniesList({super.key});
-
   @override
   State<CompaniesList> createState() => _CompaniesListState();
 }
@@ -18,7 +17,7 @@ class _CompaniesListState extends State<CompaniesList> {
   List<Company> companies = <Company>[];
   late CompanyDataSource companyDataSource;
   final DataGridController dataGridController = DataGridController();
-
+  CompaniesRepository companiesrepo = CompaniesRepository.instance;
   @override
   void initState() {
     super.initState();
@@ -31,10 +30,16 @@ class _CompaniesListState extends State<CompaniesList> {
   Widget build(BuildContext context) {
     return ListCard(
       title: "Companies",
-      // TODO: add delete function
       trailing: DataGridDeleteButton(
         dataGridController: dataGridController,
-        deleteFunction: () {},
+        deleteFunction: () {
+          for (var i = 0; i < dataGridController.selectedRows.length; i++) {
+            Company company = companies.firstWhere((element) =>
+                element.name ==
+                dataGridController.selectedRows[i].getCells()[0].value);
+            companiesrepo.deleteByID(company.id);
+          }
+        },
       ),
       list: ElementsDataGrid(
         dataSource: companyDataSource,

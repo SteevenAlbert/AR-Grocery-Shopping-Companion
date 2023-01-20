@@ -5,14 +5,16 @@ import 'package:validators/validators.dart';
 import 'package:ar_grocery_companion/data/repositories/companies_repository.dart';
 import 'package:ar_grocery_companion/domain/models/company.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ar_grocery_companion/presentation/admin/components/image_adder.dart';
 
 CompaniesRepository companies = CompaniesRepository.instance;
 
 class AddCompanyFields extends StatefulWidget {
   AddCompanyFields({super.key, required this.formKey});
+  // {super.key, required this.formKey, required this.imageAdder});
 
   final GlobalKey<FormState> formKey;
-
+  // final ImageAdder imageAdder;
   @override
   State<AddCompanyFields> createState() => _AddCompanyFieldsState();
 }
