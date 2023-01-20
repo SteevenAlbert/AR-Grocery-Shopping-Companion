@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:ar_grocery_companion/data/repositories/categories_repository.dart';
+import 'package:ar_grocery_companion/domain/models/custom_category.dart';
+import 'package:go_router/go_router.dart';
+
+CategoriesRepository categories = CategoriesRepository.instance;
 
 class AddCategoryFields extends StatefulWidget {
   const AddCategoryFields({super.key, required this.formKey});
@@ -10,7 +15,6 @@ class AddCategoryFields extends StatefulWidget {
 }
 
 class _AddCategoryFieldsState extends State<AddCategoryFields> {
-
   String name = 'Nan';
 
   @override
@@ -42,16 +46,17 @@ class _AddCategoryFieldsState extends State<AddCategoryFields> {
           SizedBox(
             height: 8,
           ),
-          
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: ButtonBar(
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    // TODO: Add insert category
                     if (widget.formKey.currentState!.validate()) {
-                      
+                      CustomCategory category =
+                          CustomCategory(id: "id", name: name);
+                      categories.insert(category);
+                      context.go('/admin_homepage');
                     }
                   },
                   child: const Text('Submit'),

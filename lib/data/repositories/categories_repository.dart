@@ -56,7 +56,7 @@ class CategoriesRepository {
     FirebaseHelper.delete('categories');
   }
 
-  Future<String> deleteById(id) async {
+  Future<String> deleteByID(id) async {
     FirebaseHelper.delete('categories/$id');
     return id;
   }

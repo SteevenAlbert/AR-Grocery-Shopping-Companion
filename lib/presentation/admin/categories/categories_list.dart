@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
+CategoriesRepository categoriesrepo = CategoriesRepository.instance;
+
 class CategoriesList extends StatefulWidget {
   const CategoriesList({super.key});
 
@@ -31,10 +33,16 @@ class _CategoriesListState extends State<CategoriesList> {
   Widget build(BuildContext context) {
     return ListCard(
         title: "Categories",
-        // TODO: add delete function
         trailing: DataGridDeleteButton(
           dataGridController: dataGridController,
-          deleteFunction: () {},
+          deleteFunction: () {
+            for (var i = 0; i < dataGridController.selectedRows.length; i++) {
+              CustomCategory category = categories.firstWhere((element) =>
+                  element.name ==
+                  dataGridController.selectedRows[i].getCells()[0].value);
+              categoriesrepo.deleteByID(category.id);
+            }
+          },
         ),
         list: ElementsDataGrid(
           dataSource: categoryDataSource,
@@ -52,10 +60,10 @@ class CustomCategoryDataSource extends DataGridSource {
           (category) => DataGridRow(cells: [
             DataGridCell<String>(columnName: 'name', value: category.name),
             DataGridCell<Function>(
-                  columnName: 'edit',
-                  value: () {
-                    context.push('/edit_category_page', extra: category);
-                  }),
+                columnName: 'edit',
+                value: () {
+                  context.push('/edit_category_page', extra: category);
+                }),
           ]),
         )
         .toList();
