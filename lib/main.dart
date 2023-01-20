@@ -1,3 +1,4 @@
+import 'package:ar_grocery_companion/presentation/error_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,7 @@ void main() async {
   });
 
   CatcherOptions debugOptions =
-      CatcherOptions(PageReportMode(), [ConsoleHandler()]);
+      CatcherOptions(DialogReportMode(), [ConsoleHandler()]);
 
   //Check Connection Status
   initConnectionStatus();
@@ -50,6 +51,9 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var darkMode = ref.watch(themeModeProvider);
+    //hide red screen of death flutter
+    ErrorWidget.builder =
+        (FlutterErrorDetails details) => SomethingWentWrongScreen();
     return MaterialApp.router(
       navigatorKey: Catcher.navigatorKey,
       routerConfig: MyRouter.router,

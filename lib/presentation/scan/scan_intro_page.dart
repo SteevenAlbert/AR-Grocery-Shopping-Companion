@@ -18,23 +18,16 @@ class ScanPage extends StatefulWidget {
 
 class _ScanPageState extends State<ScanPage>
     with WidgetsBindingObserver, TickerProviderStateMixin {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
   bool _isLoading = false;
   late CameraController _controller;
   late List<CameraDescription> _cameras = [];
-  late AnimationController _splashController;
-  late AnimationController _splashController2;
+  late AnimationController _dotsController;
 
   @override
   void initState() {
     super.initState();
-    _splashController = AnimationController(vsync: this);
-    _splashController2 = AnimationController(vsync: this);
+    _dotsController = AnimationController(vsync: this);
 
-    _splashController.addListener(() {
-      if (_splashController.value > 0.7) {}
-    });
     WidgetsBinding.instance.addObserver(this);
     availableCameras().then((cameras) {
       _cameras = cameras;
@@ -61,16 +54,13 @@ class _ScanPageState extends State<ScanPage>
   @override
   void dispose() {
     _controller.dispose();
-    _splashController.dispose();
-    _splashController2.dispose();
+    _dotsController.dispose();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    _scaffoldKey.currentState?.activate();
-
     if (_cameras.length == 0) {
       return const Center(child: CircularProgressIndicator.adaptive());
     }
@@ -79,9 +69,7 @@ class _ScanPageState extends State<ScanPage>
         child: CircularProgressIndicator(),
       );
     }
-    _controller.pausePreview;
     return Scaffold(
-      key: _scaffoldKey,
       body: Center(
           child: Stack(
         alignment: Alignment.center,
@@ -96,28 +84,14 @@ class _ScanPageState extends State<ScanPage>
             width: MediaQuery.of(context).size.width,
             child: Lottie.asset(
               'assets/images/dot-pattern.json',
-              controller: _splashController2,
+              controller: _dotsController,
               onLoaded: (composition) {
-                _splashController2
+                _dotsController
                   ..duration = composition.duration
                   ..repeat(reverse: false);
               },
             ),
           ),
-          // AnimatedContainer(
-          //   duration: const Duration(seconds: 1),
-          //   height: MediaQuery.of(context).size.height,
-          //   width: MediaQuery.of(context).size.width,
-          //   child: Lottie.asset(
-          //     'assets/splash/splash1.json',
-          //     controller: _splashController,
-          //     onLoaded: (composition) {
-          //       _splashController
-          //         ..duration = composition.duration
-          //         ..repeat(reverse: true);
-          //     },
-          //   ),
-          // ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,

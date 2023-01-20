@@ -10,17 +10,17 @@ class noInternetScreen extends StatefulWidget {
 
 class _noInternetScreenState extends State<noInternetScreen>
     with TickerProviderStateMixin {
-  late AnimationController _splashController;
+  late AnimationController animationController;
   @override
   void initState() {
     super.initState();
-    _splashController = AnimationController(vsync: this);
+    animationController = AnimationController(vsync: this);
   }
 
   //dispose
   @override
   void dispose() {
-    _splashController.dispose();
+    animationController.dispose();
     super.dispose();
   }
 
@@ -38,9 +38,9 @@ class _noInternetScreenState extends State<noInternetScreen>
                 width: MediaQuery.of(context).size.width,
                 child: Lottie.asset(
                   'assets/images/disconnected.json',
-                  controller: _splashController,
+                  controller: animationController,
                   onLoaded: (composition) {
-                    _splashController
+                    animationController
                       ..duration = composition.duration
                       ..repeat(reverse: false);
                   },
