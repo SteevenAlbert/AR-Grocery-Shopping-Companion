@@ -15,7 +15,7 @@ xmlns:tools="http://schemas.android.com/tools"
     <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />
     <uses-feature android:name="android.hardware.sensor.compass" android:required="true" />
     <uses-feature android:name="android.hardware.sensor.gyroscope" android:required="false" />
-
+    <meta-data android:name="com.google.ar.core" android:value="optional" />
    <application
         android:label="Grocar"
         android:name="${applicationName}"

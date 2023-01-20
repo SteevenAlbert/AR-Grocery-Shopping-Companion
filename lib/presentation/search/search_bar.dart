@@ -31,8 +31,20 @@ class SearchBar extends StatelessWidget {
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () =>
-                            GoRouter.of(context).push('/scan_intro_page'),
+                        onTap: () => showDialog<String>(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                            title: const Text('Functionality not available'),
+                            content: const Text(
+                                "AR and Product Recognition functionality disabled in production due to licensing limitations."),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () => Navigator.pop(context, 'OK'),
+                                child: const Text('OK'),
+                              ),
+                            ],
+                          ),
+                        ),
                         child: Icon(
                           Icons.qr_code_scanner,
                           color: Colors.grey[700],

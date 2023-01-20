@@ -28,12 +28,14 @@ Sample imageTrackingSample = Sample(
 );
 
 //Exception Handling Email
-CatcherOptions debugOptions = CatcherOptions(DialogReportMode(), [
-  EmailAutoHandler("smtp.gmail.com", 587, EmailID, "Grocar Exception Handling",
-      EmailPassword, ["lsrjdev@gmail.com"]),
-  ConsoleHandler()
-]);
+// CatcherOptions debugOptions = CatcherOptions(DialogReportMode(), [
+//   EmailAutoHandler("smtp.gmail.com", 587, EmailID, "Grocar Exception Handling",
+//       EmailPassword, ["lsrjdev@gmail.com"]),
+//   ConsoleHandler()
+// ]);
 
+CatcherOptions debugOptions =
+    CatcherOptions(SilentReportMode(), [ConsoleHandler()]);
 // Error images
 String kNoLogoImg = "assets/images/no_logo.jpg";
 
