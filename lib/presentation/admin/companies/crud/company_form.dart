@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ar_grocery_companion/presentation/admin/companies/crud/add_company_fields.dart';
+import 'package:ar_grocery_companion/presentation/admin/companies/crud/company_fields.dart';
 import 'package:ar_grocery_companion/presentation/admin/components/image_adder.dart';
 import 'package:ar_grocery_companion/domain/models/company.dart';
 // class ImageToUpload with ChangeNotifier {
@@ -13,16 +13,16 @@ import 'package:ar_grocery_companion/domain/models/company.dart';
 //   }
 // }
 
-class AddCompanyForm extends StatefulWidget {
-  const AddCompanyForm({super.key, required this.company, required this.add});
+class CompanyForm extends StatefulWidget {
+  const CompanyForm({super.key, required this.company, required this.add});
   final Company company;
   final bool add;
 
   @override
-  State<AddCompanyForm> createState() => _AddCompanyFormState();
+  State<CompanyForm> createState() => _CompanyFormState();
 }
 
-class _AddCompanyFormState extends State<AddCompanyForm> {
+class _CompanyFormState extends State<CompanyForm> {
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
@@ -43,7 +43,7 @@ class _AddCompanyFormState extends State<AddCompanyForm> {
                     label: "Company logo",
                   ),
                   Expanded(
-                      child: AddCompanyFields(
+                      child: CompanyFields(
                           formKey: formKey,
                           company: widget.company,
                           add: widget.add)),
@@ -56,7 +56,7 @@ class _AddCompanyFormState extends State<AddCompanyForm> {
                   ImageAdder(
                     label: "Company logo",
                   ),
-                  AddCompanyFields(
+                  CompanyFields(
                       formKey: formKey,
                       company: widget.company,
                       add: widget.add)

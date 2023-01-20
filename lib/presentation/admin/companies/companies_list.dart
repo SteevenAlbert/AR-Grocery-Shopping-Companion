@@ -59,7 +59,8 @@ class CompanyDataSource extends DataGridSource {
         .map<DataGridRow>((company) => DataGridRow(cells: [
               DataGridCell<String>(columnName: 'name', value: company.name),
               DataGridCell<String>(
-                  columnName: 'origin', value: company.origin?.name ?? "None"),
+                  columnName: 'origin',
+                  value: company.origin?.countryCode ?? "None"),
               DataGridCell<Function>(
                   columnName: 'edit',
                   value: () {

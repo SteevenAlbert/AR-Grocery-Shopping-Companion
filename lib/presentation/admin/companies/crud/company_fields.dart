@@ -5,11 +5,12 @@ import 'package:validators/validators.dart';
 import 'package:ar_grocery_companion/data/repositories/companies_repository.dart';
 import 'package:ar_grocery_companion/domain/models/company.dart';
 import 'package:go_router/go_router.dart';
+import 'package:country_picker/src/utils.dart';
 
 CompaniesRepository companies = CompaniesRepository.instance;
 
-class AddCompanyFields extends StatefulWidget {
-  AddCompanyFields(
+class CompanyFields extends StatefulWidget {
+  CompanyFields(
       {super.key,
       required this.formKey,
       required this.add,
@@ -21,22 +22,25 @@ class AddCompanyFields extends StatefulWidget {
   final GlobalKey<FormState> formKey;
   // final ImageAdder imageAdder;
   @override
-  State<AddCompanyFields> createState() => _AddCompanyFieldsState();
+  State<CompanyFields> createState() => _CompanyFieldsState();
 }
 
-class _AddCompanyFieldsState extends State<AddCompanyFields> {
-  List<TextEditingController> textControllers =
-      List.generate(4, (i) => TextEditingController());
-  String countryText = Country.worldWide.flagEmoji + " Choose Country";
-  String countryCode = Country.worldWide.countryCode;
+class _CompanyFieldsState extends State<CompanyFields> {
+  late String countryInfo = widget.add
+      ? Country.worldWide.flagEmoji + " Choose Country"
+      : Utils.countryCodeToEmoji(widget.company.origin!.countryCode) +
+          " " +
+          widget.company.origin!.name +
+          " (${widget.company.origin!.countryCode})";
+  late String countryCode = widget.add
+      ? Country.worldWide.countryCode
+      : widget.company.origin!.countryCode;
+  late String countryName =
+      widget.add ? Country.worldWide.name : widget.company.origin!.name;
+  late String name = widget.add ? '' : widget.company.name;
+  late String url = widget.add ? '' : widget.company.url!;
   @override
   Widget build(BuildContext context) {
-    textControllers[0] = widget.add
-        ? TextEditingController(text: "")
-        : TextEditingController(text: widget.company.name);
-    textControllers[1] = widget.add
-        ? TextEditingController(text: "")
-        : TextEditingController(text: widget.company.url);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -46,7 +50,12 @@ class _AddCompanyFieldsState extends State<AddCompanyFields> {
             decoration: const InputDecoration(
               labelText: 'Name',
             ),
-            controller: textControllers[0],
+            initialValue: name,
+            onChanged: (String? newValue) {
+              setState(() {
+                name = newValue!;
+              });
+            },
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter the company name';
@@ -61,7 +70,12 @@ class _AddCompanyFieldsState extends State<AddCompanyFields> {
             decoration: const InputDecoration(
               labelText: 'URL',
             ),
-            controller: textControllers[1],
+            initialValue: url,
+            onChanged: (String? newValue) {
+              setState(() {
+                url = newValue!;
+              });
+            },
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter the company url';
@@ -80,18 +94,19 @@ class _AddCompanyFieldsState extends State<AddCompanyFields> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ListTile(
-                      title: Text(countryText),
+                      title: Text(countryInfo),
                       trailing: Icon(Icons.arrow_drop_down),
                       onTap: () {
                         showCountryPicker(
                           context: context,
                           onSelect: (Country country) {
                             setState(() {
-                              countryText = country.flagEmoji +
+                              countryInfo = country.flagEmoji +
                                   " " +
                                   country.displayNameNoCountryCode;
                               countryCode = country.countryCode;
-                              field.setValue(countryCode);
+                              countryName = country.name;
+                              field.setValue(countryInfo);
                             });
                           },
                         );
@@ -121,13 +136,15 @@ class _AddCompanyFieldsState extends State<AddCompanyFields> {
                   onPressed: () {
                     // Validate returns true if the form is valid, or false otherwise.
                     if (widget.formKey.currentState!.validate()) {
-                      // Company company = Company(
-                      //     id: "id",
-                      //     name: name,
-                      //     url: url,
-                      //     origin: Origin(name: countryCode));
-                      // companies.insert(company);
-                      // context.go('/admin_homepage');
+                      Company company = widget.company.copyWith(
+                          name: name,
+                          origin: Origin(
+                              name: countryName, countryCode: countryCode),
+                          url: url);
+                      widget.add
+                          ? companies.insert(company)
+                          : companies.update(company);
+                      context.go('/admin_homepage');
                     }
                   },
                   child: const Text('Submit'),
