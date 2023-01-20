@@ -52,8 +52,12 @@ class Header extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       InkWell(
-                          onTap: () =>
-                              GoRouter.of(context).push("/profile_page"),
+                          onTap: () async {
+                            if ((await SessionManager().get("isLoggedIn") ==
+                                true)) {
+                              GoRouter.of(context).push("/profile_page");
+                            }
+                          },
                           child: CircleAvatar(
                             backgroundImage: AssetImage(snapshot.data![1]),
                             radius: 25,
