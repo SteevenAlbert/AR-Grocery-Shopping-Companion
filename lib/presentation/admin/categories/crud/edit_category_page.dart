@@ -1,4 +1,6 @@
 import 'package:ar_grocery_companion/domain/models/custom_category.dart';
+import 'package:ar_grocery_companion/presentation/admin/categories/crud/category_form.dart';
+import 'package:ar_grocery_companion/utils.dart';
 import 'package:flutter/material.dart';
 
 class EditCategoryPage extends StatelessWidget {
@@ -6,6 +8,22 @@ class EditCategoryPage extends StatelessWidget {
   final CustomCategory customCategory;
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: buildAppBar(context: context),
+      body: ListView(
+        children: [
+          Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text(
+                "Edit Category",
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge
+                    ?.copyWith(fontWeight: FontWeight.bold),
+              )),
+          CategoryForm(customCategory: customCategory, add: false),
+        ],
+      ),
+    );
   }
 }

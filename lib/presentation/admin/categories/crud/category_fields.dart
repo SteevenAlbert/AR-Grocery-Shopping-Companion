@@ -5,20 +5,28 @@ import 'package:go_router/go_router.dart';
 
 CategoriesRepository categories = CategoriesRepository.instance;
 
-class AddCategoryFields extends StatefulWidget {
-  const AddCategoryFields({super.key, required this.formKey});
+class CategoryFields extends StatefulWidget {
+  const CategoryFields(
+      {super.key,
+      required this.formKey,
+      required this.add,
+      required this.customCategory});
 
   final GlobalKey<FormState> formKey;
-
+  final bool add;
+  final CustomCategory customCategory;
   @override
-  State<AddCategoryFields> createState() => _AddCategoryFieldsState();
+  State<CategoryFields> createState() => _CategoryFieldsState();
 }
 
-class _AddCategoryFieldsState extends State<AddCategoryFields> {
-  String name = 'Nan';
+class _CategoryFieldsState extends State<CategoryFields> {
+  var myController;
 
   @override
   Widget build(BuildContext context) {
+    final myController = widget.add
+        ? TextEditingController(text: "")
+        : TextEditingController(text: widget.customCategory.name);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -28,11 +36,7 @@ class _AddCategoryFieldsState extends State<AddCategoryFields> {
             decoration: const InputDecoration(
               labelText: 'Name',
             ),
-            onChanged: (String? newValue) {
-              setState(() {
-                name = newValue!;
-              });
-            },
+            controller: myController,
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter the category name';
@@ -53,9 +57,12 @@ class _AddCategoryFieldsState extends State<AddCategoryFields> {
                 ElevatedButton(
                   onPressed: () {
                     if (widget.formKey.currentState!.validate()) {
-                      CustomCategory category =
-                          CustomCategory(id: "id", name: name);
-                      categories.insert(category);
+                      CustomCategory category = widget.customCategory
+                          .copyWith(name: myController.text);
+                      print(category);
+                      widget.add
+                          ? categories.insert(category)
+                          : categories.update(category);
                       context.go('/admin_homepage');
                     }
                   },
