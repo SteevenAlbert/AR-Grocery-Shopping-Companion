@@ -1,4 +1,7 @@
+import 'package:ar_grocery_companion/constants/keys.dart';
 import 'package:augmented_reality_plugin_wikitude/startupConfiguration.dart';
+import 'package:catcher/catcher.dart';
+import 'package:catcher/mode/dialog_report_mode.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ar_grocery_companion/domain/sample.dart';
@@ -23,6 +26,13 @@ Sample imageTrackingSample = Sample(
       cameraPosition: CameraPosition.BACK,
       cameraResolution: CameraResolution.AUTO),
 );
+
+//Exception Handling Email
+CatcherOptions debugOptions = CatcherOptions(DialogReportMode(), [
+  EmailAutoHandler("smtp.gmail.com", 587, EmailID, "Grocar Exception Handling",
+      EmailPassword, ["lsrjdev@gmail.com"]),
+  ConsoleHandler()
+]);
 
 // Error images
 String kNoLogoImg = "assets/images/no_logo.jpg";

@@ -1,25 +1,28 @@
+import 'package:ar_grocery_companion/constants/keys.dart';
+import 'package:ar_grocery_companion/presentation/error_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:ar_grocery_companion/constants/constants.dart';
 import 'package:ar_grocery_companion/data/helpers/db_helper.dart';
 import 'package:ar_grocery_companion/data/providers/theme_mode_provider.dart';
 import 'package:ar_grocery_companion/services/firebase_options.dart';
-
+import 'package:catcher/catcher.dart';
 import 'router.dart';
 import 'utils.dart';
- 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  //Firebase Initalization
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  FirebaseHelper db = FirebaseHelper();
+  await db.init();
 
-  //Background
+  //Push Notifications
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  //Foreground
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
     print("Got a message whilst in the foreground");
     print("Message data ${message.data}");
@@ -28,10 +31,8 @@ void main() async {
     }
   });
 
+  //Check Connection Status
   initConnectionStatus();
-
-  FirebaseHelper db = FirebaseHelper();
-  await db.init();
 
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
       overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
@@ -40,18 +41,20 @@ void main() async {
     statusBarColor: Colors.transparent,
   ));
 
-  runApp(
-    ProviderScope(child: const MyApp()),
-  );
+  Catcher(rootWidget: ProviderScope(child: MyApp()), debugConfig: debugOptions);
 }
 
 class MyApp extends ConsumerWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var darkMode = ref.watch(themeModeProvider);
+
+    //Override Flutter's red screen of death
+    ErrorWidget.builder =
+        (FlutterErrorDetails details) => SomethingWentWrongScreen();
     return MaterialApp.router(
+      navigatorKey: Catcher.navigatorKey,
       routerConfig: MyRouter.router,
       debugShowCheckedModeBanner: false,
       themeMode: darkMode,

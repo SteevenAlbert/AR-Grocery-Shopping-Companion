@@ -40,24 +40,23 @@ class _Cat_TabsState extends ConsumerState<CatTabs>
           indicatorSize: TabBarIndicatorSize.tab,
         ),
         Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Expanded(
-              child: Container(
-                width: widget.size.width,
-                height: widget.size.height * 1.3,
-                child: TabBarView(
-                  physics: NeverScrollableScrollPhysics(),
-                  controller: _tabController,
-                  children: [
-                    for (var i = 0; i < widget.categories.length; i++)
-                      FeaturedProducts(
-                        size: widget.size,
-                        cat_id: widget.categories[i].id,
-                      )
-                  ],
-                ),
-              ),
-            )),
+          padding: const EdgeInsets.only(top: 8.0),
+          child: Container(
+            width: widget.size.width,
+            height: widget.size.height * 1.3,
+            child: TabBarView(
+              physics: NeverScrollableScrollPhysics(),
+              controller: _tabController,
+              children: [
+                for (var i = 0; i < widget.categories.length; i++)
+                  FeaturedProducts(
+                    size: widget.size,
+                    cat_id: widget.categories[i].id,
+                  )
+              ],
+            ),
+          ),
+        ),
       ],
     ));
   }

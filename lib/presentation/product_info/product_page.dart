@@ -21,8 +21,6 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("FROM AR: " + fromAR!);
-    print("Comparison: " + (fromAR == "false").toString());
     final List<String> tabs = <String>['Tab 1', 'Tab 2', 'Tab 3'];
     return DefaultTabController(
       length: 3,

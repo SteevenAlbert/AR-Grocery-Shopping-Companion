@@ -5,6 +5,7 @@ import 'package:ar_grocery_companion/presentation/admin/categories/crud/edit_cat
 import 'package:ar_grocery_companion/presentation/admin/companies/crud/edit_company_page.dart';
 import 'package:ar_grocery_companion/presentation/admin/products/crud/add_product_page.dart';
 import 'package:ar_grocery_companion/presentation/admin/products/crud/edit_product_page.dart';
+import 'package:catcher/catcher.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:ar_grocery_companion/domain/models/company.dart';
@@ -28,6 +29,7 @@ import 'domain/models/product/product.dart';
 class MyRouter {
   MyRouter();
   static late final router = GoRouter(
+    navigatorKey: Catcher.navigatorKey,
     debugLogDiagnostics: true, //set to false in Production
     routes: [
       //Add Routes Here
@@ -68,7 +70,7 @@ class MyRouter {
           path: '/company_details',
           builder: (context, state) =>
               CompanyDetails(company: state.extra as Company)),
-      
+
       GoRoute(
           name: 'ARView',
           path: '/arview',
@@ -79,29 +81,31 @@ class MyRouter {
           path: '/noInternet',
           builder: (context, state) => noInternetScreen()),
 
-
       // Admin Module Pages
       GoRoute(
           path: '/add_company_page',
           builder: (context, state) => const AddCompanyPage()),
       GoRoute(
           path: '/edit_company_page',
-          builder: (context, state) =>
-              EditCompanyPage(company: state.extra as Company,)),
+          builder: (context, state) => EditCompanyPage(
+                company: state.extra as Company,
+              )),
       GoRoute(
           path: '/add_category_page',
           builder: (context, state) => AddCategoryPage()),
       GoRoute(
           path: '/edit_category_page',
-          builder: (context, state) =>
-              EditCategoryPage(customCategory: state.extra as CustomCategory,)),
+          builder: (context, state) => EditCategoryPage(
+                customCategory: state.extra as CustomCategory,
+              )),
       GoRoute(
           path: '/add_product_page',
           builder: (context, state) => AddProductPage()),
       GoRoute(
           path: '/edit_product_page',
-          builder: (context, state) =>
-              EditProductPage(product: state.extra as Product,)),
+          builder: (context, state) => EditProductPage(
+                product: state.extra as Product,
+              )),
     ],
     errorBuilder: (context, state) => SomethingWentWrongScreen(),
   );

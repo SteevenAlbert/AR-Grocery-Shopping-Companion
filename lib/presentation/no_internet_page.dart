@@ -10,23 +10,24 @@ class noInternetScreen extends StatefulWidget {
 
 class _noInternetScreenState extends State<noInternetScreen>
     with TickerProviderStateMixin {
-  late AnimationController _splashController;
+  late AnimationController animationController;
   @override
   void initState() {
     super.initState();
-    _splashController = AnimationController(vsync: this);
+    animationController = AnimationController(vsync: this);
   }
 
   //dispose
   @override
   void dispose() {
-    _splashController.dispose();
+    animationController.dispose();
     super.dispose();
   }
 
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
+        alignment: Alignment.topCenter,
         fit: StackFit.expand,
         children: [
           Stack(
@@ -38,9 +39,9 @@ class _noInternetScreenState extends State<noInternetScreen>
                 width: MediaQuery.of(context).size.width,
                 child: Lottie.asset(
                   'assets/images/disconnected.json',
-                  controller: _splashController,
+                  controller: animationController,
                   onLoaded: (composition) {
-                    _splashController
+                    animationController
                       ..duration = composition.duration
                       ..repeat(reverse: false);
                   },
@@ -55,13 +56,13 @@ class _noInternetScreenState extends State<noInternetScreen>
               child: Center(
                 child: Text(
                   "Internet Connection Lost",
-                  style: TextStyle(fontSize: 45, fontFamily: "Poppins"),
+                  style: TextStyle(fontSize: 30, fontFamily: "Poppins"),
                 ),
               )),
           Positioned(
               bottom: MediaQuery.of(context).size.height * 0.10,
-              left: MediaQuery.of(context).size.width * 0.25,
-              right: MediaQuery.of(context).size.width * 0.25,
+              left: MediaQuery.of(context).size.width * 0.20,
+              right: MediaQuery.of(context).size.width * 0.20,
               child: CustomAnimatedButton(
                   textColor: Theme.of(context).canvasColor,
                   color: Theme.of(context).primaryColor,

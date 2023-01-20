@@ -499,9 +499,7 @@
             }
         },
         {
-            "liquid_product": {
-                "volume": 100.0,
-                "unit": "mL",
+          
                 "food_product": {
                     "calories": 20,
                     "servingSize": "200ml",
@@ -567,8 +565,8 @@
                             "name": "Cadbury"
                         },
                         "customCategory": {
-                            "id": "1",
-                            "name": "Dairy"
+                            "id": "4",
+                            "name": "Snacks"
                         },
                         "prices": {
                             "Spinneys": "45",
@@ -584,7 +582,7 @@
                         }
                     }
                 }
-            }
+            
         },
         {
             "liquid_product": {
