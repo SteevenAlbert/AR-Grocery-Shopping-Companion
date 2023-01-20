@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
+CompaniesRepository companiesrepo = CompaniesRepository.instance;
+
 class CompaniesList extends StatefulWidget {
   const CompaniesList({super.key});
   @override
@@ -17,7 +19,7 @@ class _CompaniesListState extends State<CompaniesList> {
   List<Company> companies = <Company>[];
   late CompanyDataSource companyDataSource;
   final DataGridController dataGridController = DataGridController();
-  CompaniesRepository companiesrepo = CompaniesRepository.instance;
+
   @override
   void initState() {
     super.initState();
@@ -57,8 +59,7 @@ class CompanyDataSource extends DataGridSource {
         .map<DataGridRow>((company) => DataGridRow(cells: [
               DataGridCell<String>(columnName: 'name', value: company.name),
               DataGridCell<String>(
-                  columnName: 'origin',
-                  value: company.origin?.name ?? "None"),
+                  columnName: 'origin', value: company.origin?.name ?? "None"),
               DataGridCell<Function>(
                   columnName: 'edit',
                   value: () {
