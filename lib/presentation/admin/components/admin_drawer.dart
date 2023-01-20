@@ -49,12 +49,6 @@ class _AdminDrawerState extends State<AdminDrawer> {
                   context.push('/add_admin');
                 }),
             ListTile(
-                leading: Icon(Icons.supervised_user_circle),
-                title: Text("Users"),
-                onTap: () {
-                  widget.page.jumpToPage(0);
-                }),
-            ListTile(
                 leading: Icon(Icons.bakery_dining),
                 title: Text("Products"),
                 onTap: () {

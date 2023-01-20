@@ -95,6 +95,9 @@ class ProductCard extends ConsumerWidget {
                                   alignment: Alignment.centerLeft,
                                   child: Text(
                                     product.manufacturer.name,
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
+                                    softWrap: false,
                                     style:
                                         Theme.of(context).textTheme.bodySmall,
                                   ),

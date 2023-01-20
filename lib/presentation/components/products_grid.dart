@@ -14,9 +14,10 @@ class ProductsGrid extends StatelessWidget {
     return GridView.count(
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      crossAxisCount: (MediaQuery.of(context).size.width ~/ 200).toInt(),
+      crossAxisCount: (MediaQuery.of(context).size.width ~/ 190).toInt(),
       crossAxisSpacing: 8.0,
       mainAxisSpacing: 8.0,
+      childAspectRatio: (MediaQuery.of(context).size.width ~/ 190).toInt() == 1? 1.1/1:1/1.1,
       children: List.generate(products.length, (index) {
         print(products[index].name);
         return Center(

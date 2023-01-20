@@ -24,6 +24,7 @@ class _AddProductFormState extends State<AddProductForm> {
             if (constraints.maxWidth > 600) {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ImageAdder(
                     label: "Product logo",

@@ -18,8 +18,7 @@ class HomePage extends ConsumerWidget {
     Size size = MediaQuery.of(context).size;
     Future<List<Product>> products =
         ref.watch(ProductsRepository.instance.productsListFutureProvider);
-    Future<List<CustomCategory>> categories =
-        ref.watch(CategoriesRepository.instance.categoriesListFutureProvider);
+    Future<List<CustomCategory>> categories = CategoriesRepository.queryDummyJson();
     return Scaffold(
         body: ListView(children: [
       Header(size: size),
