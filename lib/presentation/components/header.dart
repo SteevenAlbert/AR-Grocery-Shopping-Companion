@@ -1,3 +1,4 @@
+import 'package:ar_grocery_companion/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:go_router/go_router.dart';
@@ -16,17 +17,19 @@ class Header extends StatelessWidget {
         : await SessionManager().get("name");
   }
 
-  Future<String> getSessionPfpPath() async {
-    return (await SessionManager().containsKey("isLoggedIn") != true ||
-            await SessionManager().get("isLoggedIn") != true)
-        ? kNoPfpImg
-        : await SessionManager().get("pfpPath");
+  Future<String> getSessionPfpPathURL() async {
+    String fileName =
+        ((await SessionManager().containsKey("isLoggedIn") != true ||
+                await SessionManager().get("isLoggedIn") != true)
+            ? kNoPfpImg
+            : await SessionManager().get("pfpPath"));
+    return await FireStorage.getUrl("/images/profile_pictures/$fileName");
   }
 
   @override
   Widget build(BuildContext context) {
     return new FutureBuilder(
-        future: Future.wait([getSessionName(), getSessionPfpPath()]),
+        future: Future.wait([getSessionName(), getSessionPfpPathURL()]),
         builder: (BuildContext context, AsyncSnapshot<List<String>> snapshot) {
           if (snapshot.hasData) {
             return Padding(
@@ -59,7 +62,7 @@ class Header extends StatelessWidget {
                             }
                           },
                           child: CircleAvatar(
-                            backgroundImage: AssetImage(snapshot.data![1]),
+                            backgroundImage: NetworkImage(snapshot.data![1]),
                             radius: 25,
                           )),
                     ],

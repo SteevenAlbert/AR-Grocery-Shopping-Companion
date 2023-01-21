@@ -32,17 +32,18 @@ class AppUsersRepository {
     }
   }
 
-  Future<bool> updateAppUser() async {
-    //TODO: add parameters(name, DOB, pfp, gender) and implement this
-    // ref(appUser.path())
-    // .set({"name": name})
-    // .then((_) {
-    //     // Data saved successfully!
-    // })
-    // .catchError((error) {
-    //     // The write failed...
-    // });
-    return false;
+  Future<bool> updateAppUser({required AppUser appUser}) async {
+    try {
+      return await ref.child(AppUser.path(appUser.UID)).update({
+        "name": appUser.name,
+        "DOB": appUser.DOB,
+        "pfpPath": appUser.pfpPath,
+        "gender": appUser.gender
+      }).then((_) => true);
+    } catch (e) {
+      print("ERROR: " + e.toString());
+      return false;
+    }
   }
 
   Future<List<AppUser>> fetchAppUsersList() async {
@@ -67,15 +68,15 @@ class AppUsersRepository {
     }).then((user) => user);
   }
 
-  Future<int> deleteAppUser(String UID) async {
+  Future<bool> deleteAppUser(String UID) async {
     // TODO: implement this
     throw UnimplementedError();
   }
 
-  void reset() {
-    // TODO: implement this
-    throw UnimplementedError();
-  }
+  // void reset() {
+  //   // TODO: implement this
+  //   throw UnimplementedError();
+  // }
 
 //   List<AppUser> getAppUsers() {
 //     return this._appUsers;

@@ -4,7 +4,7 @@ import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:ar_grocery_companion/data/repositories/users_repository.dart';
-import 'package:ar_grocery_companion/fire_auth.dart';
+import 'package:ar_grocery_companion/firebase_authentication.dart';
 import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_animated_button.dart';
 import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_text_form_field.dart';
 import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_title.dart';
@@ -32,7 +32,7 @@ class LogInScreenState extends State<LogInScreen> {
 
   void _logIn() async {
     if (_formKey.currentState!.validate()) {
-      FireAuthentication.signInUsingEmailPassword(
+      FirebaseAuthentication.signInUsingEmailPassword(
         email: emailController.text,
         password: passwordController.text,
         context: context,
@@ -61,7 +61,7 @@ class LogInScreenState extends State<LogInScreen> {
   }
 
   void _GooglelogIn() async {
-    // User? user = await FireAuthentication.signInWithGoogle(context: context);
+    // User? user = await FirebaseAuthentication.signInWithGoogle(context: context);
   }
 
   @override

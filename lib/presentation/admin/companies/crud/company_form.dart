@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/presentation/admin/companies/crud/company_fields.dart';
-import 'package:ar_grocery_companion/presentation/admin/components/image_adder.dart';
 import 'package:ar_grocery_companion/domain/models/company.dart';
+import 'package:ar_grocery_companion/presentation/components/image_adder.dart';
+
 // class ImageToUpload with ChangeNotifier {
 //   String name;
 //   String path;
@@ -26,7 +27,8 @@ class _CompanyFormState extends State<CompanyForm> {
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
-    final ImageAdder imageAdder = ImageAdder();
+    //TODO: handle imageAdder callback
+    // final ImageAdder imageAdder = ImageAdder();
     return Form(
       key: formKey,
       // child: ChangeNotifierProvider(
@@ -39,9 +41,9 @@ class _CompanyFormState extends State<CompanyForm> {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  ImageAdder(
-                    label: "Company logo",
-                  ),
+                  // ImageAdder(
+                  //   label: "Company logo",
+                  // ),
                   Expanded(
                       child: CompanyFields(
                           formKey: formKey,
@@ -53,9 +55,9 @@ class _CompanyFormState extends State<CompanyForm> {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ImageAdder(
-                    label: "Company logo",
-                  ),
+                  // ImageAdder(
+                  //   label: "Company logo",
+                  // ),
                   CompanyFields(
                       formKey: formKey,
                       company: widget.company,

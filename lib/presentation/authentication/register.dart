@@ -1,5 +1,5 @@
 import 'package:ar_grocery_companion/domain/models/user/app_user.dart';
-import 'package:ar_grocery_companion/fire_auth.dart';
+import 'package:ar_grocery_companion/firebase_authentication.dart';
 import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_animated_button.dart';
 import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_radio_button.dart';
 import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_text_form_field.dart';
@@ -70,7 +70,7 @@ class RegisterScreenState extends State<RegisterScreen> {
 
   void _register() async {
     if (_formKey.currentState!.validate()) {
-      FireAuthentication.registerUsingEmailPassword(
+      FirebaseAuthentication.registerUsingEmailPassword(
               context: context,
               email: emailController.text,
               password: passwordController.text)

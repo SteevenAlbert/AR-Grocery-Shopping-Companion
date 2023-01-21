@@ -37,4 +37,4 @@ CatcherOptions debugOptions = CatcherOptions(DialogReportMode(), [
 String kNoLogoImg = "assets/images/no_logo.jpg";
 String kNoProductImg = "assets/images/no_product.png";
 
-const String kNoPfpImg = "assets/images/profile_pictures/profilepicture.jpg";
+const String kNoPfpImg = "profilepicture.jpg";

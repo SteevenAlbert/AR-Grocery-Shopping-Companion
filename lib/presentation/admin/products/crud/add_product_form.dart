@@ -1,4 +1,4 @@
-import 'package:ar_grocery_companion/presentation/admin/components/image_adder.dart';
+import 'package:ar_grocery_companion/presentation/components/image_adder.dart';
 import 'package:ar_grocery_companion/presentation/admin/products/crud/add_product_fields.dart';
 import 'package:flutter/material.dart';
 
@@ -10,10 +10,10 @@ class AddProductForm extends StatefulWidget {
 }
 
 class _AddProductFormState extends State<AddProductForm> {
-  
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
+    //TODO: handle imageAdder callback
 
     return Form(
       key: formKey,
@@ -26,20 +26,25 @@ class _AddProductFormState extends State<AddProductForm> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ImageAdder(
-                    label: "Product logo",
-                  ),
-                  Expanded(child: AddProductFields(formKey: formKey,)),
+                  // ImageAdder(
+                  //   label: "Product logo",
+                  // ),
+                  Expanded(
+                      child: AddProductFields(
+                    formKey: formKey,
+                  )),
                 ],
               );
             } else {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ImageAdder(
-                    label: "Product logo",
-                  ),
-                  AddProductFields(formKey: formKey,)
+                  // ImageAdder(
+                  //   label: "Product logo",
+                  // ),
+                  AddProductFields(
+                    formKey: formKey,
+                  )
                 ],
               );
             }
@@ -48,5 +53,4 @@ class _AddProductFormState extends State<AddProductForm> {
       ),
     );
   }
-  
 }

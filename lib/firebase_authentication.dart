@@ -6,7 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import 'presentation/components/custom_widgets/custom_awesome_snackbar.dart';
 
-class FireAuthentication {
+class FirebaseAuthentication {
   static Future<User?> registerUsingEmailPassword({
     required BuildContext context,
     required String email,

@@ -1,5 +1,5 @@
 import 'package:ar_grocery_companion/presentation/admin/categories/crud/category_fields.dart';
-import 'package:ar_grocery_companion/presentation/admin/components/image_adder.dart';
+import 'package:ar_grocery_companion/presentation/components/image_adder.dart';
 import 'package:ar_grocery_companion/domain/models/custom_category.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +17,7 @@ class _CategoryFormState extends State<CategoryForm> {
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
+    //TODO: handle imageAdder callback
 
     return Form(
       key: formKey,
@@ -28,9 +29,9 @@ class _CategoryFormState extends State<CategoryForm> {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  ImageAdder(
-                    label: "Category Image",
-                  ),
+                  // ImageAdder(
+                  //   label: "Category Image",
+                  // ),
                   Expanded(
                       child: CategoryFields(
                           customCategory: widget.customCategory,
@@ -42,9 +43,9 @@ class _CategoryFormState extends State<CategoryForm> {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ImageAdder(
-                    label: "Category Image",
-                  ),
+                  // ImageAdder(
+                  //   label: "Category Image",
+                  // ),
                   CategoryFields(
                       customCategory: widget.customCategory,
                       formKey: formKey,
