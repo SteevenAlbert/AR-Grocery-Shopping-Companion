@@ -140,6 +140,10 @@ class FireAuthentication {
     }
   }
 
+  static void resetPassword({required String email}) async {
+    await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+  }
+
   String getCurrentUserId() {
     return FirebaseAuth.instance.currentUser?.uid ?? '';
   }

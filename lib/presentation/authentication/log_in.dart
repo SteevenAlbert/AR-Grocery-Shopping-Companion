@@ -93,7 +93,7 @@ class LogInScreenState extends State<LogInScreen> {
             padding: EdgeInsets.only(right: 25.0, bottom: 10.0),
             alignment: Alignment.centerRight,
             child: InkWell(
-              onTap: () => {},
+              onTap: () => {GoRouter.of(context).push('/forgot_password')},
               child: Text(
                 'Forgot Password?',
                 style: TextStyle(

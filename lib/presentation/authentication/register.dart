@@ -75,6 +75,7 @@ class RegisterScreenState extends State<RegisterScreen> {
               email: emailController.text,
               password: passwordController.text)
           .then((user) {
+        print(user);
         if (user != null) {
           AppUser appUser = AppUser(
               UID: user.uid,
@@ -133,8 +134,10 @@ class RegisterScreenState extends State<RegisterScreen> {
           CustomTextFormField(
             controller: passwordController,
             errorMessage: 'Please enter your password.',
-            regex: r'[!@#$%^&*(),.?":{}|<>]',
-            regexErrorMessage: 'Password must have a Special Character.',
+            regex:
+                r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$',
+            regexErrorMessage:
+                'Password must be more than 6 characters and have a Special Character.',
             obscureText: _isHidden,
             labelText: "Password",
             toggle: _togglePasswordView1,

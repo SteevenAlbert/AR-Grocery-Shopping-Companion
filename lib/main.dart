@@ -40,7 +40,8 @@ void main() async {
     statusBarColor: Colors.transparent,
   ));
 
-  Catcher(rootWidget: ProviderScope(child: MyApp()), debugConfig: debugOptions);
+  //Catcher(rootWidget: ProviderScope(child: MyApp()), debugConfig: debugOptions);
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends ConsumerWidget {
@@ -50,8 +51,8 @@ class MyApp extends ConsumerWidget {
     var darkMode = ref.watch(themeModeProvider);
 
     //Override Flutter's red screen of death
-    ErrorWidget.builder =
-        (FlutterErrorDetails details) => SomethingWentWrongScreen();
+    // ErrorWidget.builder =
+    //     (FlutterErrorDetails details) => SomethingWentWrongScreen();
     return MaterialApp.router(
       navigatorKey: Catcher.navigatorKey,
       routerConfig: MyRouter.router,

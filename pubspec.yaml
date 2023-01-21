@@ -30,7 +30,6 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   animated_button: ^0.2.0
-  async_textformfield: ^1.0.0+3
   augmented_reality_plugin_wikitude:
     path: ./plugin/augmented_reality_plugin_wikitude/
   awesome_snackbar_content: ^0.1.0
