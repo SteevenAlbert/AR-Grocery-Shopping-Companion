@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class LiquidFormFields extends StatefulWidget {
-  LiquidFormFields({super.key, required this.formKey});
+  LiquidFormFields({super.key});
 
-  final GlobalKey<FormState> formKey;
   double volume = 0.0;
   String unit = "";
 

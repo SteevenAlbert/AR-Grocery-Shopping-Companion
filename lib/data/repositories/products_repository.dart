@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:ar_grocery_companion/data/helpers/db_helper.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -8,7 +9,6 @@ import 'package:ar_grocery_companion/domain/models/product/concrete_products/cle
 import 'package:ar_grocery_companion/domain/models/product/concrete_products/food_product.dart';
 import 'package:ar_grocery_companion/domain/models/product/concrete_products/itemed_product.dart';
 import 'package:ar_grocery_companion/domain/models/product/concrete_products/liquid_product.dart';
-import 'package:ar_grocery_companion/domain/models/product/concrete_products/machine_product.dart';
 import 'package:ar_grocery_companion/domain/models/product/product.dart';
 import 'package:ar_grocery_companion/domain/models/product/product_base.dart';
 
@@ -31,13 +31,14 @@ class ProductsRepository {
     });
   }
 
-  Future<int> insert(Product product) async {
-    // TODO: implement insert product
+  Future<bool> insert(Product product) async {
     // User FirebaseHelper class here
     // Provide the path root using DBCollections class
     // eg. FirebaseHelper.writeUnique(DBCollections.products + "/" + CompanyName, data)
 
-    throw UnimplementedError();
+    bool inserted = await FirebaseHelper.writeUnique(
+        'products', selectProductToMap(product));
+    return inserted;
   }
 
   Future<List<Product>> fetchProductsList() async {
@@ -126,9 +127,27 @@ class ProductsRepository {
       return CleaningProduct.fromMap(map["cleaning_product"]);
     } else if (map.containsKey("itemed_product")) {
       return ItemedProduct.fromMap(map["itemed_product"]);
-    } else if (map.containsKey("machine_product")) {
-      return MachineProduct.fromMap(map["machine_product"]);
     }
     return ProductBase.empty();
+  }
+
+  static Map<String, dynamic> selectProductToMap(Product product) {
+    if (product is ProductBase) {
+      ProductBase productBase = product;
+      return {"product_base": productBase.toMap()};
+    } else if (product is FoodProduct) {
+      FoodProduct foodProduct = product;
+      return {"food_product": foodProduct.toMap()};
+    } else if (product is LiquidProduct) {
+      LiquidProduct liquidProduct = product;
+      return {"liquid_product": liquidProduct.toMap()};
+    } else if (product is CleaningProduct) {
+      CleaningProduct cleaningProduct = product;
+      return {"cleaning_product": cleaningProduct.toMap()};
+    } else if (product is ItemedProduct) {
+      ItemedProduct itemedProduct = product;
+      return {"itemed_product": itemedProduct.toMap()};
+    }
+    return ProductBase.empty().toMap();
   }
 }

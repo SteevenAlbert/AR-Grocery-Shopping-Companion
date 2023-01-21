@@ -29,6 +29,7 @@ class LiquidProduct extends ProductDecorator {
     return <String, dynamic>{
       'volume': volume,
       'unit': unit,
+      'product' : ProductsRepository.selectProductToMap(product),
     };
   }
 

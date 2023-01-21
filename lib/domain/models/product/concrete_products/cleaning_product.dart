@@ -26,6 +26,7 @@ class CleaningProduct extends ProductDecorator {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'materialCleaned': materialCleaned,
+      'product' : ProductsRepository.selectProductToMap(product),
     };
   }
 

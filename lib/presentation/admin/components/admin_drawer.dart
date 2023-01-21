@@ -3,7 +3,7 @@ import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:go_router/go_router.dart';
 
 class AdminDrawer extends StatefulWidget {
-  const AdminDrawer({super.key, required this.page});
+  AdminDrawer({super.key, required this.page});
 
   final PageController page;
 
@@ -18,6 +18,7 @@ class _AdminDrawerState extends State<AdminDrawer> {
       child: Padding(
         padding: const EdgeInsets.only(left: 5, top: 0, right: 5, bottom: 25),
         child: ListView(
+          padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
                 child: Column(

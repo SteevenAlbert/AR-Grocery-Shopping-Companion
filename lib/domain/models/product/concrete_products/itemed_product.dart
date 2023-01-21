@@ -23,6 +23,7 @@ class ItemedProduct extends ProductDecorator {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'noOfItems': noOfItems,
+      'product' : ProductsRepository.selectProductToMap(product),
     };
   }
 

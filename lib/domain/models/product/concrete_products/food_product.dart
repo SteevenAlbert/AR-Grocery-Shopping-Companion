@@ -47,6 +47,7 @@ class FoodProduct extends ProductDecorator {
       'ingredients': ingredients,
       'allergyInfo': allergyInfo,
       'nutrients': nutrients,
+      'product' : ProductsRepository.selectProductToMap(product),
     };
   }
 

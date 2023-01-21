@@ -1,10 +1,18 @@
-import 'package:ar_grocery_companion/data/repositories/categories_repository.dart';
-import 'package:ar_grocery_companion/data/repositories/companies_repository.dart';
-import 'package:ar_grocery_companion/presentation/admin/products/crud/cleaning_form_fields.dart';
-import 'package:ar_grocery_companion/presentation/admin/products/crud/food_form_fields.dart';
-import 'package:ar_grocery_companion/presentation/admin/products/crud/itemed_form_fields.dart';
-import 'package:ar_grocery_companion/presentation/admin/products/crud/liquid_form_fields.dart';
+import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
+import 'package:ar_grocery_companion/domain/models/product/concrete_products/cleaning_product.dart';
+import 'package:ar_grocery_companion/domain/models/product/concrete_products/food_product.dart';
+import 'package:ar_grocery_companion/domain/models/product/concrete_products/itemed_product.dart';
+import 'package:ar_grocery_companion/domain/models/product/concrete_products/liquid_product.dart';
+import 'package:ar_grocery_companion/domain/models/product/product.dart';
+import 'package:ar_grocery_companion/domain/models/product/product_base.dart';
+import 'package:ar_grocery_companion/presentation/admin/products/crud/concrete_products/cleaning_form_fields.dart';
+import 'package:ar_grocery_companion/presentation/admin/products/crud/concrete_products/food_form_fields.dart';
+import 'package:ar_grocery_companion/presentation/admin/products/crud/concrete_products/itemed_form_fields.dart';
+import 'package:ar_grocery_companion/presentation/admin/products/crud/concrete_products/liquid_form_fields.dart';
+import 'package:ar_grocery_companion/presentation/admin/products/crud/concrete_products/product_base_fields.dart';
+import 'package:ar_grocery_companion/presentation/admin/products/crud/property_checkbox.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class AddProductFields extends StatefulWidget {
   const AddProductFields({super.key, required this.formKey});
@@ -15,21 +23,19 @@ class AddProductFields extends StatefulWidget {
 }
 
 class _AddProductFieldsState extends State<AddProductFields> {
-  String name = 'Nan';
-  String category = 'Choose a category';
-  String manufacturer = 'Choose a company';
+  ProductBaseFields base = ProductBaseFields();
 
   bool isFood = false;
-  FoodFormFields? food;
+  FoodFormFields food = FoodFormFields();
 
   bool isLiquid = false;
-  LiquidFormFields? liquid;
+  LiquidFormFields liquid = LiquidFormFields();
 
   bool isCleaning = false;
-  CleaningFormFields? cleaning;
+  CleaningFormFields cleaning = CleaningFormFields();
 
   bool isItemed = false;
-  ItemedFormFields? itemed;
+  ItemedFormFields itemed = ItemedFormFields();
 
   @override
   Widget build(BuildContext context) {
@@ -38,77 +44,7 @@ class _AddProductFieldsState extends State<AddProductFields> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TextFormField(
-            decoration: const InputDecoration(
-              labelText: 'Name',
-            ),
-            onChanged: (String? newValue) {
-              setState(() {
-                name = newValue!;
-              });
-            },
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter the category name';
-              }
-              if (value.length >= 15) {
-                return 'The name should be at most 15 characters';
-              }
-              return null;
-            },
-          ),
-          DropdownButtonFormField(
-            items: CategoriesRepository.instance
-                .getCategories()
-                .map((e) => e.name)
-                .toList()
-                .map((String items) {
-              return DropdownMenuItem(
-                value: items,
-                child: Text(items),
-              );
-            }).toList(),
-            onChanged: (String? newValue) {
-              setState(() {
-                category = newValue!;
-              });
-            },
-            decoration: const InputDecoration(
-              labelText: 'Category',
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please choose a category';
-              }
-              return null;
-            },
-          ),
-          DropdownButtonFormField(
-            items: CompaniesRepository.instance
-                .getCompanies()
-                .map((e) => e.name)
-                .toList()
-                .map((String items) {
-              return DropdownMenuItem(
-                value: items,
-                child: Text(items),
-              );
-            }).toList(),
-            onChanged: (String? newValue) {
-              setState(() {
-                manufacturer = newValue!;
-              });
-            },
-            decoration: const InputDecoration(
-              labelText: 'Manufacturer',
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please choose a manufaturer';
-              }
-              return null;
-            },
-          ),
+          base,
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: Container(
@@ -116,46 +52,46 @@ class _AddProductFieldsState extends State<AddProductFields> {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  propertyCheckbox(context, "Food", isFood, (value) {
-                    setState(() {
-                      isFood = value!;
-                    });
-                  }),
-                  propertyCheckbox(context, "Liquid", isLiquid, (value) {
-                    setState(() {
-                      isLiquid = value!;
-                    });
-                  }),
-                  propertyCheckbox(context, "Cleaning", isCleaning, (value) {
-                    setState(() {
-                      isCleaning = value!;
-                    });
-                  }),
-                  propertyCheckbox(context, "Itemed", isItemed, (value) {
-                    setState(() {
-                      isItemed = value!;
-                    });
-                  }),
+                  PropertyCheckbox(
+                      title: "Food",
+                      isSelected: isFood,
+                      onChanged: (value) {
+                        setState(() {
+                          isFood = value!;
+                        });
+                      }),
+                  PropertyCheckbox(
+                      title: "Liquid",
+                      isSelected: isLiquid,
+                      onChanged: (value) {
+                        setState(() {
+                          isLiquid = value!;
+                        });
+                      }),
+                  PropertyCheckbox(
+                      title: "Cleaning",
+                      isSelected: isCleaning,
+                      onChanged: (value) {
+                        setState(() {
+                          isCleaning = value!;
+                        });
+                      }),
+                  PropertyCheckbox(
+                      title: "Itemed",
+                      isSelected: isItemed,
+                      onChanged: (value) {
+                        setState(() {
+                          isItemed = value!;
+                        });
+                      }),
                 ],
               ),
             ),
           ),
-          if (isFood)
-            food = FoodFormFields(
-              formKey: widget.formKey,
-            ),
-          if (isLiquid)
-            liquid = LiquidFormFields(
-              formKey: widget.formKey,
-            ),
-          if (isCleaning)
-            cleaning = CleaningFormFields(
-              formKey: widget.formKey,
-            ),
-          if (isItemed)
-            itemed = ItemedFormFields(
-              formKey: widget.formKey,
-            ),
+          if (isFood) food,
+          if (isLiquid) liquid,
+          if (isCleaning) cleaning,
+          if (isItemed) itemed,
           SizedBox(
             height: 8,
           ),
@@ -167,7 +103,41 @@ class _AddProductFieldsState extends State<AddProductFields> {
                   onPressed: () {
                     // TODO: Add insert product
                     if (widget.formKey.currentState!.validate()) {
-                      //food?.servingSize
+                      Product product = ProductBase(
+                          id: "id",
+                          createdAt: DateTime.now(),
+                          name: base.name,
+                          images: [""],
+                          manufacturer: base.manufacturer,
+                          customCategory: base.category,
+                          storesURLs: {
+                            "Spinneys": base.spinneysURL,
+                            "Amazon": base.amazonURL,
+                            "Carrefour": base.carrefourURL
+                          });
+                      if (isFood)
+                        product = FoodProduct(
+                            product: product,
+                            calories: food.calories,
+                            servingSize: food.servingSize,
+                            ingredients: FoodFormFields.ingredientsList,
+                            allergyInfo: FoodFormFields.allergiesList,
+                            nutrients: {});
+                      if (isLiquid)
+                        product = LiquidProduct(
+                            product: product,
+                            volume: liquid.volume,
+                            unit: liquid.unit);
+                      if (isItemed)
+                        product = ItemedProduct(
+                            product: product, noOfItems: itemed.noOfItems);
+                      if (isCleaning)
+                        product = CleaningProduct(
+                            product: product,
+                            materialCleaned: CleaningFormFields.materialsList);
+                      ProductsRepository.instance.insert(product).then((value) {
+                        context.pop();
+                      });
                     }
                   },
                   child: const Text('Submit'),
@@ -179,33 +149,4 @@ class _AddProductFieldsState extends State<AddProductFields> {
       ),
     );
   }
-}
-
-Widget propertyCheckbox(
-    BuildContext context, String title, bool isSelected, Function onChanged) {
-  return Container(
-    constraints: BoxConstraints(
-      maxWidth: 200,
-      minWidth: 200,
-    ),
-    child: Padding(
-      padding: const EdgeInsets.all(2.0),
-      child: CheckboxListTile(
-        value: isSelected,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
-            side:
-                BorderSide(color: Theme.of(context).primaryColor, width: 2.0)),
-        checkboxShape: CircleBorder(),
-        tileColor: isSelected ? Theme.of(context).primaryColor : null,
-        activeColor: Theme.of(context).primaryColor,
-        title: Text(
-          title,
-        ),
-        onChanged: (((value) {
-          onChanged(value);
-        })),
-      ),
-    ),
-  );
 }
