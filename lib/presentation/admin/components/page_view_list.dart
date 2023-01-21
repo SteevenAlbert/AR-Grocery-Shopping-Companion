@@ -43,11 +43,9 @@ class _PageViewListState extends State<PageViewList> {
               ],
             );
           }
-          return Expanded(
-            child: Align(
-                alignment: Alignment.center,
-                child: CircularProgressIndicator()),
-          );
+          return Align(
+              alignment: Alignment.center,
+              child: CircularProgressIndicator());
         }));
   }
 }

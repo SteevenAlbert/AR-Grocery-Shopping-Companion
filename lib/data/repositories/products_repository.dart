@@ -43,7 +43,7 @@ class ProductsRepository {
   }
 
   List<Product> retrieveProducts(AsyncSnapshot snapshot) {
-    Map data = snapshot.data.snapshot.value['products'];
+    Map<String, dynamic> data = jsonDecode(jsonEncode(snapshot.data.snapshot.value['products'])) as Map<String, dynamic>;
     List<Product> products = [];
     data.forEach((index, data) {
       Product product = ProductsRepository.selectProductFromMap(data);

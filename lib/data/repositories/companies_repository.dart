@@ -41,7 +41,7 @@ class CompaniesRepository {
   }
 
   List<Company> retrieveCompanies(AsyncSnapshot snapshot) {
-    Map data = snapshot.data.snapshot.value['companies'];
+    Map<String, dynamic> data = jsonDecode(jsonEncode(snapshot.data.snapshot.value['companies'])) as Map<String, dynamic>;
     List<Company> companies = [];
     data.forEach((index, data) {
       data["id"] = index;

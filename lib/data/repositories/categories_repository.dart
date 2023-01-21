@@ -42,7 +42,7 @@ class CategoriesRepository {
   }
 
   List<CustomCategory> retrieveCategories(AsyncSnapshot snapshot) {
-    Map data = snapshot.data.snapshot.value['categories'];
+    Map<String, dynamic> data = jsonDecode(jsonEncode(snapshot.data.snapshot.value['categories'])) as Map<String, dynamic>;
     List<CustomCategory> categories = [];
     data.forEach((index, data) {
       data["id"] = index;

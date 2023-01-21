@@ -16,7 +16,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
   Widget build(BuildContext context) {
     final PageController page = PageController();
     return LayoutBuilder(
-        builder: ((BuildContext context, BoxConstraints constraints) {
+        builder: ((BuildContext layoutContext, BoxConstraints constraints) {
       if (constraints.maxWidth > 600 && constraints.maxHeight > 600) {
         return Scaffold(
           body: Row(children: [

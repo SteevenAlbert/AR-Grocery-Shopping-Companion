@@ -10,20 +10,26 @@ class CompaniesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+    return Stack(children: [
+      Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CompaniesList(snapshot: snapshot,),
+          CompaniesList(snapshot: snapshot),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.push('/add_company_page');
-        },
-        child: Icon(Icons.add),
+      Padding(
+        padding: EdgeInsets.all(16),
+        child: Align(
+          alignment: Alignment.bottomRight,
+          child: FloatingActionButton(
+            onPressed: () {
+              context.push('/add_company_page');
+            },
+            child: Icon(Icons.add),
+          ),
+        ),
       ),
-    );
+    ]);
   }
 }
