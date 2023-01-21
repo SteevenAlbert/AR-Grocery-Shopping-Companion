@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:ar_grocery_companion/data/helpers/db_helper.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -42,8 +43,15 @@ class ProductsRepository {
   }
 
   Future<List<Product>> fetchProductsList() async {
-    // TODO: use the db_helper instead
-    _products = await queryDummyJson();
+    DataSnapshot? snapshot = await FirebaseHelper.read('products');
+
+    snapshot!.children.forEach((childSnapshot) {
+      var product =
+          jsonDecode(jsonEncode(childSnapshot.value)) as Map<String, dynamic>;
+      Product newProduct = selectProductFromMap(product);
+      newProduct.id = childSnapshot.key!;
+      _products.add(newProduct);
+    });
     return _products;
   }
 
@@ -60,9 +68,9 @@ class ProductsRepository {
     return tempList;
   }
 
-  Future<int> delete() async {
-    // TODO: implement delete product
-    throw UnimplementedError();
+  Future<String> deleteByID(id) async {
+    FirebaseHelper.delete('products/$id');
+    return id;
   }
 
   Future<int> deleteByName(name) async {

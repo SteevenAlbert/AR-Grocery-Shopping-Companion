@@ -7,7 +7,7 @@ import 'package:ar_grocery_companion/presentation/home/components/product_card.d
 class AlternativeProducts extends StatelessWidget {
   final Product product;
   AlternativeProducts({required this.product, super.key});
-  final Future<List<Product>> products = ProductsRepository.queryDummyJson();
+  final Future<List<Product>> products = ProductsRepository.instance.fetchProductsList();
 
   @override
   Widget build(BuildContext context) {

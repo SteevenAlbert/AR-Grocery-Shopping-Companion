@@ -1,3 +1,4 @@
+import 'package:ar_grocery_companion/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -54,7 +55,7 @@ class ProductCard extends ConsumerWidget {
                               ? AspectRatio(
                                   aspectRatio: 16 / 10,
                                   child: Image.asset(
-                                    product.images[0],
+                                    product.images[0].isEmpty? kNoProductImg:product.images[0],
                                   ))
                               : Image.asset(product.images[0],
                                   width: 100, height: 100)),

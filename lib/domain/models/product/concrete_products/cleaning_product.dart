@@ -32,7 +32,7 @@ class CleaningProduct extends ProductDecorator {
 
   factory CleaningProduct.fromMap(Map<String, dynamic> map) {
     return CleaningProduct(
-      product: ProductsRepository.selectProductFromMap(map),
+      product: ProductsRepository.selectProductFromMap(map['product']),
       materialCleaned: List<String>.from((map['materialCleaned'] as List)),
     );
   }

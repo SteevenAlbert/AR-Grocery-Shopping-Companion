@@ -47,19 +47,19 @@ class FoodProduct extends ProductDecorator {
       'ingredients': ingredients,
       'allergyInfo': allergyInfo,
       'nutrients': nutrients,
-      'product' : ProductsRepository.selectProductToMap(product),
+      'product': ProductsRepository.selectProductToMap(product),
     };
   }
 
   factory FoodProduct.fromMap(Map<String, dynamic> map) {
     return FoodProduct(
-      product: ProductsRepository.selectProductFromMap(map),
+      product: ProductsRepository.selectProductFromMap(map['product']),
       calories: map['calories'] as int,
       servingSize: map['servingSize'] as String,
       ingredients: List<String>.from((map['ingredients'] as List)),
       allergyInfo: List<String>.from((map['allergyInfo'] as List)),
-      nutrients:
-          Map<String, Map<String, dynamic>>.from((map['nutrients'] as Map)),
+      nutrients: {},
+      // Map<String, Map<String, dynamic>>.from((map['nutrients'] as Map)),
     );
   }
 

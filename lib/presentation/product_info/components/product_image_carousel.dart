@@ -1,3 +1,4 @@
+import 'package:ar_grocery_companion/constants/constants.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -31,8 +32,8 @@ class _ProductCarouselSliderState extends State<ProductCarouselSlider> {
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         CarouselSlider(
           items: [
-            Image.asset(widget.product.images[0]),
-            Image.asset(widget.product.images[0])
+            Image.asset(widget.product.images[0].isEmpty?kNoProductImg:widget.product.images[0]),
+            Image.asset(widget.product.images[0].isEmpty?kNoProductImg:widget.product.images[0])
           ],
           carouselController: _controller,
           options: CarouselOptions(

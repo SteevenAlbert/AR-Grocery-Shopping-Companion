@@ -34,7 +34,14 @@ class _ProductsListState extends State<ProductsList> {
         // TODO: add delete function
         trailing: DataGridDeleteButton(
           dataGridController: dataGridController,
-          deleteFunction: () {},
+          deleteFunction: () {
+            for (var i = 0; i < dataGridController.selectedRows.length; i++) {
+            Product company = products.firstWhere((element) =>
+                element.name ==
+                dataGridController.selectedRows[i].getCells()[0].value);
+            ProductsRepository.instance.deleteByID(company.id);
+          }
+          },
         ),
         list: ElementsDataGrid(
           dataSource: productDataSource,
@@ -57,7 +64,7 @@ class ProductDataSource extends DataGridSource {
               DataGridCell<Function>(
                   columnName: 'edit',
                   value: () {
-                    context.push('/edit_product_page', extra: product);
+                    // context.push('/edit_product_page', extra: product);
                   }),
             ]))
         .toList();

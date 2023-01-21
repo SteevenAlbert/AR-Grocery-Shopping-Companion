@@ -35,7 +35,7 @@ class _MaterialFieldState extends State<MaterialField> {
       onChanged: (v) => CleaningFormFields.materialsList[widget.index] = v,
       decoration: InputDecoration(hintText: 'Material'),
       validator: (v) {
-        // if (v!.trim().isEmpty) return 'Please enter at least one allergy and remove unused fields';
+        if (v!.trim().isEmpty) return 'Please enter at least one material and remove unused fields';
         return null;
       },
     );

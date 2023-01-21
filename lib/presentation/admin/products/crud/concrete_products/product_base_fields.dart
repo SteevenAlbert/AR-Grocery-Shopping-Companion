@@ -52,8 +52,8 @@ class _ProductBaseFieldsState extends State<ProductBaseFields> {
           if (value == null || value.isEmpty) {
             return 'Please enter the product name';
           }
-          if (value.length >= 15) {
-            return 'The name should be at most 15 characters';
+          if (value.length >= 35) {
+            return 'The name should be at most 35 characters';
           }
           return null;
         },
