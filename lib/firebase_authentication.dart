@@ -88,7 +88,10 @@ class FirebaseAuthentication {
         print(e);
       }
     } else {
-      final GoogleSignIn googleSignIn = GoogleSignIn();
+      final GoogleSignIn googleSignIn = GoogleSignIn(scopes: [
+        'email',
+        'https://www.googleapis.com/auth/userinfo.profile',
+      ]);
 
       final GoogleSignInAccount? googleSignInAccount =
           await googleSignIn.signIn();
@@ -124,24 +127,6 @@ class FirebaseAuthentication {
     return user;
   }
 
-  static Future<void> signOut({required BuildContext context}) async {
-    final GoogleSignIn googleSignIn = GoogleSignIn();
-
-    try {
-      if (!kIsWeb) {
-        await googleSignIn.signOut();
-      }
-      await FirebaseAuth.instance.signOut();
-    } catch (e) {
-      CustomAwesomeSnackbar(
-          context: context,
-          title: 'Error Signing Out.',
-          message:
-              'It appears there was an error during sign out. Please try again.',
-          contentType: ContentType.failure);
-    }
-  }
-
   static Future<void> resetPassword(
       {required String email, required BuildContext context}) async {
     try {
@@ -159,8 +144,4 @@ class FirebaseAuthentication {
           contentType: ContentType.failure);
     }
   }
-
-  // String getCurrentUserId() {
-  //   return FirebaseAuth.instance.currentUser?.uid ?? '';
-  // }
 }

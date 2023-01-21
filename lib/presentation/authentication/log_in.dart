@@ -63,7 +63,7 @@ class LogInScreenState extends State<LogInScreen> {
   void _GooglelogIn() async {
     await FirebaseAuthentication.signInWithGoogle(context: context)
         .then((user) {
-      print("ALOO");
+      print("HERE>>>");
       print(user);
     });
   }
