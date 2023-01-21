@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:ar_grocery_companion/domain/models/product/product.dart';
 import 'package:ar_grocery_companion/presentation/product_info/components/product_details.dart';
 
-import '../home/components/fav_icon.dart';
+import '../home/components/fav_icon_container.dart';
 import 'components/alternative_products_tab.dart';
 import 'components/online_stores_tab.dart';
 import 'components/product_image_carousel.dart';
@@ -62,7 +62,7 @@ class ProductPage extends StatelessWidget {
                                 }
                               },
                               icon: Image.asset('assets/images/backbtn.png')),
-                          actions: [FavIcon(product: product)],
+                          actions: [FavIconContainer(product: product)],
                           flexibleSpace: FlexibleSpaceBar(
                             centerTitle: true,
                             collapseMode: CollapseMode.parallax,

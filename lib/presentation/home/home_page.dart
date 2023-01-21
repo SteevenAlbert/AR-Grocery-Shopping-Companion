@@ -1,6 +1,7 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:ar_grocery_companion/data/repositories/categories_repository.dart';
 import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
 import 'package:ar_grocery_companion/domain/models/custom_category.dart';
@@ -9,6 +10,16 @@ import 'package:ar_grocery_companion/presentation/components/header.dart';
 import 'package:ar_grocery_companion/presentation/home/components/carousel.dart';
 import 'package:ar_grocery_companion/presentation/home/components/tabs.dart';
 import 'package:ar_grocery_companion/presentation/search/search_bar.dart';
+import 'package:ar_grocery_companion/data/providers/favs_provider.dart';
+import 'package:ar_grocery_companion/data/repositories/users_repository.dart';
+
+AppUsersRepository usersRepo = AppUsersRepository.instance;
+Future<String> getSessionID() async {
+  return (await SessionManager().containsKey("isLoggedIn") != true ||
+          await SessionManager().get("isLoggedIn") != true)
+      ? ""
+      : await SessionManager().get("UID");
+}
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -18,7 +29,8 @@ class HomePage extends ConsumerWidget {
     Size size = MediaQuery.of(context).size;
     Future<List<Product>> products =
         ref.watch(ProductsRepository.instance.productsListFutureProvider);
-    Future<List<CustomCategory>> categories = CategoriesRepository.instance.fetchCategoriesList();
+    Future<List<CustomCategory>> categories =
+        CategoriesRepository.instance.fetchCategoriesList();
     return Scaffold(
         body: ListView(children: [
       Header(size: size),
@@ -37,13 +49,15 @@ class HomePage extends ConsumerWidget {
 
             FutureBuilder(
                 future: Future.wait([categories]),
+                // future: Future.wait([categories, retireveFavs()]),
                 builder: ((context, snapshot) {
                   if (snapshot.hasData) {
+                    // List<String> favs = snapshot.data![1]! as List<String>;
                     return FutureBuilder(
-                        future: categories,
+                        future: Future.wait([categories]),
                         builder: ((context, snapshot) {
                           if (snapshot.hasData) {
-                            List<CustomCategory> category = snapshot.data!;
+                            List<CustomCategory> category = snapshot.data![0];
                             if (category[0].name != "All") {
                               category.insert(
                                   0, CustomCategory(id: "0", name: "All"));
@@ -66,4 +80,9 @@ class HomePage extends ConsumerWidget {
       ),
     ]));
   }
+}
+
+Future<List<String>?> retireveFavs() async {
+  String UID = await getSessionID();
+  return usersRepo.fetchFavsList(UID);
 }

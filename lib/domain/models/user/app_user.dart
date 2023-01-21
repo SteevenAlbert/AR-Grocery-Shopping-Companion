@@ -11,7 +11,7 @@ class AppUser {
   String DOB;
   String gender;
   String? pfpPath;
-
+  List<String>? favs;
   AppUser(
       {required this.UID,
       required this.email,
@@ -19,7 +19,8 @@ class AppUser {
       required this.name,
       required this.DOB,
       required this.gender,
-      this.pfpPath = kNoPfpImg});
+      this.pfpPath = kNoPfpImg,
+      this.favs});
 
   AppUser copyWith({
     required String UID,
@@ -29,6 +30,7 @@ class AppUser {
     required String DOB,
     required String gender,
     String? pfpPath,
+    List<String>? favs,
   }) {
     return AppUser(
       UID: this.UID,
@@ -38,6 +40,7 @@ class AppUser {
       DOB: this.DOB,
       gender: this.gender,
       pfpPath: pfpPath ?? this.pfpPath,
+      favs: favs ?? this.favs,
     );
   }
 
@@ -49,6 +52,7 @@ class AppUser {
       'DOB': DOB,
       'gender': gender,
       'pfpPath': pfpPath,
+      'favs': favs,
     };
   }
 
@@ -67,6 +71,7 @@ class AppUser {
       DOB: map['DOB'] as String,
       gender: map['gender'] as String,
       pfpPath: map['pfpPath'],
+      favs: map['favs'] != null ? List<String>.from((map['favs'] as List)) : [],
     );
   }
 
@@ -75,7 +80,7 @@ class AppUser {
 
   @override
   String toString() {
-    return 'AppUser(UID: $UID,email: $email, type: $type, name: $name, DOB: $DOB, gender: $gender, pfpPath: $pfpPath)';
+    return 'AppUser(UID: $UID,email: $email, type: $type, name: $name, DOB: $DOB, gender: $gender, pfpPath: $pfpPath,favs:$favs)';
   }
 
   @override
@@ -88,7 +93,8 @@ class AppUser {
         other.name == name &&
         other.DOB == DOB &&
         other.gender == gender &&
-        other.pfpPath == pfpPath;
+        other.pfpPath == pfpPath &&
+        other.favs == favs;
   }
 
   @override
@@ -98,6 +104,7 @@ class AppUser {
         name.hashCode ^
         DOB.hashCode ^
         gender.hashCode ^
-        pfpPath.hashCode;
+        pfpPath.hashCode ^
+        favs.hashCode;
   }
 }

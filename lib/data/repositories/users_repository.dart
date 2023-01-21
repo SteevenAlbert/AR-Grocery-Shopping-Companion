@@ -38,7 +38,8 @@ class AppUsersRepository {
         "name": appUser.name,
         "DOB": appUser.DOB,
         "pfpPath": appUser.pfpPath,
-        "gender": appUser.gender
+        "gender": appUser.gender,
+        "favs": appUser.favs
       }).then((_) => true);
     } catch (e) {
       print("ERROR: " + e.toString());
@@ -66,6 +67,21 @@ class AppUsersRepository {
       print(userMap.runtimeType);
       return AppUser.fromMap(userMap);
     }).then((user) => user);
+  }
+
+  Future<List<String>?> fetchFavsList(String UID) async {
+    DataSnapshot snapshot = await ref.child(AppUser.path(UID + "/favs")).get();
+    List<String> favString = [];
+    if (snapshot.exists) {
+      List<dynamic> favs = snapshot.value as List<dynamic>;
+      for (var fav in favs) {
+        favString.add(fav as String);
+      }
+      return favString;
+      // return snapshot.value as Map<dynamic, dynamic>;
+    } else {
+      return null;
+    }
   }
 
   Future<bool> deleteAppUser(String UID) async {
