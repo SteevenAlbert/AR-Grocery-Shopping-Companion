@@ -6,7 +6,7 @@ import 'package:ar_grocery_companion/domain/models/product/product.dart';
 import 'package:go_router/go_router.dart';
 
 class FavIcon extends StatefulWidget {
-  const FavIcon(
+  FavIcon(
       {super.key,
       required this.isFavo,
       required this.ref,
@@ -61,12 +61,10 @@ favLogic(isFavo, WidgetRef ref, Product product, BuildContext context,
   if (isFavo) {
     ref.read(favsProvider.notifier).addItem(product.id);
     appUser.favs = ref.read(favsProvider);
-    print(appUser.favs);
     ref.watch(favsProvider.notifier).update(appUser);
   } else {
     ref.read(favsProvider.notifier).removeItem(product.id);
     appUser.favs = ref.read(favsProvider);
-    print(appUser.favs);
     ref.watch(favsProvider.notifier).update(appUser);
   }
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
