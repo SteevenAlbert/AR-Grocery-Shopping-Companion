@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:ar_grocery_companion/data/repositories/users_repository.dart';
+import 'package:ar_grocery_companion/domain/models/user/app_user.dart';
 import 'package:ar_grocery_companion/data/providers/favs_provider.dart';
 import 'package:ar_grocery_companion/data/providers/theme_mode_provider.dart';
 import 'package:ar_grocery_companion/domain/models/product/product.dart';
+import 'package:flutter_session_manager/flutter_session_manager.dart';
+import 'fav_icon2.dart';
 
 class FavIcon extends StatefulWidget {
   const FavIcon({super.key, required this.product});
@@ -14,8 +17,23 @@ class FavIcon extends StatefulWidget {
 }
 
 class _FavIconState extends State<FavIcon> {
+  Future<AppUser?> getSessionUser() async {
+    return await SessionManager()
+        .get('UID')
+        .then((UID) => AppUsersRepository.instance.fetchAppUser(UID));
+  }
+
   @override
   Widget build(BuildContext context) {
+    // FutureBuilder(
+    //         future: getSessionUser(),
+    //         builder: (context, AsyncSnapshot<AppUser?> snapshot) {
+    //           if (snapshot.hasData) {
+    //             return ProfilePageForm(appUser: snapshot.data!);
+    //           } else {
+    //             return Center(child: CircularProgressIndicator());
+    //           }
+    //         })
     return Container(
       child: Center(
         child: Consumer(
@@ -34,68 +52,24 @@ class _FavIconState extends State<FavIcon> {
                           : Theme.of(context).primaryColor.withOpacity(0.1),
                       shape: BoxShape.circle),
                   child: Center(
-                    child: IconButton(
-                        onPressed: () {
-                          if (isFavo) {
-                            isFavo = false;
-                          } else {
-                            isFavo = true;
-                          }
-                          if (isFavo) {
-                            ref
-                                .read(favsProvider.notifier)
-                                .addItem(widget.product.id);
-                          } else {
-                            ref
-                                .read(favsProvider.notifier)
-                                .removeItem(widget.product.id);
-                          }
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            margin: const EdgeInsets.only(
-                                left: 50, right: 50, bottom: 70),
-                            elevation: 6.0,
-                            backgroundColor: Theme.of(context).primaryColor,
-                            behavior: SnackBarBehavior.floating,
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20))),
-                            duration: const Duration(seconds: 2),
-                            content: isFavo
-                                ? Row(
-                                    children: [
-                                      Icon(Icons.check_circle,
-                                          color: Colors.white),
-                                      SizedBox(width: 6),
-                                      Text(
-                                        'Item added to favorites',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            letterSpacing: 0.7),
-                                      ),
-                                    ],
-                                  )
-                                : Row(
-                                    children: [
-                                      Icon(Icons.check_circle,
-                                          color: Colors.white),
-                                      SizedBox(width: 4),
-                                      Text(
-                                        'Item removed from favorites',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            letterSpacing: 0.3),
-                                      ),
-                                    ],
-                                  ),
-                          ));
-                        },
-                        icon: isFavo
-                            ? Icon(Icons.favorite, size: 23, color: Colors.red)
-                            : Icon(Icons.favorite_border,
-                                size: 23,
-                                color: darkMode == ThemeMode.light
-                                    ? Colors.amber.withOpacity(0.4)
-                                    : Theme.of(context).primaryColor)),
+                    child: FutureBuilder(
+                      future: getSessionUser(),
+                      builder: (context, AsyncSnapshot<AppUser?> snapshot) {
+                        if (snapshot.hasData) {
+                          return FavIcon2(
+                              isFavo: isFavo,
+                              ref: ref,
+                              product: widget.product,
+                              darkMode: darkMode);
+                        } else {
+                          return FavIcon2(
+                              isFavo: null,
+                              ref: ref,
+                              product: widget.product,
+                              darkMode: darkMode);
+                        }
+                      },
+                    ),
                   ),
                 )
               ],

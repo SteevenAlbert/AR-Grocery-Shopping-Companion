@@ -38,7 +38,8 @@ class AppUsersRepository {
         "name": appUser.name,
         "DOB": appUser.DOB,
         "pfpPath": appUser.pfpPath,
-        "gender": appUser.gender
+        "gender": appUser.gender,
+        "favs": appUser.favs
       }).then((_) => true);
     } catch (e) {
       print("ERROR: " + e.toString());

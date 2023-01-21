@@ -1,4 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ar_grocery_companion/data/repositories/users_repository.dart';
+import 'package:ar_grocery_companion/domain/models/user/app_user.dart';
+
+AppUsersRepository usersRepo = AppUsersRepository.instance;
 
 class FavsNotifier extends StateNotifier<List<String>> {
   FavsNotifier() : super([]);
@@ -20,6 +24,11 @@ class FavsNotifier extends StateNotifier<List<String>> {
       return false;
     }
     return true;
+  }
+
+  Future<void> update(AppUser appUser) async {
+    usersRepo.updateAppUser(appUser: appUser);
+    print(state);
   }
 }
 
