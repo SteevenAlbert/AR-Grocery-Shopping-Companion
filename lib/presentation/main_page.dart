@@ -1,10 +1,9 @@
+import 'dart:async';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
-
 import 'package:ar_grocery_companion/presentation/components/nav_bar.dart';
 import 'package:ar_grocery_companion/presentation/home/components/drawer.dart';
 import 'package:ar_grocery_companion/utils.dart';
-
 import '../services/connection_checker.dart';
 import 'no_internet_page.dart';
 
@@ -18,12 +17,14 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   ConnectionStatusSingleton connectionStatus =
       ConnectionStatusSingleton.getInstance();
+  late StreamSubscription _connectionChangeStream;
   bool _hasConnection = true;
 
   @override
   initState() {
     super.initState();
-
+    _connectionChangeStream =
+        connectionStatus.connectionChange.listen(connectionChanged);
     print(connectionStatus.hasConnection);
   }
 

@@ -4,12 +4,10 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:ar_grocery_companion/constants/constants.dart';
 import 'package:ar_grocery_companion/data/helpers/db_helper.dart';
 import 'package:ar_grocery_companion/data/providers/theme_mode_provider.dart';
 import 'package:ar_grocery_companion/services/firebase_options.dart';
-
 import 'router.dart';
 import 'utils.dart';
 
@@ -33,9 +31,9 @@ void main() async {
   //Check Connection Status
   initConnectionStatus();
 
+  //Set System UI Overlay
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
       overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
-
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
   ));
