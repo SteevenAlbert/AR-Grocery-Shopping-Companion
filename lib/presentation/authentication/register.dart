@@ -69,6 +69,7 @@ class RegisterScreenState extends State<RegisterScreen> {
   }
 
   void _register() async {
+    FocusManager.instance.primaryFocus?.unfocus();
     if (_formKey.currentState!.validate()) {
       FirebaseAuthentication.registerUsingEmailPassword(
               context: context,

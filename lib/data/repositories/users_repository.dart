@@ -8,15 +8,7 @@ import 'package:flutter/material.dart';
 class AppUsersRepository {
   static final AppUsersRepository instance = AppUsersRepository._();
 
-  // List<AppUser> _appUsers = [];
   DatabaseReference ref = FirebaseDatabase.instance.ref('/users');
-
-  // static AppUsersRepository? init() {
-  //   AppUsersRepository AppUsersRepo = AppUsersRepository._();
-  //   AppUsersRepo.fetchAppUsersList().then((_) {
-  //     return AppUsersRepo;
-  //   });
-  // }
 
   AppUsersRepository._();
 
@@ -26,7 +18,6 @@ class AppUsersRepository {
           .child(AppUser.path(appUser.UID))
           .set(appUser.toMap())
           .then((value) => true);
-      // .then((value) => this._appUsers.add(appUser));
     } catch (e) {
       print("ERROR: " + e.toString());
       return false;
@@ -92,25 +83,7 @@ class AppUsersRepository {
 
   Future<bool> deleteAppUser(String UID) async {
     // TODO: implement this
-    //delete fire auth user
-    //delete collection user
-    //delete and appUser model
 
     throw UnimplementedError();
   }
-
-  // void reset() {
-  //   // TODO: implement this
-  //   throw UnimplementedError();
-  // }
-
-  // List<AppUser> getAppUsers() {
-  //   return this._appUsers;
-  // }
-
-  // AppUser getAppUser(String UID) {
-  //   return this._appUsers.firstWhere(
-  //         (AppUser element) => element.UID == UID,
-  //       );
-  // }
 }

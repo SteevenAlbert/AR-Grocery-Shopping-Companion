@@ -1,3 +1,4 @@
+import 'package:ar_grocery_companion/firebase_authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:go_router/go_router.dart';
@@ -77,8 +78,9 @@ class _AdminDrawerState extends State<AdminDrawer> {
                 leading: Icon(Icons.logout),
                 title: Text("Sign Out"),
                 onTap: () async {
-                  await SessionManager().destroy().then((_) {
-                    context.go('/authenticate');
+                  await SessionManager().destroy().then((_) async {
+                    await FirebaseAuthentication.signOut(context: context)
+                        .then((_) => context.go('/authenticate'));
                   });
                 })
           ],

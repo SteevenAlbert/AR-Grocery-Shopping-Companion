@@ -31,6 +31,7 @@ class LogInScreenState extends State<LogInScreen> {
   }
 
   void _logIn() async {
+    FocusManager.instance.primaryFocus?.unfocus();
     if (_formKey.currentState!.validate()) {
       FirebaseAuthentication.signInUsingEmailPassword(
         email: emailController.text,
@@ -61,10 +62,12 @@ class LogInScreenState extends State<LogInScreen> {
   }
 
   void _GooglelogIn() async {
-    await FirebaseAuthentication.signInWithGoogle(context: context)
-        .then((user) {
-      print("HERE>>>");
-      print(user);
+    await FirebaseAuthentication.signOut(context: context).then((_) async {
+      await FirebaseAuthentication.signInWithGoogle(context: context)
+          .then((user) {
+        print("HERE>>>");
+        print(user);
+      });
     });
   }
 

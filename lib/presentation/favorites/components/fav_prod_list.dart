@@ -41,7 +41,7 @@ class _FavProductsListState extends ConsumerState<FavProductsList> {
               height: 300,
               width: 300,
             ),
-            Text("You have no saved items in your list",
+            Text("Your saved items will appear here.",
                 style: TextStyle(fontSize: 16)),
             SizedBox(height: 20),
             ElevatedButton(

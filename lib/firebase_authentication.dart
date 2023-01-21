@@ -1,8 +1,14 @@
+import 'dart:convert';
+
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:extension_google_sign_in_as_googleapis_auth/extension_google_sign_in_as_googleapis_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:googleapis/storage/v1.dart';
+import 'package:googleapis_auth/auth_io.dart';
+import 'package:http/http.dart' as http;
 
 import 'presentation/components/custom_widgets/custom_awesome_snackbar.dart';
 
@@ -79,6 +85,10 @@ class FirebaseAuthentication {
     if (kIsWeb) {
       GoogleAuthProvider authProvider = GoogleAuthProvider();
 
+      authProvider.addScope('https://www.googleapis.com/auth/userinfo.profile');
+      authProvider
+          .addScope('https://www.googleapis.com/auth/user.birthday.read');
+      authProvider.addScope('https://www.googleapis.com/auth/user.gender.read');
       try {
         final UserCredential userCredential =
             await auth.signInWithPopup(authProvider);
@@ -91,6 +101,8 @@ class FirebaseAuthentication {
       final GoogleSignIn googleSignIn = GoogleSignIn(scopes: [
         'email',
         'https://www.googleapis.com/auth/userinfo.profile',
+        'https://www.googleapis.com/auth/user.birthday.read',
+        'https://www.googleapis.com/auth/user.gender.read',
       ]);
 
       final GoogleSignInAccount? googleSignInAccount =
@@ -99,7 +111,6 @@ class FirebaseAuthentication {
       if (googleSignInAccount != null) {
         final GoogleSignInAuthentication googleSignInAuthentication =
             await googleSignInAccount.authentication;
-
         final AuthCredential credential = GoogleAuthProvider.credential(
           accessToken: googleSignInAuthentication.accessToken,
           idToken: googleSignInAuthentication.idToken,
@@ -111,14 +122,6 @@ class FirebaseAuthentication {
 
           user = userCredential.user;
         } on FirebaseAuthException catch (e) {
-          if (e.code == 'account-exists-with-different-credential') {
-            // TODO: snackbar
-            print(e);
-          } else if (e.code == 'invalid-credential') {
-            // TODO: snackbar
-            print(e);
-          }
-        } catch (e) {
           print(e);
         }
       }
@@ -141,6 +144,24 @@ class FirebaseAuthentication {
           context: context,
           title: 'Email Not Sent',
           message: 'No user associated with that email. Please try again.',
+          contentType: ContentType.failure);
+    }
+  }
+
+  static Future<void> signOut({required BuildContext context}) async {
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+
+    try {
+      if (!kIsWeb) {
+        await googleSignIn.signOut();
+      }
+      await FirebaseAuth.instance.signOut();
+    } catch (e) {
+      CustomAwesomeSnackbar(
+          context: context,
+          title: 'Error Signing Out.',
+          message:
+              'It appears there was an error during sign out. Please try again.',
           contentType: ContentType.failure);
     }
   }
