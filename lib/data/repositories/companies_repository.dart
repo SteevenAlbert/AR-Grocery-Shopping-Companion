@@ -28,19 +28,19 @@ class CompaniesRepository {
 
   Future<bool> insert(Company company) async {
     bool inserted =
-        await FirebaseHelper.writeUnique('companies', company.toMap());
+        await FirebaseHelper.instance.writeUnique('companies', company.toMap());
     return inserted;
   }
 
   Future<String> update(Company company) async {
     Map<String, dynamic> com = company.toMap();
-    FirebaseHelper.update('companies/${com['id']}', com);
+    FirebaseHelper.instance.update('companies/${com['id']}', com);
     // FirebaseHelper.update('companies/-NLvOZI7U5judTjQBOI4', com);
     return company.id;
   }
 
   Future<List<Company>> fetchCompaniesList() async {
-    DataSnapshot? snapshot = await FirebaseHelper.read('companies');
+    DataSnapshot? snapshot = await FirebaseHelper.instance.read('companies');
 
     snapshot!.children.forEach((childSnapshot) {
       var company =
@@ -52,11 +52,11 @@ class CompaniesRepository {
   }
 
   Future<void> deleteAll() async {
-    FirebaseHelper.delete('companies');
+    FirebaseHelper.instance.delete('companies');
   }
 
   Future<String> deleteByID(id) async {
-    FirebaseHelper.delete('companies/$id');
+    FirebaseHelper.instance.delete('companies/$id');
     return id;
   }
 

@@ -20,8 +20,7 @@ void main() async {
 
   //Firebase Initalization
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  FirebaseHelper db = FirebaseHelper();
-  await db.init();
+  await FirebaseHelper.instance.init();
 
   //Push Notifications
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);

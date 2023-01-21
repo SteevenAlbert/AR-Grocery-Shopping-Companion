@@ -37,13 +37,13 @@ class ProductsRepository {
     // Provide the path root using DBCollections class
     // eg. FirebaseHelper.writeUnique(DBCollections.products + "/" + CompanyName, data)
 
-    bool inserted = await FirebaseHelper.writeUnique(
-        'products', selectProductToMap(product));
+    bool inserted = await FirebaseHelper.instance
+        .writeUnique('products', selectProductToMap(product));
     return inserted;
   }
 
   Future<List<Product>> fetchProductsList() async {
-    DataSnapshot? snapshot = await FirebaseHelper.read('products');
+    DataSnapshot? snapshot = await FirebaseHelper.instance.read('products');
 
     snapshot!.children.forEach((childSnapshot) {
       var product =
@@ -69,7 +69,7 @@ class ProductsRepository {
   }
 
   Future<String> deleteByID(id) async {
-    FirebaseHelper.delete('products/$id');
+    FirebaseHelper.instance.delete('products/$id');
     return id;
   }
 

@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:ar_grocery_companion/fire_auth.dart';
+import 'package:ar_grocery_companion/firebase_authentication.dart';
 import '../components/custom_widgets/custom_animated_button.dart';
 import '../components/custom_widgets/custom_text_form_field.dart';
 
@@ -17,7 +17,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
   void triggerResetPassword() async {
     if (_formKey.currentState!.validate()) {
-      FireAuthentication.resetPassword(
+      FirebaseAuthentication.resetPassword(
           email: emailController.text, context: context);
     }
   }

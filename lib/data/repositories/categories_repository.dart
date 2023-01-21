@@ -28,20 +28,20 @@ class CategoriesRepository {
   }
 
   Future<bool> insert(CustomCategory category) async {
-    bool inserted =
-        await FirebaseHelper.writeUnique('categories', category.toMap());
+    bool inserted = await FirebaseHelper.instance
+        .writeUnique('categories', category.toMap());
     return inserted;
   }
 
   Future<String> update(CustomCategory category) async {
     Map<String, dynamic> cat = category.toMap();
     print(cat);
-    FirebaseHelper.update('categories/${cat['id']}', cat);
+    FirebaseHelper.instance.update('categories/${cat['id']}', cat);
     return category.id;
   }
 
   Future<List<CustomCategory>> fetchCategoriesList() async {
-    DataSnapshot? snapshot = await FirebaseHelper.read('categories');
+    DataSnapshot? snapshot = await FirebaseHelper.instance.read('categories');
 
     snapshot!.children.forEach((childSnapshot) {
       var category =
@@ -53,11 +53,11 @@ class CategoriesRepository {
   }
 
   Future<void> deleteAll() async {
-    FirebaseHelper.delete('categories');
+    FirebaseHelper.instance.delete('categories');
   }
 
   Future<String> deleteByID(id) async {
-    FirebaseHelper.delete('categories/$id');
+    FirebaseHelper.instance.delete('categories/$id');
     return id;
   }
 
