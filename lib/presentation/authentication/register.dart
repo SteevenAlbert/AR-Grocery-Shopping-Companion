@@ -75,7 +75,6 @@ class RegisterScreenState extends State<RegisterScreen> {
               email: emailController.text,
               password: passwordController.text)
           .then((user) {
-        print(user);
         if (user != null) {
           AppUser appUser = AppUser(
               UID: user.uid,

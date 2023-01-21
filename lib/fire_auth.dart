@@ -140,8 +140,22 @@ class FireAuthentication {
     }
   }
 
-  static void resetPassword({required String email}) async {
-    await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+  static Future<void> resetPassword(
+      {required String email, required BuildContext context}) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      CustomAwesomeSnackbar(
+          context: context,
+          title: 'Email Sent',
+          message: 'Please check your email inbox.',
+          contentType: ContentType.success);
+    } catch (e) {
+      CustomAwesomeSnackbar(
+          context: context,
+          title: 'Email Not Sent',
+          message: 'No user associated with that email. Please try again.',
+          contentType: ContentType.failure);
+    }
   }
 
   String getCurrentUserId() {
