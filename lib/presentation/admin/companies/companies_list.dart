@@ -1,3 +1,4 @@
+import 'package:ar_grocery_companion/data/helpers/db_helper.dart';
 import 'package:ar_grocery_companion/data/repositories/companies_repository.dart';
 import 'package:ar_grocery_companion/domain/models/company.dart';
 import 'package:ar_grocery_companion/presentation/admin/components/delete_button.dart';
@@ -7,29 +8,18 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
-CompaniesRepository companiesrepo = CompaniesRepository.instance;
+class CompaniesList extends StatelessWidget {
+  CompaniesList({super.key, required this.snapshot});
 
-class CompaniesList extends StatefulWidget {
-  const CompaniesList({super.key});
-  @override
-  State<CompaniesList> createState() => _CompaniesListState();
-}
-
-class _CompaniesListState extends State<CompaniesList> {
-  List<Company> companies = <Company>[];
-  late CompanyDataSource companyDataSource;
+  final AsyncSnapshot snapshot;
   final DataGridController dataGridController = DataGridController();
 
   @override
-  void initState() {
-    super.initState();
-    companies = CompaniesRepository.instance.getCompanies();
-    companyDataSource =
-        CompanyDataSource(companyData: companies, context: context);
-  }
-
-  @override
   Widget build(BuildContext context) {
+    List<Company> companies =
+        CompaniesRepository.instance.retrieveCompanies(snapshot);
+    CompanyDataSource companyDataSource =
+        CompanyDataSource(companyData: companies, context: context);
     return ListCard(
       title: "Companies",
       trailing: DataGridDeleteButton(
@@ -39,7 +29,7 @@ class _CompaniesListState extends State<CompaniesList> {
             Company company = companies.firstWhere((element) =>
                 element.name ==
                 dataGridController.selectedRows[i].getCells()[0].value);
-            companiesrepo.deleteByID(company.id);
+            CompaniesRepository.instance.deleteByID(company.id);
           }
         },
       ),

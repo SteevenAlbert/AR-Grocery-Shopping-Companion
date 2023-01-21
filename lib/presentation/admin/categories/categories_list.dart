@@ -1,3 +1,4 @@
+import 'package:ar_grocery_companion/data/helpers/db_helper.dart';
 import 'package:ar_grocery_companion/data/repositories/categories_repository.dart';
 import 'package:ar_grocery_companion/domain/models/custom_category.dart';
 import 'package:ar_grocery_companion/presentation/admin/components/delete_button.dart';
@@ -7,48 +8,40 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
-CategoriesRepository categoriesrepo = CategoriesRepository.instance;
 
-class CategoriesList extends StatefulWidget {
-  const CategoriesList({super.key});
+class CategoriesList extends StatelessWidget {
+  CategoriesList({super.key, required this.snapshot});
 
-  @override
-  State<CategoriesList> createState() => _CategoriesListState();
-}
-
-class _CategoriesListState extends State<CategoriesList> {
-  List<CustomCategory> categories = <CustomCategory>[];
-  late CustomCategoryDataSource categoryDataSource;
+  final AsyncSnapshot snapshot;
   final DataGridController dataGridController = DataGridController();
 
   @override
-  void initState() {
-    super.initState();
-    categories = CategoriesRepository.instance.getCategories();
-    categoryDataSource =
-        CustomCategoryDataSource(categoryData: categories, context: context);
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return ListCard(
-        title: "Categories",
-        trailing: DataGridDeleteButton(
-          dataGridController: dataGridController,
-          deleteFunction: () {
-            for (var i = 0; i < dataGridController.selectedRows.length; i++) {
-              CustomCategory category = categories.firstWhere((element) =>
-                  element.name ==
-                  dataGridController.selectedRows[i].getCells()[0].value);
-              categoriesrepo.deleteByID(category.id);
-            }
-          },
-        ),
-        list: ElementsDataGrid(
-          dataSource: categoryDataSource,
-          columnNames: ['name', 'edit'],
-          dataGridController: dataGridController,
-        ));
+    List<CustomCategory> categories =
+              CategoriesRepository.instance.retrieveCategories(snapshot);
+          CustomCategoryDataSource categoryDataSource =
+              CustomCategoryDataSource(
+                  categoryData: categories, context: context);
+          return ListCard(
+              title: "Categories",
+              trailing: DataGridDeleteButton(
+                dataGridController: dataGridController,
+                deleteFunction: () {
+                  for (var i = 0;
+                      i < dataGridController.selectedRows.length;
+                      i++) {
+                    CustomCategory category = categories.firstWhere((element) =>
+                        element.name ==
+                        dataGridController.selectedRows[i].getCells()[0].value);
+                    CategoriesRepository.instance.deleteByID(category.id);
+                  }
+                },
+              ),
+              list: ElementsDataGrid(
+                dataSource: categoryDataSource,
+                columnNames: ['name', 'edit'],
+                dataGridController: dataGridController,
+              ));
   }
 }
 

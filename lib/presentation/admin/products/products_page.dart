@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class ProductsPage extends StatelessWidget {
-  const ProductsPage({super.key});
+  ProductsPage({super.key, required this.snapshot});
 
+  final AsyncSnapshot snapshot;
   @override
    Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +13,7 @@ class ProductsPage extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ProductsList(),
+          ProductsList(snapshot: snapshot,),
         ],
       ),
       floatingActionButton: FloatingActionButton(

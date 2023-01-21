@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -38,6 +39,18 @@ class CategoriesRepository {
     print(cat);
     FirebaseHelper.instance.update('categories/${cat['id']}', cat);
     return category.id;
+  }
+
+  List<CustomCategory> retrieveCategories(AsyncSnapshot snapshot) {
+    Map data = snapshot.data.snapshot.value['categories'];
+    List<CustomCategory> categories = [];
+    data.forEach((index, data) {
+      data["id"] = index;
+      CustomCategory category = CustomCategory.fromMap(data);
+      categories.add(category);
+    });
+
+    return categories;
   }
 
   Future<List<CustomCategory>> fetchCategoriesList() async {

@@ -1,3 +1,4 @@
+import 'package:ar_grocery_companion/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simple_shadow/simple_shadow.dart';
@@ -92,7 +93,9 @@ class _SearchPageState extends State<SearchPage> {
                                   const EdgeInsets.symmetric(vertical: 4.0),
                               alignment: Alignment.center,
                               child: SimpleShadow(
-                                  child: Image.asset(product.images[0])),
+                                  child: Image.asset(product.images[0].isEmpty
+                                      ? kNoProductImg
+                                      : product.images[0])),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
                                 color: Color(0xFFe5e5e5).withOpacity(0.5),

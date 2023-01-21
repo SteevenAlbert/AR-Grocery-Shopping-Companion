@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:firebase_database/firebase_database.dart';
 
 import 'package:ar_grocery_companion/domain/models/user/app_user.dart';
+import 'package:flutter/material.dart';
 
 class AppUsersRepository {
   static final AppUsersRepository instance = AppUsersRepository._();
@@ -67,6 +68,11 @@ class AppUsersRepository {
       print(userMap.runtimeType);
       return AppUser.fromMap(userMap);
     }).then((user) => user);
+  }
+
+  int retrieveUsersCount(AsyncSnapshot snapshot) {
+    Map data = snapshot.data.snapshot.value['users'];
+    return data.length;
   }
 
   Future<List<String>?> fetchFavsList(String UID) async {

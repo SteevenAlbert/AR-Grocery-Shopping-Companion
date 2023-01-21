@@ -18,6 +18,8 @@ class FirebaseHelper {
     _dbRef = FirebaseDatabase.instance.ref();
   }
 
+  DatabaseReference get dbRef => _dbRef;
+
   static final FirebaseHelper instance = FirebaseHelper._();
   FirebaseHelper._();
 

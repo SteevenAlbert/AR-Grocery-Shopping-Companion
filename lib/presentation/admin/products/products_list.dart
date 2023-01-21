@@ -4,31 +4,20 @@ import 'package:ar_grocery_companion/presentation/admin/components/delete_button
 import 'package:ar_grocery_companion/presentation/admin/components/element_datagrid.dart';
 import 'package:ar_grocery_companion/presentation/admin/components/list_card.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
-class ProductsList extends StatefulWidget {
-  const ProductsList({super.key});
+class ProductsList extends StatelessWidget {
+  ProductsList({super.key, required this.snapshot});
 
-  @override
-  State<ProductsList> createState() => _ProductsListState();
-}
-
-class _ProductsListState extends State<ProductsList> {
-  List<Product> products = <Product>[];
-  late ProductDataSource productDataSource;
+  final AsyncSnapshot snapshot;
   final DataGridController dataGridController = DataGridController();
 
   @override
-  void initState() {
-    super.initState();
-    products = ProductsRepository.instance.getProducts();
-    productDataSource =
-        ProductDataSource(productData: products, context: context);
-  }
-
-  @override
   Widget build(BuildContext context) {
+    List<Product> products =
+              ProductsRepository.instance.retrieveProducts(snapshot);
+    ProductDataSource productDataSource =
+        ProductDataSource(productData: products, context: context);
     return ListCard(
         title: "Products",
         // TODO: add delete function

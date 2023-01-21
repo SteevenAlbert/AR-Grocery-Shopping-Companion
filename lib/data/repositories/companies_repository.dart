@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -37,6 +38,23 @@ class CompaniesRepository {
     FirebaseHelper.instance.update('companies/${com['id']}', com);
     // FirebaseHelper.update('companies/-NLvOZI7U5judTjQBOI4', com);
     return company.id;
+  }
+
+  List<Company> retrieveCompanies(AsyncSnapshot snapshot) {
+    Map data = snapshot.data.snapshot.value['companies'];
+    List<Company> companies = [];
+    data.forEach((index, data) {
+      data["id"] = index;
+      Company category = Company.fromMap(data);
+      companies.add(category);
+    });
+
+    return companies;
+  }
+
+  int retrieveCompaniesCount(AsyncSnapshot snapshot) {
+    Map data = snapshot.data.snapshot.value['companies'];
+    return data.length;
   }
 
   Future<List<Company>> fetchCompaniesList() async {
