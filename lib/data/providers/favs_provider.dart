@@ -28,7 +28,6 @@ class FavsNotifier extends StateNotifier<List<String>> {
 
   Future<void> update(AppUser appUser) async {
     usersRepo.updateAppUser(appUser: appUser);
-    print(state);
   }
 }
 

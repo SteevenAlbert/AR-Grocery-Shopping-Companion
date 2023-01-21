@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:simple_shadow/simple_shadow.dart';
 
 import 'package:ar_grocery_companion/domain/models/product/product.dart';
-import 'package:ar_grocery_companion/presentation/home/components/fav_icon.dart';
+import 'package:ar_grocery_companion/presentation/home/components/fav_icon_container.dart';
 import 'package:ar_grocery_companion/presentation/home/components/stars.dart';
 
 class ProductCard extends ConsumerWidget {
@@ -55,7 +55,9 @@ class ProductCard extends ConsumerWidget {
                               ? AspectRatio(
                                   aspectRatio: 16 / 10,
                                   child: Image.asset(
-                                    product.images[0].isEmpty? kNoProductImg:product.images[0],
+                                    product.images[0].isEmpty
+                                        ? kNoProductImg
+                                        : product.images[0],
                                   ))
                               : Image.asset(product.images[0],
                                   width: 100, height: 100)),
@@ -105,7 +107,7 @@ class ProductCard extends ConsumerWidget {
                                 ),
                               ]),
                         ),
-                        if (sectionID == 1) FavIcon(product: product)
+                        if (sectionID == 1) FavIconContainer(product: product)
                       ])),
                 ],
               ),
