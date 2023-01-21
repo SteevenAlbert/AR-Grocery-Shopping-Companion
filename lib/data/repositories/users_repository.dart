@@ -70,6 +70,10 @@ class AppUsersRepository {
 
   Future<bool> deleteAppUser(String UID) async {
     // TODO: implement this
+    //delete fire auth user
+    //delete collection user
+    //delete and appUser model
+
     throw UnimplementedError();
   }
 
@@ -78,13 +82,13 @@ class AppUsersRepository {
   //   throw UnimplementedError();
   // }
 
-//   List<AppUser> getAppUsers() {
-//     return this._appUsers;
-//   }
+  // List<AppUser> getAppUsers() {
+  //   return this._appUsers;
+  // }
 
-//   AppUser getAppUser(String UID) {
-//     return this._appUsers.firstWhere(
-//           (AppUser element) => element.UID == UID,
-//         );
-//   }
+  // AppUser getAppUser(String UID) {
+  //   return this._appUsers.firstWhere(
+  //         (AppUser element) => element.UID == UID,
+  //       );
+  // }
 }

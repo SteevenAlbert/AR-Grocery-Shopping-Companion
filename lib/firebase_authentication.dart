@@ -109,12 +109,14 @@ class FirebaseAuthentication {
           user = userCredential.user;
         } on FirebaseAuthException catch (e) {
           if (e.code == 'account-exists-with-different-credential') {
-            // ...
+            // TODO: snackbar
+            print(e);
           } else if (e.code == 'invalid-credential') {
-            // ...
+            // TODO: snackbar
+            print(e);
           }
         } catch (e) {
-          // ...
+          print(e);
         }
       }
     }
@@ -158,7 +160,7 @@ class FirebaseAuthentication {
     }
   }
 
-  String getCurrentUserId() {
-    return FirebaseAuth.instance.currentUser?.uid ?? '';
-  }
+  // String getCurrentUserId() {
+  //   return FirebaseAuth.instance.currentUser?.uid ?? '';
+  // }
 }
