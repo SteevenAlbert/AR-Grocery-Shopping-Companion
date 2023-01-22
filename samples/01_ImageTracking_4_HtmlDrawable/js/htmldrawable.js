@@ -103,7 +103,7 @@ var World = {
             '<meta name="viewport" content="width = 200, user-scalable = 0">' +
                 '<style>' +
                         '.card {' +
-                            'background-color: #0000005d;' +
+                            'background-color: #ffffffcd;' +
                           'box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7);' +
                           'max-width: 300px;' +
                           'text-align: center;' +
@@ -123,7 +123,7 @@ var World = {
                         '-webkit-border-radius: 10px;' + 
                         '}' +
                         'h1 {' +
-                           'color: rgb(255, 255, 255);' +
+                           'color: rgb(0, 0, 0);' +
                            'font-family: "Helvetica Neue", sans-serif;' +
                            'font-size: 24px;' +
                            'font-weight: bold;' +
@@ -143,8 +143,8 @@ var World = {
                           'font-size: 16px;' +
                         '}' +
                         '.small{' +
-                            'color: rgb(255, 255, 255);' +
-                            'font-size: 11px;' +
+                            'color: rgb(0, 0, 0);' +
+                            'font-size: 12px;' +
                         '}' +
                         '.card button {' +
                           'border: none;' +
@@ -170,7 +170,7 @@ var World = {
                     '</div>' +
                      '<div class="card" id="card">' +
                     '<h1 id="Title">'+productName+'</h1>' +
-                    '<p class="calories">192 cal</p>' +
+                    //'<p class="calories">192 cal</p>' +
                     '<p class="small">'+ productIngredients +'</p>' +
                  '</div>' +
                  '</body>';
