@@ -8,8 +8,8 @@ class ChartCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal:16.0),
       child: Card(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(10))),

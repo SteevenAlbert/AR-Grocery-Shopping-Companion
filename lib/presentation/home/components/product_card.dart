@@ -85,14 +85,6 @@ class ProductCard extends ConsumerWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: IconTheme(
-                                        data: IconThemeData(
-                                          color: Colors.amber,
-                                          size: 11,
-                                        ),
-                                        child: StarDisplay(value: 3))),
                                 SizedBox(height: 3),
                                 Align(
                                   alignment: Alignment.centerLeft,

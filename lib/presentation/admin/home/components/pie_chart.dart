@@ -1,3 +1,7 @@
+import 'package:ar_grocery_companion/constants/constants.dart';
+import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
+import 'package:ar_grocery_companion/domain/models/product/product.dart';
+import 'package:ar_grocery_companion/firebase_storage.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -19,8 +23,11 @@ class CustomPieChartState extends State<CustomPieChart> {
 
   @override
   Widget build(BuildContext context) {
-    List<Company> companies = CompaniesRepository.instance.retrieveCompanies(widget.snapshot);
-    
+    List<Company> companies =
+        CompaniesRepository.instance.retrieveCompanies(widget.snapshot);
+    List<Product> products =
+        ProductsRepository.instance.retrieveProducts(widget.snapshot);
+
     return Container(
       constraints: BoxConstraints(maxWidth: 300),
       child: AspectRatio(
@@ -46,25 +53,29 @@ class CustomPieChartState extends State<CustomPieChart> {
             ),
             sectionsSpace: 0,
             centerSpaceRadius: 0,
-            sections: showingSections(companies),
+            sections: showingSections(companies, products),
           ),
         ),
       ),
     );
   }
 
-  List<PieChartSectionData> showingSections(List<Company> companies) {
+  List<PieChartSectionData> showingSections(
+      List<Company> companies, List<Product> products) {
     return List.generate(companies.length, (index) {
       final isTouched = index == touchedIndex;
       final fontSize = isTouched ? 20.0 : 16.0;
       final radius = isTouched ? 110.0 : 100.0;
       final widgetSize = isTouched ? 55.0 : 40.0;
 
-      var productsNum = companies[index].products?.length;
-      double opacity = productsNum != null ? productsNum * 0.1 : 0.1;
+      var productsNum = products
+          .where((element) => element.manufacturer.id == companies[index].id)
+          .toList()
+          .length;
+      double opacity = productsNum/products.length;
       return PieChartSectionData(
         color: Theme.of(context).primaryColor.withOpacity(opacity),
-        value: productsNum?.toDouble(),
+        value: productsNum.toDouble(),
         title: "${productsNum}",
         radius: radius,
         titleStyle: TextStyle(
@@ -73,7 +84,7 @@ class CustomPieChartState extends State<CustomPieChart> {
           color: const Color(0xffffffff),
         ),
         badgeWidget: _Badge(
-          companies[index].logoPath!,
+          companies[index].logoPath ?? kNoLogoImg,
           name: companies[index].name,
           size: widgetSize,
           borderColor: Theme.of(context).primaryColor.withOpacity(opacity),
@@ -121,8 +132,15 @@ class _Badge extends StatelessWidget {
         ),
         padding: EdgeInsets.all(size * .15),
         child: Center(
-          child: Image.asset(
-            logo,
+          child: FutureBuilder(
+            future: FireStorage.getUrl("/images/companies_pictures/$logo"),
+            builder: ((context, snapshot) {
+              if (snapshot.hasData) {
+                return Image.network(snapshot.data!);
+              } else {
+                return Image.asset(kNoLogoImg);
+              }
+            }),
           ),
         ),
       ),
