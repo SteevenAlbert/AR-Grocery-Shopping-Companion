@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import '../constants/constants.dart';
 import '/domain/models/product/product.dart';
 
-Future<Product?> fetchLuluPrice(Product product) async {
+Future<String?> fetchLuluPrice(Product product) async {
   String serverResponse = "";
   var socket;
 
@@ -11,11 +11,10 @@ Future<Product?> fetchLuluPrice(Product product) async {
     // Establish connection with the server.
     socket = (await Socket.connect(webscraperVPSAddress, 5001));
     // Send the URL to the server.
-    socket.write(product.storesURLs!["Carrefour"]);
+    socket.write(product.storesURLs!["Lulu"]);
   } on SocketException catch (e) {
     print(e);
-    product.prices!['Carrefour'] = "Not Available";
-    return product;
+    return "Not Available";
   }
 
   // Listen for the server response.
@@ -38,11 +37,12 @@ Future<Product?> fetchLuluPrice(Product product) async {
   );
 
   // Return the result
-  await Future.delayed(const Duration(seconds: 2));
+  await Future.delayed(const Duration(seconds: 3));
   if (serverResponse == "") {
-    product.prices?["Carrefour"] = "Not Available";
+    return "Not Available";
   } else {
-    product.prices?["Carrefour"] = serverResponse;
+    String sanitizedResponse =
+        serverResponse.trim().replaceAll(RegExp(r'[^\d.]'), '');
+    return sanitizedResponse;
   }
-  return product;
 }

@@ -38,7 +38,7 @@ Future<Product?> fetchSpinneysPrice(Product product) async {
   );
 
   // Return the result
-  await Future.delayed(const Duration(seconds: 2));
+  await Future.delayed(const Duration(seconds: 3));
   if (serverResponse == "") {
     product.prices?["Spinneys"] = "Not Available";
   } else {

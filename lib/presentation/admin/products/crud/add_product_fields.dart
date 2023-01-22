@@ -140,7 +140,7 @@ class _AddProductFieldsState extends State<AddProductFields> {
                                         storesURLs: {
                                           "Spinneys": base.spinneysURL,
                                           "Amazon": base.amazonURL,
-                                          "Carrefour": base.carrefourURL
+                                          "Lulu": base.luluURL
                                         });
                                     if (isFood)
                                       product = FoodProduct(
@@ -265,7 +265,7 @@ class _AddProductFieldsState extends State<AddProductFields> {
                                     storesURLs: {
                                       "Spinneys": base.spinneysURL,
                                       "Amazon": base.amazonURL,
-                                      "Carrefour": base.carrefourURL
+                                      "Lulu": base.luluURL
                                     });
                                 if (isFood)
                                   product = FoodProduct(

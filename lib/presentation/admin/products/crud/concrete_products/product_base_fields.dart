@@ -11,7 +11,7 @@ class ProductBaseFields extends StatefulWidget {
   String name = 'Nan';
   String amazonURL = 'Nan';
   String spinneysURL = 'Nan';
-  String carrefourURL = 'Nan';
+  String luluURL = 'Nan';
   CustomCategory category = CustomCategory.empty();
   Company manufacturer = Company.empty();
 
@@ -20,7 +20,6 @@ class ProductBaseFields extends StatefulWidget {
 }
 
 class _ProductBaseFieldsState extends State<ProductBaseFields> {
-
   late TextEditingController _nameController;
 
   @override
@@ -98,16 +97,16 @@ class _ProductBaseFieldsState extends State<ProductBaseFields> {
       ),
       TextFormField(
         decoration: const InputDecoration(
-          labelText: 'Carrefour URL',
+          labelText: 'Lulu URL',
         ),
         onChanged: (String? newValue) {
           setState(() {
-            widget.carrefourURL = newValue!;
+            widget.luluURL = newValue!;
           });
         },
         validator: (value) {
           if (value == null || value.isEmpty) {
-            return 'Please enter the product carrefour page URL';
+            return 'Please enter the product Lulu page URL';
           }
           if (!isURL(value)) {
             return 'The URL is not valid';
@@ -140,9 +139,7 @@ class _ProductBaseFieldsState extends State<ProductBaseFields> {
         },
       ),
       DropdownButtonFormField(
-        items: CompaniesRepository.instance
-            .getCompanies()
-            .map((Company item) {
+        items: CompaniesRepository.instance.getCompanies().map((Company item) {
           return DropdownMenuItem(
             value: item,
             child: Text(item.name),

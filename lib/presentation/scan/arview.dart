@@ -96,11 +96,11 @@ class _ARViewState extends State<ARView> with WidgetsBindingObserver {
         case "product_card":
           Product product = ProductsRepository.instance
               .getProduct(jsonObject["product_id"].toString());
-          print(product.properties["Allergy Information"]);
+
           Map<String, dynamic> data = {
             "name": product.name,
             "Manfacturer": product.manufacturer,
-            'Ingredients': product.properties['Ingredients'],
+            'Ingredients': product.getProperties()['Ingredients'],
             "Allergy Information": product.properties['Allergy Information'],
           };
           this

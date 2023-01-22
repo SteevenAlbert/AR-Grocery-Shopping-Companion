@@ -34,11 +34,11 @@ Future<String> fetchAmazonPrice(Product product) async {
   }
 }
 
-// Future<String> fetchAmazonPrice(Product product) async {
-//   final String response = await rootBundle.loadString('assets/sample.json');
-//   final data = await json.decode(response);
+Future<String> fetchAmazonPriceDummy(Product product) async {
+  final String response = await rootBundle.loadString('assets/sample.json');
+  final data = await json.decode(response);
 
-//   var price = data["product"]["buybox_winner"]["price"]["value"].toString();
+  var price = data["product"]["buybox_winner"]["price"]["value"].toString();
 
-//   return price;
-// }
+  return price;
+}
