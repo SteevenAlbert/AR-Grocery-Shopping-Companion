@@ -1,3 +1,4 @@
+import 'package:ar_grocery_companion/presentation/error_page.dart';
 import 'package:catcher/catcher.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -38,8 +39,8 @@ void main() async {
     statusBarColor: Colors.transparent,
   ));
 
-  //Catcher(rootWidget: ProviderScope(child: MyApp()), debugConfig: debugOptions);
-  runApp(ProviderScope(child: MyApp()));
+  Catcher(rootWidget: ProviderScope(child: MyApp()), debugConfig: debugOptions);
+  //runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends ConsumerWidget {
@@ -49,8 +50,8 @@ class MyApp extends ConsumerWidget {
     var darkMode = ref.watch(themeModeProvider);
 
     //Override Flutter's red screen of death
-    // ErrorWidget.builder =
-    //     (FlutterErrorDetails details) => SomethingWentWrongScreen();
+    ErrorWidget.builder =
+        (FlutterErrorDetails details) => SomethingWentWrongScreen();
     return MaterialApp.router(
       navigatorKey: Catcher.navigatorKey,
       routerConfig: MyRouter.router,
