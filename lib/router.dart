@@ -6,6 +6,7 @@ import 'package:ar_grocery_companion/presentation/admin/companies/crud/edit_comp
 import 'package:ar_grocery_companion/presentation/admin/products/crud/add_product_page.dart';
 import 'package:ar_grocery_companion/presentation/admin/products/crud/edit_product_page.dart';
 import 'package:ar_grocery_companion/presentation/authentication/forgot_password.dart';
+import 'package:ar_grocery_companion/presentation/scan/scan_intro_page.dart';
 import 'package:catcher/catcher.dart';
 import 'package:go_router/go_router.dart';
 
@@ -44,6 +45,9 @@ class MyRouter {
       GoRoute(
           path: '/admin_homepage',
           builder: (context, state) => const AdminHomePage()),
+      GoRoute(
+          path: '/scan_intro_page',
+          builder: (context, state) => const ScanPage()),
       GoRoute(
           name: 'ProductPage',
           path: '/product_page/:fromAR',

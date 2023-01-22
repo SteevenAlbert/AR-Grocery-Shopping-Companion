@@ -44,139 +44,157 @@ class _CategoryFieldsState extends State<CategoryFields> {
     textController = widget.add
         ? TextEditingController(text: "")
         : TextEditingController(text: widget.customCategory.name);
-    return FutureBuilder(
-        future: FireStorage.getUrl("/images/categories_pictures/$imagePath"),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return widget.constraints.maxWidth > 600
-                ? Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                    ImageAdder(
-                      label: "Category Image",
-                      url: snapshot.data,
-                      radius: 300.0,
-                      onImageUpload: updateImagePath,
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            TextFormField(
-                              decoration: const InputDecoration(
-                                labelText: 'Name',
-                              ),
-                              controller: textController,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please enter the category name';
-                                }
-                                if (value.length >= 15) {
-                                  return 'The name should be at most 15 characters';
-                                }
-                                return null;
-                              },
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 8.0),
-                              child: ButtonBar(
-                                children: [
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      if (widget.formKey.currentState!
-                                          .validate()) {
-                                        CustomCategory category =
-                                            widget.customCategory.copyWith(
-                                                name: textController.text,
-                                                imagePath: imagePath);
-                                        print(category);
-                                        widget.add
-                                            ? categories.insert(category)
-                                            : categories.update(category);
-                                        context.go('/admin_homepage');
-                                      }
-                                    },
-                                    child: const Text('Submit'),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ])
-                : Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                        ImageAdder(
+    return widget.constraints.maxWidth > 600
+        ? Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+            widget.add || imagePath == null
+                ? ImageAdder(
+                    label: "Category Image",
+                    radius: 300.0,
+                    onImageUpload: updateImagePath,
+                  )
+                : FutureBuilder(
+                    future: FireStorage.getUrl(
+                        "/images/categories_pictures/$imagePath"),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return ImageAdder(
                           label: "Category Image",
                           url: snapshot.data,
                           radius: 300.0,
                           onImageUpload: updateImagePath,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              TextFormField(
-                                decoration: const InputDecoration(
-                                  labelText: 'Name',
-                                ),
-                                controller: textController,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter the category name';
-                                  }
-                                  if (value.length >= 15) {
-                                    return 'The name should be at most 15 characters';
-                                  }
-                                  return null;
-                                },
-                              ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 8.0),
-                                child: ButtonBar(
-                                  children: [
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        if (widget.formKey.currentState!
-                                            .validate()) {
-                                          CustomCategory category =
-                                              widget.customCategory.copyWith(
-                                                  name: textController.text,
-                                                  imagePath: imagePath);
-                                          print(category);
-                                          widget.add
-                                              ? categories.insert(category)
-                                              : categories.update(category);
-                                          context.go('/admin_homepage');
-                                        }
-                                      },
-                                      child: const Text('Submit'),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
+                        );
+                      } else if (snapshot.hasError) {
+                        return Center(child: Text("${snapshot.error}"));
+                      } else {
+                        return Center(child: const CircularProgressIndicator());
+                      }
+                    }),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        labelText: 'Name',
+                      ),
+                      controller: textController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter the category name';
+                        }
+                        if (value.length >= 15) {
+                          return 'The name should be at most 15 characters';
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: ButtonBar(
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              if (widget.formKey.currentState!.validate()) {
+                                CustomCategory category = widget.customCategory
+                                    .copyWith(
+                                        name: textController.text,
+                                        imagePath: imagePath);
+                                print(category);
+                                widget.add
+                                    ? categories.insert(category)
+                                    : categories.update(category);
+                                context.go('/admin_homepage');
+                              }
+                            },
+                            child: const Text('Submit'),
                           ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ])
+        : Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            widget.add || imagePath == null
+                ? ImageAdder(
+                    label: "Category Image",
+                    radius: 300.0,
+                    onImageUpload: updateImagePath,
+                  )
+                : FutureBuilder(
+                    future: FireStorage.getUrl(
+                        "/images/categories_pictures/$imagePath"),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return ImageAdder(
+                          label: "Category Image",
+                          url: snapshot.data,
+                          radius: 300.0,
+                          onImageUpload: updateImagePath,
+                        );
+                      } else if (snapshot.hasError) {
+                        return Center(child: Text("${snapshot.error}"));
+                      } else {
+                        return Center(child: const CircularProgressIndicator());
+                      }
+                    }),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      labelText: 'Name',
+                    ),
+                    controller: textController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter the category name';
+                      }
+                      if (value.length >= 15) {
+                        return 'The name should be at most 15 characters';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: ButtonBar(
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            if (widget.formKey.currentState!.validate()) {
+                              CustomCategory category = widget.customCategory
+                                  .copyWith(
+                                      name: textController.text,
+                                      imagePath: imagePath);
+                              print(category);
+                              widget.add
+                                  ? categories.insert(category)
+                                  : categories.update(category);
+                              context.go('/admin_homepage');
+                            }
+                          },
+                          child: const Text('Submit'),
                         ),
-                      ]);
-          } else if (snapshot.hasError) {
-            return Center(child: Text("${snapshot.error}"));
-          } else {
-            return Center(child: const CircularProgressIndicator());
-          }
-        });
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ]);
   }
 
   @override

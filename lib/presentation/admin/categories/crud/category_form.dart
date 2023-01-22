@@ -23,19 +23,11 @@ class _CategoryFormState extends State<CategoryForm> {
         padding: EdgeInsets.all(16.0),
         child: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
-            if (constraints.maxWidth > 600) {
-              return CategoryFields(
-                  customCategory: widget.customCategory,
-                  formKey: formKey,
-                  add: widget.add,
-                  constraints: constraints);
-            } else {
-              return CategoryFields(
-                  customCategory: widget.customCategory,
-                  formKey: formKey,
-                  add: widget.add,
-                  constraints: constraints);
-            }
+            return CategoryFields(
+                customCategory: widget.customCategory,
+                formKey: formKey,
+                add: widget.add,
+                constraints: constraints);
           },
         ),
       ),
