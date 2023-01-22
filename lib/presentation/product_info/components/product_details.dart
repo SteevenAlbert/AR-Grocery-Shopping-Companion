@@ -20,7 +20,7 @@ class ProductDetails extends StatelessWidget {
             title: Center(child: Text("$key")),
             subtitle: Center(child: Text("${props[key]}")),
           );
-        } else {
+        } else if (product.getProperties().containsKey("Ingredients"))
           return Padding(
             padding: const EdgeInsets.all(16.0),
             child: nutrientWidget(nutrientData: {
@@ -35,7 +35,8 @@ class ProductDetails extends StatelessWidget {
               "PROCNT": {"amount": 67.51, "unit": "g"},
             }, calories: 200, servingSize: "2 bars"),
           );
-        }
+        else
+          return Container();
       }),
     );
   }
