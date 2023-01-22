@@ -25,13 +25,10 @@ class _ImageAdderState extends State<ImageAdder> {
   XFile? image;
 
   Future getImage(ImageSource media) async {
-    print("hello?");
     await picker.pickImage(source: media).then((img) {
       setState(() {
         this.image = img;
         widget.onImageUpload(img!.path);
-        // print("hiii");
-        // imageToFireStorage.uploadFile.insert(0, '1');
       });
     });
   }
