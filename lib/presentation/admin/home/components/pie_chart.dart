@@ -6,17 +6,21 @@ import 'package:ar_grocery_companion/domain/models/company.dart';
 
 /// Icons by svgrepo.com (https://www.svgrepo.com/collection/job-and-professions-3/)
 class CustomPieChart extends StatefulWidget {
-  const CustomPieChart({super.key});
+  const CustomPieChart({super.key, required this.snapshot});
+
+  final AsyncSnapshot snapshot;
 
   @override
   State<StatefulWidget> createState() => CustomPieChartState();
 }
 
-class CustomPieChartState extends State {
+class CustomPieChartState extends State<CustomPieChart> {
   int touchedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
+    List<Company> companies = CompaniesRepository.instance.retrieveCompanies(widget.snapshot);
+    
     return Container(
       constraints: BoxConstraints(maxWidth: 300),
       child: AspectRatio(
@@ -42,15 +46,14 @@ class CustomPieChartState extends State {
             ),
             sectionsSpace: 0,
             centerSpaceRadius: 0,
-            sections: showingSections(),
+            sections: showingSections(companies),
           ),
         ),
       ),
     );
   }
 
-  List<PieChartSectionData> showingSections() {
-    List<Company> companies = CompaniesRepository.instance.getCompanies();
+  List<PieChartSectionData> showingSections(List<Company> companies) {
     return List.generate(companies.length, (index) {
       final isTouched = index == touchedIndex;
       final fontSize = isTouched ? 20.0 : 16.0;

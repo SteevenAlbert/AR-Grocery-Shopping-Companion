@@ -15,8 +15,8 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   final controller = TextEditingController();
-  List<Product> products = ProductsRepository.instance.getProducts();
   List<Product> queriedProducts = [];
+
   @override
   Widget build(BuildContext context) {
     return Hero(
@@ -137,10 +137,11 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 
-  void searchProducts(String query) {
+  void searchProducts(String query) async{
     queriedProducts.clear();
     final input = query.toLowerCase();
-    for (var product in products) {
+    Future<List<Product>> products = ProductsRepository.instance.fetchProductsList();
+    for (var product in await products) {
       if (product.name.toLowerCase().contains(input)) {
         setState(() => queriedProducts.add(product));
       }

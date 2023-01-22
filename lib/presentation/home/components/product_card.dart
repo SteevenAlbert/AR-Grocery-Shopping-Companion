@@ -1,4 +1,5 @@
 import 'package:ar_grocery_companion/constants/constants.dart';
+import 'package:ar_grocery_companion/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -50,17 +51,28 @@ class ProductCard extends ConsumerWidget {
                                   .withOpacity(0.05),
                             )
                           ]),
-                      child: SimpleShadow(
-                          child: (sectionID == 1)
-                              ? AspectRatio(
-                                  aspectRatio: 16 / 10,
-                                  child: Image.asset(
-                                    product.images[0].isEmpty
-                                        ? kNoProductImg
-                                        : product.images[0],
-                                  ))
-                              : Image.asset(product.images[0],
-                                  width: 100, height: 100)),
+                      child: FutureBuilder(
+                        future: FireStorage.getUrl(
+                            "/images/products_pictures/${product.images[0]}"),
+                        builder: ((context, snapshot) {
+                          if (snapshot.hasData) {
+                            return SimpleShadow(
+                                child: (sectionID == 1)
+                                    ? AspectRatio(
+                                        aspectRatio: 16 / 10,
+                                        child: snapshot.data!.isEmpty
+                                            ? Image.asset(kNoProductImg)
+                                            : Image.network(snapshot.data!))
+                                    : Image.asset(snapshot.data!,
+                                        width: 100, height: 100));
+                          } else {
+                            return SimpleShadow(
+                                child: AspectRatio(
+                                    aspectRatio: 16 / 10,
+                                    child: Image.asset(kNoProductImg)));
+                          }
+                        }),
+                      ),
                     ),
                   ),
                   SizedBox(height: 3),

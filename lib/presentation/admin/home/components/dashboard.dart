@@ -1,3 +1,4 @@
+import 'package:ar_grocery_companion/presentation/admin/home/components/chart_cards_grid.dart';
 import 'package:ar_grocery_companion/presentation/components/header.dart';
 import 'package:flutter/material.dart';
 import 'package:ar_grocery_companion/presentation/admin/home/components/info_cards_grid.dart';
@@ -16,7 +17,7 @@ class Dashboard extends StatelessWidget {
         ),
         Header(size: MediaQuery.of(context).size),
         InfoCardGrid(snapshot: snapshot),
-        //ChartCardsGrid(),
+        //ChartCardsGrid(snapshot: snapshot),
       ],
     );
   }

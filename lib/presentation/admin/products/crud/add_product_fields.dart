@@ -39,7 +39,7 @@ class _AddProductFieldsState extends State<AddProductFields> {
 
   bool isItemed = false;
   ItemedFormFields itemed = ItemedFormFields();
-  late String? productlogoPath;
+  late String productlogoPath;
   // @override
   // void initState() {
   //   productlogoPath = widget.product.logoPath;
@@ -134,7 +134,7 @@ class _AddProductFieldsState extends State<AddProductFields> {
                                         id: "id",
                                         createdAt: DateTime.now(),
                                         name: base.name,
-                                        images: [""],
+                                        images: [productlogoPath],
                                         manufacturer: base.manufacturer,
                                         customCategory: base.category,
                                         storesURLs: {
@@ -259,7 +259,7 @@ class _AddProductFieldsState extends State<AddProductFields> {
                                     id: "id",
                                     createdAt: DateTime.now(),
                                     name: base.name,
-                                    images: [""],
+                                    images: [productlogoPath],
                                     manufacturer: base.manufacturer,
                                     customCategory: base.category,
                                     storesURLs: {

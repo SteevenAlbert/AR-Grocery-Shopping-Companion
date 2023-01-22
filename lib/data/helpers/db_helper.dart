@@ -57,6 +57,17 @@ class FirebaseHelper {
     });
   }
 
+  Future<bool> append(String path, dynamic data) async {
+    DatabaseReference newEntryRef = _dbRef.child(path);
+    newEntryRef = newEntryRef.push();
+    return await newEntryRef.set(data).then((_) {
+      return true;
+    }).catchError((error) {
+      print(error);
+      return false;
+    });
+  }
+
   Future<bool> update(String path, dynamic data) async {
     data.remove("id");
     return await _dbRef.child(path).update(data).then((_) {
@@ -75,4 +86,6 @@ class FirebaseHelper {
       return false;
     });
   }
+
+  
 }

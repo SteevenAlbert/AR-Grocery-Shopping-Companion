@@ -20,7 +20,6 @@ class ProductsList extends StatelessWidget {
         ProductDataSource(productData: products, context: context);
     return ListCard(
         title: "Products",
-        // TODO: add delete function
         trailing: DataGridDeleteButton(
           dataGridController: dataGridController,
           deleteFunction: () {

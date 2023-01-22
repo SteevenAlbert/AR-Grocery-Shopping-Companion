@@ -33,6 +33,12 @@ class CompaniesRepository {
     return inserted;
   }
 
+  Future<bool> insertProduct(String companyID, String productID) async {
+    bool inserted = await FirebaseHelper.instance
+        .append('companies/$companyID/products/', productID);
+    return inserted;
+  }
+
   Future<String> update(Company company) async {
     Map<String, dynamic> com = company.toMap();
     FirebaseHelper.instance.update('companies/${com['id']}', com);
@@ -41,7 +47,9 @@ class CompaniesRepository {
   }
 
   List<Company> retrieveCompanies(AsyncSnapshot snapshot) {
-    Map<String, dynamic> data = jsonDecode(jsonEncode(snapshot.data.snapshot.value['companies'])) as Map<String, dynamic>;
+    Map<String, dynamic> data =
+        jsonDecode(jsonEncode(snapshot.data.snapshot.value['companies']))
+            as Map<String, dynamic>;
     List<Company> companies = [];
     data.forEach((index, data) {
       data["id"] = index;
@@ -58,6 +66,7 @@ class CompaniesRepository {
   }
 
   Future<List<Company>> fetchCompaniesList() async {
+    _companies = [];
     DataSnapshot? snapshot = await FirebaseHelper.instance.read('companies');
 
     snapshot!.children.forEach((childSnapshot) {

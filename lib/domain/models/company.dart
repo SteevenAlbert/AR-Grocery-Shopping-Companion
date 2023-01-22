@@ -18,7 +18,7 @@ class Company {
     this.origin,
     this.logoPath,
     this.url,
-    this.products,
+    this.products = const [""],
   });
 
   factory Company.empty() {

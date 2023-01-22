@@ -42,7 +42,9 @@ class CategoriesRepository {
   }
 
   List<CustomCategory> retrieveCategories(AsyncSnapshot snapshot) {
-    Map<String, dynamic> data = jsonDecode(jsonEncode(snapshot.data.snapshot.value['categories'])) as Map<String, dynamic>;
+    Map<String, dynamic> data =
+        jsonDecode(jsonEncode(snapshot.data.snapshot.value['categories']))
+            as Map<String, dynamic>;
     List<CustomCategory> categories = [];
     data.forEach((index, data) {
       data["id"] = index;
@@ -54,6 +56,7 @@ class CategoriesRepository {
   }
 
   Future<List<CustomCategory>> fetchCategoriesList() async {
+    _categories = [];
     DataSnapshot? snapshot = await FirebaseHelper.instance.read('categories');
 
     snapshot!.children.forEach((childSnapshot) {

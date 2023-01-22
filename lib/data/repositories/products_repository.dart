@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:ar_grocery_companion/data/helpers/db_helper.dart';
+import 'package:ar_grocery_companion/data/repositories/companies_repository.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -31,9 +32,13 @@ class ProductsRepository {
   }
 
   Future<bool> insert(Product product) async {
-    _products = [];
     bool inserted = await FirebaseHelper.instance
         .writeUnique('products', selectProductToMap(product));
+    
+    // FirebaseDatabase.instance.ref('products').onChildAdded.listen((event) {
+    //   CompaniesRepository.instance.insertProduct(product.manufacturer.id, event.snapshot.children.last.key!);
+    //  });
+    
     return inserted;
   }
 
@@ -43,7 +48,9 @@ class ProductsRepository {
   }
 
   List<Product> retrieveProducts(AsyncSnapshot snapshot) {
-    Map<String, dynamic> data = jsonDecode(jsonEncode(snapshot.data.snapshot.value['products'])) as Map<String, dynamic>;
+    Map<String, dynamic> data =
+        jsonDecode(jsonEncode(snapshot.data.snapshot.value['products']))
+            as Map<String, dynamic>;
     List<Product> products = [];
     data.forEach((index, data) {
       Product product = ProductsRepository.selectProductFromMap(data);
@@ -52,6 +59,34 @@ class ProductsRepository {
     });
 
     return products;
+  }
+
+  Future<List<Product>> fetchProductsList() async {
+    DataSnapshot? snapshot = await FirebaseHelper.instance.read('products');
+    _products = [];
+    snapshot!.children.forEach((childSnapshot) {
+      var product =
+          jsonDecode(jsonEncode(childSnapshot.value)) as Map<String, dynamic>;
+      Product newProduct = selectProductFromMap(product);
+      newProduct.id = childSnapshot.key!;
+      _products.add(newProduct);
+    });
+    return _products;
+  }
+
+  Future<Product> fetchProduct(String id) async {
+    DataSnapshot? snapshot = await FirebaseHelper.instance.read('products/$id');
+    Product product =  selectProductFromMap(
+        jsonDecode(jsonEncode(snapshot?.value)) as Map<String, dynamic>);
+    product.id = snapshot!.key!;
+    return product;
+  }
+
+  Product getProduct(String id) {
+    return _products.firstWhere(
+      (Product element) => element.id == id,
+      orElse: () => ProductBase.empty(),
+    );
   }
 
   int retrieveProductsCount(AsyncSnapshot snapshot) {
@@ -97,19 +132,6 @@ class ProductsRepository {
   }
 
   // TODO: REMOVE OLD FUNCTIONS
-  Future<List<Product>> fetchProductsList() async {
-    DataSnapshot? snapshot = await FirebaseHelper.instance.read('products');
-    _products = [];
-    snapshot!.children.forEach((childSnapshot) {
-      var product =
-          jsonDecode(jsonEncode(childSnapshot.value)) as Map<String, dynamic>;
-      Product newProduct = selectProductFromMap(product);
-      newProduct.id = childSnapshot.key!;
-      _products.add(newProduct);
-    });
-    return _products;
-  }
-
   List<Product> getProductsListByManufacturer(String id) {
     List<Product> tempList = [];
     _products.forEach((Product element) {
@@ -121,14 +143,4 @@ class ProductsRepository {
   List<Product> getProducts() {
     return _products;
   }
-
-  Product getProduct(String id) {
-    return _products.firstWhere(
-      (Product element) => element.id == id,
-      orElse: () => ProductBase.empty(),
-    );
-  }
 }
-
-final productsProvider =
-    Provider((ref) => FirebaseHelper.instance.dbRef.onValue);
