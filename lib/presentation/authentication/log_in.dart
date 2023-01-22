@@ -69,42 +69,40 @@ class LogInScreenState extends State<LogInScreen> {
   }
 
   void _GooglelogIn() async {
-    await FirebaseAuthentication.signOut(context: context).then((_) async {
-      await FirebaseAuthentication.signInWithGoogle(context: context)
-          .then((user) async {
-        print("HERE>>>");
-        print(user);
-        String imageName = user!.photoURL!.split('/').last;
-        String path = '/storage/emulated/0/Download/$imageName';
-        final file = File(path);
-        await Dio().download(user.photoURL!, file.path).then((_) async {
-          await FireStorage.uploadFile(
-                  uploadPath: "images/profile_pictures/$imageName",
-                  filePath: path)
-              .then((_) {
-            usersRepo.fetchAppUser(user.uid).then((appUser) async {
-              if (appUser != null) {
-                //if not first time signing in
-                setSession(appUser);
-              } else {
-                //if first time signing in
-                AppUser appUser = AppUser(
-                    UID: user.uid,
-                    email: user.email!,
-                    name: user.displayName!,
-                    type: 'customer',
-                    DOB: "", //TODO: ...user.DOB,
-                    gender: "", //TODO: ...user.gender,
-                    pfpPath: imageName);
-                usersRepo.insertAppUser(appUser: appUser).then((success) async {
-                  if (success == true) {
-                    setSession(appUser);
-                  } else {
-                    user.delete();
-                  }
-                });
-              }
-            });
+    await FirebaseAuthentication.signInWithGoogle(context: context)
+        .then((user) async {
+      print("HERE>>>");
+      print(user);
+      String imageName = user!.photoURL!.split('/').last;
+      String path = '/storage/emulated/0/Download/$imageName';
+      final file = File(path);
+      await Dio().download(user.photoURL!, file.path).then((_) async {
+        await FireStorage.uploadFile(
+                uploadPath: "images/profile_pictures/$imageName",
+                filePath: path)
+            .then((_) {
+          usersRepo.fetchAppUser(user.uid).then((appUser) async {
+            if (appUser != null) {
+              //if not first time signing in
+              setSession(appUser);
+            } else {
+              //if first time signing in
+              AppUser appUser = AppUser(
+                  UID: user.uid,
+                  email: user.email!,
+                  name: user.displayName!,
+                  type: 'customer',
+                  DOB: "", //TODO: ...user.DOB,
+                  gender: "", //TODO: ...user.gender,
+                  pfpPath: imageName);
+              usersRepo.insertAppUser(appUser: appUser).then((success) async {
+                if (success == true) {
+                  setSession(appUser);
+                } else {
+                  user.delete();
+                }
+              });
+            }
           });
         });
       });

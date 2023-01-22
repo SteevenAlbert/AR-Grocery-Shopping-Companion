@@ -1,14 +1,8 @@
-import 'dart:convert';
-
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:extension_google_sign_in_as_googleapis_auth/extension_google_sign_in_as_googleapis_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:googleapis/storage/v1.dart';
-import 'package:googleapis_auth/auth_io.dart';
-import 'package:http/http.dart' as http;
 
 import 'presentation/components/custom_widgets/custom_awesome_snackbar.dart';
 
