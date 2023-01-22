@@ -1,4 +1,5 @@
 import 'package:ar_grocery_companion/constants/constants.dart';
+import 'package:ar_grocery_companion/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simple_shadow/simple_shadow.dart';
@@ -93,9 +94,18 @@ class _SearchPageState extends State<SearchPage> {
                                   const EdgeInsets.symmetric(vertical: 4.0),
                               alignment: Alignment.center,
                               child: SimpleShadow(
-                                  child: Image.asset(product.images[0].isEmpty
-                                      ? kNoProductImg
-                                      : product.images[0])),
+                                child: FutureBuilder(
+                                  future: FireStorage.getUrl(
+                                      "/images/products_pictures/${product.images[0]}"),
+                                  builder: ((context, snapshot) {
+                                    if (snapshot.hasData) {
+                                      return Image.network(snapshot.data!);
+                                    } else {
+                                      return Image.asset(kNoProductImg);
+                                    }
+                                  }),
+                                ),
+                              ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
                                 color: Color(0xFFe5e5e5).withOpacity(0.5),
@@ -137,10 +147,11 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 
-  void searchProducts(String query) async{
+  void searchProducts(String query) async {
     queriedProducts.clear();
     final input = query.toLowerCase();
-    Future<List<Product>> products = ProductsRepository.instance.fetchProductsList();
+    Future<List<Product>> products =
+        ProductsRepository.instance.fetchProductsList();
     for (var product in await products) {
       if (product.name.toLowerCase().contains(input)) {
         setState(() => queriedProducts.add(product));

@@ -1,4 +1,5 @@
 import 'package:ar_grocery_companion/constants/constants.dart';
+import 'package:ar_grocery_companion/firebase_storage.dart';
 import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -144,9 +145,18 @@ class _FavProductsListState extends ConsumerState<FavProductsList> {
                                     const EdgeInsets.symmetric(vertical: 4.0),
                                 alignment: Alignment.center,
                                 child: SimpleShadow(
-                                    child: Image.asset(item.images[0].isEmpty
-                                        ? kNoProductImg
-                                        : item.images[0])),
+                                  child: FutureBuilder(
+                                    future: FireStorage.getUrl(
+                                        "/images/products_pictures/${snapshot.data?.images[0]}"),
+                                    builder: ((context, snapshot) {
+                                      if (snapshot.hasData) {
+                                        return Image.network(snapshot.data!);
+                                      } else {
+                                        return Image.asset(kNoProductImg);
+                                      }
+                                    }),
+                                  ),
+                                ),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
                                   color: Color(0xFFe5e5e5).withOpacity(0.5),
