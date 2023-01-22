@@ -8,8 +8,8 @@ class AppUser {
   String email;
   String type;
   String name;
-  String DOB;
-  String gender;
+  String? DOB;
+  String? gender;
   String? pfpPath;
   List<String>? favs;
   AppUser(
@@ -17,8 +17,8 @@ class AppUser {
       required this.email,
       required this.type,
       required this.name,
-      required this.DOB,
-      required this.gender,
+      this.DOB,
+      this.gender,
       this.pfpPath = kNoPfpImg,
       this.favs});
 
@@ -27,8 +27,8 @@ class AppUser {
     required String email,
     required String type,
     required String name,
-    required String DOB,
-    required String gender,
+    String? DOB,
+    String? gender,
     String? pfpPath,
     List<String>? favs,
   }) {
@@ -37,15 +37,15 @@ class AppUser {
       email: this.email,
       type: this.type,
       name: this.name,
-      DOB: this.DOB,
-      gender: this.gender,
+      DOB: DOB ?? this.DOB,
+      gender: gender ?? this.gender,
       pfpPath: pfpPath ?? this.pfpPath,
       favs: favs ?? this.favs,
     );
   }
 
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+  Map<String?, dynamic> toMap() {
+    return <String?, dynamic>{
       'email': email,
       'type': type,
       'name': name,
@@ -68,9 +68,9 @@ class AppUser {
       email: map['email'] as String,
       type: map['type'] as String,
       name: map['name'] as String,
-      DOB: map['DOB'] as String,
-      gender: map['gender'] as String,
-      pfpPath: map['pfpPath'],
+      DOB: map['DOB'] as String?,
+      gender: map['gender'] as String?,
+      pfpPath: map['pfpPath'] as String?,
       favs: map['favs'] != null ? List<String>.from((map['favs'] as List)) : [],
     );
   }

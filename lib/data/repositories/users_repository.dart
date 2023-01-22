@@ -39,26 +39,36 @@ class AppUsersRepository {
     }
   }
 
-  Future<List<AppUser>> fetchAppUsersList() async {
-    List<AppUser> _appUsers = [];
-    return await ref.get().then((snapshot) {
-      Map<dynamic, dynamic> userMap =
-          jsonDecode(jsonEncode(snapshot.value)) as Map<dynamic, dynamic>;
-      userMap.forEach((key, value) {
-        value['UID'] = key.substring(1);
-        _appUsers.add(AppUser.fromMap(value));
-      });
-    }).then((value) => _appUsers);
+  Future<List<AppUser>?> fetchAppUsersList() async {
+    try {
+      List<AppUser> _appUsers = [];
+      return await ref.get().then((snapshot) {
+        Map<dynamic, dynamic> userMap =
+            jsonDecode(jsonEncode(snapshot.value)) as Map<dynamic, dynamic>;
+        userMap.forEach((key, value) {
+          value['UID'] = key.substring(1);
+          _appUsers.add(AppUser.fromMap(value));
+        });
+      }).then((value) => _appUsers);
+    } catch (e) {
+      print("ERROR: " + e.toString());
+      return null;
+    }
   }
 
   Future<AppUser?> fetchAppUser(String UID) async {
-    return await ref.child(AppUser.path(UID)).get().then((snapshot) {
-      Map<String, dynamic> userMap =
-          jsonDecode(jsonEncode(snapshot.value)) as Map<String, dynamic>;
-      userMap['UID'] = UID;
-      print(userMap.runtimeType);
-      return AppUser.fromMap(userMap);
-    }).then((user) => user);
+    try {
+      return await ref.child(AppUser.path(UID)).get().then((snapshot) {
+        Map<String, dynamic> userMap =
+            jsonDecode(jsonEncode(snapshot.value)) as Map<String, dynamic>;
+        userMap['UID'] = UID;
+        print(userMap.runtimeType);
+        return AppUser.fromMap(userMap);
+      }).then((user) => user);
+    } catch (e) {
+      print("ERROR: " + e.toString());
+      return null;
+    }
   }
 
   int retrieveUsersCount(AsyncSnapshot snapshot) {

@@ -35,10 +35,12 @@ class ProfilePageFormState extends State<ProfilePageForm> {
   @override
   void initState() {
     nameController.text = widget.appUser.name;
-    dateController.text = widget.appUser.DOB;
+    dateController.text = widget.appUser.DOB ?? "";
     groupValue = widget.appUser.gender == 'other'
         ? 0
-        : (widget.appUser.gender == 'female' ? 1 : 2);
+        : (widget.appUser.gender == 'female'
+            ? 1
+            : (widget.appUser.gender == 'male' ? 2 : -1));
     pfpPath = widget.appUser.pfpPath!;
     super.initState();
   }
@@ -76,8 +78,9 @@ class ProfilePageFormState extends State<ProfilePageForm> {
       // }).then((_) {
       widget.appUser.name = nameController.text;
       widget.appUser.DOB = dateController.text;
-      widget.appUser.gender =
-          (groupValue == 0 ? "other" : (groupValue == 1 ? "female" : "male"));
+      widget.appUser.gender = (groupValue == 0
+          ? "other"
+          : (groupValue == 1 ? "female" : (groupValue == 2 ? "male" : "")));
       widget.appUser.pfpPath = pfpName;
 
       usersRepo.updateAppUser(appUser: widget.appUser).then((success) async {
