@@ -26,23 +26,23 @@ class OnlineStores extends StatelessWidget {
                   storeCard(
                       context,
                       "assets/images/store_logos/amazon.png",
-                      snapshot.data![0].prices['Amazon'],
-                      product.storesURLs!["Amazon"]!),
+                      snapshot.data?[0].prices?['Amazon'] ?? "Not Available",
+                      product.storesURLs?["Amazon"] ?? ""),
                   storeCard(
                       context,
                       "assets/images/store_logos/spinneys.png",
-                      snapshot.data![1].prices['Spinneys']!,
-                      product.storesURLs!["Spinneys"]!),
-                  storeCard(
-                      context,
-                      "assets/images/store_logos/jumia.png",
-                      product.prices!['Carrefour']!,
-                      product.storesURLs!["Jumia"]!),
+                      snapshot.data?[1].prices?['Spinneys'] ?? "Not Available",
+                      product.storesURLs?["Spinneys"] ?? "Not Available"),
                   storeCard(
                       context,
                       "assets/images/store_logos/carrefour.png",
-                      product.prices!['Carrefour']!,
-                      product.storesURLs!["Carrefour"]!),
+                      product.prices?['Carrefour'] ?? "Not Available",
+                      product.storesURLs?["Carrefour"] ?? ""),
+                  // storeCard(
+                  //     context,
+                  //     "assets/images/store_logos/jumia.png",
+                  //     product.prices?['Carrefour'] ?? "Not Available",
+                  //     product.storesURLs?["Jumia"] ?? ""),
                 ],
               );
             } else if (snapshot.hasError) {
