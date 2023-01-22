@@ -1,5 +1,4 @@
-import 'package:ar_grocery_companion/constants/keys.dart';
-import 'package:ar_grocery_companion/presentation/error_page.dart';
+import 'package:catcher/catcher.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ar_grocery_companion/constants/constants.dart';
 import 'package:ar_grocery_companion/data/helpers/db_helper.dart';
 import 'package:ar_grocery_companion/data/providers/theme_mode_provider.dart';
-import 'package:ar_grocery_companion/services/firebase_options.dart';
-import 'package:catcher/catcher.dart';
+import 'package:ar_grocery_companion/firebase_options.dart';
 import 'router.dart';
 import 'utils.dart';
 
@@ -18,8 +16,7 @@ void main() async {
 
   //Firebase Initalization
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  FirebaseHelper db = FirebaseHelper();
-  await db.init();
+  await FirebaseHelper.instance.init();
 
   //Push Notifications
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
@@ -34,14 +31,15 @@ void main() async {
   //Check Connection Status
   initConnectionStatus();
 
+  //Set System UI Overlay
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
       overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
-
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
   ));
 
-  Catcher(rootWidget: ProviderScope(child: MyApp()), debugConfig: debugOptions);
+  //Catcher(rootWidget: ProviderScope(child: MyApp()), debugConfig: debugOptions);
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends ConsumerWidget {
@@ -51,8 +49,8 @@ class MyApp extends ConsumerWidget {
     var darkMode = ref.watch(themeModeProvider);
 
     //Override Flutter's red screen of death
-    ErrorWidget.builder =
-        (FlutterErrorDetails details) => SomethingWentWrongScreen();
+    // ErrorWidget.builder =
+    //     (FlutterErrorDetails details) => SomethingWentWrongScreen();
     return MaterialApp.router(
       navigatorKey: Catcher.navigatorKey,
       routerConfig: MyRouter.router,

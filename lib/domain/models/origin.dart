@@ -4,19 +4,23 @@ import 'dart:convert';
 class Origin {
   // String id;
   String name;
+  String countryCode;
 
-  Origin({
-    // required this.id,
-    required this.name,
-  });
+  Origin(
+      {
+      // required this.id,
+      required this.name,
+      required this.countryCode});
 
   Origin copyWith({
     // String? id,
     String? name,
+    String? countryCode,
   }) {
     return Origin(
       // id: id ?? this.id,
       name: name ?? this.name,
+      countryCode: countryCode ?? this.countryCode,
     );
   }
 
@@ -24,6 +28,7 @@ class Origin {
     return <String, dynamic>{
       // 'id': id,
       'name': name,
+      'countryCode': countryCode,
     };
   }
 
@@ -31,6 +36,7 @@ class Origin {
     return Origin(
       // id: map['id'] as String,
       name: map['name'] as String,
+      countryCode: map['countryCode'] as String,
     );
   }
 
@@ -41,17 +47,17 @@ class Origin {
 
   @override
   // String toString() => 'Origin(id: $id, name: $name)';
-  String toString() => 'Origin( name: $name)';
+  String toString() => 'Origin( name: $name,countryCode: $countryCode)';
 
   @override
   bool operator ==(covariant Origin other) {
     if (identical(this, other)) return true;
 
     // return other.id == id && other.name == name;
-    return other.name == name;
+    return other.name == name && other.countryCode == countryCode;
   }
 
   @override
   // int get hashCode => id.hashCode ^ name.hashCode;
-  int get hashCode => name.hashCode;
+  int get hashCode => name.hashCode ^ countryCode.hashCode;
 }

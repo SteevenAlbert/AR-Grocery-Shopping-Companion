@@ -42,16 +42,30 @@ class ProductBase extends Product {
 
   factory ProductBase.fromMap(Map<String, dynamic> map) {
     return ProductBase(
-      id: map["id"],
-      createdAt: DateTime.now(),
-      name: map["name"],
+      id: " ",
+      createdAt: DateTime.fromMillisecondsSinceEpoch(map["createdAt"]),
+      name: map["name"] as String,
       images: List<String>.from(map["images"] as List),
       manufacturer: Company.fromMap(map["manufacturer"]),
       customCategory: CustomCategory.fromMap(
         map["customCategory"],
       ),
-      prices: Map<String, String>.from((map['prices'] as Map)),
+      // prices: Map<String, String>.from((map['prices'] as Map)),
       storesURLs: Map<String, String>.from((map['storesURLs'] as Map)),
     );
+  }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      // 'id': id,
+      'createdAt': createdAt.millisecondsSinceEpoch,
+      'updatedAt': updatedAt?.millisecondsSinceEpoch,
+      'name': name,
+      'images': images,
+      'manufacturer': manufacturer.toMap(),
+      'customCategory': customCategory.toMap(),
+      'prices': prices,
+      'storesURLs': storesURLs,
+    };
   }
 }

@@ -4,14 +4,19 @@ import 'package:ar_grocery_companion/presentation/admin/components/admin_drawer.
 import 'package:ar_grocery_companion/presentation/admin/components/page_view_list.dart';
 import 'package:ar_grocery_companion/utils.dart';
 
-class AdminHomePage extends StatelessWidget {
+class AdminHomePage extends StatefulWidget {
   const AdminHomePage({super.key});
 
+  @override
+  State<AdminHomePage> createState() => _AdminHomePageState();
+}
+
+class _AdminHomePageState extends State<AdminHomePage> {
   @override
   Widget build(BuildContext context) {
     final PageController page = PageController();
     return LayoutBuilder(
-        builder: ((BuildContext context, BoxConstraints constraints) {
+        builder: ((BuildContext layoutContext, BoxConstraints constraints) {
       if (constraints.maxWidth > 600 && constraints.maxHeight > 600) {
         return Scaffold(
           body: Row(children: [

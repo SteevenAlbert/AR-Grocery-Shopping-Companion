@@ -1,7 +1,6 @@
+import 'package:ar_grocery_companion/constants/dummy_data.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-
-import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
 import 'package:ar_grocery_companion/presentation/home/components/product_card.dart';
 
 class ProductCarousel extends StatelessWidget {
@@ -41,7 +40,7 @@ class ProductCarousel extends StatelessWidget {
                   margin: EdgeInsets.symmetric(horizontal: 0.5),
                   child: ProductCard(
                       sectionID: 0,
-                      product: ProductsRepository.generateDummyData()[i]),
+                      product: generateDummyData()[i]),
                 );
               },
             );

@@ -1,10 +1,15 @@
+import 'dart:io';
+
+import 'package:ar_grocery_companion/firebase_storage.dart';
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:ar_grocery_companion/data/repositories/users_repository.dart';
-import 'package:ar_grocery_companion/fire_auth.dart';
+import 'package:ar_grocery_companion/domain/models/user/app_user.dart';
+import 'package:ar_grocery_companion/firebase_authentication.dart';
 import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_animated_button.dart';
 import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_text_form_field.dart';
 import 'package:ar_grocery_companion/presentation/components/custom_widgets/custom_title.dart';
@@ -30,29 +35,32 @@ class LogInScreenState extends State<LogInScreen> {
     });
   }
 
+  void setSession(AppUser appUser) async {
+    var sessionManager = SessionManager();
+    await sessionManager.set("UID", appUser.UID);
+    await sessionManager.set("name", appUser.name);
+    await sessionManager.set("pfpPath", appUser.pfpPath);
+    await sessionManager.set("type", appUser.type);
+    await sessionManager.set("isLoggedIn", true);
+    ((await SessionManager().get("type") == 'customer')
+        ? context.go('/customer_homepage')
+        : context.go('/admin_homepage'));
+  }
+
   void _logIn() async {
+    FocusManager.instance.primaryFocus?.unfocus();
     if (_formKey.currentState!.validate()) {
-      FireAuthentication.signInUsingEmailPassword(
+      FirebaseAuthentication.signInUsingEmailPassword(
         email: emailController.text,
         password: passwordController.text,
         context: context,
       ).then((user) async {
-        print(user);
         if (user != null) {
           usersRepo
               .fetchAppUser((FirebaseAuth.instance.currentUser?.uid)!)
               .then((appUser) async {
-            print(appUser);
             if (appUser != null) {
-              var sessionManager = SessionManager();
-              await sessionManager.set("UID", appUser.UID);
-              await sessionManager.set("name", appUser.name);
-              await sessionManager.set("pfpPath", appUser.pfpPath);
-              await sessionManager.set("type", appUser.type);
-              await sessionManager.set("isLoggedIn", true);
-              ((await SessionManager().get("type") == 'customer')
-                  ? context.go('/customer_homepage')
-                  : context.go('/admin_homepage'));
+              setSession(appUser);
             }
           });
         }
@@ -61,7 +69,46 @@ class LogInScreenState extends State<LogInScreen> {
   }
 
   void _GooglelogIn() async {
-    // User? user = await FireAuthentication.signInWithGoogle(context: context);
+    await FirebaseAuthentication.signOut(context: context).then((_) async {
+      await FirebaseAuthentication.signInWithGoogle(context: context)
+          .then((user) async {
+        print("HERE>>>");
+        print(user);
+        String imageName = user!.photoURL!.split('/').last;
+        String path = '/storage/emulated/0/Download/$imageName';
+        final file = File(path);
+        await Dio().download(user.photoURL!, file.path).then((_) async {
+          await FireStorage.uploadFile(
+                  uploadPath: "images/profile_pictures/$imageName",
+                  filePath: path)
+              .then((_) {
+            usersRepo.fetchAppUser(user.uid).then((appUser) async {
+              if (appUser != null) {
+                //if not first time signing in
+                setSession(appUser);
+              } else {
+                //if first time signing in
+                AppUser appUser = AppUser(
+                    UID: user.uid,
+                    email: user.email!,
+                    name: user.displayName!,
+                    type: 'customer',
+                    DOB: "", //TODO: ...user.DOB,
+                    gender: "", //TODO: ...user.gender,
+                    pfpPath: imageName);
+                usersRepo.insertAppUser(appUser: appUser).then((success) async {
+                  if (success == true) {
+                    setSession(appUser);
+                  } else {
+                    user.delete();
+                  }
+                });
+              }
+            });
+          });
+        });
+      });
+    });
   }
 
   @override
@@ -93,7 +140,7 @@ class LogInScreenState extends State<LogInScreen> {
             padding: EdgeInsets.only(right: 25.0, bottom: 10.0),
             alignment: Alignment.centerRight,
             child: InkWell(
-              onTap: () => {},
+              onTap: () => {GoRouter.of(context).push('/forgot_password')},
               child: Text(
                 'Forgot Password?',
                 style: TextStyle(

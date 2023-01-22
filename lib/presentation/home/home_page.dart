@@ -1,24 +1,44 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:ar_grocery_companion/data/repositories/categories_repository.dart';
 import 'package:ar_grocery_companion/data/repositories/products_repository.dart';
 import 'package:ar_grocery_companion/domain/models/custom_category.dart';
 import 'package:ar_grocery_companion/domain/models/product/product.dart';
+import 'package:ar_grocery_companion/presentation/home/components/tabs.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:ar_grocery_companion/presentation/components/header.dart';
 import 'package:ar_grocery_companion/presentation/home/components/carousel.dart';
-import 'package:ar_grocery_companion/presentation/home/components/tabs.dart';
 import 'package:ar_grocery_companion/presentation/search/search_bar.dart';
+import 'package:ar_grocery_companion/data/repositories/users_repository.dart';
 
-class HomePage extends ConsumerWidget {
+AppUsersRepository usersRepo = AppUsersRepository.instance;
+Future<String> getSessionID() async {
+  return (await SessionManager().containsKey("isLoggedIn") != true ||
+          await SessionManager().get("isLoggedIn") != true)
+      ? ""
+      : await SessionManager().get("UID");
+}
+
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late Future<List<Product>> products;
+  late Future<List<CustomCategory>> categories;
+
+  @override
+  void initState() {
+    super.initState();
+    products = ProductsRepository.instance.fetchProductsList();
+    categories = CategoriesRepository.instance.fetchCategoriesList();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    Future<List<Product>> products =
-        ref.watch(ProductsRepository.instance.productsListFutureProvider);
-    Future<List<CustomCategory>> categories = CategoriesRepository.queryDummyJson();
     return Scaffold(
         body: ListView(children: [
       Header(size: size),
@@ -30,35 +50,19 @@ class HomePage extends ConsumerWidget {
             SizedBox(height: 20),
             SearchBar(size: size),
             CarouselSliderExample(),
-
-            // TODO: seperate this logic
-            // TODO: think if there is a better practice to load data gradually or with each category?
-            // Read the products and categories before displaying the widget
-
             FutureBuilder(
-                future: Future.wait([categories]),
-                builder: ((context, snapshot) {
+                future: Future.wait([categories, products]),
+                builder: ((context, AsyncSnapshot snapshot) {
                   if (snapshot.hasData) {
-                    return FutureBuilder(
-                        future: categories,
-                        builder: ((context, snapshot) {
-                          if (snapshot.hasData) {
-                            List<CustomCategory> category = snapshot.data!;
-                            if (category[0].name != "All") {
-                              category.insert(
-                                  0, CustomCategory(id: "0", name: "All"));
-                            }
-                            return CatTabs(size: size, categories: category);
-                          } else if (snapshot.hasError) {
-                            return Center(child: Text("${snapshot.error}"));
-                          }
-                          return Center(
-                              child: const CircularProgressIndicator());
-                        }));
-                  } else if (snapshot.hasError) {
-                    return Center(child: Text("${snapshot.error}"));
+                    return CatTabs(
+                      size: size,
+                      categories: snapshot.data[0],
+                      products: snapshot.data[1],
+                    );
                   }
-                  return Center(child: const CircularProgressIndicator());
+                  return Align(
+                      alignment: Alignment.center,
+                      child: CircularProgressIndicator());
                 })),
             SizedBox(height: 12),
           ],
@@ -66,4 +70,9 @@ class HomePage extends ConsumerWidget {
       ),
     ]));
   }
+}
+
+Future<List<String>?> retireveFavs() async {
+  String UID = await getSessionID();
+  return usersRepo.fetchFavsList(UID);
 }

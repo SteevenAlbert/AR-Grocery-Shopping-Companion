@@ -1,7 +1,6 @@
 import 'package:ar_grocery_companion/constants/keys.dart';
 import 'package:augmented_reality_plugin_wikitude/startupConfiguration.dart';
 import 'package:catcher/catcher.dart';
-import 'package:catcher/mode/dialog_report_mode.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ar_grocery_companion/domain/sample.dart';
@@ -38,5 +37,6 @@ CatcherOptions debugOptions =
     CatcherOptions(SilentReportMode(), [ConsoleHandler()]);
 // Error images
 String kNoLogoImg = "assets/images/no_logo.jpg";
+String kNoProductImg = "assets/images/no_product.png";
 
-const String kNoPfpImg = "assets/images/profile_pictures/profilepicture.jpg";
+const String kNoPfpImg = "profilepicture.jpg";

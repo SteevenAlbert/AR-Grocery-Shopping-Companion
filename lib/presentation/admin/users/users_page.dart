@@ -22,8 +22,7 @@ class _AppUsersListState extends State<AppUsersList> {
   void initState() {
     super.initState();
     // users = AppUsersRepository.instance.ge;
-    userDataSource =
-        AppUserDataSource(userData: users, context: context);
+    userDataSource = AppUserDataSource(userData: users, context: context);
   }
 
   @override
@@ -31,7 +30,10 @@ class _AppUsersListState extends State<AppUsersList> {
     return ListCard(
         title: "AppUsers",
         // TODO: add delete function
-        trailing: DataGridDeleteButton(dataGridController: dataGridController, deleteFunction: (){},),
+        trailing: DataGridDeleteButton(
+          dataGridController: dataGridController,
+          deleteFunction: () {},
+        ),
         list: ElementsDataGrid(
           dataSource: userDataSource,
           columnNames: ['name', 'manufacturer', 'category'],
@@ -41,15 +43,13 @@ class _AppUsersListState extends State<AppUsersList> {
 }
 
 class AppUserDataSource extends DataGridSource {
-  AppUserDataSource(
-      {required List<AppUser> userData, required this.context}) {
+  AppUserDataSource({required List<AppUser> userData, required this.context}) {
     _userData = userData
         .map<DataGridRow>((user) => DataGridRow(cells: [
               DataGridCell<String>(columnName: 'name', value: user.name),
               DataGridCell<String>(
                   columnName: 'manufacturer', value: user.name),
-              DataGridCell<String>(
-                  columnName: 'category', value: user.email),
+              DataGridCell<String>(columnName: 'category', value: user.email),
             ]))
         .toList();
   }

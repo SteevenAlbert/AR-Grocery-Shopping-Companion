@@ -1,12 +1,18 @@
+import 'dart:convert';
+
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:extension_google_sign_in_as_googleapis_auth/extension_google_sign_in_as_googleapis_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:googleapis/storage/v1.dart';
+import 'package:googleapis_auth/auth_io.dart';
+import 'package:http/http.dart' as http;
 
 import 'presentation/components/custom_widgets/custom_awesome_snackbar.dart';
 
-class FireAuthentication {
+class FirebaseAuthentication {
   static Future<User?> registerUsingEmailPassword({
     required BuildContext context,
     required String email,
@@ -79,6 +85,10 @@ class FireAuthentication {
     if (kIsWeb) {
       GoogleAuthProvider authProvider = GoogleAuthProvider();
 
+      authProvider.addScope('https://www.googleapis.com/auth/userinfo.profile');
+      authProvider
+          .addScope('https://www.googleapis.com/auth/user.birthday.read');
+      authProvider.addScope('https://www.googleapis.com/auth/user.gender.read');
       try {
         final UserCredential userCredential =
             await auth.signInWithPopup(authProvider);
@@ -88,7 +98,12 @@ class FireAuthentication {
         print(e);
       }
     } else {
-      final GoogleSignIn googleSignIn = GoogleSignIn();
+      final GoogleSignIn googleSignIn = GoogleSignIn(scopes: [
+        'email',
+        'https://www.googleapis.com/auth/userinfo.profile',
+        'https://www.googleapis.com/auth/user.birthday.read',
+        'https://www.googleapis.com/auth/user.gender.read',
+      ]);
 
       final GoogleSignInAccount? googleSignInAccount =
           await googleSignIn.signIn();
@@ -96,7 +111,6 @@ class FireAuthentication {
       if (googleSignInAccount != null) {
         final GoogleSignInAuthentication googleSignInAuthentication =
             await googleSignInAccount.authentication;
-
         final AuthCredential credential = GoogleAuthProvider.credential(
           accessToken: googleSignInAuthentication.accessToken,
           idToken: googleSignInAuthentication.idToken,
@@ -108,18 +122,30 @@ class FireAuthentication {
 
           user = userCredential.user;
         } on FirebaseAuthException catch (e) {
-          if (e.code == 'account-exists-with-different-credential') {
-            // ...
-          } else if (e.code == 'invalid-credential') {
-            // ...
-          }
-        } catch (e) {
-          // ...
+          print(e);
         }
       }
     }
 
     return user;
+  }
+
+  static Future<void> resetPassword(
+      {required String email, required BuildContext context}) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      CustomAwesomeSnackbar(
+          context: context,
+          title: 'Email Sent',
+          message: 'Please check your email inbox.',
+          contentType: ContentType.success);
+    } catch (e) {
+      CustomAwesomeSnackbar(
+          context: context,
+          title: 'Email Not Sent',
+          message: 'No user associated with that email. Please try again.',
+          contentType: ContentType.failure);
+    }
   }
 
   static Future<void> signOut({required BuildContext context}) async {
@@ -138,9 +164,5 @@ class FireAuthentication {
               'It appears there was an error during sign out. Please try again.',
           contentType: ContentType.failure);
     }
-  }
-
-  String getCurrentUserId() {
-    return FirebaseAuth.instance.currentUser?.uid ?? '';
   }
 }

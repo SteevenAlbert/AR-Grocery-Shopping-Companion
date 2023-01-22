@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -28,19 +29,45 @@ class CompaniesRepository {
 
   Future<bool> insert(Company company) async {
     bool inserted =
-        await FirebaseHelper.writeUnique('companies', company.toMap());
+        await FirebaseHelper.instance.writeUnique('companies', company.toMap());
+    return inserted;
+  }
+
+  Future<bool> insertProduct(String companyID, String productID) async {
+    bool inserted = await FirebaseHelper.instance
+        .append('companies/$companyID/products/', productID);
     return inserted;
   }
 
   Future<String> update(Company company) async {
     Map<String, dynamic> com = company.toMap();
-    FirebaseHelper.update('companies/${com['id']}', com);
+    FirebaseHelper.instance.update('companies/${com['id']}', com);
     // FirebaseHelper.update('companies/-NLvOZI7U5judTjQBOI4', com);
     return company.id;
   }
 
+  List<Company> retrieveCompanies(AsyncSnapshot snapshot) {
+    Map<String, dynamic> data =
+        jsonDecode(jsonEncode(snapshot.data.snapshot.value['companies']))
+            as Map<String, dynamic>;
+    List<Company> companies = [];
+    data.forEach((index, data) {
+      data["id"] = index;
+      Company category = Company.fromMap(data);
+      companies.add(category);
+    });
+
+    return companies;
+  }
+
+  int retrieveCompaniesCount(AsyncSnapshot snapshot) {
+    Map data = snapshot.data.snapshot.value['companies'];
+    return data.length;
+  }
+
   Future<List<Company>> fetchCompaniesList() async {
-    DataSnapshot? snapshot = await FirebaseHelper.read('companies');
+    _companies = [];
+    DataSnapshot? snapshot = await FirebaseHelper.instance.read('companies');
 
     snapshot!.children.forEach((childSnapshot) {
       var company =
@@ -52,11 +79,11 @@ class CompaniesRepository {
   }
 
   Future<void> deleteAll() async {
-    FirebaseHelper.delete('companies');
+    FirebaseHelper.instance.delete('companies');
   }
 
   Future<String> deleteByID(id) async {
-    FirebaseHelper.delete('companies/$id');
+    FirebaseHelper.instance.delete('companies/$id');
     return id;
   }
 

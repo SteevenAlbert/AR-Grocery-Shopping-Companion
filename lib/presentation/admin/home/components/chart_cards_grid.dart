@@ -1,10 +1,12 @@
+import 'package:ar_grocery_companion/presentation/admin/home/components/pie_chart.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ar_grocery_companion/presentation/admin/home/components/chart_card.dart';
-import 'package:ar_grocery_companion/presentation/admin/home/components/line_chart.dart';
 
 class ChartCardsGrid extends StatelessWidget {
-  const ChartCardsGrid({super.key});
+  const ChartCardsGrid({super.key, required this.snapshot});
+
+  final AsyncSnapshot snapshot;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +21,8 @@ class ChartCardsGrid extends StatelessWidget {
       crossAxisCount: size.width ~/ 350,
       childAspectRatio: 1 / 1.1,
       children: [
-        //ChartCard(title: "Manufacturers", chart: CustomPieChart()),
-        ChartCard(title: "Engagement", chart: CustomLineChart()),
+        ChartCard(title: "Manufacturers", chart: CustomPieChart(snapshot: snapshot)),
+        //ChartCard(title: "Engagement", chart: CustomLineChart()),
       ],
     );
   }

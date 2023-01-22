@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class ItemedFormFields extends StatefulWidget {
-  ItemedFormFields({super.key, required this.formKey});
+  ItemedFormFields({super.key,});
 
-  final GlobalKey<FormState> formKey;
   int noOfItems = 0;
 
   @override

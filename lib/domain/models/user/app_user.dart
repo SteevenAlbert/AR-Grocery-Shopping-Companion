@@ -8,47 +8,51 @@ class AppUser {
   String email;
   String type;
   String name;
-  String DOB;
-  String gender;
+  String? DOB;
+  String? gender;
   String? pfpPath;
-
+  List<String>? favs;
   AppUser(
       {required this.UID,
       required this.email,
       required this.type,
       required this.name,
-      required this.DOB,
-      required this.gender,
-      this.pfpPath = kNoPfpImg});
+      this.DOB,
+      this.gender,
+      this.pfpPath = kNoPfpImg,
+      this.favs});
 
   AppUser copyWith({
     required String UID,
     required String email,
     required String type,
     required String name,
-    required String DOB,
-    required String gender,
+    String? DOB,
+    String? gender,
     String? pfpPath,
+    List<String>? favs,
   }) {
     return AppUser(
       UID: this.UID,
       email: this.email,
       type: this.type,
       name: this.name,
-      DOB: this.DOB,
-      gender: this.gender,
+      DOB: DOB ?? this.DOB,
+      gender: gender ?? this.gender,
       pfpPath: pfpPath ?? this.pfpPath,
+      favs: favs ?? this.favs,
     );
   }
 
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+  Map<String?, dynamic> toMap() {
+    return <String?, dynamic>{
       'email': email,
       'type': type,
       'name': name,
       'DOB': DOB,
       'gender': gender,
       'pfpPath': pfpPath,
+      'favs': favs,
     };
   }
 
@@ -64,9 +68,10 @@ class AppUser {
       email: map['email'] as String,
       type: map['type'] as String,
       name: map['name'] as String,
-      DOB: map['DOB'] as String,
-      gender: map['gender'] as String,
-      pfpPath: map['pfpPath'],
+      DOB: map['DOB'] as String?,
+      gender: map['gender'] as String?,
+      pfpPath: map['pfpPath'] as String?,
+      favs: map['favs'] != null ? List<String>.from((map['favs'] as List)) : [],
     );
   }
 
@@ -75,7 +80,7 @@ class AppUser {
 
   @override
   String toString() {
-    return 'AppUser(UID: $UID,email: $email, type: $type, name: $name, DOB: $DOB, gender: $gender, pfpPath: $pfpPath)';
+    return 'AppUser(UID: $UID,email: $email, type: $type, name: $name, DOB: $DOB, gender: $gender, pfpPath: $pfpPath,favs:$favs)';
   }
 
   @override
@@ -88,7 +93,8 @@ class AppUser {
         other.name == name &&
         other.DOB == DOB &&
         other.gender == gender &&
-        other.pfpPath == pfpPath;
+        other.pfpPath == pfpPath &&
+        other.favs == favs;
   }
 
   @override
@@ -98,6 +104,7 @@ class AppUser {
         name.hashCode ^
         DOB.hashCode ^
         gender.hashCode ^
-        pfpPath.hashCode;
+        pfpPath.hashCode ^
+        favs.hashCode;
   }
 }

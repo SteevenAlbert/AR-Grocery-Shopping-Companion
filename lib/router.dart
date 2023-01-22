@@ -5,6 +5,8 @@ import 'package:ar_grocery_companion/presentation/admin/categories/crud/edit_cat
 import 'package:ar_grocery_companion/presentation/admin/companies/crud/edit_company_page.dart';
 import 'package:ar_grocery_companion/presentation/admin/products/crud/add_product_page.dart';
 import 'package:ar_grocery_companion/presentation/admin/products/crud/edit_product_page.dart';
+import 'package:ar_grocery_companion/presentation/authentication/forgot_password.dart';
+import 'package:ar_grocery_companion/presentation/scan/scan_intro_page.dart';
 import 'package:catcher/catcher.dart';
 import 'package:go_router/go_router.dart';
 
@@ -43,6 +45,9 @@ class MyRouter {
       GoRoute(
           path: '/admin_homepage',
           builder: (context, state) => const AdminHomePage()),
+      GoRoute(
+          path: '/scan_intro_page',
+          builder: (context, state) => const ScanPage()),
       GoRoute(
           name: 'ProductPage',
           path: '/product_page/:fromAR',
@@ -84,7 +89,7 @@ class MyRouter {
       // Admin Module Pages
       GoRoute(
           path: '/add_company_page',
-          builder: (context, state) => const AddCompanyPage()),
+          builder: (context, state) => AddCompanyPage()),
       GoRoute(
           path: '/edit_company_page',
           builder: (context, state) => EditCompanyPage(
@@ -106,6 +111,9 @@ class MyRouter {
           builder: (context, state) => EditProductPage(
                 product: state.extra as Product,
               )),
+      GoRoute(
+          path: '/forgot_password',
+          builder: (context, state) => ForgotPasswordPage()),
     ],
     errorBuilder: (context, state) => SomethingWentWrongScreen(),
   );

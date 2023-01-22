@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -28,20 +29,35 @@ class CategoriesRepository {
   }
 
   Future<bool> insert(CustomCategory category) async {
-    bool inserted =
-        await FirebaseHelper.writeUnique('categories', category.toMap());
+    bool inserted = await FirebaseHelper.instance
+        .writeUnique('categories', category.toMap());
     return inserted;
   }
 
   Future<String> update(CustomCategory category) async {
     Map<String, dynamic> cat = category.toMap();
     print(cat);
-    FirebaseHelper.update('categories/${cat['id']}', cat);
+    FirebaseHelper.instance.update('categories/${cat['id']}', cat);
     return category.id;
   }
 
+  List<CustomCategory> retrieveCategories(AsyncSnapshot snapshot) {
+    Map<String, dynamic> data =
+        jsonDecode(jsonEncode(snapshot.data.snapshot.value['categories']))
+            as Map<String, dynamic>;
+    List<CustomCategory> categories = [];
+    data.forEach((index, data) {
+      data["id"] = index;
+      CustomCategory category = CustomCategory.fromMap(data);
+      categories.add(category);
+    });
+
+    return categories;
+  }
+
   Future<List<CustomCategory>> fetchCategoriesList() async {
-    DataSnapshot? snapshot = await FirebaseHelper.read('categories');
+    _categories = [];
+    DataSnapshot? snapshot = await FirebaseHelper.instance.read('categories');
 
     snapshot!.children.forEach((childSnapshot) {
       var category =
@@ -53,11 +69,11 @@ class CategoriesRepository {
   }
 
   Future<void> deleteAll() async {
-    FirebaseHelper.delete('categories');
+    FirebaseHelper.instance.delete('categories');
   }
 
   Future<String> deleteByID(id) async {
-    FirebaseHelper.delete('categories/$id');
+    FirebaseHelper.instance.delete('categories/$id');
     return id;
   }
 

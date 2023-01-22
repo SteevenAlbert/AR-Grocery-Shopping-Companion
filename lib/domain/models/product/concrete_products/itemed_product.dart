@@ -23,12 +23,13 @@ class ItemedProduct extends ProductDecorator {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'noOfItems': noOfItems,
+      'product' : ProductsRepository.selectProductToMap(product),
     };
   }
 
   factory ItemedProduct.fromMap(Map<String, dynamic> map) {
     return ItemedProduct(
-      product: ProductsRepository.selectProductFromMap(map),
+      product: ProductsRepository.selectProductFromMap(map['product']),
       noOfItems: map['noOfItems'] as int,
     );
   }

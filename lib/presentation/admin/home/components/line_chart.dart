@@ -37,7 +37,7 @@ class CustomLineChartState extends State<CustomLineChart> {
   }
 
   void _prepareStockData() {
-    final List<Product> data = ProductsRepository.instance.getProducts();
+    final List data = ["1", "2", "3"];
 
     double minY = double.maxFinite;
     double maxY = double.minPositive;

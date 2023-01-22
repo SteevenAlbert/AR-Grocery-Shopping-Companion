@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-import '../../services/firebase_options.dart';
+import '../../firebase_options.dart';
 
 //Struct to store database collection names as strings
 class DBCollections {
@@ -10,7 +10,7 @@ class DBCollections {
 }
 
 class FirebaseHelper {
-  static late DatabaseReference _dbRef;
+  late DatabaseReference _dbRef;
 
   Future<void> init() async {
     await Firebase.initializeApp(
@@ -20,7 +20,10 @@ class FirebaseHelper {
 
   DatabaseReference get dbRef => _dbRef;
 
-  static Future<DataSnapshot?> read(String path) async {
+  static final FirebaseHelper instance = FirebaseHelper._();
+  FirebaseHelper._();
+
+  Future<DataSnapshot?> read(String path) async {
     DataSnapshot snapshot = await _dbRef.child(path).get();
     if (snapshot.exists) {
       return snapshot;
@@ -30,7 +33,7 @@ class FirebaseHelper {
   }
 
   //Not recommended, use writeUnique instead
-  static Future<bool> write(String path, dynamic data) async {
+  Future<bool> write(String path, dynamic data) async {
     return await _dbRef.set(data).then((_) {
       return true;
     }).catchError((error) {
@@ -39,7 +42,7 @@ class FirebaseHelper {
     });
   }
 
-  static Future<bool> writeUnique(String path, dynamic data) async {
+  Future<bool> writeUnique(String path, dynamic data) async {
     String? generatedKey = _dbRef.push().key;
     //assign generated key to the object's id
     // data["id"] = generatedKey;
@@ -54,7 +57,18 @@ class FirebaseHelper {
     });
   }
 
-  static Future<bool> update(String path, dynamic data) async {
+  Future<bool> append(String path, dynamic data) async {
+    DatabaseReference newEntryRef = _dbRef.child(path);
+    newEntryRef = newEntryRef.push();
+    return await newEntryRef.set(data).then((_) {
+      return true;
+    }).catchError((error) {
+      print(error);
+      return false;
+    });
+  }
+
+  Future<bool> update(String path, dynamic data) async {
     data.remove("id");
     return await _dbRef.child(path).update(data).then((_) {
       return true;
@@ -64,7 +78,7 @@ class FirebaseHelper {
     });
   }
 
-  static Future<bool> delete(String path) async {
+  Future<bool> delete(String path) async {
     return await _dbRef.child(path).remove().then((_) {
       return true;
     }).catchError((error) {

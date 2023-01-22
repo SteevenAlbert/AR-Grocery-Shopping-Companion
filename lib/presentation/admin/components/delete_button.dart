@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:ar_grocery_companion/data/repositories/companies_repository.dart';
-import 'package:go_router/go_router.dart';
 
 CompaniesRepository companies = CompaniesRepository.instance;
 

@@ -29,13 +29,14 @@ class LiquidProduct extends ProductDecorator {
     return <String, dynamic>{
       'volume': volume,
       'unit': unit,
+      'product' : ProductsRepository.selectProductToMap(product),
     };
   }
 
   factory LiquidProduct.fromMap(Map<String, dynamic> map) {
     return LiquidProduct(
-      product: ProductsRepository.selectProductFromMap(map),
-      volume: map['volume'] as double,
+      product: ProductsRepository.selectProductFromMap(map['product']),
+      volume: map['volume'].toDouble(),
       unit: map['unit'] as String,
     );
   }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-
-import 'package:ar_grocery_companion/presentation/admin/companies/crud/add_company_form.dart';
+import 'package:ar_grocery_companion/presentation/admin/companies/crud/company_form.dart';
 import 'package:ar_grocery_companion/utils.dart';
+import 'package:ar_grocery_companion/domain/models/company.dart';
 
 class AddCompanyPage extends StatelessWidget {
-  const AddCompanyPage({super.key});
-
+  AddCompanyPage({super.key});
+  final Company company = Company(id: "", name: "");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +21,7 @@ class AddCompanyPage extends StatelessWidget {
                     .titleLarge
                     ?.copyWith(fontWeight: FontWeight.bold),
               )),
-          AddCompanyForm(),
+          CompanyForm(company: company, add: true),
         ],
       ),
     );

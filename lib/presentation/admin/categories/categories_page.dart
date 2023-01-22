@@ -3,24 +3,31 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class CategoriesPage extends StatelessWidget {
-  const CategoriesPage({super.key});
+  const CategoriesPage({super.key, required this.snapshot});
 
+  final AsyncSnapshot snapshot;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+    return Stack(children: [
+      Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CategoriesList(),
+          CategoriesList(snapshot: snapshot),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.push('/add_category_page');
-        },
-        child: Icon(Icons.add),
+      Padding(
+        padding: EdgeInsets.all(16),
+        child: Align(
+          alignment: Alignment.bottomRight,
+          child: FloatingActionButton(
+            onPressed: () {
+              context.push('/add_category_page');
+            },
+            child: Icon(Icons.add),
+          ),
+        ),
       ),
-    );
+    ]);
   }
 }

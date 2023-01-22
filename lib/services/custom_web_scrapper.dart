@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import '../constants/constants.dart';
 import '/domain/models/product/product.dart';
 
-Future<Product?> fetchSpinneysPrice(Product product) async {
+Future<String?> fetchSpinneysPrice(Product product) async {
   String serverResponse = "";
   var socket;
 
@@ -14,8 +14,7 @@ Future<Product?> fetchSpinneysPrice(Product product) async {
     socket.write(product.storesURLs!["Spinneys"]);
   } on SocketException catch (e) {
     print(e);
-    product.prices!['Spinneys'] = "Not Available";
-    return product;
+    return "Not Available";
   }
 
   // Listen for the server response.
@@ -40,9 +39,8 @@ Future<Product?> fetchSpinneysPrice(Product product) async {
   // Return the result
   await Future.delayed(const Duration(seconds: 2));
   if (serverResponse == "") {
-    product.prices?["Spinneys"] = "Not Available";
+    return "Not Available";
   } else {
-    product.prices?["Spinneys"] = serverResponse;
+    return serverResponse;
   }
-  return product;
 }

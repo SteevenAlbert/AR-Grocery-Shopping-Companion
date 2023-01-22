@@ -1,9 +1,12 @@
-import 'package:ar_grocery_companion/presentation/admin/categories/crud/add_category_form.dart';
+import 'package:ar_grocery_companion/domain/models/custom_category.dart';
+import 'package:ar_grocery_companion/presentation/admin/categories/crud/category_form.dart';
 import 'package:ar_grocery_companion/utils.dart';
 import 'package:flutter/material.dart';
 
 class AddCategoryPage extends StatelessWidget {
   AddCategoryPage({super.key});
+  final CustomCategory category =
+      CustomCategory(id: "", name: "", imagePath: "");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +22,7 @@ class AddCategoryPage extends StatelessWidget {
                     .titleLarge
                     ?.copyWith(fontWeight: FontWeight.bold),
               )),
-          AddCategoryForm(),
+          CategoryForm(customCategory: category, add: true),
         ],
       ),
     );

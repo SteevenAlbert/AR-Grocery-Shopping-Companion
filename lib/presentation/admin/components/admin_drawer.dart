@@ -1,9 +1,10 @@
+import 'package:ar_grocery_companion/firebase_authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:go_router/go_router.dart';
 
 class AdminDrawer extends StatefulWidget {
-  const AdminDrawer({super.key, required this.page});
+  AdminDrawer({super.key, required this.page});
 
   final PageController page;
 
@@ -18,6 +19,7 @@ class _AdminDrawerState extends State<AdminDrawer> {
       child: Padding(
         padding: const EdgeInsets.only(left: 5, top: 0, right: 5, bottom: 25),
         child: ListView(
+          padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
                 child: Column(
@@ -72,26 +74,15 @@ class _AdminDrawerState extends State<AdminDrawer> {
                 onTap: () {
                   widget.page.jumpToPage(4);
                 }),
-            Expanded(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: (SessionManager().containsKey("isLoggedIn") != true ||
-                        SessionManager().get("isLoggedIn") != true)
-                    ? ListTile(
-                        leading: Icon(Icons.login),
-                        title: Text("Sign In"),
-                        onTap: () async {
-                          context.go('/authenticate');
-                        })
-                    : ListTile(
-                        leading: Icon(Icons.logout),
-                        title: Text("Sign Out"),
-                        onTap: () async {
-                          await SessionManager().destroy();
-                          context.go('/authenticate');
-                        }),
-              ),
-            )
+            ListTile(
+                leading: Icon(Icons.logout),
+                title: Text("Sign Out"),
+                onTap: () async {
+                  await SessionManager().destroy().then((_) async {
+                    await FirebaseAuthentication.signOut(context: context)
+                        .then((_) => context.go('/authenticate'));
+                  });
+                })
           ],
         ),
       ),

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "356788851461-h6o9d1u18v69prpf0j4rmn99n4eaf3qo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "eg.edu.miuegypt.csc422.grocar",
+            "certificate_hash": "edcb7daca4c51a69924a63c0c0c3fcad3b1f44a8"
+          }
+        },
+        {
           "client_id": "356788851461-uo4nvksqit8s32ka4dgp7el168o3n3n7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
