@@ -15,9 +15,10 @@ String baseURL =
 
 Future<String> fetchAmazonPrice(Product product) async {
   if (product.storesURLs?["Amazon"] == "") return "Not Available";
+
   final response =
       await http.get(Uri.parse(baseURL + product.storesURLs!["Amazon"]!));
-
+  print(response.body);
   if (response.statusCode == 200) {
     print(jsonDecode(response.body));
     String price = "Not Available";

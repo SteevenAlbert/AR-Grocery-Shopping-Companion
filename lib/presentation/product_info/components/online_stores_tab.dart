@@ -17,7 +17,7 @@ class OnlineStores extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(0, 20, 0, 8.0),
       child: FutureBuilder(
           future: Future.wait([
-            fetchAmazonPriceDummy(product),
+            fetchAmazonPrice(product),
             fetchSpinneysPrice(product),
             fetchLuluPrice(product),
           ]),
