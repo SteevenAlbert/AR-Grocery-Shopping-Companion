@@ -12,18 +12,19 @@ class ChartCardsGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return GridView.count(
-      padding: EdgeInsets.all(8.0),
-      physics: ScrollPhysics(),
-      mainAxisSpacing: 8.0,
-      crossAxisSpacing: 8.0,
-      shrinkWrap: true,
-      crossAxisCount: size.width ~/ 350,
-      childAspectRatio: 1 / 1.1,
-      children: [
-        ChartCard(title: "Manufacturers", chart: CustomPieChart(snapshot: snapshot)),
-        //ChartCard(title: "Engagement", chart: CustomLineChart()),
-      ],
-    );
+    return ChartCard(title: "Manufacturers", chart: CustomPieChart(snapshot: snapshot));
+    // return GridView.count(
+    //   padding: EdgeInsets.all(8.0),
+    //   physics: ScrollPhysics(),
+    //   mainAxisSpacing: 8.0,
+    //   crossAxisSpacing: 8.0,
+    //   shrinkWrap: true,
+    //   crossAxisCount: size.width ~/ 350,
+    //   childAspectRatio: 1 / 1.1,
+    //   children: [
+    //     ChartCard(title: "Manufacturers", chart: CustomPieChart(snapshot: snapshot)),
+    //     //ChartCard(title: "Engagement", chart: CustomLineChart()),
+    //   ],
+    // );
   }
 }

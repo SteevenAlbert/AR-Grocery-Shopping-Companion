@@ -17,7 +17,7 @@ class Dashboard extends StatelessWidget {
         ),
         Header(size: MediaQuery.of(context).size),
         InfoCardGrid(snapshot: snapshot),
-        //ChartCardsGrid(snapshot: snapshot),
+        ChartCardsGrid(snapshot: snapshot),
       ],
     );
   }
