@@ -26,7 +26,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   late Future<List<Product>> products;
   late Future<List<CustomCategory>> categories;
 
@@ -55,7 +54,11 @@ class _HomePageState extends State<HomePage> {
                 future: Future.wait([categories, products]),
                 builder: ((context, AsyncSnapshot snapshot) {
                   if (snapshot.hasData) {
-                    return CatTabs(size: size, categories: snapshot.data[0], products: snapshot.data[1],);
+                    return CatTabs(
+                      size: size,
+                      categories: snapshot.data[0],
+                      products: snapshot.data[1],
+                    );
                   }
                   return Align(
                       alignment: Alignment.center,

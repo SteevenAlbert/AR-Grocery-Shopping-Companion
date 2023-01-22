@@ -21,22 +21,23 @@ class OnlineStores extends StatelessWidget {
           ]),
           builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
             if (snapshot.hasData) {
+              print(snapshot.data);
               return ListView(
                 children: [
                   storeCard(
                       context,
                       "assets/images/store_logos/amazon.png",
-                      snapshot.data?[0].prices?['Amazon'] ?? "Not Available",
+                      snapshot.data?[0] ?? "Not Available",
                       product.storesURLs?["Amazon"] ?? ""),
                   storeCard(
                       context,
                       "assets/images/store_logos/spinneys.png",
-                      snapshot.data?[1].prices?['Spinneys'] ?? "Not Available",
+                      snapshot.data?[1] ?? "Not Available",
                       product.storesURLs?["Spinneys"] ?? "Not Available"),
                   storeCard(
                       context,
                       "assets/images/store_logos/carrefour.png",
-                      product.prices?['Carrefour'] ?? "Not Available",
+                      product.prices?['Carrefour'] ?? " ",
                       product.storesURLs?["Carrefour"] ?? ""),
                   // storeCard(
                   //     context,
