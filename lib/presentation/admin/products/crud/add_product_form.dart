@@ -21,33 +21,7 @@ class _AddProductFormState extends State<AddProductForm> {
         padding: EdgeInsets.all(16.0),
         child: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
-            if (constraints.maxWidth > 600) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // ImageAdder(
-                  //   label: "Product logo",
-                  // ),
-                  Expanded(
-                      child: AddProductFields(
-                    formKey: formKey,
-                  )),
-                ],
-              );
-            } else {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // ImageAdder(
-                  //   label: "Product logo",
-                  // ),
-                  AddProductFields(
-                    formKey: formKey,
-                  )
-                ],
-              );
-            }
+            return AddProductFields(formKey: formKey, constraints: constraints);
           },
         ),
       ),
