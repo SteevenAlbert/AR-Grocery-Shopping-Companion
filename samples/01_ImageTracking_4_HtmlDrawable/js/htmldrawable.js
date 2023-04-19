@@ -1,24 +1,24 @@
 var World = {
 
-    init: function initFn() {     
-        var productID= "";      //Fetched from Wikitude 
-        var productName= "";    //Set from Flutter
-        var productCard= "";
-        var productIngredients="";
+    init: function initFn() {
+        var productID = "";      //Fetched from Wikitude 
+        var productName = "";    //Set from Flutter
+        var productCard = "";
+        var productIngredients = "";
         var AllergyInfo = ""
         this.createOverlays();
     },
 
     loadProduct: function loadProductFn(data) {
-         World.productName = data["name"];
-         World.productIngredients = data["Ingredients"];
-        World.AllergyInfo = data["Allergy Information"]; 
+        World.productName = data["name"];
+        World.productIngredients = data["Ingredients"];
+        World.AllergyInfo = data["Allergy Information"];
         //print allergy info
         console.log(World.AllergyInfo);
         World.updateCard(World.productName, World.productIngredients, World.AllergyInfo);
-         
+
     },
-    
+
 
     /*---------------------------MAIN FUNCTIONS-----------------------*/
     createOverlays: function createOverlaysFn() {
@@ -42,19 +42,19 @@ var World = {
             onError: World.onError
         });
 
-        
+
         /*-----------------------*/
         //  Product Overlays UI  //
         /*----------------------*/
         this.productCard = new AR.HtmlDrawable({
             uri: "assets/product_card.html"
-        }, 0.7, {
-        
-            viewportWidth: 200,
-            viewportHeight: 220,
+        }, 0.9, {
+
+            viewportWidth: 300,
+            viewportHeight: 400,
             backgroundColor: "#00000000",
             translate: {
-                x: 0.36,
+                x: 1.3,
                 y: 0.5
             },
             horizontalAnchor: AR.CONST.HORIZONTAL_ANCHOR.RIGHT,
@@ -70,20 +70,20 @@ var World = {
         var productButton = this.createProductButton(0.1, {
             translate: {
                 x: 0,
-                y: -0.15
+                y: 0
             },
             zOrder: 3
         });
 
         //Set which image to track, and what to display on recognition
         //Triggered on image recognition, '*' means all images in a targetCollection
-        this.product = new AR.ImageTrackable(this.tracker, "*", {           
+        this.product = new AR.ImageTrackable(this.tracker, "*", {
             drawables: {
                 cam: [productButton, this.productCard]
             },
             onImageRecognized: function onImageRecognizedFn(product) {
                 World.productID = product.name;
-                AR.platform.sendJSONObject({action:"product_card", product_id: World.productID});
+                AR.platform.sendJSONObject({ action: "product_card", product_id: World.productID });
             },
 
             onError: World.onError
@@ -97,91 +97,92 @@ var World = {
         alert(error);
     },
 
-    updateCard: function updateCardFn(productName, productIngredients, AllergyInfo) { 
-            var htmlHeadString =                   
-            '<head>' + 
+    updateCard: function updateCardFn(productName, productIngredients, AllergyInfo) {
+        var htmlHeadString =
+            '<head>' +
             '<meta name="viewport" content="width = 200, user-scalable = 0">' +
-                '<style>' +
-                        '.card {' +
-                            'background-color: #ffffffcd;' +
-                          'box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7);' +
-                          'max-width: 300px;' +
-                          'text-align: center;' +
-                          'font-family: arial;' +
-                          'opacity: 0.8;' +
-                          '-webkit-border-radius: 10px;' + 
-                        '}' +
-                        '.card2 {' +
-                          'background-color: #f44336;' +
-                          //border color
-                            'border: 0px solid #f44336;' +
-                          'box-shadow: 0 4px 8px 0 rgba(100, 0, 0, 0.7);' +
-                          'max-width: 300px;' +
-                          'text-align: center;' +
-                          'font-family: arial;' +
-                          'opacity: 0.7;' +
-                        '-webkit-border-radius: 10px;' + 
-                        '}' +
-                        'h1 {' +
-                           'color: rgb(0, 0, 0);' +
-                           'font-family: "Helvetica Neue", sans-serif;' +
-                           'font-size: 24px;' +
-                           'font-weight: bold;' +
-                           'letter-spacing: -1px;' + 
-                           'text-align: center;' +
-                        '}' +
-                        'h2 {' +
-                           'color: rgb(255, 255, 255);' +
-                           'font-family: "Helvetica Neue", sans-serif;' +
-                           'font-size: 16px;' +
-                           'font-weight: bold;' +
-                           'letter-spacing: -1px;' + 
-                           'text-align: center;' +
-                        '}' +
-                        '.calories{' +
-                          'color: rgb(255, 255, 255);' +
-                          'font-size: 16px;' +
-                        '}' +
-                        '.small{' +
-                            'color: rgb(0, 0, 0);' +
-                            'font-size: 12px;' +
-                        '}' +
-                        '.card button {' +
-                          'border: none;' +
-                          'outline: 0;' +
-                          'padding: 12px;' +
-                          'color: white;' +
-                          'background-color: #549E83;' +
-                          'text-align: center;' +
-                          'cursor: pointer;' +
-                          'width: 100%;' +
-                          'font-size: 18px;' +
-                        '}' +
-                        '.card button:hover {' +
-                          'opacity: 1;'+
-                          '}' +
-                '</style>';
-            '</head>' ;
-            var htmlBodyString = 
-                    '<body>' +     
-                    //card 2
-                    '<div class="card2" id="card2">' +
-                    '<h2>' +AllergyInfo+ '</h2>' +
-                    '</div>' +
-                     '<div class="card" id="card">' +
-                    '<h1 id="Title">'+productName+'</h1>' +
-                    //'<p class="calories">192 cal</p>' +
-                    '<p class="small">'+ productIngredients +'</p>' +
-                 '</div>' +
-                 '</body>';
-                 
-            World.productCard.evalJavaScript("document.documentElement.innerHTML = '"+htmlHeadString + htmlBodyString + "';");   
+            '<style>' +
+            '.card {' +
+            'background-color: #ffffff;' +
+            'border: 0px solid #f44336;' +
+            //'box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.7);' +
+            'max-width: 250px;' +
+            'min-width: 250px;' +
+            'padding: 24px;' +
+            'text-align: left;' +
+            'font-family: arial;' +
+            'opacity: 1.0;' +
+            '-webkit-border-radius: 10px;' +
+            '}' +
+            '.card2 {' +
+            'background-color: #f44336;' +
+            //border color
+            'border: 0px solid #f44336;' +
+            'box-shadow: 0 4px 8px 0 rgba(100, 0, 0, 0.7);' +
+            'max-width: 300px;' +
+            'text-align: center;' +
+            'font-family: arial;' +
+            'opacity: 0.7;' +
+            '-webkit-border-radius: 10px;' +
+            '}' +
+            'h1 {' +
+            'color: #549E83;' +
+            'font-family: "Franklin Gothic Medium", sans-serif;' +
+            'font-size: 24px;' +
+            'font-weight: bold;' +
+            'letter-spacing: -1px;' +
+            'text-align: left;' +
+            '}' +
+            'h2 {' +
+            'color: #f44336;' +
+            'font-family: "Helvetica Neue", sans-serif;' +
+            'font-size: 12px;' +
+            'font-weight: bold;' +
+            'letter-spacing: -1px;' +
+            'text-align: left;' +
+            '}' +
+            '.calories{' +
+            'color: rgb(255, 255, 255);' +
+            'font-size: 16px;' +
+            '}' +
+            '.small{' +
+            'color: rgb(0, 0, 0);' +
+            'font-size: 12px;' +
+            '}' +
+            '.card button {' +
+            'border: none;' +
+            'outline: 0;' +
+            'padding: 12px;' +
+            'color: white;' +
+            'background-color: #549E83;' +
+            'text-align: center;' +
+            'cursor: pointer;' +
+            'width: 100%;' +
+            'font-size: 18px;' +
+            '}' +
+            '.card button:hover {' +
+            'opacity: 1;' +
+            '}' +
+            '</style>';
+        '</head>';
+        var htmlBodyString =
+            '<body>' +
+            '<div class="card" id="card">' +
+            '<h1 id="Title">' + productName + '</h1>' +
+            '<hr style="width:80%; margin-left:0;">' +
+            '<h2>' + AllergyInfo + '</h2>' +
+            //'<p class="calories">192 cal</p>' +
+            '<p class="small">' + productIngredients + '</p>' +
+            '</div>' +
+            '</body>';
+
+        World.productCard.evalJavaScript("document.documentElement.innerHTML = '" + htmlHeadString + htmlBodyString + "';");
     },
 
     createProductButton: function createProductButtonFn(size, options) {
-        options.onClick = function() {
+        options.onClick = function () {
             console.log("Product button clicked");
-            AR.platform.sendJSONObject({action:"product_page", product_id: World.productID});
+            AR.platform.sendJSONObject({ action: "product_page", product_id: World.productID });
         };
         return new AR.ImageDrawable(this.imgButton, size, options);
     },
